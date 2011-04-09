@@ -10,14 +10,21 @@
  */
 package gui;
 
+import controller.KontaktController;
+import java.beans.PropertyChangeEvent;
+import model.AbstractModel;
+
 /**
  *
  * @author Goran-Goggy
  */
-public class Kontakte extends javax.swing.JPanel {
+public class Kontakte extends AbstractViewPanel {
+
+    private KontaktController controller;
 
     /** Creates new form Kontakte */
-    public Kontakte() {
+    public Kontakte(KontaktController controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -58,7 +65,7 @@ public class Kontakte extends javax.swing.JPanel {
         kontaktListeLabel.setText("Kontaktliste");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 18));
         kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel.setText("Kontaktinformation");
         kontaktInfoLabel.setAlignmentX(0.5F);
@@ -98,6 +105,12 @@ public class Kontakte extends javax.swing.JPanel {
         kontaktBLZ.setText("BLZ-Nr.");
         add(kontaktBLZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
         add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 180, -1));
+
+        kontaktNameFeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kontaktNameFeldActionPerformed(evt);
+            }
+        });
         add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 180, -1));
         add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 180, -1));
         add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 180, -1));
@@ -111,6 +124,14 @@ public class Kontakte extends javax.swing.JPanel {
         add(angebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kontaktNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeldActionPerformed
+        try {
+            controller.changeKontaktName(kontaktNameFeld.getText());
+        } catch (Exception e) {
+            //  Handle exception
+        }
+    }//GEN-LAST:event_kontaktNameFeldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -118,7 +139,7 @@ public class Kontakte extends javax.swing.JPanel {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Kontakte().setVisible(true);
+                new Kontakte(new KontaktController()).setVisible(true);
             }
         });
     }
@@ -142,4 +163,11 @@ public class Kontakte extends javax.swing.JPanel {
     private javax.swing.JTextField kontaktTelFeld;
     private javax.swing.JList kundenListe;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void modelPropertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
+            kontaktNameFeld.setText((String)evt.getNewValue());
+        }
+    }
 }

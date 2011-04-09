@@ -25,6 +25,7 @@ public class Main {
         config = new Config();
 
         MainGUI mainGUI = new MainGUI();
+        mainGUI.setVisible(true);
     }
 
 }

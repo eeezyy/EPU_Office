@@ -10,6 +10,8 @@
  */
 package gui;
 
+import controller.*;
+
 /**
  *
  * @author Goran-Goggy
@@ -19,7 +21,7 @@ public class MainGUI extends javax.swing.JFrame {
     /** Creates new form MainGUI */
     public MainGUI() {
         initComponents();
-        tabPanel.add(new Kontakte(), "Kontakte");
+        tabPanel.add(new Kontakte(new KontaktController()), "Kontakte");
         tabPanel.add(new Kunden(), "Kunden");
         setLocationRelativeTo(null);
         setResizable(false);
