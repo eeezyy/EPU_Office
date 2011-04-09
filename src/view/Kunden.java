@@ -9,7 +9,7 @@
  * Created on 09.04.2011, 16:39:26
  */
 
-package gui;
+package view;
 
 /**
  *

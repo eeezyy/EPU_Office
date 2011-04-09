@@ -9,8 +9,8 @@
 
 package controller;
 
+import view.AbstractViewPanel;
 import model.AbstractModel;
-import gui.AbstractViewPanel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;

@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package gui;
+package view;
 
 import java.beans.PropertyChangeEvent;
 import javax.swing.JPanel;

@@ -6,7 +6,7 @@
 package epu_office;
 
 import config.Config;
-import gui.*;
+import view.*;
 import model.*;
 
 /**

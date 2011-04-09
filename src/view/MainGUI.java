@@ -8,7 +8,7 @@
  *
  * Created on 09.04.2011, 14:55:05
  */
-package gui;
+package view;
 
 import controller.*;
 
