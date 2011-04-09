@@ -30,154 +30,85 @@ public class Kontakte extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        kontaktListe = new javax.swing.JList();
         kontaktListeLabel = new javax.swing.JLabel();
-        kontaktListeLabel1 = new javax.swing.JLabel();
-        idLabel = new javax.swing.JLabel();
-        bankLabel = new javax.swing.JLabel();
-        blzLabel = new javax.swing.JLabel();
-        nameFeld = new javax.swing.JTextField();
-        bankInstitutFeld = new javax.swing.JTextField();
-        BLZFeld = new javax.swing.JTextField();
+        kontaktInfoLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        kundenListe = new javax.swing.JList();
+        kontaktKonto = new javax.swing.JLabel();
+        kontaktName = new javax.swing.JLabel();
+        kontaktTel = new javax.swing.JLabel();
+        kontaktEmail = new javax.swing.JLabel();
+        kontaktBank = new javax.swing.JLabel();
+        kontaktBLZ = new javax.swing.JLabel();
+        kontaktKontoFeld = new javax.swing.JTextField();
+        kontaktNameFeld = new javax.swing.JTextField();
+        kontaktTelFeld = new javax.swing.JTextField();
+        kontaktEmailFeld = new javax.swing.JTextField();
+        kontaktBankFeld = new javax.swing.JTextField();
+        kontaktBLZFeld = new javax.swing.JTextField();
         kontaktHinzufuegen = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        nameLabel = new javax.swing.JLabel();
-        telFeld = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
-        bankInstitutFeld2 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        kontoLabel = new javax.swing.JLabel();
-        kontoFeld1 = new javax.swing.JTextField();
+        angebotZuweisen = new javax.swing.JButton();
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
-        kontaktListe.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        setMaximumSize(new java.awt.Dimension(572, 380));
+        setMinimumSize(new java.awt.Dimension(572, 380));
+        setPreferredSize(new java.awt.Dimension(572, 380));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kontaktListeLabel.setText("Kontaktliste");
+        add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kontaktInfoLabel.setText("Kontaktinformation");
+        kontaktInfoLabel.setAlignmentX(0.5F);
+        add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        kundenListe.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(kontaktListe);
+        jScrollPane1.setViewportView(kundenListe);
 
-        kontaktListeLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14));
-        kontaktListeLabel.setText("KONTAKTLISTE");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 200, 260));
 
-        kontaktListeLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14));
-        kontaktListeLabel1.setText("KONTAKTLISTE");
+        kontaktKonto.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktKonto.setText("Kontonr.");
+        add(kontaktKonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
-        idLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
-        idLabel.setText("Name");
+        kontaktName.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktName.setText("Name");
+        add(kontaktName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
 
-        bankLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
-        bankLabel.setText("Bankname");
+        kontaktTel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktTel.setText("Telefonnr.");
+        add(kontaktTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
 
-        blzLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
-        blzLabel.setText("BLZ");
+        kontaktEmail.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktEmail.setText("Email");
+        add(kontaktEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
 
-        kontaktHinzufuegen.setText("Kontakt hinzufügen");
+        kontaktBank.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktBank.setText("Bank");
+        add(kontaktBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, -1, -1));
 
-        jButton1.setText("Angebot zuweisen");
+        kontaktBLZ.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktBLZ.setText("BLZ-Nr.");
+        add(kontaktBLZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
+        add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 180, -1));
+        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 180, -1));
+        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 180, -1));
+        add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 180, -1));
+        add(kontaktBankFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 180, -1));
+        add(kontaktBLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 180, -1));
 
-        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
-        nameLabel.setText("Telefonnr.");
+        kontaktHinzufuegen.setText("Kunden hinzufügen/ändern");
+        add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, -1));
 
-        emailLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
-        emailLabel.setText("Email");
-
-        kontoLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
-        kontoLabel.setText("Kontonr.");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(kontaktHinzufuegen, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(kontaktListeLabel)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameLabel)
-                                    .addComponent(emailLabel)
-                                    .addComponent(idLabel)
-                                    .addComponent(bankLabel)
-                                    .addComponent(blzLabel)
-                                    .addComponent(kontoLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BLZFeld)
-                                    .addComponent(bankInstitutFeld)
-                                    .addComponent(bankInstitutFeld2)
-                                    .addComponent(telFeld)
-                                    .addComponent(kontoFeld1)
-                                    .addComponent(nameFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
-                            .addComponent(kontaktListeLabel1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kontaktListeLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kontaktListeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(nameFeld))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(telFeld))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(bankInstitutFeld2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(bankLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(bankInstitutFeld))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(blzLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(BLZFeld))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(kontoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(kontoFeld1))))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kontaktHinzufuegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        angebotZuweisen.setText("Angebot zuweisen");
+        add(angebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -192,24 +123,23 @@ public class Kontakte extends javax.swing.JPanel {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField BLZFeld;
-    private javax.swing.JTextField bankInstitutFeld;
-    private javax.swing.JTextField bankInstitutFeld2;
-    private javax.swing.JLabel bankLabel;
-    private javax.swing.JLabel blzLabel;
-    private javax.swing.JLabel emailLabel;
-    private javax.swing.JLabel idLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton angebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel kontaktBLZ;
+    private javax.swing.JTextField kontaktBLZFeld;
+    private javax.swing.JLabel kontaktBank;
+    private javax.swing.JTextField kontaktBankFeld;
+    private javax.swing.JLabel kontaktEmail;
+    private javax.swing.JTextField kontaktEmailFeld;
     private javax.swing.JButton kontaktHinzufuegen;
-    private javax.swing.JList kontaktListe;
+    private javax.swing.JLabel kontaktInfoLabel;
+    private javax.swing.JLabel kontaktKonto;
+    private javax.swing.JTextField kontaktKontoFeld;
     private javax.swing.JLabel kontaktListeLabel;
-    private javax.swing.JLabel kontaktListeLabel1;
-    private javax.swing.JTextField kontoFeld1;
-    private javax.swing.JLabel kontoLabel;
-    private javax.swing.JTextField nameFeld;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField telFeld;
+    private javax.swing.JLabel kontaktName;
+    private javax.swing.JTextField kontaktNameFeld;
+    private javax.swing.JLabel kontaktTel;
+    private javax.swing.JTextField kontaktTelFeld;
+    private javax.swing.JList kundenListe;
     // End of variables declaration//GEN-END:variables
 }
