@@ -6,6 +6,8 @@
 package epu_office;
 
 import config.Config;
+import gui.*;
+import model.*;
 
 /**
  *
@@ -21,7 +23,8 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         config = new Config();
-        
+
+        MainGUI mainGUI = new MainGUI();
     }
 
 }
