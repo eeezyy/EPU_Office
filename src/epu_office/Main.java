@@ -5,17 +5,23 @@
 
 package epu_office;
 
+import config.Config;
+
 /**
  *
  * @author Goran-Goggy
  */
 public class Main {
 
+    public static Config config;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        config = new Config();
+        
     }
 
 }

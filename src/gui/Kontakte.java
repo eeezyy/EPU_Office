@@ -50,7 +50,7 @@ public class Kontakte extends javax.swing.JPanel {
         kontoLabel = new javax.swing.JLabel();
         kontoFeld1 = new javax.swing.JTextField();
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kontaktListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -64,26 +64,26 @@ public class Kontakte extends javax.swing.JPanel {
         kontaktListeLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14));
         kontaktListeLabel1.setText("KONTAKTLISTE");
 
-        idLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        idLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         idLabel.setText("Name");
 
-        bankLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bankLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         bankLabel.setText("Bankname");
 
-        blzLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        blzLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         blzLabel.setText("BLZ");
 
         kontaktHinzufuegen.setText("Kontakt hinzufügen");
 
         jButton1.setText("Angebot zuweisen");
 
-        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         nameLabel.setText("Telefonnr.");
 
         emailLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         emailLabel.setText("Email");
 
-        kontoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        kontoLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         kontoLabel.setText("Kontonr.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -141,31 +141,31 @@ public class Kontakte extends javax.swing.JPanel {
                                 .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(nameFeld))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(telFeld))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(bankInstitutFeld2))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(bankLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(bankInstitutFeld))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(blzLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(BLZFeld))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(kontoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
