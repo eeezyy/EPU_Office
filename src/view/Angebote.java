@@ -8,8 +8,7 @@
  *
  * Created on 09.04.2011, 17:52:20
  */
-
-package gui;
+package view;
 
 /**
  *
@@ -131,8 +130,6 @@ public class Angebote extends javax.swing.JPanel {
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 160, -1));
         add(kontaktKontoFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;

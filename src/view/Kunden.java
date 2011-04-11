@@ -8,7 +8,6 @@
  *
  * Created on 09.04.2011, 16:39:26
  */
-
 package view;
 
 /**
@@ -112,8 +111,6 @@ public class Kunden extends javax.swing.JPanel {
         angebotZuweisen.setText("Angebot zuweisen");
         add(angebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
@@ -134,5 +131,4 @@ public class Kunden extends javax.swing.JPanel {
     private javax.swing.JLabel kundenTel;
     private javax.swing.JTextField kundenTelFeld;
     // End of variables declaration//GEN-END:variables
-
 }

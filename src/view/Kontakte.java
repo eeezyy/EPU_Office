@@ -12,7 +12,6 @@ package view;
 
 import controller.KontaktController;
 import java.beans.PropertyChangeEvent;
-import model.AbstractModel;
 
 /**
  *
@@ -166,8 +165,8 @@ public class Kontakte extends AbstractViewPanel {
 
     @Override
     public void modelPropertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
-            kontaktNameFeld.setText((String)evt.getNewValue());
+        if (evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
+            kontaktNameFeld.setText((String) evt.getNewValue());
         }
     }
 }
