@@ -9,6 +9,7 @@
 package view;
 
 import java.beans.PropertyChangeEvent;
+import java.util.List;
 import javax.swing.JPanel;
 
 /**
@@ -28,5 +29,5 @@ public abstract class AbstractViewPanel extends JPanel {
      *
      * @param evt The property change event from the model
      */
-    public abstract void modelPropertyChange(PropertyChangeEvent evt);
+    public abstract void modelPropertyChange(List<?> properties);
 }

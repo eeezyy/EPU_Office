@@ -90,7 +90,7 @@ public abstract class AbstractController implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         
         for (AbstractViewPanel view: registeredViews) {
-            view.modelPropertyChange(evt);
+            view.modelPropertyChange(null);
         }
     }
     

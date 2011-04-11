@@ -12,6 +12,7 @@ package view;
 
 import controller.KontaktController;
 import java.beans.PropertyChangeEvent;
+import java.util.List;
 
 /**
  *
@@ -51,9 +52,9 @@ public class Kontakte extends AbstractViewPanel {
         kontaktTelFeld = new javax.swing.JTextField();
         kontaktEmailFeld = new javax.swing.JTextField();
         kontaktBankFeld = new javax.swing.JTextField();
-        kontaktBLZFeld = new javax.swing.JTextField();
         kontaktHinzufuegen = new javax.swing.JButton();
         angebotZuweisen = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setMaximumSize(new java.awt.Dimension(572, 380));
         setMinimumSize(new java.awt.Dimension(572, 380));
@@ -114,21 +115,32 @@ public class Kontakte extends AbstractViewPanel {
         add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 180, -1));
         add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 180, -1));
         add(kontaktBankFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 180, -1));
-        add(kontaktBLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 180, -1));
 
         kontaktHinzufuegen.setText("Kunden hinzufügen/ändern");
+        kontaktHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kontaktHinzufuegenActionPerformed(evt);
+            }
+        });
         add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, -1));
 
         angebotZuweisen.setText("Angebot zuweisen");
         add(angebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 200, -1));
+
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
+        modelPropertyChange(null);
+    }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
+
     private void kontaktNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeldActionPerformed
-        try {
-            controller.changeKontaktName(kontaktNameFeld.getText());
-        } catch (Exception e) {
-            //  Handle exception
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_kontaktNameFeldActionPerformed
 
     /**
@@ -144,9 +156,9 @@ public class Kontakte extends AbstractViewPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotZuweisen;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kontaktBLZ;
-    private javax.swing.JTextField kontaktBLZFeld;
     private javax.swing.JLabel kontaktBank;
     private javax.swing.JTextField kontaktBankFeld;
     private javax.swing.JLabel kontaktEmail;
@@ -164,9 +176,9 @@ public class Kontakte extends AbstractViewPanel {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void modelPropertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
+    public void modelPropertyChange(List<?> properties) {
+        /*if (evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
             kontaktNameFeld.setText((String) evt.getNewValue());
-        }
+        }*/
     }
 }
