@@ -10,6 +10,7 @@
  */
 package view;
 
+import Dialog.KontaktAddForm;
 import controller.KontaktController;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class Kontakte extends AbstractViewPanel {
         kontaktBLZNrFeld = new javax.swing.JFormattedTextField();
         kontaktKontoNrFeld = new javax.swing.JFormattedTextField();
         kontaktVorNameFeld = new javax.swing.JTextField();
-        KontaktngebotZuweisen = new javax.swing.JButton();
+        KontaktangebotZuweisen = new javax.swing.JButton();
         kontaktNachNameLabel = new javax.swing.JLabel();
         kontaktNachNameFeld1 = new javax.swing.JTextField();
         kontaktStrasseLabel = new javax.swing.JLabel();
@@ -166,8 +167,8 @@ public class Kontakte extends AbstractViewPanel {
         });
         add(kontaktVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
-        KontaktngebotZuweisen.setText("Angebot zuweisen");
-        add(KontaktngebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        KontaktangebotZuweisen.setText("Angebot zuweisen");
+        add(KontaktangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kontaktNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktNachNameLabel.setText("Nachname");
@@ -284,7 +285,7 @@ public class Kontakte extends AbstractViewPanel {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton KontaktngebotZuweisen;
+    private javax.swing.JButton KontaktangebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kontakOrtLabel;
     private javax.swing.JLabel kontakVorNameLabel;

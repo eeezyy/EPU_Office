@@ -42,7 +42,7 @@ public class Kunden extends javax.swing.JPanel {
         kundenLoeschen = new javax.swing.JButton();
         kundenBLZNrFeld = new javax.swing.JFormattedTextField();
         kundenVorNameFeld = new javax.swing.JTextField();
-        kundenangebotZuweisen1 = new javax.swing.JButton();
+        kundenangebotZuweisen = new javax.swing.JButton();
         kundenNachNameLabel = new javax.swing.JLabel();
         kundenNachNameFeld1 = new javax.swing.JTextField();
         kundenStrasseLabel = new javax.swing.JLabel();
@@ -118,8 +118,8 @@ public class Kunden extends javax.swing.JPanel {
         });
         add(kundenVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
-        kundenangebotZuweisen1.setText("Angebot zuweisen");
-        add(kundenangebotZuweisen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        kundenangebotZuweisen.setText("Angebot zuweisen");
+        add(kundenangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kundenNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenNachNameLabel.setText("Nachname");
@@ -233,6 +233,6 @@ public class Kunden extends javax.swing.JPanel {
     private javax.swing.JLabel kundenTuerNrLabel;
     private javax.swing.JTextField kundenVorNameFeld;
     private javax.swing.JLabel kundenVorNameLabel;
-    private javax.swing.JButton kundenangebotZuweisen1;
+    private javax.swing.JButton kundenangebotZuweisen;
     // End of variables declaration//GEN-END:variables
 }

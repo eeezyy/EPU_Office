@@ -8,7 +8,7 @@
  *
  * Created on 13.04.2011, 03:42:56
  */
-package view;
+package Dialog;
 
 /**
  *

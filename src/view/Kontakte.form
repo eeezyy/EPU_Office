@@ -265,7 +265,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="KontaktngebotZuweisen">
+    <Component class="javax.swing.JButton" name="KontaktangebotZuweisen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Angebot zuweisen"/>
       </Properties>

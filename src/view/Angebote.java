@@ -10,6 +10,8 @@
  */
 package view;
 
+import Dialog.AngebotAddForm;
+
 /**
  *
  * @author Goran-Goggy
@@ -36,8 +38,7 @@ public class Angebote extends javax.swing.JPanel {
         kontaktInfoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         kontaktListe = new javax.swing.JList();
-        kontaktKontoNrLabel = new javax.swing.JLabel();
-        kontakVorNameLabel = new javax.swing.JLabel();
+        angebotGueltigBisLabel = new javax.swing.JLabel();
         kontaktTelLabel = new javax.swing.JLabel();
         kontaktEmailLabel = new javax.swing.JLabel();
         kontaktBankInstLabel = new javax.swing.JLabel();
@@ -45,25 +46,17 @@ public class Angebote extends javax.swing.JPanel {
         kontaktNameFeld = new javax.swing.JTextField();
         kontaktTelFeld = new javax.swing.JTextField();
         kontaktBankInstFeld = new javax.swing.JTextField();
-        kontaktHinzufuegen = new javax.swing.JButton();
-        kontaktLoeschen = new javax.swing.JButton();
-        kontaktBLZNrFeld = new javax.swing.JFormattedTextField();
-        kontaktKontoNrFeld = new javax.swing.JFormattedTextField();
-        kontaktVorNameFeld = new javax.swing.JTextField();
-        KontaktngebotZuweisen = new javax.swing.JButton();
-        kontaktNachNameLabel = new javax.swing.JLabel();
-        kontaktNachNameFeld1 = new javax.swing.JTextField();
+        angebotErstellen = new javax.swing.JButton();
+        angebotLoeschen = new javax.swing.JButton();
+        angebotGueltigBisFeld = new javax.swing.JTextField();
+        kundeZuweisen = new javax.swing.JButton();
         kontaktStrasseLabel = new javax.swing.JLabel();
-        kontaktStrasseFeld = new javax.swing.JTextField();
-        kontaktTuerNrLabel = new javax.swing.JLabel();
-        kontaktPLZLabel = new javax.swing.JLabel();
-        kontaktPLZFeld = new javax.swing.JFormattedTextField();
-        kontakOrtLabel = new javax.swing.JLabel();
-        kontaktOrtFeld = new javax.swing.JTextField();
-        kontaktBLZNrFeld1 = new javax.swing.JFormattedTextField();
-        kontaktFirmaLabel = new javax.swing.JLabel();
-        kontaktFirmaFeld = new javax.swing.JTextField();
-        kontaktAendern = new javax.swing.JButton();
+        angebotGueltigAbLabel = new javax.swing.JLabel();
+        angebotGueltigAbFeld = new javax.swing.JTextField();
+        angebotAendern = new javax.swing.JButton();
+        kontaktBankInstFeld1 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,183 +97,134 @@ public class Angebote extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
-        kontaktKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktKontoNrLabel.setText("Konto-Nr.");
-        add(kontaktKontoNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
+        angebotGueltigBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        angebotGueltigBisLabel.setText("Gültig bis");
+        add(angebotGueltigBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
-        kontakVorNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontakVorNameLabel.setText("Vorname");
-        add(kontakVorNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        kontaktTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktTelLabel.setText("Name");
+        add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        kontaktTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktTelLabel.setText("Telefon-Nr.");
-        add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
+        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktEmailLabel.setText("Preis");
+        add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
-        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktEmailLabel.setText("Email");
-        add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
+        kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktBankInstLabel.setText("Dauer");
+        add(kontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
-        kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBankInstLabel.setText("Bankinst.");
-        add(kontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
-
-        kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBLZNrLabel.setText("BLZ-Nr.");
-        add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
+        kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktBLZNrLabel.setText("Chance");
+        add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
         kontaktNameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kontaktNameFeldActionPerformed(evt);
             }
         });
-        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
-        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
-        add(kontaktBankInstFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
+        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
+        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
+        add(kontaktBankInstFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
-        kontaktHinzufuegen.setText("Kontakt hinzufügen");
-        kontaktHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
+        angebotErstellen.setText("Angebot erstellen");
+        angebotErstellen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktHinzufuegenActionPerformed(evt);
+                angebotErstellenActionPerformed(evt);
             }
         });
-        add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
-        kontaktLoeschen.setText("Kontakt löschen");
-        add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
-        add(kontaktBLZNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
-        add(kontaktKontoNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
+        angebotLoeschen.setText("Angebot löschen");
+        add(angebotLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
-        kontaktVorNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        angebotGueltigBisFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktVorNameFeldActionPerformed(evt);
+                angebotGueltigBisFeldActionPerformed(evt);
             }
         });
-        add(kontaktVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
+        add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
-        KontaktngebotZuweisen.setText("Angebot zuweisen");
-        add(KontaktngebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        kundeZuweisen.setText("Kunden zuweisen");
+        add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
-        kontaktNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktNachNameLabel.setText("Nachname");
-        add(kontaktNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
+        kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktStrasseLabel.setText("Beschreibung");
+        add(kontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
-        kontaktNachNameFeld1.addActionListener(new java.awt.event.ActionListener() {
+        angebotGueltigAbLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        angebotGueltigAbLabel.setText("Gültig ab");
+        add(angebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+
+        angebotGueltigAbFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktNachNameFeld1ActionPerformed(evt);
+                angebotGueltigAbFeldActionPerformed(evt);
             }
         });
-        add(kontaktNachNameFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
+        add(angebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
-        kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktStrasseLabel.setText("Straße");
-        add(kontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
-        add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
-
-        kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktTuerNrLabel.setText("Tür-Nr.");
-        add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
-
-        kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktPLZLabel.setText("PLZ");
-        add(kontaktPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
-        add(kontaktPLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
-
-        kontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontakOrtLabel.setText("Ort");
-        add(kontakOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
-
-        kontaktOrtFeld.addActionListener(new java.awt.event.ActionListener() {
+        angebotAendern.setText("Angebot ändern");
+        angebotAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktOrtFeldActionPerformed(evt);
+                angebotAendernActionPerformed(evt);
             }
         });
-        add(kontaktOrtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 150, -1));
-        add(kontaktBLZNrFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
+        add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(kontaktBankInstFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 150, -1));
 
-        kontaktFirmaLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktFirmaLabel.setText("Kunde");
-        add(kontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
 
-        kontaktFirmaFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktFirmaFeldActionPerformed(evt);
-            }
-        });
-        add(kontaktFirmaFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
-
-        kontaktAendern.setText("Kontakt ändern");
-        kontaktAendern.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktAendernActionPerformed(evt);
-            }
-        });
-        add(kontaktAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
     }// </editor-fold>//GEN-END:initComponents
 
     private void kontaktNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeldActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_kontaktNameFeldActionPerformed
 
-    private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
-        KontaktAddForm af = new KontaktAddForm(null, true);
+    private void angebotErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotErstellenActionPerformed
+        AngebotAddForm af = new AngebotAddForm(null, true);
         af.setVisible(true);
-}//GEN-LAST:event_kontaktHinzufuegenActionPerformed
+}//GEN-LAST:event_angebotErstellenActionPerformed
 
-    private void kontaktVorNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktVorNameFeldActionPerformed
+    private void angebotGueltigBisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotGueltigBisFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kontaktVorNameFeldActionPerformed
+}//GEN-LAST:event_angebotGueltigBisFeldActionPerformed
 
-    private void kontaktNachNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNachNameFeld1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_kontaktNachNameFeld1ActionPerformed
-
-    private void kontaktOrtFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktOrtFeldActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_kontaktOrtFeldActionPerformed
-
-    private void kontaktAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktAendernActionPerformed
+    private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
         // TODO add your handling code here:
         //modelPropertyChange(null);
-}//GEN-LAST:event_kontaktAendernActionPerformed
+}//GEN-LAST:event_angebotAendernActionPerformed
 
-    private void kontaktFirmaFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktFirmaFeldActionPerformed
+    private void angebotGueltigAbFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotGueltigAbFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kontaktFirmaFeldActionPerformed
+}//GEN-LAST:event_angebotGueltigAbFeldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton KontaktngebotZuweisen;
+    private javax.swing.JButton angebotAendern;
+    private javax.swing.JButton angebotErstellen;
+    private javax.swing.JTextField angebotGueltigAbFeld;
+    private javax.swing.JLabel angebotGueltigAbLabel;
+    private javax.swing.JTextField angebotGueltigBisFeld;
+    private javax.swing.JLabel angebotGueltigBisLabel;
+    private javax.swing.JButton angebotLoeschen;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel kontakOrtLabel;
-    private javax.swing.JLabel kontakVorNameLabel;
-    private javax.swing.JButton kontaktAendern;
-    private javax.swing.JFormattedTextField kontaktBLZNrFeld;
-    private javax.swing.JFormattedTextField kontaktBLZNrFeld1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel kontaktBLZNrLabel;
     private javax.swing.JTextField kontaktBankInstFeld;
+    private javax.swing.JTextField kontaktBankInstFeld1;
     private javax.swing.JLabel kontaktBankInstLabel;
     private javax.swing.JLabel kontaktEmailLabel;
-    private javax.swing.JTextField kontaktFirmaFeld;
-    private javax.swing.JLabel kontaktFirmaLabel;
-    private javax.swing.JButton kontaktHinzufuegen;
     private javax.swing.JLabel kontaktInfoLabel;
-    private javax.swing.JFormattedTextField kontaktKontoNrFeld;
-    private javax.swing.JLabel kontaktKontoNrLabel;
     private javax.swing.JList kontaktListe;
     private javax.swing.JLabel kontaktListeLabel;
-    private javax.swing.JButton kontaktLoeschen;
-    private javax.swing.JTextField kontaktNachNameFeld1;
-    private javax.swing.JLabel kontaktNachNameLabel;
     private javax.swing.JTextField kontaktNameFeld;
-    private javax.swing.JTextField kontaktOrtFeld;
-    private javax.swing.JFormattedTextField kontaktPLZFeld;
-    private javax.swing.JLabel kontaktPLZLabel;
-    private javax.swing.JTextField kontaktStrasseFeld;
     private javax.swing.JLabel kontaktStrasseLabel;
     private javax.swing.JTextField kontaktTelFeld;
     private javax.swing.JLabel kontaktTelLabel;
-    private javax.swing.JLabel kontaktTuerNrLabel;
-    private javax.swing.JTextField kontaktVorNameFeld;
+    private javax.swing.JButton kundeZuweisen;
     // End of variables declaration//GEN-END:variables
 }
