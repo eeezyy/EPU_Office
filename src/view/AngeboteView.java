@@ -10,7 +10,7 @@
  */
 package view;
 
-import Dialog.AngebotAddForm;
+import view.dialog.AngebotAddForm;
 
 /**
  *
