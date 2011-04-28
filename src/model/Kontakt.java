@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author if09b505
  */
-public class KontaktModel extends AbstractModel{
+public class Kontakt extends AbstractObject{
 
     private int id;
     private String name;
@@ -22,7 +22,7 @@ public class KontaktModel extends AbstractModel{
     private int blz;
     private String bank;
 
-    public KontaktModel() {
+    public Kontakt() {
 
     }
     

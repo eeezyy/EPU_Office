@@ -10,14 +10,18 @@
  */
 package view;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Goran-Goggy
  */
-public class Kunden extends javax.swing.JPanel {
+public class KundenView extends javax.swing.JPanel {
 
     /** Creates new form Kunden */
-    public Kunden() {
+    public KundenView() {
         initComponents();
     }
 

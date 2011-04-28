@@ -18,12 +18,12 @@ import java.util.List;
  *
  * @author Goran-Goggy
  */
-public class Kontakte extends AbstractViewPanel {
+public class KontakteView extends AbstractViewPanel {
 
     private KontaktController controller;
 
     /** Creates new form Kontakte */
-    public Kontakte(KontaktController controller) {
+    public KontakteView(KontaktController controller) {
         this.controller = controller;
         initComponents();
     }
@@ -280,7 +280,7 @@ public class Kontakte extends AbstractViewPanel {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Kontakte(new KontaktController()).setVisible(true);
+                new KontakteView(new KontaktController()).setVisible(true);
             }
         });
     }

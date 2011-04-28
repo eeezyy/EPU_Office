@@ -10,7 +10,7 @@
 package controller;
 
 import view.AbstractViewPanel;
-import model.AbstractModel;
+import model.AbstractObject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;
@@ -28,13 +28,13 @@ public abstract class AbstractController implements PropertyChangeListener {
     //  Vectors that hold a list of the registered models and views for this controller.
     
     private ArrayList<AbstractViewPanel> registeredViews;
-    private ArrayList<AbstractModel> registeredModels;
+    private ArrayList<AbstractObject> registeredModels;
     
     
     /** Creates a new instance of Controller */
     public AbstractController() {
         registeredViews = new ArrayList<AbstractViewPanel>();
-        registeredModels = new ArrayList<AbstractModel>();
+        registeredModels = new ArrayList<AbstractObject>();
     }
 
     
@@ -45,7 +45,7 @@ public abstract class AbstractController implements PropertyChangeListener {
      * state.
      * @param model The model to be added
      */
-    public void addModel(AbstractModel model) {
+    public void addModel(AbstractObject model) {
         registeredModels.add(model);
         model.addPropertyChangeListener(this);
     }
@@ -54,7 +54,7 @@ public abstract class AbstractController implements PropertyChangeListener {
      * Unbinds a model from this controller.
      * @param model The model to be removed
      */
-    public void removeModel(AbstractModel model) {
+    public void removeModel(AbstractObject model) {
         registeredModels.remove(model);
         model.removePropertyChangeListener(this);
     }
@@ -106,7 +106,7 @@ public abstract class AbstractController implements PropertyChangeListener {
      */
     protected void setModelProperty(String propertyName, Object newValue) {
         
-        for (AbstractModel model: registeredModels) {
+        for (AbstractObject model: registeredModels) {
             try {
                 
                 Method method = model.getClass().

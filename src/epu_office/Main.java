@@ -24,7 +24,7 @@ public class Main {
         // TODO code application logic here
         config = new Config();
 
-        MainGUI mainGUI = new MainGUI();
+        MainView mainGUI = new MainView();
         mainGUI.setVisible(true);
     }
 

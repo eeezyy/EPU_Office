@@ -12,7 +12,7 @@ import java.beans.PropertyChangeSupport;
  *
  * @author if09b505
  */
-public class AbstractModel {
+public class AbstractObject {
 
     /**
      * Convenience class that allow others to observe changes to the model properties
@@ -23,7 +23,7 @@ public class AbstractModel {
      * Default constructor. Instantiates the PropertyChangeSupport class.
      */
 
-    public AbstractModel() {
+    public AbstractObject() {
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 

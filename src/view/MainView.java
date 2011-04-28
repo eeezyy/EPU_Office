@@ -16,14 +16,14 @@ import controller.*;
  *
  * @author Goran-Goggy
  */
-public class MainGUI extends javax.swing.JFrame {
+public class MainView extends javax.swing.JFrame {
 
     /** Creates new form MainGUI */
-    public MainGUI() {
+    public MainView() {
         initComponents();
-        tabPanel.add(new Kontakte(new KontaktController()), "Kontakte");
-        tabPanel.add(new Kunden(), "Kunden");
-        tabPanel.add(new Angebote(), "Angebote");
+        tabPanel.add(new KontakteView(new KontaktController()), "Kontakte");
+        tabPanel.add(new KundenView(), "Kunden");
+        tabPanel.add(new AngeboteView(), "Angebote");
         setLocationRelativeTo(null);
         setResizable(false);
         pack();
@@ -111,7 +111,7 @@ public class MainGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new MainGUI().setVisible(true);
+                new MainView().setVisible(true);
             }
         });
     }

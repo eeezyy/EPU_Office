@@ -16,10 +16,10 @@ import Dialog.AngebotAddForm;
  *
  * @author Goran-Goggy
  */
-public class Angebote extends javax.swing.JPanel {
+public class AngeboteView extends javax.swing.JPanel {
 
     /** Creates new form Angebote */
-    public Angebote() {
+    public AngeboteView() {
         initComponents();
     }
 
@@ -97,23 +97,23 @@ public class Angebote extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
-        angebotGueltigBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        angebotGueltigBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         angebotGueltigBisLabel.setText("Gültig bis");
         add(angebotGueltigBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
-        kontaktTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktTelLabel.setText("Name");
         add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktEmailLabel.setText("Preis");
         add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
-        kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktBankInstLabel.setText("Dauer");
         add(kontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
-        kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktBLZNrLabel.setText("Chance");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
@@ -147,11 +147,11 @@ public class Angebote extends javax.swing.JPanel {
         kundeZuweisen.setText("Kunden zuweisen");
         add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
-        kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktStrasseLabel.setText("Beschreibung");
         add(kontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
-        angebotGueltigAbLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        angebotGueltigAbLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         angebotGueltigAbLabel.setText("Gültig ab");
         add(angebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
