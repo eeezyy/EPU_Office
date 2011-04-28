@@ -27,14 +27,6 @@ public class Kontakt extends AbstractObject {
     public Kontakt() {
     }
 
-    public String getBank() {
-        return bankinstitut;
-    }
-
-    public void setBank(String bank) {
-        this.bankinstitut = bank;
-    }
-
     public int getBlz() {
         return blz;
     }
@@ -59,21 +51,6 @@ public class Kontakt extends AbstractObject {
     public void setId(int id) {
     this.id = id;
     }*/
-    public long getKto() {
-        return konto;
-    }
-
-    public void setKto(long kto) {
-        this.konto = kto;
-    }
-
-    public String getName() {
-        return nachname;
-    }
-
-    public void setName(String name) {
-        this.nachname = name;
-    }
 
     public String getTelefon() {
         return telefon;

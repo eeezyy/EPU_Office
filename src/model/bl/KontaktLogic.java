@@ -16,7 +16,7 @@ public class KontaktLogic {
 
     void save(Kontakt kontakt) {
         // Bank
-        if (kontakt.getBank() == null || kontakt.getBank() == "") {
+        if (kontakt.getBankinstitut() == null || kontakt.getBankinstitut() == "") {
             // Bank darf nicht leer sein
         }
         // BLZ
@@ -32,11 +32,11 @@ public class KontaktLogic {
             // keine gültige Email-Adresse
         }
         // Kto
-        if (kontakt.getKto() < 100000000000L) {
+        if (kontakt.getKonto() < 100000000000L) {
             // Kto muss Elfstellig sein
         }
         // Name
-        if (kontakt.getName() == null || kontakt.getName() == "") {
+        if (kontakt.getNachname() == null || kontakt.getNachname() == "") {
             // Name darf nicht leer sein
         }
         if (kontakt.getTelefon() == null) {
