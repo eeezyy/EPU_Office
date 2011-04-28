@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.regex.Matcher;
@@ -12,28 +11,28 @@ import java.util.regex.Pattern;
  *
  * @author if09b505
  */
-public class Kontakt extends AbstractObject{
+public class Kontakt extends AbstractObject {
 
     private int id;
-    private String name;
+    private String firmenname;
+    private String vorname;
+    private String nachname;
+    private String adresse;
     private String email;
     private String telefon;
-    private long kto;
+    private long konto;
     private int blz;
-    private String bank;
+    private String bankinstitut;
 
     public Kontakt() {
-
     }
-    
+
     public String getBank() {
-        return bank;
+        return bankinstitut;
     }
 
     public void setBank(String bank) {
-        if(bank != null){
-            this.bank = bank;
-        }
+        this.bankinstitut = bank;
     }
 
     public int getBlz() {
@@ -41,10 +40,7 @@ public class Kontakt extends AbstractObject{
     }
 
     public void setBlz(int blz) {
-        // blz fünfstellig
-        if(blz >= 10000 && blz <= 99999) {
-            this.blz = blz;
-        }
+        this.blz = blz;
     }
 
     public String getEmail() {
@@ -52,14 +48,7 @@ public class Kontakt extends AbstractObject{
     }
 
     public void setEmail(String email) {
-        // implementation of RFC 2822
-        // http://www.regular-expressions.info/email.html
-
-        Pattern p = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-        Matcher m = p.matcher(email.toLowerCase());
-        if(m.matches()) {
-            this.email = email;
-        }
+        this.email = email;
     }
 
     public int getId() {
@@ -68,26 +57,22 @@ public class Kontakt extends AbstractObject{
 
     /*
     public void setId(int id) {
-        this.id = id;
+    this.id = id;
     }*/
-
     public long getKto() {
-        return kto;
+        return konto;
     }
 
     public void setKto(long kto) {
-        // elfstellige kto
-        if(kto < 100000000000L) {
-            this.kto = kto;
-        }
+        this.konto = kto;
     }
 
     public String getName() {
-        return name;
+        return nachname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nachname = name;
     }
 
     public String getTelefon() {
@@ -97,8 +82,53 @@ public class Kontakt extends AbstractObject{
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
+    
+    
+    public String getAdresse() {
+        return adresse;
+    }
 
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
 
+    public String getBankinstitut() {
+        return bankinstitut;
+    }
 
+    public void setBankinstitut(String bankinstitut) {
+        this.bankinstitut = bankinstitut;
+    }
 
+    public String getFirmenname() {
+        return firmenname;
+    }
+
+    public void setFirmenname(String firmenname) {
+        this.firmenname = firmenname;
+    }
+
+    public long getKonto() {
+        return konto;
+    }
+
+    public void setKonto(long konto) {
+        this.konto = konto;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
 }
