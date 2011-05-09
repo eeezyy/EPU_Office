@@ -82,11 +82,11 @@ public class KontakteView extends AbstractViewPanel {
         setPreferredSize(new java.awt.Dimension(800, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         kontaktListeLabel.setText("Kontaktliste");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel.setText("Kontaktinformation");
         kontaktInfoLabel.setAlignmentX(0.5F);

@@ -77,11 +77,11 @@ public class AngeboteView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(572, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel.setText("Angebotliste");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel.setText("Angebotinformation");
         kontaktInfoLabel.setAlignmentX(0.5F);
@@ -105,16 +105,16 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktTelLabel.setText("Name");
         add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktEmailLabel.setText("Preis");
+        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktEmailLabel.setText("Impl.preis (€)");
         add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBankInstLabel.setText("Dauer");
+        kontaktBankInstLabel.setText("Impl.dauer");
         add(kontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBLZNrLabel.setText("Chance");
+        kontaktBLZNrLabel.setText("Impl.chance");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
         kontaktNameFeld.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +122,8 @@ public class AngeboteView extends javax.swing.JPanel {
                 kontaktNameFeldActionPerformed(evt);
             }
         });
-        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
-        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
+        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
+        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
         add(kontaktBankInstFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
         angebotErstellen.setText("Angebot erstellen");
@@ -142,7 +142,7 @@ public class AngeboteView extends javax.swing.JPanel {
                 angebotGueltigBisFeldActionPerformed(evt);
             }
         });
-        add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
+        add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
 
         kundeZuweisen.setText("Kunden zuweisen");
         add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
@@ -169,7 +169,7 @@ public class AngeboteView extends javax.swing.JPanel {
             }
         });
         add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
-        add(kontaktBankInstFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 150, -1));
+        add(kontaktBankInstFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 140, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);

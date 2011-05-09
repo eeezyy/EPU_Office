@@ -24,6 +24,7 @@ public class MainView extends javax.swing.JFrame {
         tabPanel.add(new KontakteView(new KontaktController()), "Kontakte");
         tabPanel.add(new KundenView(), "Kunden");
         tabPanel.add(new AngeboteView(), "Angebote");
+        tabPanel.add(new StatistikView(), "Statistik");
         setLocationRelativeTo(null);
         setResizable(false);
         pack();

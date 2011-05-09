@@ -10,10 +10,6 @@
  */
 package view;
 
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Goran-Goggy
@@ -65,11 +61,11 @@ public class KundenView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(572, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         kundenListeLabel.setText("Kundenliste");
         add(kundenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         kundenInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kundenInfoLabel.setText("Kundeninformation");
         kundenInfoLabel.setAlignmentX(0.5F);

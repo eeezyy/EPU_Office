@@ -73,7 +73,7 @@ public class KontaktAddForm extends javax.swing.JDialog {
         kontaktAddLabel.setAlignmentX(0.5F);
         jPanel1.add(kontaktAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
-        dialogKontaktKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogKontaktKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogKontaktKontoNrLabel.setText("Konto-Nr.");
         jPanel1.add(dialogKontaktKontoNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
 
@@ -89,11 +89,11 @@ public class KontaktAddForm extends javax.swing.JDialog {
         dialogKontaktEmailLabel.setText("Email");
         jPanel1.add(dialogKontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
 
-        dialogKontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogKontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogKontaktBankInstLabel.setText("Bankinst.");
         jPanel1.add(dialogKontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        dialogKontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogKontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogKontaktBLZNrLabel.setText("BLZ-Nr.");
         jPanel1.add(dialogKontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
@@ -138,7 +138,7 @@ public class KontaktAddForm extends javax.swing.JDialog {
         });
         jPanel1.add(dialogKontaktNachNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 150, -1));
 
-        dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogKontaktStrasseLabel.setText("Straße");
         jPanel1.add(dialogKontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
         jPanel1.add(dialogKontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 150, -1));
