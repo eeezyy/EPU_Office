@@ -53,40 +53,40 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel.setText("Eingangsrechnung");
         kontaktInfoLabel.setAlignmentX(0.5F);
         jPanel1.add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kundenTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel.setText("Preis (€)");
         jPanel1.add(kundenTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
         jTextPane1.setBorder(null);
         jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 15));
         jTextPane1.setText("3000");
         jTextPane1.setName("result"); // NOI18N
         jScrollPane3.setViewportView(jTextPane1);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 310, -1));
 
-        kundenTelLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel1.setText("Rechnung eingegangen, am ");
         jPanel1.add(kundenTelLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        kundenTelLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel2.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel2.setText("Kontakt");
         jPanel1.add(kundenTelLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        kundenTelLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel3.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel3.setText("Scanpfad");
         jPanel1.add(kundenTelLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         jTextPane2.setBorder(null);
         jTextPane2.setEditable(false);
-        jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 15));
         jTextPane2.setText("9.5.2011");
         jTextPane2.setName("result"); // NOI18N
         jScrollPane4.setViewportView(jTextPane2);
@@ -95,7 +95,7 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
 
         jTextPane3.setBorder(null);
         jTextPane3.setEditable(false);
-        jTextPane3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTextPane3.setFont(new java.awt.Font("Tahoma", 0, 15));
         jTextPane3.setText("FH Technikum-Wien");
         jTextPane3.setName("result"); // NOI18N
         jScrollPane5.setViewportView(jTextPane3);
@@ -104,7 +104,7 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
 
         jTextPane4.setBorder(null);
         jTextPane4.setEditable(false);
-        jTextPane4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTextPane4.setFont(new java.awt.Font("Tahoma", 0, 15));
         jTextPane4.setText("C:\\Users\\Goran-Goggy\\file.jpg");
         jTextPane4.setName("result"); // NOI18N
         jScrollPane6.setViewportView(jTextPane4);
@@ -112,12 +112,22 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
         jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 310, -1));
 
         jButton1.setText("Schließen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

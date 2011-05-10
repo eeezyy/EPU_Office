@@ -10,7 +10,9 @@
  */
 package view;
 
+import view.dialog.AusgangsrechnungForm;
 import view.dialog.EingangsrechnungForm;
+import view.dialog.JahresUeberblickForm;
 
 /**
  *
@@ -50,22 +52,23 @@ public class StatistikView extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel.setText("Erlösstand (€)");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 20));
 
-        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel.setText("Eingangsrechnung");
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikEingang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        statistikEingang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         statistikEingang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 statistikEingangMousePressed(evt);
@@ -84,9 +87,14 @@ public class StatistikView extends javax.swing.JPanel {
         add(statistikAusgangHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         statistikEingangHinzufuegen.setText("Eingangsrechnung hinzufügen");
-        add(statistikEingangHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(statistikEingangHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         statistikJahr.setText("Jahresüberblick anzeigen");
+        statistikJahr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statistikJahrActionPerformed(evt);
+            }
+        });
         add(statistikJahr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         statistikPDF.setText("PDF erstellen");
@@ -97,30 +105,36 @@ public class StatistikView extends javax.swing.JPanel {
         });
         add(statistikPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
-        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikAusgang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        statistikAusgang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        statistikAusgang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                statistikAusgangMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(statistikAusgang);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 470, 140));
 
-        kontaktListeLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel1.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel1.setText("Ausgangsrechnung");
         add(kontaktListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jänner", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 120, 20));
 
-        kontaktListeLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel2.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel2.setText("Betroffener Monat");
         add(kontaktListeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         jTextPane1.setBorder(null);
         jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14));
         jTextPane1.setText("55550,00");
         jTextPane1.setName("result"); // NOI18N
         jScrollPane3.setViewportView(jTextPane1);
@@ -143,6 +157,18 @@ public class StatistikView extends javax.swing.JPanel {
         EingangsrechnungForm eRF = new EingangsrechnungForm(null, true);
         eRF.setVisible(true);
     }//GEN-LAST:event_statistikEingangMousePressed
+
+    private void statistikAusgangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statistikAusgangMousePressed
+        // TODO add your handling code here:
+        AusgangsrechnungForm aRF = new AusgangsrechnungForm(null, true);
+        aRF.setVisible(true);
+    }//GEN-LAST:event_statistikAusgangMousePressed
+
+    private void statistikJahrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikJahrActionPerformed
+        // TODO add your handling code here:
+        JahresUeberblickForm jUF = new JahresUeberblickForm(null, true);
+        jUF.setVisible(true);
+    }//GEN-LAST:event_statistikJahrActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;

@@ -82,11 +82,11 @@ public class KontakteView extends AbstractViewPanel {
         setPreferredSize(new java.awt.Dimension(800, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel.setText("Kontaktliste");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel.setText("Kontaktinformation");
         kontaktInfoLabel.setAlignmentX(0.5F);
@@ -98,6 +98,7 @@ public class KontakteView extends AbstractViewPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(kontaktListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
@@ -144,7 +145,7 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         kontaktLoeschen.setText("Kontakt löschen");
-        add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         try {
             kontaktBLZNrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
@@ -323,7 +324,7 @@ public class KontakteView extends AbstractViewPanel {
     @Override
     public void modelPropertyChange(List<?> properties) {
         /*if (evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
-            kontaktNameFeld.setText((String) evt.getNewValue());
+        kontaktNameFeld.setText((String) evt.getNewValue());
         }*/
     }
 }

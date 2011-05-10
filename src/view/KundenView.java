@@ -61,11 +61,11 @@ public class KundenView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(572, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenListeLabel.setText("Kundenliste");
         add(kundenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kundenInfoLabel.setText("Kundeninformation");
         kundenInfoLabel.setAlignmentX(0.5F);
@@ -77,6 +77,7 @@ public class KundenView extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        kundenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(kundenListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
@@ -85,7 +86,7 @@ public class KundenView extends javax.swing.JPanel {
         kundenVorNameLabel.setText("Vorname");
         add(kundenVorNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        kundenTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kundenTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         kundenTelLabel.setText("Telefon-Nr.");
         add(kundenTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
@@ -102,7 +103,7 @@ public class KundenView extends javax.swing.JPanel {
         add(kundenTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kundenLoeschen.setText("Kunden löschen");
-        add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         try {
             kundenBLZNrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
@@ -207,7 +208,6 @@ public class KundenView extends javax.swing.JPanel {
         // TODO add your handling code here:
         //modelPropertyChange(null);
 }//GEN-LAST:event_kundenAendernActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kundenAendern;
