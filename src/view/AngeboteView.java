@@ -87,7 +87,7 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kontaktListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -106,7 +106,7 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktTelLabel.setText("Name");
         add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktEmailLabel.setText("Impl.preis (€)");
         add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 

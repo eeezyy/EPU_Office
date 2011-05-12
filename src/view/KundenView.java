@@ -86,7 +86,7 @@ public class KundenView extends javax.swing.JPanel {
         kundenVorNameLabel.setText("Vorname");
         add(kundenVorNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        kundenTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel.setText("Telefon-Nr.");
         add(kundenTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 

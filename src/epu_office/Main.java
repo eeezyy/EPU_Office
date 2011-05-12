@@ -5,7 +5,7 @@
 package epu_office;
 
 import config.Config;
-import controller.BaseDoc;
+import utils.BaseDoc;
 import view.*;
 import model.*;
 

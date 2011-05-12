@@ -79,11 +79,11 @@ public class ProjektView extends javax.swing.JPanel {
         projektAuftragLabel.setText("Auftrag");
         add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektImplementierungVonLabel.setText("Impl. (von)");
         add(projektImplementierungVonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
-        projektImplementierungBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektImplementierungBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektImplementierungBisLabel.setText("Impl. (bis)");
         add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
@@ -119,11 +119,11 @@ public class ProjektView extends javax.swing.JPanel {
         });
         add(kundenFirmaFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 140, -1));
 
-        projektImplementierungVonLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektImplementierungVonLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektImplementierungVonLabel1.setText("Abgeschlossen");
         add(projektImplementierungVonLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
-        projektArbeitsstundenGesamt.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektArbeitsstundenGesamt.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektArbeitsstundenGesamt.setText("Arbeitsstunden (gesamt)");
         add(projektArbeitsstundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
         add(projektCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
