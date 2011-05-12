@@ -23,6 +23,15 @@ public class Kontakt extends AbstractObject {
     private long konto;
     private int blz;
     private String bankinstitut;
+    private boolean isKunde;
+
+    public boolean getIsKunde() {
+        return isKunde;
+    }
+
+    public void setIsKunde(boolean isKunde) {
+        this.isKunde = isKunde;
+    }
 
     public Kontakt() {
     }
@@ -47,10 +56,10 @@ public class Kontakt extends AbstractObject {
         return id;
     }
 
-    /*
+    
     public void setId(int id) {
     this.id = id;
-    }*/
+    }
 
     public String getTelefon() {
         return telefon;

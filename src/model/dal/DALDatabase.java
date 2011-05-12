@@ -225,4 +225,67 @@ public class DALDatabase implements IDAL {
 //            throw new DALException(e.getMessage());
 //        }
 //    }*/
+
+    public void saveKontakt(Kontakt k) throws DALException {
+        try {
+            // Datenbankverbindung �ffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM Kontakt WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, k.getId());
+            // Ausf�hren
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE Kontakt SET Vorname = ?, Nachname = ?, Email = ?, Telefon = ?, BLZ = ?, Bankinstitut = ?, Konto = ?, "
+                        + "Firmenname = ?, Adresse = ?, isKunde = ? WHERE id = ?", 
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setString(1, k.getVorname());
+                cmd.setString(2, k.getNachname());
+                cmd.setString(3, k.getEmail());
+                cmd.setString(4, k.getTelefon());
+                cmd.setInt(5, k.getBlz());
+                cmd.setString(6, k.getBankinstitut());
+                cmd.setLong(7, k.getKonto());
+                cmd.setString(8, k.getFirmenname());
+                cmd.setString(9, k.getAdresse());
+                cmd.setBoolean(10, k.getIsKunde());
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Adresse, isKunde) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setString(1, k.getVorname());
+                cmd.setString(2, k.getNachname());
+                cmd.setString(3, k.getEmail());
+                cmd.setString(4, k.getTelefon());
+                cmd.setInt(5, k.getBlz());
+                cmd.setString(6, k.getBankinstitut());
+                cmd.setLong(7, k.getKonto());
+                cmd.setString(8, k.getFirmenname());
+                cmd.setString(9, k.getAdresse());
+                cmd.setBoolean(10, k.getIsKunde());
+            }
+            // execute insert/update
+            int result = cmd.executeUpdate();
+            // get generated id
+            ResultSet generatedKeys = cmd.getGeneratedKeys();
+            if (result != 0 && generatedKeys.next()) {
+                k.setId(generatedKeys.getInt(1));
+            }
+            cmd.close();
+
+            rd.close();
+            cmdSelect.close();
+            db.close();
+
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
+    }
 }

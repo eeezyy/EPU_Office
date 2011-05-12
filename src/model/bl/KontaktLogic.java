@@ -4,6 +4,7 @@
  */
 package model.bl;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.Kontakt;
@@ -14,9 +15,9 @@ import model.Kontakt;
  */
 public class KontaktLogic {
 
-    void save(Kontakt kontakt) {
+    public static ArrayList<String> check(Kontakt kontakt) {
         // Bank
-        if (kontakt.getBankinstitut() == null || kontakt.getBankinstitut() == "") {
+        if (kontakt.getBankinstitut() == null || kontakt.getBankinstitut().length() == 0) {
             // Bank darf nicht leer sein
         }
         // BLZ
@@ -42,5 +43,7 @@ public class KontaktLogic {
         if (kontakt.getTelefon() == null) {
             // Telefonnr darf nicht null sein
         }
+        
+        return null;
     }
 }

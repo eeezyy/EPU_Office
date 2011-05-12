@@ -5,6 +5,11 @@
 
 package controller;
 
+import model.Kontakt;
+import model.bl.KontaktLogic;
+import model.dal.DALException;
+import model.dal.DALFactory;
+
 /**
  *
  * @author if09b505
@@ -18,8 +23,14 @@ public class KontaktController extends AbstractController {
     public static final String KONTAKT_BLZ_PROPERTY = "Blz";
     public static final String KONTAKT_KTO_PROPERTY = "Kto";
 
-    public void changeKontaktName(String newName) {
-        setModelProperty(KONTAKT_NAME_PROPERTY, newName);
+    public void changeKontakt(Kontakt kontakt) throws DALException {
+        if(KontaktLogic.check(kontakt).size() == 0){
+            DALFactory.getDAL().saveKontakt(kontakt);
+        } else {
+            //arraylist to view
+        }
+        
+        setModelProperty(KONTAKT_NAME_PROPERTY, kontakt);
     }
 
     

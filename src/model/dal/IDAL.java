@@ -19,5 +19,5 @@ public interface IDAL {
 	public Produkt getProdukt(int ID) throws DALException;
 	public void saveProdukt(Produkt p) throws DALException;
 	public void deleteProdukt(Produkt p) throws DALException;*/
-
+        public void saveKontakt (Kontakt k) throws DALException;
 }
