@@ -9,6 +9,7 @@ import model.Kontakt;
 import model.bl.KontaktLogic;
 import model.dal.DALException;
 import model.dal.DALFactory;
+import view.KontakteView;
 
 /**
  *
@@ -24,7 +25,7 @@ public class KontaktController extends AbstractController {
     public static final String KONTAKT_KTO_PROPERTY = "Kto";
 
     public void changeKontakt(Kontakt kontakt) throws DALException {
-        if(KontaktLogic.check(kontakt).size() == 0){
+        if(KontaktLogic.check(kontakt).isEmpty()){
             DALFactory.getDAL().saveKontakt(kontakt);
         } else {
             //arraylist to view

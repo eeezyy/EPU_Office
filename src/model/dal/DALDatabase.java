@@ -266,6 +266,7 @@ public class DALDatabase implements IDAL {
                 cmd.setString(4, k.getTelefon());
                 cmd.setInt(5, k.getBlz());
                 cmd.setString(6, k.getBankinstitut());
+                System.out.println(k.getKonto());
                 cmd.setLong(7, k.getKonto());
                 cmd.setString(8, k.getFirmenname());
                 cmd.setString(9, k.getAdresse());

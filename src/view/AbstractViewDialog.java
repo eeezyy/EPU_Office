@@ -10,8 +10,9 @@ package view;
 
 import controller.AbstractController;
 import controller.ModelObservable;
+import java.awt.Frame;
 import java.util.List;
-import javax.swing.JPanel;
+import javax.swing.JDialog;
 
 /**
  * This class provides the base level abstraction for views in this example. All
@@ -22,24 +23,27 @@ import javax.swing.JPanel;
  *
  * @author Robert Eckstein
  */
-public abstract class AbstractViewPanel extends JPanel {
+public abstract class AbstractViewDialog extends JDialog {
 
     private AbstractController controller;
+
+    public AbstractController getController() {
+        return controller;
+    }
+
+    public ModelObservable getObservable() {
+        return observable;
+    }
     private ModelObservable observable;
 
-    public AbstractViewPanel(ModelObservable observable) {
+    public AbstractViewDialog(ModelObservable observable, Frame owner, boolean modal) {
+        super(owner, modal);
         this.observable = observable;
     }
 
     public void setController(AbstractController controller) {
         this.controller = controller;
     }
-
-    public ModelObservable getObservable() {
-        return observable;
-    }
-    //private AbstractController controller;
-    //public AbstractViewPanel(AbstractController controller);
 
     /**
      * Called by the controller when it needs to pass along a property change 

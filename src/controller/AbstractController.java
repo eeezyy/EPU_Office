@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * changes when necessary.
  * @author Robert Eckstein
  */
-public abstract class AbstractController implements PropertyChangeListener {
+public class AbstractController implements PropertyChangeListener {
     
     //  Vectors that hold a list of the registered models and views for this controller.
     

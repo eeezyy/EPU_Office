@@ -11,6 +11,8 @@
 package view;
 
 import controller.*;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -21,11 +23,7 @@ public class MainView extends javax.swing.JFrame {
     /** Creates new form MainGUI */
     public MainView() {
         initComponents();
-        tabPanel.add(new KontakteView(new KontaktController()), "Kontakte");
-        tabPanel.add(new KundenView(), "Kunden");
-        tabPanel.add(new AngeboteView(), "Angebote");
-        tabPanel.add(new StatistikView(), "Statistik");
-        tabPanel.add(new ProjektView(), "Projekte");
+
         setLocationRelativeTo(null);
         setResizable(false);
         pack();
@@ -124,4 +122,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton konfigButton;
     private javax.swing.JTabbedPane tabPanel;
     // End of variables declaration//GEN-END:variables
+
+    public void addTabPanel(JPanel panel, String title) {
+        this.tabPanel.add(panel, title);
+    }
 }

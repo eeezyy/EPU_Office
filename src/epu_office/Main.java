@@ -5,9 +5,8 @@
 package epu_office;
 
 import config.Config;
+import controller.MainController;
 import utils.BaseDoc;
-import view.*;
-import model.*;
 
 /**
  *
@@ -16,6 +15,7 @@ import model.*;
 public class Main {
 
     public static Config config;
+    private static MainController controller;
 
     /**
      * @param args the command line arguments
@@ -27,8 +27,6 @@ public class Main {
         BaseDoc test = new BaseDoc();
         System.out.println("Dokuemnt gespeichert");
         test.createPDF("TestPDFDOKUMENT____2011.pdf");
-
-        MainView mainGUI = new MainView();
-        mainGUI.setVisible(true);
+        controller = new MainController();
     }
 }
