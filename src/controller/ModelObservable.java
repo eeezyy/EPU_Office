@@ -13,15 +13,25 @@ import model.AbstractObject;
  */
 public class ModelObservable extends Observable {
     
-    private AbstractObject changedObject;
-    
+    private NotifyObject notifyObject;
+    private State state;
+    /*
     @Override
     public void notifyObservers(Object arg) {
-        this.changedObject = (AbstractObject)arg;
+        this.notifyObject = (NotifyObject)arg;
+        
+    }*/
+    
+    public NotifyObject getChangedObject() {
+        return this.notifyObject;
     }
     
-    public AbstractObject getChangedObject() {
-        return this.changedObject;
+    public void setState(State state) {
+        this.state = state;
+    }
+    
+    public State getState() {
+        return this.state;
     }
     
 }

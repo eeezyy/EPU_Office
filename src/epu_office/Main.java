@@ -24,9 +24,9 @@ public class Main {
         // TODO code application logic here
         config = new Config();
 
-        BaseDoc test = new BaseDoc();
-        System.out.println("Dokuemnt gespeichert");
-        test.createPDF("TestPDFDOKUMENT____2011.pdf");
+        //BaseDoc test = new BaseDoc();
+        //System.out.println("Dokuemnt gespeichert");
+        //test.createPDF("TestPDFDOKUMENT____2011.pdf");
         controller = new MainController();
     }
 }

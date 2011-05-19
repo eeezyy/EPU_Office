@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
  */
 public class Kontakt extends AbstractObject {
 
-    private int id;
     private String firmenname;
     private String vorname;
     private String nachname;
@@ -24,6 +23,11 @@ public class Kontakt extends AbstractObject {
     private int blz;
     private String bankinstitut;
     private boolean isKunde;
+    
+    @Override
+    public String toString(){
+        return this.nachname + ", " + this.vorname;
+    }
 
     public boolean getIsKunde() {
         return isKunde;
@@ -50,15 +54,6 @@ public class Kontakt extends AbstractObject {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    
-    public void setId(int id) {
-    this.id = id;
     }
 
     public String getTelefon() {

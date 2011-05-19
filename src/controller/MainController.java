@@ -14,20 +14,15 @@ import view.MainView;
  */
 public class MainController extends AbstractController {
     
+    public static final MainView mainGUI;
+    
+    static {
+        mainGUI = new MainView();
+    }
+    
     public MainController() {
-        MainView mainGUI = new MainView();
-        // View kann nicht auf controller zugreifen, umbauen
-        AbstractViewPanel tempView;
-        tempView = new KontakteView(new ModelObservable());
-        tempView.setController(new KontaktController());
-        mainGUI.addTabPanel(tempView, "Kontakte");
-        
-        /*mainGUI.addTabPanel(new KundenView(), "Kunden");
-        mainGUI.addTabPanel(new AngeboteView(), "Angebote");
-        mainGUI.addTabPanel(new StatistikView(), "Statistik");
-        mainGUI.addTabPanel(new ProjektView(), "Projekte");
-        */
-        
+
+        new KontaktController();
         
         mainGUI.setVisible(true);
     }

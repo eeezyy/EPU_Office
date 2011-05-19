@@ -10,11 +10,20 @@
  */
 package view;
 
-import controller.AbstractController;
-import view.dialog.KontaktAddForm;
 import controller.KontaktController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.dal.DALException;
+import view.dialog.KontaktAddForm;
 import controller.ModelObservable;
-import java.util.List;
+import controller.ModelObserver;
+import controller.NotifyObject;
+import controller.State;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import model.Kontakt;
+import model.dal.DALDatabase;
+import model.dal.DALFactory;
 
 /**
  *
@@ -22,11 +31,30 @@ import java.util.List;
  */
 public class KontakteView extends AbstractViewPanel {
 
+    private KontaktController controller;
+    private ModelObservable observable;
+    private ModelObserver observer;
 
     /** Creates new form Kontakte */
-    public KontakteView(ModelObservable observable) {
+    public KontakteView(ModelObservable observable, KontaktController controller) {
         super(observable);
         initComponents();
+        this.controller = controller;
+        this.observable = observable;
+        this.observer = new ModelObserver(this);
+        this.observable.addObserver(this.observer);
+        System.out.println("count observers " + this.observable.countObservers());
+        this.initialize();
+    }
+    
+    public void initialize() {
+        try {
+            // TODO direkt vom model holen, darf nichts vom controll wissen
+            System.out.println("initialize");
+            this.setKontaktListe(controller.getKontaktListe());
+        } catch (DALException ex) {
+            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -94,12 +122,12 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
-        kontaktListe.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        kontaktListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                kontaktListeValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(kontaktListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
@@ -146,6 +174,11 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         kontaktLoeschen.setText("Kontakt löschen");
+        kontaktLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kontaktLoeschenActionPerformed(evt);
+            }
+        });
         add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         try {
@@ -272,8 +305,25 @@ public class KontakteView extends AbstractViewPanel {
 
     private void kontaktAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktAendernActionPerformed
         // TODO add your handling code here:
-        modelPropertyChange(null);
     }//GEN-LAST:event_kontaktAendernActionPerformed
+
+    private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed
+        Kontakt k = (Kontakt)this.kontaktListe.getSelectedValue();
+        try {
+            DALFactory.getDAL().deleteKontakt(k);
+        } catch (DALException ex) {
+            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("kontakt deleted");
+        //observable.notifyObservers(new NotifyObject(k, State.DELETED));
+        observable.notifyObservers();
+        System.out.println("after notify");
+        observer.update(observable, k);
+    }//GEN-LAST:event_kontaktLoeschenActionPerformed
+
+    private void kontaktListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kontaktListeValueChanged
+        
+    }//GEN-LAST:event_kontaktListeValueChanged
 
     /**
      * @param args the command line arguments
@@ -323,10 +373,12 @@ public class KontakteView extends AbstractViewPanel {
     private javax.swing.JTextField kontaktVorNameFeld;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void modelPropertyChange(List<?> properties) {
-        /*if (evt.getPropertyName().equals(KontaktController.KONTAKT_NAME_PROPERTY)) {
-        kontaktNameFeld.setText((String) evt.getNewValue());
-        }*/
+    private void setKontaktListe(ArrayList<Kontakt> kontakte) {
+        DefaultListModel list = new DefaultListModel();
+        for(Kontakt k: kontakte) {
+            list.addElement(k);
+        }
+        
+        this.kontaktListe.setModel(list);
     }
 }

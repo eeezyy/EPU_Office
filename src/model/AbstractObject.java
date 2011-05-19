@@ -13,6 +13,8 @@ import java.beans.PropertyChangeSupport;
  * @author if09b505
  */
 public class AbstractObject {
+    
+    private int id;
 
     /**
      * Convenience class that allow others to observe changes to the model properties
@@ -54,5 +56,12 @@ public class AbstractObject {
     protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         propertyChangeSupport.firePropertyChange(propertyName, oldValue, newValue);
     }
+    
+    public int getId() {
+        return this.id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }

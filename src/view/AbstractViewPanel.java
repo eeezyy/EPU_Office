@@ -38,6 +38,8 @@ public abstract class AbstractViewPanel extends JPanel {
     public ModelObservable getObservable() {
         return observable;
     }
+    
+    public abstract void initialize();
     //private AbstractController controller;
     //public AbstractViewPanel(AbstractController controller);
 
@@ -47,5 +49,5 @@ public abstract class AbstractViewPanel extends JPanel {
      *
      * @param evt The property change event from the model
      */
-    public abstract void modelPropertyChange(List<?> properties);
+    //public abstract void modelPropertyChange(List<?> properties);
 }

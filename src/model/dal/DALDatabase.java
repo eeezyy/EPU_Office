@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.*;
 
@@ -225,7 +227,6 @@ public class DALDatabase implements IDAL {
 //            throw new DALException(e.getMessage());
 //        }
 //    }*/
-
     public void saveKontakt(Kontakt k) throws DALException {
         try {
             // Datenbankverbindung �ffnen
@@ -243,7 +244,7 @@ public class DALDatabase implements IDAL {
             if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
                         "UPDATE Kontakt SET Vorname = ?, Nachname = ?, Email = ?, Telefon = ?, BLZ = ?, Bankinstitut = ?, Konto = ?, "
-                        + "Firmenname = ?, Adresse = ?, isKunde = ? WHERE id = ?", 
+                        + "Firmenname = ?, Adresse = ?, isKunde = ? WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, k.getVorname());
                 cmd.setString(2, k.getNachname());
@@ -258,7 +259,7 @@ public class DALDatabase implements IDAL {
             } else {
                 cmd = db.prepareStatement(
                         "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Adresse, isKunde) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, k.getVorname());
                 cmd.setString(2, k.getNachname());
@@ -288,5 +289,60 @@ public class DALDatabase implements IDAL {
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
+    }
+
+    public ArrayList<Kontakt> getKontaktListe() {
+        ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
+
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, vorname, nachname FROM kontakt");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Kontakt k = new Kontakt();
+                k.setId(rd.getInt(1));
+                k.setVorname(rd.getString(2));
+                k.setNachname(rd.getString(3));
+
+                kontakte.add(k);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DALDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return kontakte;
+    }
+    
+    public void deleteKontakt(Kontakt k) throws DALException {
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM kontakt WHERE id = ?");
+            // Parameter setzen
+            cmd.setInt(1, k.getId());
+            // Ausf�hren
+            int result = cmd.executeUpdate();
+
+            // was deleted?
+            if (result != 0) {
+                // successful
+            }
+            cmd.close();
+            db.close();
+
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
+
     }
 }

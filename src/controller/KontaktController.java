@@ -5,10 +5,12 @@
 
 package controller;
 
+import java.util.ArrayList;
 import model.Kontakt;
 import model.bl.KontaktLogic;
 import model.dal.DALException;
 import model.dal.DALFactory;
+import model.dal.IDAL;
 import view.KontakteView;
 
 /**
@@ -16,24 +18,56 @@ import view.KontakteView;
  * @author if09b505
  */
 public class KontaktController extends AbstractController {
+    
+    private KontakteView view;
+    private ModelObservable observable;
+    private IDAL db;
+    
+    public KontaktController() {
+        this.db = DALFactory.getDAL();
+        this.observable = new ModelObservable();
+        this.view = new KontakteView(observable, this);
+        //this.initialize();
+        MainController.mainGUI.addTabPanel(view, "Kontakte");
+    }
+    
+//    private void initialize() {
+//        ArrayList<Kontakt> kontakte = db.getKontaktListe();
+//        view.setKontaktListe(kontakte);
+//    }
+    
+    public ArrayList<Kontakt> getKontaktListe() throws DALException {
+        return db.getKontaktListe();
+    }
 
-    public static final String KONTAKT_NAME_PROPERTY = "Name";
-    public static final String KONTAKT_TELEFON_PROPERTY = "Telefon";
-    public static final String KONTAKT_EMAIL_PROPERTY = "Email";
-    public static final String KONTAKT_BANK_PROPERTY = "Bank";
-    public static final String KONTAKT_BLZ_PROPERTY = "Blz";
-    public static final String KONTAKT_KTO_PROPERTY = "Kto";
+    public void add(Kontakt kontakt) {
+        /*if (errorList == null || errorList.isEmpty()) {
+            try {
+                DALFactory.getDAL().saveKontakt(k);
+                System.out.println(k.getId() + " ID haha");
+            } catch (DALException ex) {
+                Logger.getLogger(KontaktAddForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        list.add(object);*/
+    }
 
-    public void changeKontakt(Kontakt kontakt) throws DALException {
+    public void change(Kontakt kontakt) throws DALException {
         if(KontaktLogic.check(kontakt).isEmpty()){
             DALFactory.getDAL().saveKontakt(kontakt);
+            observable.notifyObservers(kontakt);
         } else {
             //arraylist to view
         }
-        
-        setModelProperty(KONTAKT_NAME_PROPERTY, kontakt);
+        /*for (AbstractObject i : list) {
+            if (i.getId() == object.getId()) {
+                //i = notifyObject.getObject();
+            }
+        }*/
     }
 
-    
+    public void delete(Kontakt kontakt) {
+        //DALFactory.getDAL().
+    }    
 
 }

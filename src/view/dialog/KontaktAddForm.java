@@ -13,6 +13,8 @@ package view.dialog;
 import controller.KontaktController;
 import controller.ModelObservable;
 import controller.ModelObserver;
+import controller.NotifyObject;
+import controller.State;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class KontaktAddForm extends AbstractViewDialog {
     public KontaktAddForm(ModelObservable observable, Frame parent, boolean modal) {
         super(observable, parent, modal);
 
-        this.observer = new ModelObserver();
+        //this.observer = new ModelObserver();
         
         initComponents();
         setLocationRelativeTo(null);
@@ -86,13 +88,13 @@ public class KontaktAddForm extends AbstractViewDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktAddLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        kontaktAddLabel.setFont(new java.awt.Font("Arial", 1, 18));
         kontaktAddLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktAddLabel.setText("Kontakt hinzufügen");
         kontaktAddLabel.setAlignmentX(0.5F);
         jPanel1.add(kontaktAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
-        dialogKontaktKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktKontoNrLabel.setText("Konto-Nr.");
         jPanel1.add(dialogKontaktKontoNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
 
@@ -112,7 +114,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktBankInstLabel.setText("Bankinst.");
         jPanel1.add(dialogKontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        dialogKontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktBLZNrLabel.setText("BLZ");
         jPanel1.add(dialogKontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
@@ -139,7 +141,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         });
         jPanel1.add(dialogKontaktVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 150, -1));
 
-        dialogKontaktNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktNachNameLabel.setText("Nachname");
         jPanel1.add(dialogKontaktNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, -1));
 
@@ -150,12 +152,12 @@ public class KontaktAddForm extends AbstractViewDialog {
         });
         jPanel1.add(dialogKontaktNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 150, -1));
 
-        dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktStrasseLabel.setText("Straße");
         jPanel1.add(dialogKontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
         jPanel1.add(dialogKontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 150, -1));
 
-        dialogKontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktPLZLabel.setText("PLZ");
         jPanel1.add(dialogKontaktPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
 
@@ -166,7 +168,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         }
         jPanel1.add(dialogKontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 150, -1));
 
-        dialogKontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontakOrtLabel.setText("Ort");
         jPanel1.add(dialogKontakOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, -1, -1));
 
@@ -184,7 +186,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         }
         jPanel1.add(dialogKontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 150, -1));
 
-        dialogKontaktFirmaLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktFirmaLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktFirmaLabel.setText("Firma");
         jPanel1.add(dialogKontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
@@ -256,16 +258,8 @@ public class KontaktAddForm extends AbstractViewDialog {
         k.setVorname(dialogKontaktVornameFeld.getText());
         ArrayList<String> errorList = KontaktLogic.check(k);
         
-        this.getObservable().notifyObservers(k);
-        
-        if (errorList == null || errorList.isEmpty()) {
-            try {
-                DALFactory.getDAL().saveKontakt(k);
-                System.out.println(k.getId() + " ID haha");
-            } catch (DALException ex) {
-                Logger.getLogger(KontaktAddForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        // --> controller add
+        //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
     }//GEN-LAST:event_dialogKontaktHinzufuegenActionPerformed
 
     /**
