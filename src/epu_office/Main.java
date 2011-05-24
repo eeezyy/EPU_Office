@@ -7,6 +7,7 @@ package epu_office;
 import config.Config;
 import controller.MainController;
 import utils.BaseDoc;
+import utils.Formular;
 
 /**
  *
@@ -25,7 +26,9 @@ public class Main {
         config = new Config();
 
         //BaseDoc test = new BaseDoc();
-        //System.out.println("Dokuemnt gespeichert");
+        Formular formular = new Formular();
+        formular.createPDF("TestPDFDOKUMENT____2011.pdf");
+        //System.out.println("Dokument gespeichert");
         //test.createPDF("TestPDFDOKUMENT____2011.pdf");
         controller = new MainController();
     }
