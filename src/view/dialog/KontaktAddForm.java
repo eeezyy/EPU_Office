@@ -82,6 +82,8 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogAbbrechen = new javax.swing.JButton();
         dialogKontaktHinzufuegen = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        dialogKontaktHausnrFeld = new javax.swing.JTextField();
+        dialogKontaktStrasseLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -213,6 +215,11 @@ public class KontaktAddForm extends AbstractViewDialog {
         });
         jPanel1.add(dialogKontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 230, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 262, 770, 10));
+        jPanel1.add(dialogKontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 150, -1));
+
+        dialogKontaktStrasseLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogKontaktStrasseLabel1.setText("Hausnr.");
+        jPanel1.add(dialogKontaktStrasseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 310));
 
@@ -246,7 +253,10 @@ public class KontaktAddForm extends AbstractViewDialog {
 
     private void dialogKontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogKontaktHinzufuegenActionPerformed
         Kontakt k = new Kontakt();
-        k.setAdresse(dialogKontaktStrasseFeld.getText());
+        k.setStrasse(dialogKontaktStrasseFeld.getText());
+        k.setHausnr(Integer.parseInt(dialogKontaktHausnrFeld.getText()));
+        k.setPlz(Integer.parseInt(dialogKontaktPlzFeld.getText()));
+        k.setOrt(dialogKontaktOrtFeld.getText());
         k.setBankinstitut(dialogKontaktBankinstitutFeld.getText());
         k.setBlz(Integer.parseInt(dialogKontaktBlzFeld.getText()));
         k.setEmail(dialogKontaktEmailLabel.getText());
@@ -257,9 +267,14 @@ public class KontaktAddForm extends AbstractViewDialog {
         k.setTelefon(dialogKontaktTelefonFeld.getText());
         k.setVorname(dialogKontaktVornameFeld.getText());
         ArrayList<String> errorList = KontaktLogic.check(k);
-        
-        // --> controller add
-        //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
+        try {
+            // Test
+            DALFactory.getDAL().saveKontakt(k);
+            // --> controller add
+            //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
+        } catch (DALException ex) {
+            Logger.getLogger(KontaktAddForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_dialogKontaktHinzufuegenActionPerformed
 
     /**
@@ -294,6 +309,7 @@ public class KontaktAddForm extends AbstractViewDialog {
     private javax.swing.JLabel dialogKontaktEmailLabel;
     private javax.swing.JTextField dialogKontaktFirmaFeld;
     private javax.swing.JLabel dialogKontaktFirmaLabel;
+    private javax.swing.JTextField dialogKontaktHausnrFeld;
     private javax.swing.JButton dialogKontaktHinzufuegen;
     private javax.swing.JFormattedTextField dialogKontaktKontoFeld;
     private javax.swing.JLabel dialogKontaktKontoNrLabel;
@@ -304,6 +320,7 @@ public class KontaktAddForm extends AbstractViewDialog {
     private javax.swing.JFormattedTextField dialogKontaktPlzFeld;
     private javax.swing.JTextField dialogKontaktStrasseFeld;
     private javax.swing.JLabel dialogKontaktStrasseLabel;
+    private javax.swing.JLabel dialogKontaktStrasseLabel1;
     private javax.swing.JTextField dialogKontaktTelefonFeld;
     private javax.swing.JTextField dialogKontaktVornameFeld;
     private javax.swing.JPanel jPanel1;

@@ -57,9 +57,19 @@ public class KontakteView extends AbstractViewPanel {
         } catch (DALException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Binder binder = new Binder();
         try {
-            binder.bind(kontaktListe, kontaktVorNameFeld, "Vorname");
+            Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
+            Binder.bind(kontaktListe, kontaktVornameFeld, "Vorname");
+            Binder.bind(kontaktListe, kontaktNachnameFeld, "Nachname");
+            Binder.bind(kontaktListe, kontaktTelefonFeld, "Telefon");
+            Binder.bind(kontaktListe, kontaktEmailFeld, "Email");
+            Binder.bind(kontaktListe, kontaktBankinstitutFeld, "Bankinstitut");
+            Binder.bind(kontaktListe, kontaktBlzFeld, "Blz");
+            Binder.bind(kontaktListe, kontaktKontoFeld, "Konto");
+            Binder.bind(kontaktListe, kontaktStrasseFeld, "Strasse");
+            Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
+            Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
+            Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -91,27 +101,27 @@ public class KontakteView extends AbstractViewPanel {
         kontaktEmailLabel = new javax.swing.JLabel();
         kontaktBankInstLabel = new javax.swing.JLabel();
         kontaktBLZNrLabel = new javax.swing.JLabel();
-        kontaktNameFeld = new javax.swing.JTextField();
-        kontaktTelFeld = new javax.swing.JTextField();
-        kontaktBankInstFeld = new javax.swing.JTextField();
+        kontaktEmailFeld = new javax.swing.JTextField();
+        kontaktTelefonFeld = new javax.swing.JTextField();
+        kontaktBankinstitutFeld = new javax.swing.JTextField();
         kontaktHinzufuegen = new javax.swing.JButton();
         kontaktLoeschen = new javax.swing.JButton();
-        kontaktBLZNrFeld = new javax.swing.JFormattedTextField();
-        kontaktKontoNrFeld = new javax.swing.JFormattedTextField();
-        kontaktVorNameFeld = new javax.swing.JTextField();
+        kontaktHausnrFeld = new javax.swing.JFormattedTextField();
+        kontaktKontoFeld = new javax.swing.JFormattedTextField();
+        kontaktVornameFeld = new javax.swing.JTextField();
         KontaktangebotZuweisen = new javax.swing.JButton();
         kontaktNachNameLabel = new javax.swing.JLabel();
-        kontaktNachNameFeld1 = new javax.swing.JTextField();
+        kontaktNachnameFeld = new javax.swing.JTextField();
         kontaktStrasseLabel = new javax.swing.JLabel();
         kontaktStrasseFeld = new javax.swing.JTextField();
         kontaktTuerNrLabel = new javax.swing.JLabel();
         kontaktPLZLabel = new javax.swing.JLabel();
-        kontaktPLZFeld = new javax.swing.JFormattedTextField();
+        kontaktPlzFeld = new javax.swing.JFormattedTextField();
         kontakOrtLabel = new javax.swing.JLabel();
         kontaktOrtFeld = new javax.swing.JTextField();
-        kontaktBLZNrFeld1 = new javax.swing.JFormattedTextField();
+        kontaktBlzFeld = new javax.swing.JFormattedTextField();
         kontaktFirmaLabel = new javax.swing.JLabel();
-        kontaktFirmaFeld = new javax.swing.JTextField();
+        kontaktFirmennameFeld = new javax.swing.JTextField();
         kontaktAendern = new javax.swing.JButton();
 
         kontaktNameFeld1.addActionListener(new java.awt.event.ActionListener() {
@@ -167,17 +177,17 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
         kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBLZNrLabel.setText("BLZ-Nr.");
+        kontaktBLZNrLabel.setText("BLZ");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
-        kontaktNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        kontaktEmailFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktNameFeldActionPerformed(evt);
+                kontaktEmailFeldActionPerformed(evt);
             }
         });
-        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
-        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
-        add(kontaktBankInstFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
+        add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
+        add(kontaktTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
+        add(kontaktBankinstitutFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
 
         kontaktHinzufuegen.setText("Kontakt hinzufügen");
         kontaktHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
@@ -196,25 +206,25 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         try {
-            kontaktBLZNrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+            kontaktHausnrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        add(kontaktBLZNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
+        add(kontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
 
         try {
-            kontaktKontoNrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+            kontaktKontoFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        add(kontaktKontoNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
+        add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
 
-        kontaktVorNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        kontaktVornameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktVorNameFeldActionPerformed(evt);
+                kontaktVornameFeldActionPerformed(evt);
             }
         });
-        add(kontaktVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
+        add(kontaktVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         KontaktangebotZuweisen.setText("Angebot zuweisen");
         add(KontaktangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
@@ -223,12 +233,12 @@ public class KontakteView extends AbstractViewPanel {
         kontaktNachNameLabel.setText("Nachname");
         add(kontaktNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
-        kontaktNachNameFeld1.addActionListener(new java.awt.event.ActionListener() {
+        kontaktNachnameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktNachNameFeld1ActionPerformed(evt);
+                kontaktNachnameFeldActionPerformed(evt);
             }
         });
-        add(kontaktNachNameFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
+        add(kontaktNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
         kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktStrasseLabel.setText("Straße");
@@ -236,7 +246,7 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
         kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktTuerNrLabel.setText("Tür-Nr.");
+        kontaktTuerNrLabel.setText("Hausnr.");
         add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
         kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -244,11 +254,11 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
 
         try {
-            kontaktPLZFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+            kontaktPlzFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        add(kontaktPLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
+        add(kontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
 
         kontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontakOrtLabel.setText("Ort");
@@ -262,22 +272,22 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktOrtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 150, -1));
 
         try {
-            kontaktBLZNrFeld1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+            kontaktBlzFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        add(kontaktBLZNrFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
+        add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
         kontaktFirmaLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktFirmaLabel.setText("Firma");
         add(kontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        kontaktFirmaFeld.addActionListener(new java.awt.event.ActionListener() {
+        kontaktFirmennameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktFirmaFeldActionPerformed(evt);
+                kontaktFirmennameFeldActionPerformed(evt);
             }
         });
-        add(kontaktFirmaFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
+        add(kontaktFirmennameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
 
         kontaktAendern.setText("Kontakt ändern");
         kontaktAendern.addActionListener(new java.awt.event.ActionListener() {
@@ -293,29 +303,29 @@ public class KontakteView extends AbstractViewPanel {
         af.setVisible(true);
     }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
 
-    private void kontaktNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeldActionPerformed
+    private void kontaktEmailFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktEmailFeldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktNameFeldActionPerformed
+    }//GEN-LAST:event_kontaktEmailFeldActionPerformed
 
     private void kontaktNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeld1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kontaktNameFeld1ActionPerformed
 
-    private void kontaktVorNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktVorNameFeldActionPerformed
+    private void kontaktVornameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktVornameFeldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktVorNameFeldActionPerformed
+    }//GEN-LAST:event_kontaktVornameFeldActionPerformed
 
-    private void kontaktNachNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNachNameFeld1ActionPerformed
+    private void kontaktNachnameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNachnameFeldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktNachNameFeld1ActionPerformed
+    }//GEN-LAST:event_kontaktNachnameFeldActionPerformed
 
     private void kontaktOrtFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktOrtFeldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kontaktOrtFeldActionPerformed
 
-    private void kontaktFirmaFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktFirmaFeldActionPerformed
+    private void kontaktFirmennameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktFirmennameFeldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktFirmaFeldActionPerformed
+    }//GEN-LAST:event_kontaktFirmennameFeldActionPerformed
 
     private void kontaktAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktAendernActionPerformed
         // TODO add your handling code here:
@@ -357,34 +367,34 @@ public class KontakteView extends AbstractViewPanel {
     private javax.swing.JLabel kontakOrtLabel;
     private javax.swing.JLabel kontakVorNameLabel;
     private javax.swing.JButton kontaktAendern;
-    private javax.swing.JFormattedTextField kontaktBLZNrFeld;
-    private javax.swing.JFormattedTextField kontaktBLZNrFeld1;
     private javax.swing.JLabel kontaktBLZNrLabel;
-    private javax.swing.JTextField kontaktBankInstFeld;
     private javax.swing.JLabel kontaktBankInstLabel;
+    private javax.swing.JTextField kontaktBankinstitutFeld;
+    private javax.swing.JFormattedTextField kontaktBlzFeld;
+    private javax.swing.JTextField kontaktEmailFeld;
     private javax.swing.JLabel kontaktEmailLabel;
-    private javax.swing.JTextField kontaktFirmaFeld;
     private javax.swing.JLabel kontaktFirmaLabel;
+    private javax.swing.JTextField kontaktFirmennameFeld;
+    private javax.swing.JFormattedTextField kontaktHausnrFeld;
     private javax.swing.JButton kontaktHinzufuegen;
     private javax.swing.JLabel kontaktInfoLabel;
-    private javax.swing.JFormattedTextField kontaktKontoNrFeld;
+    private javax.swing.JFormattedTextField kontaktKontoFeld;
     private javax.swing.JLabel kontaktKontoNrLabel;
     private javax.swing.JList kontaktListe;
     private javax.swing.JLabel kontaktListeLabel;
     private javax.swing.JButton kontaktLoeschen;
-    private javax.swing.JTextField kontaktNachNameFeld1;
     private javax.swing.JLabel kontaktNachNameLabel;
-    private javax.swing.JTextField kontaktNameFeld;
+    private javax.swing.JTextField kontaktNachnameFeld;
     private javax.swing.JTextField kontaktNameFeld1;
     private javax.swing.JTextField kontaktOrtFeld;
-    private javax.swing.JFormattedTextField kontaktPLZFeld;
     private javax.swing.JLabel kontaktPLZLabel;
+    private javax.swing.JFormattedTextField kontaktPlzFeld;
     private javax.swing.JTextField kontaktStrasseFeld;
     private javax.swing.JLabel kontaktStrasseLabel;
-    private javax.swing.JTextField kontaktTelFeld;
     private javax.swing.JLabel kontaktTelLabel;
+    private javax.swing.JTextField kontaktTelefonFeld;
     private javax.swing.JLabel kontaktTuerNrLabel;
-    private javax.swing.JTextField kontaktVorNameFeld;
+    private javax.swing.JTextField kontaktVornameFeld;
     // End of variables declaration//GEN-END:variables
 
     private void setKontaktListe(ArrayList<Kontakt> kontakte) {

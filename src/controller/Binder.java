@@ -120,7 +120,14 @@ public class Binder {
                                 String text = null;
                                 if(method != null)
                                 try {
-                                    text = (String) method.invoke(jlist.getSelectedValue());
+                                    Object result = method.invoke(jlist.getSelectedValue());
+                                    if (result instanceof String) {
+                                        text = (String) result;
+                                    } else if (result instanceof Integer) {
+                                        text = Integer.toString((Integer)result);
+                                    } else if (result instanceof Long) {
+                                        text = Long.toString((Long)result);
+                                    }
                                 } catch (IllegalAccessException ex) {
                                     Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
                                 } catch (IllegalArgumentException ex) {

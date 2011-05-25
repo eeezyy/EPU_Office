@@ -16,7 +16,10 @@ public class Kontakt extends AbstractObject {
     private String firmenname;
     private String vorname;
     private String nachname;
-    private String adresse;
+    private String strasse;
+    private int hausnr;
+    private int plz;
+    private String ort;
     private String email;
     private String telefon;
     private long konto;
@@ -35,9 +38,6 @@ public class Kontakt extends AbstractObject {
 
     public void setIsKunde(boolean isKunde) {
         this.isKunde = isKunde;
-    }
-
-    public Kontakt() {
     }
 
     public int getBlz() {
@@ -62,15 +62,6 @@ public class Kontakt extends AbstractObject {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
-    }
-    
-    
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
     }
 
     public String getBankinstitut() {
@@ -111,5 +102,37 @@ public class Kontakt extends AbstractObject {
 
     public void setVorname(String vorname) {
         this.vorname = vorname;
+    }
+    
+    public int getHausnr() {
+        return hausnr;
+    }
+
+    public void setHausnr(int hausnr) {
+        this.hausnr = hausnr;
+    }
+
+    public String getOrt() {
+        return ort;
+    }
+
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public int getPlz() {
+        return plz;
+    }
+
+    public void setPlz(int plz) {
+        this.plz = plz;
+    }
+
+    public String getStrasse() {
+        return strasse;
+    }
+
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
     }
 }

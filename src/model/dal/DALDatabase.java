@@ -244,7 +244,7 @@ public class DALDatabase implements IDAL {
             if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
                         "UPDATE Kontakt SET Vorname = ?, Nachname = ?, Email = ?, Telefon = ?, BLZ = ?, Bankinstitut = ?, Konto = ?, "
-                        + "Firmenname = ?, Adresse = ?, isKunde = ? WHERE id = ?",
+                        + "Firmenname = ?, Strasse = ?, Hausnr = ?, PLZ = ?, Ort = ?, isKunde = ? WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, k.getVorname());
                 cmd.setString(2, k.getNachname());
@@ -254,11 +254,14 @@ public class DALDatabase implements IDAL {
                 cmd.setString(6, k.getBankinstitut());
                 cmd.setLong(7, k.getKonto());
                 cmd.setString(8, k.getFirmenname());
-                cmd.setString(9, k.getAdresse());
-                cmd.setBoolean(10, k.getIsKunde());
+                cmd.setString(9, k.getStrasse());
+                cmd.setInt(10, k.getHausnr());
+                cmd.setInt(11, k.getPlz());
+                cmd.setString(12, k.getOrt());
+                cmd.setBoolean(13, k.getIsKunde());
             } else {
                 cmd = db.prepareStatement(
-                        "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Adresse, isKunde) "
+                        "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde) "
                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, k.getVorname());
@@ -270,8 +273,11 @@ public class DALDatabase implements IDAL {
                 System.out.println(k.getKonto());
                 cmd.setLong(7, k.getKonto());
                 cmd.setString(8, k.getFirmenname());
-                cmd.setString(9, k.getAdresse());
-                cmd.setBoolean(10, k.getIsKunde());
+                cmd.setString(9, k.getStrasse());
+                cmd.setInt(10, k.getHausnr());
+                cmd.setInt(11, k.getPlz());
+                cmd.setString(12, k.getOrt());
+                cmd.setBoolean(13, k.getIsKunde());
             }
             // execute insert/update
             int result = cmd.executeUpdate();
@@ -300,7 +306,8 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT id, vorname, nachname FROM kontakt");
+            cmd = db.prepareStatement("SELECT id, Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, "
+                    + "Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde FROM kontakt");
             rd = cmd.executeQuery();
             // Daten holen
             while (rd.next()) {
@@ -308,7 +315,18 @@ public class DALDatabase implements IDAL {
                 k.setId(rd.getInt(1));
                 k.setVorname(rd.getString(2));
                 k.setNachname(rd.getString(3));
-
+                k.setEmail(rd.getString(4));
+                k.setTelefon(rd.getString(5));
+                k.setBlz(rd.getInt(6));
+                k.setBankinstitut(rd.getString(7));
+                k.setKonto(rd.getLong(8));
+                k.setFirmenname(rd.getString(9));
+                k.setStrasse(rd.getString(10));
+                k.setHausnr(rd.getInt(11));
+                k.setPlz(rd.getInt(12));
+                k.setOrt(rd.getString(13));
+                k.setIsKunde(rd.getBoolean(14));
+                
                 kontakte.add(k);
             }
             rd.close();
