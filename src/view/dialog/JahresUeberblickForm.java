@@ -34,31 +34,31 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         kontaktInfoLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        dialogUeberblickBeenden = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        angebotAendern = new javax.swing.JButton();
+        dialogUeberblickJahrListe = new javax.swing.JList();
+        dialogUeberblickPdfErstellen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktInfoLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktInfoLabel1.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktInfoLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel1.setText("Jahresüberblick");
         kontaktInfoLabel1.setAlignmentX(0.5F);
         jPanel2.add(kontaktInfoLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jButton2.setText("Schließen");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        dialogUeberblickBeenden.setText("Schließen");
+        dialogUeberblickBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                dialogUeberblickBeendenActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 230, -1));
+        jPanel2.add(dialogUeberblickBeenden, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 230, -1));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -68,38 +68,38 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 360, 160));
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        dialogUeberblickJahrListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "..." };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        dialogUeberblickJahrListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(dialogUeberblickJahrListe);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 350, 160));
 
-        angebotAendern.setText("Jahresbilanz-PDF erstellen");
-        angebotAendern.addActionListener(new java.awt.event.ActionListener() {
+        dialogUeberblickPdfErstellen.setText("Jahresbilanz-PDF erstellen");
+        dialogUeberblickPdfErstellen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                angebotAendernActionPerformed(evt);
+                dialogUeberblickPdfErstellenActionPerformed(evt);
             }
         });
-        jPanel2.add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 230, -1));
+        jPanel2.add(dialogUeberblickPdfErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 230, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 760, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void dialogUeberblickBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogUeberblickBeendenActionPerformed
         // TODO add your handling code here:
         this.dispose();
-}//GEN-LAST:event_jButton2ActionPerformed
+}//GEN-LAST:event_dialogUeberblickBeendenActionPerformed
 
-    private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
+    private void dialogUeberblickPdfErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogUeberblickPdfErstellenActionPerformed
         // TODO add your handling code here:
         //modelPropertyChange(null);
-}//GEN-LAST:event_angebotAendernActionPerformed
+}//GEN-LAST:event_dialogUeberblickPdfErstellenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,10 +120,10 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton angebotAendern;
+    private javax.swing.JButton dialogUeberblickBeenden;
+    private javax.swing.JList dialogUeberblickJahrListe;
+    private javax.swing.JButton dialogUeberblickPdfErstellen;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

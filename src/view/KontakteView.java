@@ -106,8 +106,6 @@ public class KontakteView extends AbstractViewPanel {
         kontaktBankinstitutFeld = new javax.swing.JTextField();
         kontaktHinzufuegen = new javax.swing.JButton();
         kontaktLoeschen = new javax.swing.JButton();
-        kontaktHausnrFeld = new javax.swing.JFormattedTextField();
-        kontaktKontoFeld = new javax.swing.JFormattedTextField();
         kontaktVornameFeld = new javax.swing.JTextField();
         KontaktangebotZuweisen = new javax.swing.JButton();
         kontaktNachNameLabel = new javax.swing.JLabel();
@@ -116,13 +114,15 @@ public class KontakteView extends AbstractViewPanel {
         kontaktStrasseFeld = new javax.swing.JTextField();
         kontaktTuerNrLabel = new javax.swing.JLabel();
         kontaktPLZLabel = new javax.swing.JLabel();
-        kontaktPlzFeld = new javax.swing.JFormattedTextField();
         kontakOrtLabel = new javax.swing.JLabel();
         kontaktOrtFeld = new javax.swing.JTextField();
         kontaktBlzFeld = new javax.swing.JFormattedTextField();
         kontaktFirmaLabel = new javax.swing.JLabel();
         kontaktFirmennameFeld = new javax.swing.JTextField();
         kontaktAendern = new javax.swing.JButton();
+        kontaktPlzFeld = new javax.swing.JTextField();
+        kontaktHausnrFeld = new javax.swing.JTextField();
+        kontaktKontoFeld = new javax.swing.JTextField();
 
         kontaktNameFeld1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +145,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         kontaktListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -205,20 +205,6 @@ public class KontakteView extends AbstractViewPanel {
         });
         add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
-        try {
-            kontaktHausnrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        add(kontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
-
-        try {
-            kontaktKontoFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
-
         kontaktVornameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kontaktVornameFeldActionPerformed(evt);
@@ -249,16 +235,9 @@ public class KontakteView extends AbstractViewPanel {
         kontaktTuerNrLabel.setText("Hausnr.");
         add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
-        kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         kontaktPLZLabel.setText("PLZ");
         add(kontaktPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
-
-        try {
-            kontaktPlzFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        add(kontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
 
         kontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontakOrtLabel.setText("Ort");
@@ -296,6 +275,9 @@ public class KontakteView extends AbstractViewPanel {
             }
         });
         add(kontaktAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(kontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
+        add(kontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
+        add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
@@ -375,10 +357,10 @@ public class KontakteView extends AbstractViewPanel {
     private javax.swing.JLabel kontaktEmailLabel;
     private javax.swing.JLabel kontaktFirmaLabel;
     private javax.swing.JTextField kontaktFirmennameFeld;
-    private javax.swing.JFormattedTextField kontaktHausnrFeld;
+    private javax.swing.JTextField kontaktHausnrFeld;
     private javax.swing.JButton kontaktHinzufuegen;
     private javax.swing.JLabel kontaktInfoLabel;
-    private javax.swing.JFormattedTextField kontaktKontoFeld;
+    private javax.swing.JTextField kontaktKontoFeld;
     private javax.swing.JLabel kontaktKontoNrLabel;
     private javax.swing.JList kontaktListe;
     private javax.swing.JLabel kontaktListeLabel;
@@ -388,7 +370,7 @@ public class KontakteView extends AbstractViewPanel {
     private javax.swing.JTextField kontaktNameFeld1;
     private javax.swing.JTextField kontaktOrtFeld;
     private javax.swing.JLabel kontaktPLZLabel;
-    private javax.swing.JFormattedTextField kontaktPlzFeld;
+    private javax.swing.JTextField kontaktPlzFeld;
     private javax.swing.JTextField kontaktStrasseFeld;
     private javax.swing.JLabel kontaktStrasseLabel;
     private javax.swing.JLabel kontaktTelLabel;

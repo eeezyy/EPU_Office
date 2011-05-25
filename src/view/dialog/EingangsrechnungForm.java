@@ -36,16 +36,16 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
         kontaktInfoLabel = new javax.swing.JLabel();
         kundenTelLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        dialogEingangPreisFeld = new javax.swing.JTextPane();
         kundenTelLabel1 = new javax.swing.JLabel();
         kundenTelLabel2 = new javax.swing.JLabel();
         kundenTelLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        dialogEingangRechnungFeld = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        dialogEingangKontaktFeld = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
+        dialogEingangScanFeld = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -63,12 +63,12 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
         kundenTelLabel.setText("Preis (€)");
         jPanel1.add(kundenTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jTextPane1.setBorder(null);
-        jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane1.setText("3000");
-        jTextPane1.setName("result"); // NOI18N
-        jScrollPane3.setViewportView(jTextPane1);
+        dialogEingangPreisFeld.setBorder(null);
+        dialogEingangPreisFeld.setEditable(false);
+        dialogEingangPreisFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogEingangPreisFeld.setText("3000");
+        dialogEingangPreisFeld.setName("result"); // NOI18N
+        jScrollPane3.setViewportView(dialogEingangPreisFeld);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 310, -1));
 
@@ -84,30 +84,30 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
         kundenTelLabel3.setText("Scanpfad");
         jPanel1.add(kundenTelLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jTextPane2.setBorder(null);
-        jTextPane2.setEditable(false);
-        jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane2.setText("9.5.2011");
-        jTextPane2.setName("result"); // NOI18N
-        jScrollPane4.setViewportView(jTextPane2);
+        dialogEingangRechnungFeld.setBorder(null);
+        dialogEingangRechnungFeld.setEditable(false);
+        dialogEingangRechnungFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogEingangRechnungFeld.setText("9.5.2011");
+        dialogEingangRechnungFeld.setName("result"); // NOI18N
+        jScrollPane4.setViewportView(dialogEingangRechnungFeld);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 80, -1));
 
-        jTextPane3.setBorder(null);
-        jTextPane3.setEditable(false);
-        jTextPane3.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane3.setText("FH Technikum-Wien");
-        jTextPane3.setName("result"); // NOI18N
-        jScrollPane5.setViewportView(jTextPane3);
+        dialogEingangKontaktFeld.setBorder(null);
+        dialogEingangKontaktFeld.setEditable(false);
+        dialogEingangKontaktFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogEingangKontaktFeld.setText("FH Technikum-Wien");
+        dialogEingangKontaktFeld.setName("result"); // NOI18N
+        jScrollPane5.setViewportView(dialogEingangKontaktFeld);
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 310, -1));
 
-        jTextPane4.setBorder(null);
-        jTextPane4.setEditable(false);
-        jTextPane4.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane4.setText("C:\\Users\\Goran-Goggy\\file.jpg");
-        jTextPane4.setName("result"); // NOI18N
-        jScrollPane6.setViewportView(jTextPane4);
+        dialogEingangScanFeld.setBorder(null);
+        dialogEingangScanFeld.setEditable(false);
+        dialogEingangScanFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogEingangScanFeld.setText("C:\\Users\\Goran-Goggy\\file.jpg");
+        dialogEingangScanFeld.setName("result"); // NOI18N
+        jScrollPane6.setViewportView(dialogEingangScanFeld);
 
         jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 310, -1));
 
@@ -148,16 +148,16 @@ public class EingangsrechnungForm extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane dialogEingangKontaktFeld;
+    private javax.swing.JTextPane dialogEingangPreisFeld;
+    private javax.swing.JTextPane dialogEingangRechnungFeld;
+    private javax.swing.JTextPane dialogEingangScanFeld;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JTextPane jTextPane4;
     private javax.swing.JLabel kontaktInfoLabel;
     private javax.swing.JLabel kundenTelLabel;
     private javax.swing.JLabel kundenTelLabel1;

@@ -62,7 +62,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="dialogAngebotPreisLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="dialogAngebotPreisFeld" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="dialogAngebotImplPreisFeld" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -75,7 +75,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="dialogAngebotDauerLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="dialogAngebotDauerFeld" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="dialogAngebotImplDauerFeld" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="dialogAngebotGueltigBisFeld" alignment="0" pref="140" max="32767" attributes="0"/>
-                                  <Component id="dialogAngebotChanceFeld" alignment="0" pref="140" max="32767" attributes="0"/>
+                                  <Component id="dialogAngebotImplChanceFeld" alignment="0" pref="140" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jScrollPane3" alignment="0" min="-2" pref="770" max="-2" attributes="0"/>
@@ -115,11 +115,11 @@
                   <EmptySpace min="20" pref="20" max="20" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="dialogAngebotPreisLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dialogAngebotPreisFeld" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dialogAngebotImplPreisFeld" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dialogAngebotDauerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dialogAngebotDauerFeld" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dialogAngebotImplDauerFeld" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dialogAngebotChanceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dialogAngebotChanceFeld" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dialogAngebotImplChanceFeld" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="20" pref="20" max="20" attributes="0"/>
                   <Component id="dialogAngebotBeschreibungLabel" min="-2" max="-2" attributes="0"/>
@@ -205,14 +205,14 @@
             <Property name="text" type="java.lang.String" value="Impl.chance"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="dialogAngebotPreisFeld">
+        <Component class="javax.swing.JTextField" name="dialogAngebotImplPreisFeld">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogAngebotPreisFeldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogAngebotImplPreisFeldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogAngebotNameFeld">
         </Component>
-        <Component class="javax.swing.JTextField" name="dialogAngebotDauerFeld">
+        <Component class="javax.swing.JTextField" name="dialogAngebotImplDauerFeld">
         </Component>
         <Component class="javax.swing.JTextField" name="dialogAngebotGueltigBisFeld">
           <Events>
@@ -240,7 +240,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogAngebotGueltigAbFeldActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="dialogAngebotChanceFeld">
+        <Component class="javax.swing.JTextField" name="dialogAngebotImplChanceFeld">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">
           <AuxValues>

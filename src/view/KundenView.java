@@ -37,24 +37,24 @@ public class KundenView extends javax.swing.JPanel {
         kundenVorNameLabel = new javax.swing.JLabel();
         kundenTelLabel = new javax.swing.JLabel();
         kundenEmailLabel = new javax.swing.JLabel();
-        kundenNameFeld = new javax.swing.JTextField();
+        kundenEmailFeld = new javax.swing.JTextField();
         kundenTelFeld = new javax.swing.JTextField();
         kundenLoeschen = new javax.swing.JButton();
-        kundenBLZNrFeld = new javax.swing.JFormattedTextField();
         kundenVorNameFeld = new javax.swing.JTextField();
         kundenangebotZuweisen = new javax.swing.JButton();
         kundenNachNameLabel = new javax.swing.JLabel();
-        kundenNachNameFeld1 = new javax.swing.JTextField();
+        kundenNachNameFeld = new javax.swing.JTextField();
         kundenStrasseLabel = new javax.swing.JLabel();
         kundenStrasseFeld = new javax.swing.JTextField();
         kundenTuerNrLabel = new javax.swing.JLabel();
         kundenPLZLabel = new javax.swing.JLabel();
-        kundenPLZFeld = new javax.swing.JFormattedTextField();
         kundenOrtLabel = new javax.swing.JLabel();
         kundenOrtFeld = new javax.swing.JTextField();
         kundenFirmaLabel = new javax.swing.JLabel();
         kundenFirmaFeld = new javax.swing.JTextField();
         kundenAendern = new javax.swing.JButton();
+        kundenPlzFeld = new javax.swing.JTextField();
+        kundenBlzNrFeld = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(572, 380));
         setMinimumSize(new java.awt.Dimension(572, 380));
@@ -94,23 +94,16 @@ public class KundenView extends javax.swing.JPanel {
         kundenEmailLabel.setText("Email");
         add(kundenEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
-        kundenNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        kundenEmailFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kundenNameFeldActionPerformed(evt);
+                kundenEmailFeldActionPerformed(evt);
             }
         });
-        add(kundenNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
+        add(kundenEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
         add(kundenTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kundenLoeschen.setText("Kunden löschen");
         add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
-
-        try {
-            kundenBLZNrFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        add(kundenBLZNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
         kundenVorNameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,12 +119,12 @@ public class KundenView extends javax.swing.JPanel {
         kundenNachNameLabel.setText("Nachname");
         add(kundenNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
-        kundenNachNameFeld1.addActionListener(new java.awt.event.ActionListener() {
+        kundenNachNameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kundenNachNameFeld1ActionPerformed(evt);
+                kundenNachNameFeldActionPerformed(evt);
             }
         });
-        add(kundenNachNameFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
+        add(kundenNachNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
         kundenStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenStrasseLabel.setText("Straße");
@@ -145,13 +138,6 @@ public class KundenView extends javax.swing.JPanel {
         kundenPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenPLZLabel.setText("PLZ");
         add(kundenPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
-
-        try {
-            kundenPLZFeld.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        add(kundenPLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
 
         kundenOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenOrtLabel.setText("Ort");
@@ -182,19 +168,21 @@ public class KundenView extends javax.swing.JPanel {
             }
         });
         add(kundenAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(kundenPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
+        add(kundenBlzNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kundenNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenNameFeldActionPerformed
+    private void kundenEmailFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenEmailFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kundenNameFeldActionPerformed
+}//GEN-LAST:event_kundenEmailFeldActionPerformed
 
     private void kundenVorNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenVorNameFeldActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_kundenVorNameFeldActionPerformed
 
-    private void kundenNachNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenNachNameFeld1ActionPerformed
+    private void kundenNachNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenNachNameFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kundenNachNameFeld1ActionPerformed
+}//GEN-LAST:event_kundenNachNameFeldActionPerformed
 
     private void kundenOrtFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenOrtFeldActionPerformed
         // TODO add your handling code here:
@@ -211,7 +199,8 @@ public class KundenView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kundenAendern;
-    private javax.swing.JFormattedTextField kundenBLZNrFeld;
+    private javax.swing.JTextField kundenBlzNrFeld;
+    private javax.swing.JTextField kundenEmailFeld;
     private javax.swing.JLabel kundenEmailLabel;
     private javax.swing.JTextField kundenFirmaFeld;
     private javax.swing.JLabel kundenFirmaLabel;
@@ -219,13 +208,12 @@ public class KundenView extends javax.swing.JPanel {
     private javax.swing.JList kundenListe;
     private javax.swing.JLabel kundenListeLabel;
     private javax.swing.JButton kundenLoeschen;
-    private javax.swing.JTextField kundenNachNameFeld1;
+    private javax.swing.JTextField kundenNachNameFeld;
     private javax.swing.JLabel kundenNachNameLabel;
-    private javax.swing.JTextField kundenNameFeld;
     private javax.swing.JTextField kundenOrtFeld;
     private javax.swing.JLabel kundenOrtLabel;
-    private javax.swing.JFormattedTextField kundenPLZFeld;
     private javax.swing.JLabel kundenPLZLabel;
+    private javax.swing.JTextField kundenPlzFeld;
     private javax.swing.JTextField kundenStrasseFeld;
     private javax.swing.JLabel kundenStrasseLabel;
     private javax.swing.JTextField kundenTelFeld;

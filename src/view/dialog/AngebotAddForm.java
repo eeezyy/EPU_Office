@@ -43,14 +43,14 @@ public class AngebotAddForm extends javax.swing.JDialog {
         dialogAngebotPreisLabel = new javax.swing.JLabel();
         dialogAngebotDauerLabel = new javax.swing.JLabel();
         dialogAngebotChanceLabel = new javax.swing.JLabel();
-        dialogAngebotPreisFeld = new javax.swing.JTextField();
+        dialogAngebotImplPreisFeld = new javax.swing.JTextField();
         dialogAngebotNameFeld = new javax.swing.JTextField();
-        dialogAngebotDauerFeld = new javax.swing.JTextField();
+        dialogAngebotImplDauerFeld = new javax.swing.JTextField();
         dialogAngebotGueltigBisFeld = new javax.swing.JTextField();
         dialogAngebotBeschreibungLabel = new javax.swing.JLabel();
         dialogAngebotGueltigAbLabel = new javax.swing.JLabel();
         dialogAngebotGueltigAbFeld = new javax.swing.JTextField();
-        dialogAngebotChanceFeld = new javax.swing.JTextField();
+        dialogAngebotImplChanceFeld = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         dialogAngebotBeschreibungFeld = new javax.swing.JTextArea();
 
@@ -82,18 +82,18 @@ public class AngebotAddForm extends javax.swing.JDialog {
         dialogAngebotNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotNameLabel.setText("Name");
 
-        dialogAngebotPreisLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogAngebotPreisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotPreisLabel.setText("Impl.preis");
 
-        dialogAngebotDauerLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogAngebotDauerLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotDauerLabel.setText("Impl.dauer");
 
-        dialogAngebotChanceLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogAngebotChanceLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotChanceLabel.setText("Impl.chance");
 
-        dialogAngebotPreisFeld.addActionListener(new java.awt.event.ActionListener() {
+        dialogAngebotImplPreisFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dialogAngebotPreisFeldActionPerformed(evt);
+                dialogAngebotImplPreisFeldActionPerformed(evt);
             }
         });
 
@@ -147,7 +147,7 @@ public class AngebotAddForm extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(dialogAngebotPreisLabel)
                                     .addGap(18, 18, 18)
-                                    .addComponent(dialogAngebotPreisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(dialogAngebotImplPreisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(38, 38, 38)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -157,7 +157,7 @@ public class AngebotAddForm extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(dialogAngebotDauerLabel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(dialogAngebotDauerFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(dialogAngebotImplDauerFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(39, 39, 39)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(dialogAngebotChanceLabel)
@@ -165,7 +165,7 @@ public class AngebotAddForm extends javax.swing.JDialog {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(dialogAngebotGueltigBisFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                .addComponent(dialogAngebotChanceFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                                .addComponent(dialogAngebotImplChanceFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(98, 98, 98))
         );
@@ -186,11 +186,11 @@ public class AngebotAddForm extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dialogAngebotPreisLabel)
-                    .addComponent(dialogAngebotPreisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dialogAngebotImplPreisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dialogAngebotDauerLabel)
-                    .addComponent(dialogAngebotDauerFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dialogAngebotImplDauerFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dialogAngebotChanceLabel)
-                    .addComponent(dialogAngebotChanceFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dialogAngebotImplChanceFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(dialogAngebotBeschreibungLabel)
                 .addGap(1, 1, 1)
@@ -216,9 +216,9 @@ public class AngebotAddForm extends javax.swing.JDialog {
         // TODO add your handling code here:
 }//GEN-LAST:event_dialogAngebotGueltigBisFeldActionPerformed
 
-    private void dialogAngebotPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotPreisFeldActionPerformed
+    private void dialogAngebotImplPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotImplPreisFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_dialogAngebotPreisFeldActionPerformed
+}//GEN-LAST:event_dialogAngebotImplPreisFeldActionPerformed
 
     private void dialogAngebotHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotHinzufuegenActionPerformed
         // TODO add your handling code here:
@@ -251,18 +251,18 @@ public class AngebotAddForm extends javax.swing.JDialog {
     private javax.swing.JButton dialogAngebotAbbrechen;
     private javax.swing.JTextArea dialogAngebotBeschreibungFeld;
     private javax.swing.JLabel dialogAngebotBeschreibungLabel;
-    private javax.swing.JTextField dialogAngebotChanceFeld;
     private javax.swing.JLabel dialogAngebotChanceLabel;
-    private javax.swing.JTextField dialogAngebotDauerFeld;
     private javax.swing.JLabel dialogAngebotDauerLabel;
     private javax.swing.JTextField dialogAngebotGueltigAbFeld;
     private javax.swing.JLabel dialogAngebotGueltigAbLabel;
     private javax.swing.JTextField dialogAngebotGueltigBisFeld;
     private javax.swing.JLabel dialogAngebotGueltigBisLabel;
     private javax.swing.JButton dialogAngebotHinzufuegen;
+    private javax.swing.JTextField dialogAngebotImplChanceFeld;
+    private javax.swing.JTextField dialogAngebotImplDauerFeld;
+    private javax.swing.JTextField dialogAngebotImplPreisFeld;
     private javax.swing.JTextField dialogAngebotNameFeld;
     private javax.swing.JLabel dialogAngebotNameLabel;
-    private javax.swing.JTextField dialogAngebotPreisFeld;
     private javax.swing.JLabel dialogAngebotPreisLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;

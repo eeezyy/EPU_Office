@@ -33,6 +33,6 @@ public class Main {
         formular.createPDF("TestPDFDOKUMENT____2011.pdf");
         //System.out.println("Dokument gespeichert");
         //test.createPDF("TestPDFDOKUMENT____2011.pdf");
-        //controller = new MainController();
+        controller = new MainController();
     }
 }

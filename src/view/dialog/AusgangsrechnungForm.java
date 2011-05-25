@@ -36,16 +36,16 @@ public class AusgangsrechnungForm extends javax.swing.JDialog {
         kontaktInfoLabel1 = new javax.swing.JLabel();
         kundenTelLabel4 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextPane5 = new javax.swing.JTextPane();
+        dialogAusgangPreisFeld = new javax.swing.JTextPane();
         kundenTelLabel5 = new javax.swing.JLabel();
         kundenTelLabel6 = new javax.swing.JLabel();
         kundenTelLabel7 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextPane6 = new javax.swing.JTextPane();
+        dialogAusgangDatumFeld = new javax.swing.JTextPane();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTextPane7 = new javax.swing.JTextPane();
+        dialogAusgangKundeFeld = new javax.swing.JTextPane();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPane8 = new javax.swing.JTextPane();
+        dialogAusgangAngebotFeld = new javax.swing.JTextPane();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,7 +53,7 @@ public class AusgangsrechnungForm extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktInfoLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktInfoLabel1.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktInfoLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktInfoLabel1.setText("Ausgangsrechnung");
         kontaktInfoLabel1.setAlignmentX(0.5F);
@@ -63,51 +63,51 @@ public class AusgangsrechnungForm extends javax.swing.JDialog {
         kundenTelLabel4.setText("Preis (€)");
         jPanel1.add(kundenTelLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jTextPane5.setBorder(null);
-        jTextPane5.setEditable(false);
-        jTextPane5.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane5.setText("3000");
-        jTextPane5.setName("result"); // NOI18N
-        jScrollPane7.setViewportView(jTextPane5);
+        dialogAusgangPreisFeld.setBorder(null);
+        dialogAusgangPreisFeld.setEditable(false);
+        dialogAusgangPreisFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogAusgangPreisFeld.setText("3000");
+        dialogAusgangPreisFeld.setName("result"); // NOI18N
+        jScrollPane7.setViewportView(dialogAusgangPreisFeld);
 
         jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 310, -1));
 
-        kundenTelLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel5.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel5.setText("Rechnung erstellt, am ");
         jPanel1.add(kundenTelLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        kundenTelLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel6.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel6.setText("Kunde");
         jPanel1.add(kundenTelLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        kundenTelLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTelLabel7.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenTelLabel7.setText("Angebot");
         jPanel1.add(kundenTelLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jTextPane6.setBorder(null);
-        jTextPane6.setEditable(false);
-        jTextPane6.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane6.setText("9.5.2011");
-        jTextPane6.setName("result"); // NOI18N
-        jScrollPane8.setViewportView(jTextPane6);
+        dialogAusgangDatumFeld.setBorder(null);
+        dialogAusgangDatumFeld.setEditable(false);
+        dialogAusgangDatumFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogAusgangDatumFeld.setText("9.5.2011");
+        dialogAusgangDatumFeld.setName("result"); // NOI18N
+        jScrollPane8.setViewportView(dialogAusgangDatumFeld);
 
         jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 80, -1));
 
-        jTextPane7.setBorder(null);
-        jTextPane7.setEditable(false);
-        jTextPane7.setFont(new java.awt.Font("Tahoma", 0, 15));
-        jTextPane7.setText("FH Technikum-Wien");
-        jTextPane7.setName("result"); // NOI18N
-        jScrollPane9.setViewportView(jTextPane7);
+        dialogAusgangKundeFeld.setBorder(null);
+        dialogAusgangKundeFeld.setEditable(false);
+        dialogAusgangKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogAusgangKundeFeld.setText("FH Technikum-Wien");
+        dialogAusgangKundeFeld.setName("result"); // NOI18N
+        jScrollPane9.setViewportView(dialogAusgangKundeFeld);
 
         jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 310, -1));
 
-        jTextPane8.setBorder(null);
-        jTextPane8.setEditable(false);
-        jTextPane8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jTextPane8.setText("Schuhe putzen");
-        jTextPane8.setName("result"); // NOI18N
-        jScrollPane10.setViewportView(jTextPane8);
+        dialogAusgangAngebotFeld.setBorder(null);
+        dialogAusgangAngebotFeld.setEditable(false);
+        dialogAusgangAngebotFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        dialogAusgangAngebotFeld.setText("Schuhe putzen");
+        dialogAusgangAngebotFeld.setName("result"); // NOI18N
+        jScrollPane10.setViewportView(dialogAusgangAngebotFeld);
 
         jPanel1.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 310, -1));
 
@@ -148,16 +148,16 @@ public class AusgangsrechnungForm extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane dialogAusgangAngebotFeld;
+    private javax.swing.JTextPane dialogAusgangDatumFeld;
+    private javax.swing.JTextPane dialogAusgangKundeFeld;
+    private javax.swing.JTextPane dialogAusgangPreisFeld;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextPane jTextPane5;
-    private javax.swing.JTextPane jTextPane6;
-    private javax.swing.JTextPane jTextPane7;
-    private javax.swing.JTextPane jTextPane8;
     private javax.swing.JLabel kontaktInfoLabel1;
     private javax.swing.JLabel kundenTelLabel4;
     private javax.swing.JLabel kundenTelLabel5;

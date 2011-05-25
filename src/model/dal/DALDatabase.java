@@ -262,7 +262,7 @@ public class DALDatabase implements IDAL {
             } else {
                 cmd = db.prepareStatement(
                         "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, k.getVorname());
                 cmd.setString(2, k.getNachname());

@@ -4,9 +4,6 @@
  */
 package model;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  *
  * @author if09b505

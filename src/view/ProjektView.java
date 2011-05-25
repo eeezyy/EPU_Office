@@ -33,21 +33,21 @@ public class ProjektView extends javax.swing.JPanel {
         kundenListeLabel = new javax.swing.JLabel();
         kundenInfoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        kundenListe = new javax.swing.JList();
+        projektListe = new javax.swing.JList();
         projektAuftragLabel = new javax.swing.JLabel();
         projektImplementierungVonLabel = new javax.swing.JLabel();
         projektImplementierungBisLabel = new javax.swing.JLabel();
-        kundenNameFeld = new javax.swing.JTextField();
-        kundenTelFeld = new javax.swing.JTextField();
+        projektStundenGesamt = new javax.swing.JTextField();
+        projektImplVon = new javax.swing.JTextField();
         projektExport = new javax.swing.JButton();
-        kundenVorNameFeld = new javax.swing.JTextField();
+        projektAuftragFeld = new javax.swing.JTextField();
         projektImport = new javax.swing.JButton();
         projektNameLabel = new javax.swing.JLabel();
-        kundenFirmaFeld = new javax.swing.JTextField();
+        projektNameFeld = new javax.swing.JTextField();
         projektImplementierungVonLabel1 = new javax.swing.JLabel();
         projektArbeitsstundenGesamt = new javax.swing.JLabel();
         projektCheckBox = new javax.swing.JCheckBox();
-        kundenNameFeld1 = new javax.swing.JTextField();
+        projektImplBis = new javax.swing.JTextField();
         projektHinzufuegen = new javax.swing.JButton();
         projektLoeschen = new javax.swing.JButton();
         projektAendern = new javax.swing.JButton();
@@ -64,14 +64,14 @@ public class ProjektView extends javax.swing.JPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
-        kundenListe.setModel(new javax.swing.AbstractListModel() {
+        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        projektListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Projekt 1  |  Auftrag 1", "Projekt 2", "Projekt 3", "Projekt 4", "Projekt 5", "Projekt 6", "Projekt 7" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        kundenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(kundenListe);
+        projektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(projektListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
@@ -87,23 +87,23 @@ public class ProjektView extends javax.swing.JPanel {
         projektImplementierungBisLabel.setText("Impl. (bis)");
         add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
-        kundenNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        projektStundenGesamt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kundenNameFeldActionPerformed(evt);
+                projektStundenGesamtActionPerformed(evt);
             }
         });
-        add(kundenNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, -1));
-        add(kundenTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 140, -1));
+        add(projektStundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, -1));
+        add(projektImplVon, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 140, -1));
 
         projektExport.setText("Datensätze exportieren");
         add(projektExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 230, -1));
 
-        kundenVorNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        projektAuftragFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kundenVorNameFeldActionPerformed(evt);
+                projektAuftragFeldActionPerformed(evt);
             }
         });
-        add(kundenVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
+        add(projektAuftragFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         projektImport.setText("Datensätze Importieren");
         add(projektImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 230, -1));
@@ -112,12 +112,12 @@ public class ProjektView extends javax.swing.JPanel {
         projektNameLabel.setText("Name");
         add(projektNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        kundenFirmaFeld.addActionListener(new java.awt.event.ActionListener() {
+        projektNameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kundenFirmaFeldActionPerformed(evt);
+                projektNameFeldActionPerformed(evt);
             }
         });
-        add(kundenFirmaFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 140, -1));
+        add(projektNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 140, -1));
 
         projektImplementierungVonLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektImplementierungVonLabel1.setText("Abgeschlossen");
@@ -128,12 +128,12 @@ public class ProjektView extends javax.swing.JPanel {
         add(projektArbeitsstundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
         add(projektCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
 
-        kundenNameFeld1.addActionListener(new java.awt.event.ActionListener() {
+        projektImplBis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kundenNameFeld1ActionPerformed(evt);
+                projektImplBisActionPerformed(evt);
             }
         });
-        add(kundenNameFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
+        add(projektImplBis, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
         projektHinzufuegen.setText("Projekt hinzufügen");
         add(projektHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
@@ -150,21 +150,21 @@ public class ProjektView extends javax.swing.JPanel {
         add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kundenNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenNameFeldActionPerformed
+    private void projektStundenGesamtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektStundenGesamtActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kundenNameFeldActionPerformed
+}//GEN-LAST:event_projektStundenGesamtActionPerformed
 
-    private void kundenVorNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenVorNameFeldActionPerformed
+    private void projektAuftragFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAuftragFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kundenVorNameFeldActionPerformed
+}//GEN-LAST:event_projektAuftragFeldActionPerformed
 
-    private void kundenFirmaFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenFirmaFeldActionPerformed
+    private void projektNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektNameFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kundenFirmaFeldActionPerformed
+}//GEN-LAST:event_projektNameFeldActionPerformed
 
-    private void kundenNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenNameFeld1ActionPerformed
+    private void projektImplBisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektImplBisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kundenNameFeld1ActionPerformed
+    }//GEN-LAST:event_projektImplBisActionPerformed
 
     private void projektAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAendernActionPerformed
         //KontaktAddForm af = new KontaktAddForm(null, true);
@@ -173,25 +173,25 @@ public class ProjektView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField kundenFirmaFeld;
     private javax.swing.JLabel kundenInfoLabel;
-    private javax.swing.JList kundenListe;
     private javax.swing.JLabel kundenListeLabel;
-    private javax.swing.JTextField kundenNameFeld;
-    private javax.swing.JTextField kundenNameFeld1;
-    private javax.swing.JTextField kundenTelFeld;
-    private javax.swing.JTextField kundenVorNameFeld;
     private javax.swing.JButton projektAendern;
     private javax.swing.JLabel projektArbeitsstundenGesamt;
+    private javax.swing.JTextField projektAuftragFeld;
     private javax.swing.JLabel projektAuftragLabel;
     private javax.swing.JCheckBox projektCheckBox;
     private javax.swing.JButton projektExport;
     private javax.swing.JButton projektHinzufuegen;
+    private javax.swing.JTextField projektImplBis;
+    private javax.swing.JTextField projektImplVon;
     private javax.swing.JLabel projektImplementierungBisLabel;
     private javax.swing.JLabel projektImplementierungVonLabel;
     private javax.swing.JLabel projektImplementierungVonLabel1;
     private javax.swing.JButton projektImport;
+    private javax.swing.JList projektListe;
     private javax.swing.JButton projektLoeschen;
+    private javax.swing.JTextField projektNameFeld;
     private javax.swing.JLabel projektNameLabel;
+    private javax.swing.JTextField projektStundenGesamt;
     // End of variables declaration//GEN-END:variables
 }

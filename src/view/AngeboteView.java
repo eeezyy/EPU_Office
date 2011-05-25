@@ -43,9 +43,9 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktEmailLabel = new javax.swing.JLabel();
         kontaktBankInstLabel = new javax.swing.JLabel();
         kontaktBLZNrLabel = new javax.swing.JLabel();
-        kontaktNameFeld = new javax.swing.JTextField();
-        kontaktTelFeld = new javax.swing.JTextField();
-        kontaktBankInstFeld = new javax.swing.JTextField();
+        angebotImplPreisFeld = new javax.swing.JTextField();
+        angebotNameFeld = new javax.swing.JTextField();
+        angebotImplDauerFeld = new javax.swing.JTextField();
         angebotErstellen = new javax.swing.JButton();
         angebotLoeschen = new javax.swing.JButton();
         angebotGueltigBisFeld = new javax.swing.JTextField();
@@ -54,9 +54,9 @@ public class AngeboteView extends javax.swing.JPanel {
         angebotGueltigAbLabel = new javax.swing.JLabel();
         angebotGueltigAbFeld = new javax.swing.JTextField();
         angebotAendern = new javax.swing.JButton();
-        kontaktBankInstFeld1 = new javax.swing.JTextField();
+        angebotImplChanceFeld = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        angebotBeschreibungFeld = new javax.swing.JTextArea();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,14 +118,14 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktBLZNrLabel.setText("Impl.chance");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
-        kontaktNameFeld.addActionListener(new java.awt.event.ActionListener() {
+        angebotImplPreisFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktNameFeldActionPerformed(evt);
+                angebotImplPreisFeldActionPerformed(evt);
             }
         });
-        add(kontaktNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
-        add(kontaktTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
-        add(kontaktBankInstFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
+        add(angebotImplPreisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
+        add(angebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
+        add(angebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
         angebotErstellen.setText("Angebot erstellen");
         angebotErstellen.addActionListener(new java.awt.event.ActionListener() {
@@ -170,18 +170,18 @@ public class AngeboteView extends javax.swing.JPanel {
             }
         });
         add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
-        add(kontaktBankInstFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 140, -1));
+        add(angebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 140, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        angebotBeschreibungFeld.setColumns(20);
+        angebotBeschreibungFeld.setRows(5);
+        jScrollPane3.setViewportView(angebotBeschreibungFeld);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kontaktNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeldActionPerformed
+    private void angebotImplPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotImplPreisFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_kontaktNameFeldActionPerformed
+}//GEN-LAST:event_angebotImplPreisFeldActionPerformed
 
     private void angebotErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotErstellenActionPerformed
         AngebotAddForm af = new AngebotAddForm(null, true);
@@ -203,28 +203,28 @@ public class AngeboteView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotAendern;
+    private javax.swing.JTextArea angebotBeschreibungFeld;
     private javax.swing.JButton angebotErstellen;
     private javax.swing.JTextField angebotGueltigAbFeld;
     private javax.swing.JLabel angebotGueltigAbLabel;
     private javax.swing.JTextField angebotGueltigBisFeld;
     private javax.swing.JLabel angebotGueltigBisLabel;
+    private javax.swing.JTextField angebotImplChanceFeld;
+    private javax.swing.JTextField angebotImplDauerFeld;
+    private javax.swing.JTextField angebotImplPreisFeld;
     private javax.swing.JButton angebotLoeschen;
+    private javax.swing.JTextField angebotNameFeld;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel kontaktBLZNrLabel;
-    private javax.swing.JTextField kontaktBankInstFeld;
-    private javax.swing.JTextField kontaktBankInstFeld1;
     private javax.swing.JLabel kontaktBankInstLabel;
     private javax.swing.JLabel kontaktEmailLabel;
     private javax.swing.JLabel kontaktInfoLabel;
     private javax.swing.JList kontaktListe;
     private javax.swing.JLabel kontaktListeLabel;
-    private javax.swing.JTextField kontaktNameFeld;
     private javax.swing.JLabel kontaktStrasseLabel;
-    private javax.swing.JTextField kontaktTelFeld;
     private javax.swing.JLabel kontaktTelLabel;
     private javax.swing.JButton kundeZuweisen;
     // End of variables declaration//GEN-END:variables

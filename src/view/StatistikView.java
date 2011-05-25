@@ -45,10 +45,10 @@ public class StatistikView extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         statistikAusgang = new javax.swing.JList();
         kontaktListeLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        statistikMonat = new javax.swing.JComboBox();
         kontaktListeLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        statistikErloes = new javax.swing.JTextPane();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,7 +62,7 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12));
+        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         statistikEingang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -105,7 +105,7 @@ public class StatistikView extends javax.swing.JPanel {
         });
         add(statistikPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
-        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12));
+        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         statistikAusgang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -125,19 +125,19 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktListeLabel1.setText("Ausgangsrechnung");
         add(kontaktListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jänner", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 120, 20));
+        statistikMonat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jänner", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" }));
+        add(statistikMonat, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 120, 20));
 
         kontaktListeLabel2.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel2.setText("Betroffener Monat");
         add(kontaktListeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        jTextPane1.setBorder(null);
-        jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14));
-        jTextPane1.setText("55550,00");
-        jTextPane1.setName("result"); // NOI18N
-        jScrollPane3.setViewportView(jTextPane1);
+        statistikErloes.setBorder(null);
+        statistikErloes.setEditable(false);
+        statistikErloes.setFont(new java.awt.Font("Tahoma", 0, 14));
+        statistikErloes.setText("55550,00");
+        statistikErloes.setName("result"); // NOI18N
+        jScrollPane3.setViewportView(statistikErloes);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 110, 20));
     }// </editor-fold>//GEN-END:initComponents
@@ -171,11 +171,9 @@ public class StatistikView extends javax.swing.JPanel {
     }//GEN-LAST:event_statistikJahrActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel kontaktInfoLabel;
     private javax.swing.JLabel kontaktListeLabel;
     private javax.swing.JLabel kontaktListeLabel1;
@@ -184,7 +182,9 @@ public class StatistikView extends javax.swing.JPanel {
     private javax.swing.JButton statistikAusgangHinzufuegen;
     private javax.swing.JList statistikEingang;
     private javax.swing.JButton statistikEingangHinzufuegen;
+    private javax.swing.JTextPane statistikErloes;
     private javax.swing.JButton statistikJahr;
+    private javax.swing.JComboBox statistikMonat;
     private javax.swing.JButton statistikPDF;
     // End of variables declaration//GEN-END:variables
 }
