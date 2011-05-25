@@ -10,7 +10,9 @@
  */
 package view;
 
+import controller.Binder;
 import controller.KontaktController;
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.dal.DALException;
@@ -53,6 +55,18 @@ public class KontakteView extends AbstractViewPanel {
             System.out.println("initialize");
             this.setKontaktListe(controller.getKontaktListe());
         } catch (DALException ex) {
+            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Binder binder = new Binder();
+        try {
+            binder.bind(kontaktListe, kontaktVorNameFeld, "Vorname");
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -121,7 +135,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         kontaktListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
