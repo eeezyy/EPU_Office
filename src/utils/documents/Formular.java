@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package utils.documents;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -11,8 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Goran-Goggy
+ *  @author Alexander Kumbeiz & Goran Janosevic
  */
 public class Formular extends BaseDoc {
 

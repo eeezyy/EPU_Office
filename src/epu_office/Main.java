@@ -6,8 +6,9 @@ package epu_office;
 
 import config.Config;
 import controller.MainController;
-import utils.BaseDoc;
-import utils.Formular;
+import java.util.logging.Level;
+import utils.documents.Formular;
+import utils.log.Logger;
 
 /**
  *
@@ -24,12 +25,14 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         config = new Config();
+       
+        Logger.log(Level.INFO, "Hallo, das ist ein Test!");
 
         //BaseDoc test = new BaseDoc();
         Formular formular = new Formular();
         formular.createPDF("TestPDFDOKUMENT____2011.pdf");
         //System.out.println("Dokument gespeichert");
         //test.createPDF("TestPDFDOKUMENT____2011.pdf");
-        controller = new MainController();
+        //controller = new MainController();
     }
 }

@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package utils.log;
 
 import java.util.logging.Level;
 
 /**
- *
- * @author Goran-Goggy
+ *  @author Alexander Kumbeiz & Goran Janosevic
  */
-public interface Logger{
+
+public interface Appender{
     public void configure();
     public void log(Level level, String message);
 }

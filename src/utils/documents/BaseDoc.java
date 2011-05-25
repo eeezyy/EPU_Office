@@ -2,14 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package utils.documents;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfReader;
@@ -24,9 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Alexander Kumbeiz
- * @author Goran Janosevic
+ *  Hier wird das Grundlayout der zu erstellenden PDF-Dokumente erstellt.
+ *  @author Alexander Kumbeiz & Goran Janosevic
  */
 public abstract class BaseDoc {
 
@@ -59,10 +57,11 @@ public abstract class BaseDoc {
     private String fBottomLeft = "FOOT: BOTTOM LEFT";
     private String fBottomCenter = "FOOT: BOTTOM CENTER";
     private String fBottomRight = "FOOT: BOTTOM RIGHT";
-    //private Rectangle box = new Rectangle(50, 500, 690, 150);
-    // Create a reader
+
+    // Leseobjekt (PDF)
     private PdfReader reader;
-    // Create a stamper
+    
+    // Stempelobjekt (PDF)
     PdfStamper stamper;
 
     public void createPDF(String fileName) {
@@ -100,10 +99,8 @@ public abstract class BaseDoc {
         // Loop over the pages and add a header to each page
         int n = reader.getNumberOfPages();
         for (int i = 1; i <= n; i++) {
-            getHeaderTable().writeSelectedRows(
-                    0, -1, 34, 825, stamper.getOverContent(i));
-            getFooterTable(i).writeSelectedRows(
-                    0, -1, 34, 50, stamper.getOverContent(i));
+            getHeaderTable().writeSelectedRows(0, -1, 34, 825, stamper.getOverContent(i));
+            getFooterTable(i).writeSelectedRows(0, -1, 34, 50, stamper.getOverContent(i));
         }
         try {
             // Close the stamper
@@ -238,6 +235,4 @@ public abstract class BaseDoc {
     public void sethTopLeft(String hTopLeft) {
         this.hTopLeft = hTopLeft;
     }
-    
-    
 }
