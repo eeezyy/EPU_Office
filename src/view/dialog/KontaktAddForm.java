@@ -11,12 +11,10 @@
 package view.dialog;
 
 import java.awt.Frame;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Kontakt;
-import model.bl.KontaktLogic;
 import model.dal.DALException;
 import model.dal.DALFactory;
 import view.AbstractViewDialog;

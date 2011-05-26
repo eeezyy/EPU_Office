@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
@@ -22,7 +23,6 @@ import javax.swing.event.ListSelectionListener;
 import model.AbstractObject;
 import model.Kontakt;
 import model.bl.AbstractLogic;
-import model.bl.KontaktLogic;
 import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
@@ -35,6 +35,55 @@ public class Binder {
     public static void bind(JComponent jc1, JComponent jc2, final String propertyName) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         if (jc1 instanceof JList) {
             final JList jlist = (JList) jc1;
+            
+            if (jc2 instanceof JCheckBox) {
+                final JCheckBox jcb = (JCheckBox) jc2;
+                
+                ListSelectionListener lsl;
+                lsl = new ListSelectionListener() {
+
+                    public void valueChanged(ListSelectionEvent e) {
+                        Runnable r = new Runnable() {
+
+                            public void run() {
+                                AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+                                Method method = null;
+                                if (am != null) {
+                                    try {
+                                        method = am.getClass().getMethod("get" + propertyName, new Class[]{});
+                                    } catch (NoSuchMethodException ex) {
+                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (SecurityException ex) {
+                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                boolean value = false;
+                                if (method != null) {
+                                    try {
+                                        Object result = method.invoke(am);
+                                        if (result instanceof Boolean) {
+                                            value = (Boolean) result;
+                                        } else {
+                                            // Error
+                                            
+                                        } 
+                                    } catch (IllegalAccessException ex) {
+                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (IllegalArgumentException ex) {
+                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (InvocationTargetException ex) {
+                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                jcb.setSelected(value);
+                            }
+                        };
+                        SwingUtilities.invokeLater(r);
+                    }
+                    
+                };
+                jlist.addListSelectionListener(lsl);
+            }
 
             if (jc2 instanceof JTextField) {
                 final JTextField jtf = (JTextField) jc2;

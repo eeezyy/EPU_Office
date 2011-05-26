@@ -63,6 +63,7 @@ public class KontakteView extends AbstractViewPanel {
             Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
             Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
             Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
+            Binder.bind(kontaktListe, kontaktIsKundeFeld, "IsKunde");
 
             Binder.bind(Kontakt.class, kontaktListe);
 
@@ -119,6 +120,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktHausnrFeld = new javax.swing.JTextField();
         kontaktKontoFeld = new javax.swing.JTextField();
         kontaktBlzFeld = new javax.swing.JTextField();
+        kontaktIsKundeFeld = new javax.swing.JCheckBox();
 
         kontaktNameFeld1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +244,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktStrasseFeld.setName("Strasse"); // NOI18N
         add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
-        kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         kontaktTuerNrLabel.setText("Hausnr.");
         add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
@@ -299,6 +301,16 @@ public class KontakteView extends AbstractViewPanel {
         kontaktBlzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
+
+        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktIsKundeFeld.setText("Kunde");
+        kontaktIsKundeFeld.setName("Kunde"); // NOI18N
+        kontaktIsKundeFeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kontaktIsKundeFeldActionPerformed(evt);
+            }
+        });
+        add(kontaktIsKundeFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 187, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
@@ -377,7 +389,7 @@ public class KontakteView extends AbstractViewPanel {
         k.setBlz(Integer.parseInt(kontaktBlzFeld.getText()));
         k.setEmail(kontaktEmailFeld.getText());
         k.setFirmenname(kontaktFirmennameFeld.getText());
-        k.setIsKunde(false);
+        k.setIsKunde(kontaktIsKundeFeld.isSelected());
         k.setKonto(Long.parseLong(kontaktKontoFeld.getText()));
         k.setNachname(kontaktNachnameFeld.getText());
         k.setTelefon(kontaktTelefonFeld.getText());
@@ -412,6 +424,11 @@ public class KontakteView extends AbstractViewPanel {
     private void kontaktListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kontaktListeValueChanged
         cleanErrors();
     }//GEN-LAST:event_kontaktListeValueChanged
+
+    private void kontaktIsKundeFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktIsKundeFeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kontaktIsKundeFeldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
@@ -429,6 +446,7 @@ public class KontakteView extends AbstractViewPanel {
     private javax.swing.JTextField kontaktHausnrFeld;
     private javax.swing.JButton kontaktHinzufuegen;
     private javax.swing.JLabel kontaktInfoLabel;
+    private javax.swing.JCheckBox kontaktIsKundeFeld;
     private javax.swing.JTextField kontaktKontoFeld;
     private javax.swing.JLabel kontaktKontoNrLabel;
     private javax.swing.JList kontaktListe;

@@ -8,8 +8,9 @@ package model.dal;
  *
  */
 public class DALFactory {
-	public static IDAL getDAL() {
-		// TODO: lt. Konfiguration einen anderen DAL zurück geben
-		return new DALDatabase();
-	}
+
+    public static IDAL getDAL() {
+        // TODO: lt. Konfiguration einen anderen DAL zurück geben
+        return new DALDatabase();
+    }
 }
