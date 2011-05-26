@@ -227,7 +227,10 @@ public class DALDatabase implements IDAL {
 //            throw new DALException(e.getMessage());
 //        }
 //    }*/
-    public void saveKontakt(Kontakt k) throws DALException {
+    public void saveKontakt(AbstractObject ao) throws DALException {
+        if(!(ao instanceof Kontakt))
+            return;
+        Kontakt k = (Kontakt)ao;
         try {
             // Datenbankverbindung �ffnen
             Connection db = DALDatabase.getConnection();

@@ -14,7 +14,7 @@ public interface IDAL {
 
     public void initialize() throws DALException;
 
-    public void saveKontakt(Kontakt k) throws DALException;
+    public void saveKontakt(AbstractObject k) throws DALException;
 
     public void deleteKontakt(Kontakt k) throws DALException;
 

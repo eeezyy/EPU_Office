@@ -239,7 +239,6 @@ public class KontaktAddForm extends AbstractViewDialog {
         k.setNachname(dialogKontaktNachnameFeld.getText());
         k.setTelefon(dialogKontaktTelefonFeld.getText());
         k.setVorname(dialogKontaktVornameFeld.getText());
-        ArrayList<String> errorList = KontaktLogic.check(k);
         try {
             // Test
             DALFactory.getDAL().saveKontakt(k);
@@ -249,7 +248,7 @@ public class KontaktAddForm extends AbstractViewDialog {
             Logger.getLogger(KontaktAddForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_dialogKontaktHinzufuegenActionPerformed
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dialogAbbrechen;
     private javax.swing.JLabel dialogKdialogK;
