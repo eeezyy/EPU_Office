@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import model.Kontakt;
 import model.dal.DALFactory;
+import model.dal.IDAL;
 
 /**
  *
@@ -29,6 +30,7 @@ import model.dal.DALFactory;
 public class KontakteView extends AbstractViewPanel {
 
     private KontaktController controller;
+    private IDAL db = DALFactory.getDAL();
 
     /** Creates new form Kontakte */
     public KontakteView(KontaktController controller) {
@@ -38,10 +40,9 @@ public class KontakteView extends AbstractViewPanel {
     }
     
     public void initialize() {
+        System.out.println("initialize");
         try {
-            // TODO direkt vom model holen, darf nichts vom controll wissen
-            System.out.println("initialize");
-            this.setKontaktListe(controller.getKontaktListe());
+            this.setKontaktListe(db.getKontaktListe());
         } catch (DALException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -317,7 +318,7 @@ public class KontakteView extends AbstractViewPanel {
         k.setTelefon(kontaktTelefonFeld.getText());
         k.setVorname(kontaktVornameFeld.getText());
         try {
-            DALFactory.getDAL().saveKontakt(k);
+            db.saveKontakt(k);
         } catch (DALException ex) {
             
         }
@@ -326,7 +327,7 @@ public class KontakteView extends AbstractViewPanel {
     private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed
         Kontakt k = (Kontakt)this.kontaktListe.getSelectedValue();
         try {
-            DALFactory.getDAL().deleteKontakt(k);
+            db.deleteKontakt(k);
         } catch (DALException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         }
