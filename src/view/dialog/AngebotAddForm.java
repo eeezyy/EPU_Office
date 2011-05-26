@@ -57,10 +57,13 @@ public class AngebotAddForm extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         angebotAddLabel.setFont(new java.awt.Font("Arial", 1, 18));
         angebotAddLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         angebotAddLabel.setText("Angebot erstellen");
         angebotAddLabel.setAlignmentX(0.5F);
+        jPanel1.add(angebotAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 11, -1, -1));
 
         dialogAngebotAbbrechen.setText("Abbrechen");
         dialogAngebotAbbrechen.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +71,7 @@ public class AngebotAddForm extends javax.swing.JDialog {
                 dialogAngebotAbbrechenActionPerformed(evt);
             }
         });
+        jPanel1.add(dialogAngebotAbbrechen, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 230, -1));
 
         dialogAngebotHinzufuegen.setText("Angebot erstellen");
         dialogAngebotHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
@@ -75,135 +79,68 @@ public class AngebotAddForm extends javax.swing.JDialog {
                 dialogAngebotHinzufuegenActionPerformed(evt);
             }
         });
+        jPanel1.add(dialogAngebotHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 230, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 263, 770, 10));
 
         dialogAngebotGueltigBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotGueltigBisLabel.setText("Gültig bis");
+        jPanel1.add(dialogAngebotGueltigBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 51, -1, -1));
 
         dialogAngebotNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotNameLabel.setText("Name");
+        jPanel1.add(dialogAngebotNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, -1, -1));
 
         dialogAngebotPreisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotPreisLabel.setText("Impl.preis");
+        jPanel1.add(dialogAngebotPreisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 92, -1, -1));
 
         dialogAngebotDauerLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotDauerLabel.setText("Impl.dauer");
+        jPanel1.add(dialogAngebotDauerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 92, -1, -1));
 
         dialogAngebotChanceLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotChanceLabel.setText("Impl.chance");
+        jPanel1.add(dialogAngebotChanceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 92, -1, -1));
 
         dialogAngebotImplPreisFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogAngebotImplPreisFeldActionPerformed(evt);
             }
         });
+        jPanel1.add(dialogAngebotImplPreisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 150, -1));
+        jPanel1.add(dialogAngebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 51, 150, -1));
+        jPanel1.add(dialogAngebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 150, -1));
 
         dialogAngebotGueltigBisFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogAngebotGueltigBisFeldActionPerformed(evt);
             }
         });
+        jPanel1.add(dialogAngebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 52, 140, -1));
 
         dialogAngebotBeschreibungLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotBeschreibungLabel.setText("Beschreibung");
+        jPanel1.add(dialogAngebotBeschreibungLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 133, -1, -1));
 
         dialogAngebotGueltigAbLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotGueltigAbLabel.setText("Gültig ab");
+        jPanel1.add(dialogAngebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 51, -1, -1));
 
         dialogAngebotGueltigAbFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogAngebotGueltigAbFeldActionPerformed(evt);
             }
         });
+        jPanel1.add(dialogAngebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 51, 150, -1));
+        jPanel1.add(dialogAngebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 93, 140, -1));
 
         dialogAngebotBeschreibungFeld.setColumns(20);
         dialogAngebotBeschreibungFeld.setRows(5);
         jScrollPane3.setViewportView(dialogAngebotBeschreibungFeld);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(angebotAddLabel))
-                    .addComponent(dialogAngebotBeschreibungLabel)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(dialogAngebotHinzufuegen, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dialogAngebotAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(dialogAngebotNameLabel)
-                                    .addGap(41, 41, 41)
-                                    .addComponent(dialogAngebotNameFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(dialogAngebotPreisLabel)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(dialogAngebotImplPreisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(38, 38, 38)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(dialogAngebotGueltigAbLabel)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(dialogAngebotGueltigAbFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(dialogAngebotDauerLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(dialogAngebotImplDauerFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(39, 39, 39)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dialogAngebotChanceLabel)
-                                .addComponent(dialogAngebotGueltigBisLabel))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dialogAngebotGueltigBisFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                .addComponent(dialogAngebotImplChanceFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(98, 98, 98))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(angebotAddLabel)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dialogAngebotNameLabel)
-                    .addComponent(dialogAngebotNameFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dialogAngebotGueltigAbLabel)
-                    .addComponent(dialogAngebotGueltigAbFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dialogAngebotGueltigBisLabel)
-                        .addComponent(dialogAngebotGueltigBisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dialogAngebotPreisLabel)
-                    .addComponent(dialogAngebotImplPreisFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dialogAngebotDauerLabel)
-                    .addComponent(dialogAngebotImplDauerFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dialogAngebotChanceLabel)
-                    .addComponent(dialogAngebotImplChanceFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(dialogAngebotBeschreibungLabel)
-                .addGap(1, 1, 1)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dialogAngebotHinzufuegen)
-                    .addComponent(dialogAngebotAbbrechen))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 153, 770, 90));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 790, 310));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

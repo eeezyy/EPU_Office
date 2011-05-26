@@ -6,8 +6,6 @@ package utils.charts;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -27,29 +25,28 @@ public class LineChart extends ApplicationFrame {
 
     private ChartPanel panel;
     private CategoryPlot plot;
+    private final JPanel content;
     private int secondaryDatasetIndex = 0;
 
     public LineChart(final String title) {
         super(title);
         final CategoryDataset dataset1 = createRandomDataset("Series 1");
         final JFreeChart chart = ChartFactory.createLineChart(
-                "Secondary Dataset Demo 2", "Category", "Value",
-                dataset1, PlotOrientation.VERTICAL, true, true, false);
+                null, null, "Betrag in Euro", dataset1, PlotOrientation.VERTICAL, false, false, false);
         chart.setBackgroundPaint(Color.white);
 
         this.plot = chart.getCategoryPlot();
-        this.plot.setBackgroundPaint(Color.lightGray);
-        this.plot.setDomainGridlinePaint(Color.white);
-        this.plot.setRangeGridlinePaint(Color.white);
-//        this.plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 4, 4, 4, 4));
+        this.plot.setBackgroundPaint(Color.WHITE);
+        //this.plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 4, 4, 4, 4));
 
         final NumberAxis rangeAxis = (NumberAxis) this.plot.getRangeAxis();
         rangeAxis.setAutoRangeIncludesZero(false);
 
-        final JPanel content = new JPanel(new BorderLayout());
+        content = new JPanel(new BorderLayout());
 
         final ChartPanel chartPanel = new ChartPanel(chart);
         content.add(chartPanel);
+        setContentPane(content);
     }
 //http://www.java2s.com/Code/Java/Chart/JFreeChartSecondaryDatasetDemo2.htm
     
@@ -64,7 +61,7 @@ public class LineChart extends ApplicationFrame {
         return result;
     }
     
-    public ChartPanel getPanel() {
-        return this.panel;
+    public JPanel getContent() {
+        return this.content;
     }
 }

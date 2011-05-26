@@ -10,6 +10,8 @@
  */
 package view.dialog;
 
+import javax.swing.JPanel;
+import org.jfree.ui.RefineryUtilities;
 import utils.charts.LineChart;
 
 /**
@@ -23,8 +25,10 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        LineChart chart = new LineChart("");
-        chartView.add(chart.getPanel());
+        final LineChart chart = new LineChart("");
+        JPanel panel = chart.getContent();
+        chartView.add(panel);
+
     }
 
     /** This method is called from within the constructor to
