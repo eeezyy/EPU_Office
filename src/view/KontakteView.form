@@ -169,6 +169,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktEmailFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Email" noResource="true"/>
       </Properties>
       <Events>
@@ -182,6 +187,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktTelefonFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Telefon" noResource="true"/>
       </Properties>
       <Constraints>
@@ -192,6 +202,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktBankinstitutFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Bankinstitut" noResource="true"/>
       </Properties>
       <Constraints>
@@ -228,6 +243,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktVornameFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Vorname" noResource="true"/>
       </Properties>
       <Events>
@@ -264,6 +284,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktNachnameFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Nachname" noResource="true"/>
       </Properties>
       <Events>
@@ -290,6 +315,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktStrasseFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Strasse" noResource="true"/>
       </Properties>
       <Constraints>
@@ -339,6 +369,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktOrtFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Ort" noResource="true"/>
       </Properties>
       <Events>
@@ -365,6 +400,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktFirmennameFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Firmenname" noResource="true"/>
       </Properties>
       <Events>
@@ -391,6 +431,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktPlzFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Plz" noResource="true"/>
       </Properties>
       <Constraints>
@@ -401,6 +446,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktHausnrFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Hausnr" noResource="true"/>
       </Properties>
       <Constraints>
@@ -411,6 +461,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktKontoFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Konto" noResource="true"/>
       </Properties>
       <Constraints>
@@ -421,6 +476,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="kontaktBlzFeld">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
         <Property name="name" type="java.lang.String" value="Blz" noResource="true"/>
       </Properties>
       <Constraints>

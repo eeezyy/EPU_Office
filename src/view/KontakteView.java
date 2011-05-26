@@ -42,7 +42,7 @@ public class KontakteView extends AbstractViewPanel {
         this.controller = controller;
         this.initialize();
     }
-    
+
     public void initialize() {
         System.out.println("initialize");
         try {
@@ -63,9 +63,9 @@ public class KontakteView extends AbstractViewPanel {
             Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
             Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
             Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
-            
+
             Binder.bind(Kontakt.class, kontaktListe);
-            
+
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -176,6 +176,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktBLZNrLabel.setText("BLZ");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
+        kontaktEmailFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktEmailFeld.setName("Email"); // NOI18N
         kontaktEmailFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,9 +185,11 @@ public class KontakteView extends AbstractViewPanel {
         });
         add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
+        kontaktTelefonFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktTelefonFeld.setName("Telefon"); // NOI18N
         add(kontaktTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
+        kontaktBankinstitutFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktBankinstitutFeld.setName("Bankinstitut"); // NOI18N
         add(kontaktBankinstitutFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
 
@@ -206,6 +209,7 @@ public class KontakteView extends AbstractViewPanel {
         });
         add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
+        kontaktVornameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktVornameFeld.setName("Vorname"); // NOI18N
         kontaktVornameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,6 +225,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktNachNameLabel.setText("Nachname");
         add(kontaktNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
+        kontaktNachnameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktNachnameFeld.setName("Nachname"); // NOI18N
         kontaktNachnameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,6 +238,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktStrasseLabel.setText("Straße");
         add(kontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
+        kontaktStrasseFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktStrasseFeld.setName("Strasse"); // NOI18N
         add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
@@ -248,6 +254,7 @@ public class KontakteView extends AbstractViewPanel {
         kontakOrtLabel.setText("Ort");
         add(kontakOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 
+        kontaktOrtFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktOrtFeld.setName("Ort"); // NOI18N
         kontaktOrtFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +267,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktFirmaLabel.setText("Firma");
         add(kontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
+        kontaktFirmennameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktFirmennameFeld.setName("Firmenname"); // NOI18N
         kontaktFirmennameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,16 +284,19 @@ public class KontakteView extends AbstractViewPanel {
         });
         add(kontaktAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
+        kontaktPlzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktPlzFeld.setName("Plz"); // NOI18N
         add(kontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
 
+        kontaktHausnrFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktHausnrFeld.setName("Hausnr"); // NOI18N
         add(kontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
 
+        kontaktKontoFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktKontoFeld.setName("Konto"); // NOI18N
         add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
-        kontaktKontoFeld.getAccessibleContext().setAccessibleName("null");
 
+        kontaktBlzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -320,33 +331,44 @@ public class KontakteView extends AbstractViewPanel {
     }//GEN-LAST:event_kontaktFirmennameFeldActionPerformed
 
     private void kontaktAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktAendernActionPerformed
-        if(this.kontaktListe.isSelectionEmpty())
+        if (this.kontaktListe.isSelectionEmpty()) {
             return;
+        }
         ArrayList<String> errorList;
         errorList = Binder.save(createKontaktFromFields());
         showErrors(errorList);
-        
+
     }//GEN-LAST:event_kontaktAendernActionPerformed
 
     private void showErrors(ArrayList<String> errorList) {
-        if(errorList != null && !errorList.isEmpty())
-        for(String error: errorList) {
-            for(Component c: this.getComponents()) {
-                if(c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
-                    ((JTextField)c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
-                    System.out.println(((JTextField)c).getText());
-                    break;
-                    
+        cleanErrors();
+        if (errorList != null && !errorList.isEmpty()) {
+            for (String error : errorList) {
+                for (Component c : this.getComponents()) {
+                    if (c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
+                        ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
+                        System.out.println(((JTextField) c).getText());
+                        break;
+
+                    }
                 }
             }
-        }
-        else {
+        } else {
             resetTextFields();
         }
     }
+
+    private void cleanErrors() {
+        for (Component c : this.getComponents()) {
+            if (c.getClass() == JTextField.class && c.getName() != null) {
+                ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());//BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+            }
+        }
+    }
+
     private Kontakt createKontaktFromFields() {
         Kontakt k = new Kontakt();
-        k.setId(((Kontakt)this.kontaktListe.getSelectedValue()).getId());
+        k.setId(((Kontakt) this.kontaktListe.getSelectedValue()).getId());
         k.setStrasse(kontaktStrasseFeld.getText());
         k.setHausnr(Integer.parseInt(kontaktHausnrFeld.getText()));
         k.setPlz(Integer.parseInt(kontaktPlzFeld.getText()));
@@ -357,13 +379,12 @@ public class KontakteView extends AbstractViewPanel {
         k.setFirmenname(kontaktFirmennameFeld.getText());
         k.setIsKunde(false);
         k.setKonto(Long.parseLong(kontaktKontoFeld.getText()));
-        System.out.println("Konto STelle: " + kontaktKontoFeld.getText().length());
         k.setNachname(kontaktNachnameFeld.getText());
         k.setTelefon(kontaktTelefonFeld.getText());
         k.setVorname(kontaktVornameFeld.getText());
         return k;
     }
-    
+
     private void resetTextFields() {
         kontaktStrasseFeld.setText("");
         kontaktHausnrFeld.setText("");
@@ -377,9 +398,10 @@ public class KontakteView extends AbstractViewPanel {
         kontaktVornameFeld.setText("");
         kontaktNachnameFeld.setText("");
         kontaktTelefonFeld.setText("");
+        cleanErrors();
     }
     private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed
-        Kontakt k = (Kontakt)this.kontaktListe.getSelectedValue();
+        Kontakt k = (Kontakt) this.kontaktListe.getSelectedValue();
         try {
             db.deleteKontakt(k);
         } catch (DALException ex) {
@@ -388,9 +410,8 @@ public class KontakteView extends AbstractViewPanel {
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 
     private void kontaktListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kontaktListeValueChanged
-        
+        cleanErrors();
     }//GEN-LAST:event_kontaktListeValueChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
@@ -429,10 +450,10 @@ public class KontakteView extends AbstractViewPanel {
 
     private void setKontaktListe(ArrayList<Kontakt> kontakte) {
         DefaultListModel list = new DefaultListModel();
-        for(Kontakt k: kontakte) {
+        for (Kontakt k : kontakte) {
             list.addElement(k);
         }
-        
+
         this.kontaktListe.setModel(list);
     }
 }
