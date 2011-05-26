@@ -9,7 +9,6 @@
 package view;
 
 import controller.AbstractController;
-import controller.ModelObservable;
 import java.awt.Frame;
 import java.util.List;
 import javax.swing.JDialog;
@@ -31,14 +30,8 @@ public abstract class AbstractViewDialog extends JDialog {
         return controller;
     }
 
-    public ModelObservable getObservable() {
-        return observable;
-    }
-    private ModelObservable observable;
-
-    public AbstractViewDialog(ModelObservable observable, Frame owner, boolean modal) {
+    public AbstractViewDialog(Frame owner, boolean modal) {
         super(owner, modal);
-        this.observable = observable;
     }
 
     public void setController(AbstractController controller) {

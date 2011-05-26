@@ -20,13 +20,11 @@ import view.KontakteView;
 public class KontaktController extends AbstractController {
     
     private KontakteView view;
-    private ModelObservable observable;
     private IDAL db;
     
     public KontaktController() {
         this.db = DALFactory.getDAL();
-        this.observable = new ModelObservable();
-        this.view = new KontakteView(observable, this);
+        this.view = new KontakteView(this);
         //this.initialize();
         MainController.mainGUI.addTabPanel(view, "Kontakte");
     }
@@ -55,7 +53,6 @@ public class KontaktController extends AbstractController {
     public void change(Kontakt kontakt) throws DALException {
         if(KontaktLogic.check(kontakt).isEmpty()){
             DALFactory.getDAL().saveKontakt(kontakt);
-            observable.notifyObservers(kontakt);
         } else {
             //arraylist to view
         }

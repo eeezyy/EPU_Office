@@ -9,8 +9,6 @@
 package view;
 
 import controller.AbstractController;
-import controller.ModelObservable;
-import java.util.List;
 import javax.swing.JPanel;
 
 /**
@@ -25,20 +23,11 @@ import javax.swing.JPanel;
 public abstract class AbstractViewPanel extends JPanel {
 
     private AbstractController controller;
-    private ModelObservable observable;
-
-    public AbstractViewPanel(ModelObservable observable) {
-        this.observable = observable;
-    }
 
     public void setController(AbstractController controller) {
         this.controller = controller;
     }
 
-    public ModelObservable getObservable() {
-        return observable;
-    }
-    
     public abstract void initialize();
     //private AbstractController controller;
     //public AbstractViewPanel(AbstractController controller);

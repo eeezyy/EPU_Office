@@ -4,8 +4,6 @@
  */
 package controller;
 
-import view.AbstractViewPanel;
-import view.KontakteView;
 import view.MainView;
 
 /**

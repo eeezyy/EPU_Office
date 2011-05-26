@@ -10,17 +10,9 @@
  */
 package view.dialog;
 
-import controller.Binder;
-import controller.KontaktController;
-import controller.ModelObservable;
-import controller.ModelObserver;
-import controller.NotifyObject;
-import controller.State;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Kontakt;
@@ -35,11 +27,9 @@ import view.AbstractViewDialog;
  */
 public class KontaktAddForm extends AbstractViewDialog {
 
-    private ModelObserver observer;
-
     /** Creates new form KontaktAddForm */
-    public KontaktAddForm(ModelObservable observable, Frame parent, boolean modal) {
-        super(observable, parent, modal);
+    public KontaktAddForm(Frame parent, boolean modal) {
+        super(parent, modal);
 
         //this.observer = new ModelObserver();
         
@@ -260,25 +250,6 @@ public class KontaktAddForm extends AbstractViewDialog {
         }
     }//GEN-LAST:event_dialogKontaktHinzufuegenActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /*
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                KontaktAddForm dialog = new KontaktAddForm(this.getO, new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dialogAbbrechen;
     private javax.swing.JLabel dialogKdialogK;

@@ -17,14 +17,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.dal.DALException;
 import view.dialog.KontaktAddForm;
-import controller.ModelObservable;
-import controller.ModelObserver;
-import controller.NotifyObject;
-import controller.State;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import model.Kontakt;
-import model.dal.DALDatabase;
 import model.dal.DALFactory;
 
 /**
@@ -34,18 +29,11 @@ import model.dal.DALFactory;
 public class KontakteView extends AbstractViewPanel {
 
     private KontaktController controller;
-    private ModelObservable observable;
-    private ModelObserver observer;
 
     /** Creates new form Kontakte */
-    public KontakteView(ModelObservable observable, KontaktController controller) {
-        super(observable);
+    public KontakteView(KontaktController controller) {
         initComponents();
         this.controller = controller;
-        this.observable = observable;
-        this.observer = new ModelObserver(this);
-        this.observable.addObserver(this.observer);
-        System.out.println("count observers " + this.observable.countObservers());
         this.initialize();
     }
     
@@ -284,7 +272,7 @@ public class KontakteView extends AbstractViewPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
-        KontaktAddForm af = new KontaktAddForm(this.getObservable(), null, true);
+        KontaktAddForm af = new KontaktAddForm(null, true);
         af.setVisible(true);
     }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
 
@@ -348,18 +336,6 @@ public class KontakteView extends AbstractViewPanel {
         
     }//GEN-LAST:event_kontaktListeValueChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    /*
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new KontakteView(this.getObservable()).setVisible(true);
-            }
-        });
-    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
