@@ -10,6 +10,7 @@
  */
 package view.dialog;
 
+import controller.Binder;
 import controller.KontaktController;
 import controller.ModelObservable;
 import controller.ModelObserver;
@@ -75,7 +76,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontakOrtLabel = new javax.swing.JLabel();
         dialogKontaktOrtFeld = new javax.swing.JTextField();
         dialogKontaktFirmaLabel = new javax.swing.JLabel();
-        dialogKontaktFirmaFeld = new javax.swing.JTextField();
+        dialogKontaktFirmennameFeld = new javax.swing.JTextField();
         dialogAbbrechen = new javax.swing.JButton();
         dialogKontaktHinzufuegen = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -112,7 +113,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktEmailLabel.setText("Email");
         jPanel1.add(dialogKontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
 
-        dialogKontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktBankInstLabel.setText("Bankinst.");
         jPanel1.add(dialogKontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
@@ -147,16 +148,16 @@ public class KontaktAddForm extends AbstractViewDialog {
         });
         jPanel1.add(dialogKontaktNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 150, -1));
 
-        dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktStrasseLabel.setText("Straße");
         jPanel1.add(dialogKontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
         jPanel1.add(dialogKontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 150, -1));
 
-        dialogKontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktPLZLabel.setText("PLZ");
         jPanel1.add(dialogKontaktPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
 
-        dialogKontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontakOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontakOrtLabel.setText("Ort");
         jPanel1.add(dialogKontakOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
@@ -171,12 +172,12 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktFirmaLabel.setText("Firma");
         jPanel1.add(dialogKontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        dialogKontaktFirmaFeld.addActionListener(new java.awt.event.ActionListener() {
+        dialogKontaktFirmennameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dialogKontaktFirmaFeldActionPerformed(evt);
+                dialogKontaktFirmennameFeldActionPerformed(evt);
             }
         });
-        jPanel1.add(dialogKontaktFirmaFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 150, -1));
+        jPanel1.add(dialogKontaktFirmennameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 150, -1));
 
         dialogAbbrechen.setText("Abbrechen");
         dialogAbbrechen.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +196,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         jPanel1.add(dialogKontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 230, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 770, 10));
 
-        dialogKontaktStrasseLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogKontaktStrasseLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktStrasseLabel1.setText("Hausnr.");
         jPanel1.add(dialogKontaktStrasseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
         jPanel1.add(dialogKontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 150, -1));
@@ -224,9 +225,9 @@ public class KontaktAddForm extends AbstractViewDialog {
         // TODO add your handling code here:
 }//GEN-LAST:event_dialogKontaktOrtFeldActionPerformed
 
-    private void dialogKontaktFirmaFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogKontaktFirmaFeldActionPerformed
+    private void dialogKontaktFirmennameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogKontaktFirmennameFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_dialogKontaktFirmaFeldActionPerformed
+}//GEN-LAST:event_dialogKontaktFirmennameFeldActionPerformed
 
     private void dialogAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAbbrechenActionPerformed
         // TODO add your handling code here:
@@ -242,7 +243,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         k.setBankinstitut(dialogKontaktBankinstitutFeld.getText());
         k.setBlz(Integer.parseInt(dialogKontaktBlzFeld.getText()));
         k.setEmail(dialogKontaktEmailLabel.getText());
-        k.setFirmenname(dialogKontaktFirmaFeld.getText());
+        k.setFirmenname(dialogKontaktFirmennameFeld.getText());
         k.setIsKunde(false);
         k.setKonto(Long.parseLong(dialogKontaktKontoFeld.getText()));
         k.setNachname(dialogKontaktNachnameFeld.getText());
@@ -289,8 +290,8 @@ public class KontaktAddForm extends AbstractViewDialog {
     private javax.swing.JTextField dialogKontaktBlzFeld;
     private javax.swing.JTextField dialogKontaktEmailFeld;
     private javax.swing.JLabel dialogKontaktEmailLabel;
-    private javax.swing.JTextField dialogKontaktFirmaFeld;
     private javax.swing.JLabel dialogKontaktFirmaLabel;
+    private javax.swing.JTextField dialogKontaktFirmennameFeld;
     private javax.swing.JTextField dialogKontaktHausnrFeld;
     private javax.swing.JButton dialogKontaktHinzufuegen;
     private javax.swing.JTextField dialogKontaktKontoFeld;

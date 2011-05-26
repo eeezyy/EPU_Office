@@ -3,13 +3,13 @@
  */
 package model.dal;
 
+import controller.Binder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -259,6 +259,7 @@ public class DALDatabase implements IDAL {
                 cmd.setInt(11, k.getPlz());
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
+                cmd.setInt(14, k.getId());
             } else {
                 cmd = db.prepareStatement(
                         "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde) "
@@ -291,6 +292,7 @@ public class DALDatabase implements IDAL {
             rd.close();
             cmdSelect.close();
             db.close();
+            Binder.notify(Kontakt.class);
 
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
@@ -357,6 +359,7 @@ public class DALDatabase implements IDAL {
             }
             cmd.close();
             db.close();
+            Binder.notify(Kontakt.class);
 
         } catch (SQLException e) {
             throw new DALException(e.getMessage());

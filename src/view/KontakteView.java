@@ -70,6 +70,9 @@ public class KontakteView extends AbstractViewPanel {
             Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
             Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
             Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
+            
+            Binder.bind(Kontakt.class, kontaktListe);
+            
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -235,7 +238,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktTuerNrLabel.setText("Hausnr.");
         add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
-        kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktPLZLabel.setText("PLZ");
         add(kontaktPLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
 
@@ -310,7 +313,26 @@ public class KontakteView extends AbstractViewPanel {
     }//GEN-LAST:event_kontaktFirmennameFeldActionPerformed
 
     private void kontaktAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktAendernActionPerformed
-        // TODO add your handling code here:
+        Kontakt k = new Kontakt();
+        k.setId(((Kontakt)this.kontaktListe.getSelectedValue()).getId());
+        k.setStrasse(kontaktStrasseFeld.getText());
+        k.setHausnr(Integer.parseInt(kontaktHausnrFeld.getText()));
+        k.setPlz(Integer.parseInt(kontaktPlzFeld.getText()));
+        k.setOrt(kontaktOrtFeld.getText());
+        k.setBankinstitut(kontaktBankinstitutFeld.getText());
+        k.setBlz(Integer.parseInt(kontaktBlzFeld.getText()));
+        k.setEmail(kontaktEmailLabel.getText());
+        k.setFirmenname(kontaktFirmennameFeld.getText());
+        k.setIsKunde(false);
+        k.setKonto(Long.parseLong(kontaktKontoFeld.getText()));
+        k.setNachname(kontaktNachnameFeld.getText());
+        k.setTelefon(kontaktTelefonFeld.getText());
+        k.setVorname(kontaktVornameFeld.getText());
+        try {
+            DALFactory.getDAL().saveKontakt(k);
+        } catch (DALException ex) {
+            
+        }
     }//GEN-LAST:event_kontaktAendernActionPerformed
 
     private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed
@@ -320,11 +342,6 @@ public class KontakteView extends AbstractViewPanel {
         } catch (DALException ex) {
             Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("kontakt deleted");
-        //observable.notifyObservers(new NotifyObject(k, State.DELETED));
-        observable.notifyObservers();
-        System.out.println("after notify");
-        observer.update(observable, k);
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 
     private void kontaktListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kontaktListeValueChanged
