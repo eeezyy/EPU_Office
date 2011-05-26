@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -9,6 +9,8 @@
  * Created on 10.05.2011, 16:45:03
  */
 package view.dialog;
+
+import utils.charts.LineChart;
 
 /**
  *
@@ -21,6 +23,8 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        LineChart chart = new LineChart("");
+        chartView.add(chart.getPanel());
     }
 
     /** This method is called from within the constructor to
@@ -35,8 +39,7 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         kontaktInfoLabel1 = new javax.swing.JLabel();
         dialogUeberblickBeenden = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        chartView = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dialogUeberblickJahrListe = new javax.swing.JList();
         dialogUeberblickPdfErstellen = new javax.swing.JButton();
@@ -60,13 +63,9 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         });
         jPanel2.add(dialogUeberblickBeenden, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 230, -1));
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jButton1.setText("diagramm?");
-        jPanel1.add(jButton1, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 360, 160));
+        chartView.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        chartView.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(chartView, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 360, 160));
 
         dialogUeberblickJahrListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "..." };
@@ -120,11 +119,10 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel chartView;
     private javax.swing.JButton dialogUeberblickBeenden;
     private javax.swing.JList dialogUeberblickJahrListe;
     private javax.swing.JButton dialogUeberblickPdfErstellen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kontaktInfoLabel1;

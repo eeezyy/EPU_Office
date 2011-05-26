@@ -26,7 +26,7 @@ public class MainView extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setResizable(false);
-        pack();
+        //pack();
     }
 
     /** This method is called from within the constructor to

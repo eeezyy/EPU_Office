@@ -9,6 +9,7 @@ import controller.MainController;
 import java.util.logging.Level;
 import utils.documents.Formular;
 import utils.log.Logger;
+import view.StatistikView;
 
 /**
  *
@@ -34,5 +35,6 @@ public class Main {
         //System.out.println("Dokument gespeichert");
         //test.createPDF("TestPDFDOKUMENT____2011.pdf");
         controller = new MainController();
+        
     }
 }

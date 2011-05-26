@@ -5,6 +5,7 @@
 package controller;
 
 import view.MainView;
+import view.StatistikView;
 
 /**
  *
@@ -21,7 +22,7 @@ public class MainController extends AbstractController {
     public MainController() {
 
         new KontaktController();
-        
+        mainGUI.addTabPanel(new StatistikView(), "Statistik");
         mainGUI.setVisible(true);
     }
     
