@@ -19,4 +19,6 @@ public interface IDAL {
     public void deleteKontakt(Kontakt k) throws DALException;
 
     public ArrayList<Kontakt> getKontaktListe() throws DALException;
+    
+    
 }

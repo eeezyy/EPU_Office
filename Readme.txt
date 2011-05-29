@@ -34,7 +34,7 @@ geordneten Elementen.
 										
 ...::..:: Worauf bin ich stolz ::..::...
 - Gute Teamarbeit und Zusammenhalt
-- Erwerb von Verst�ndnis mittels Anwendung diverser Libraries und Selbstimplementierungen
+- Erwerb von Verständnis mittels Anwendung diverser Libraries und Selbstimplementierungen
 - Programmierfähigkeiten, welche im Alltag angewandt werden können.
 											
 ...::..:: Was würde ich das nächste mal anders machen ::..::...
