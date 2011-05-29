@@ -4,16 +4,27 @@
  */
 package utils.documents;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.DefaultFontMapper;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
+import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jfree.chart.JFreeChart;
 
 /**
  *  Hier wird das Grundlayout der zu erstellenden PDF-Dokumente erstellt.
@@ -33,34 +45,37 @@ public abstract class BaseDoc {
     protected SimpleDateFormat dateFormat;
     protected PdfWriter pdfWrite;
     protected StringBuilder printedDate;
+    
     //Header 
     /* ----------------
      * | TL | TC | TR |
      * | BL | BC | BR |
      * ----------------
      */
+    
     private String hTopLeft = "HEAD: TOP LEFT";
     private String hTopCenter = "HEAD: TOP CENTER";
     private String hTopRight = "HEAD: TOP RIGHT";
     private String hBottomLeft = "HEAD: BOTTOM LEFT";
     private String hBottomCenter = "HEAD: BOTTOM CENTER";
     private String hBottomRight = "HEAD: BOTTOM RIGHT";
+    
     //Footer
     /* ----------------
      * | TL | TC | TR |
      * | BL | BC | BR |
      * ----------------
      */
+    
     private String fTopLeft = "FOOT: TOP LEFT";
     private String fTopCenter = "FOOT: TOP CENTER";
     private String fTopRight = "FOOT: TOP RIGHT";
     private String fBottomLeft = "FOOT: BOTTOM LEFT";
     private String fBottomCenter = "FOOT: BOTTOM CENTER";
     private String fBottomRight = "FOOT: BOTTOM RIGHT";
-
+    
     // Leseobjekt (PDF)
     private PdfReader reader;
-    
     // Stempelobjekt (PDF)
     PdfStamper stamper;
 
@@ -76,7 +91,7 @@ public abstract class BaseDoc {
             ex.printStackTrace(System.err);
         }
         doc.open();
-        writePDF(doc);
+        writePDF(doc, pdfWrite);
         doc.close();
 
         printHeaderFooter(baos, fileName);
@@ -99,7 +114,7 @@ public abstract class BaseDoc {
         // Loop over the pages and add a header to each page
         int n = reader.getNumberOfPages();
         for (int i = 1; i <= n; i++) {
-            getHeaderTable().writeSelectedRows(0, -1, 34, 825, stamper.getOverContent(i));
+            getHeaderTable().writeSelectedRows(0, -1, 34, 835, stamper.getOverContent(i));
             getFooterTable(i).writeSelectedRows(0, -1, 34, 50, stamper.getOverContent(i));
         }
         try {
@@ -194,7 +209,7 @@ public abstract class BaseDoc {
         return table;
     }
 
-    protected abstract void writePDF(Document doc);
+    protected abstract void writePDF(Document doc, PdfWriter pdfWrite);
 
     public void setfBottomCenter(String fBottomCenter) {
         this.fBottomCenter = fBottomCenter;
@@ -234,5 +249,77 @@ public abstract class BaseDoc {
 
     public void sethTopLeft(String hTopLeft) {
         this.hTopLeft = hTopLeft;
+    }
+
+    public void writeHeader1(String text, Document doc) {
+        try {
+            doc.add(Chunk.NEWLINE);
+        } catch (DocumentException ex) {
+            //Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Paragraph paragraph = new Paragraph("");
+        Chunk chunk = new Chunk(text,
+                FontFactory.getFont(FontFactory.HELVETICA, 16, Font.UNDERLINE | Font.BOLD)); //| Font.ITALIC
+        try {
+            //doc.add(chunk
+            paragraph.add(chunk);
+            paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
+            doc.add(paragraph);
+            //doc.add(Chunk.NEWLINE);
+        } catch (DocumentException ex) {
+            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void writeHeader2(String text, Document doc) {
+        try {
+            doc.add(Chunk.NEWLINE);
+        } catch (DocumentException ex) {
+            //Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Paragraph paragraph = new Paragraph("");
+        Chunk chunk = new Chunk(text,
+                FontFactory.getFont(FontFactory.HELVETICA, 14, Font.UNDERLINE | Font.BOLD)); //| Font.ITALIC
+        try {
+            //doc.add(chunk
+            paragraph.add(chunk);
+            paragraph.setAlignment(Element.ALIGN_JUSTIFIED);
+            doc.add(paragraph);
+            //doc.add(Chunk.NEWLINE);
+        } catch (DocumentException ex) {
+            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void drawChart(Document doc, JFreeChart chart, int height, int width) {
+        // get the direct pdf content
+        PdfContentByte dc = pdfWrite.getDirectContent();
+        // get a pdf template from the direct content
+        PdfTemplate tp = dc.createTemplate(width, height);
+        
+        Image chartPic = null;
+        try {
+            chartPic = Image.getInstance(tp);
+            chartPic.setAlignment(Element.ALIGN_CENTER);
+        } catch (BadElementException ex) {
+            Logger.getLogger(Formular.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // AWT Renderer erzeugen (aud dem PdfTemplate)
+        Graphics2D g2 = tp.createGraphics(width, height, new DefaultFontMapper());
+        Rectangle2D r2D = new Rectangle2D.Double(0, 0, width, height);
+        chart.draw(g2, r2D);
+        g2.dispose();
+        try {
+            doc.add(chartPic);
+            //dc.addTemplate(tp, 45, pdfWrite.getVerticalPosition(true) - (height + 20));
+            //      dc.addTemplate(tp, 0,0);
+        } catch (DocumentException ex) {
+            //Logger.getLogger(Formular.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
     }
 }

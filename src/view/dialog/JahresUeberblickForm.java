@@ -10,8 +10,8 @@
  */
 package view.dialog;
 
+import java.util.ArrayList;
 import javax.swing.JPanel;
-import org.jfree.ui.RefineryUtilities;
 import utils.charts.LineChart;
 
 /**
@@ -25,7 +25,27 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        final LineChart chart = new LineChart("");
+        
+        //Werte aus der Datenbank holen...
+        ArrayList<String> xList = new ArrayList<String>();
+        ArrayList<Double> yList = new ArrayList<Double>();
+        
+        xList.add("Null");
+        xList.add("Eins");
+        xList.add("Zwei");
+        xList.add("Drei");
+        xList.add("Vier");
+        xList.add("Fünf");
+
+
+        yList.add(1.0);
+        yList.add(1.1);
+        yList.add(1.2);
+        yList.add(1.3);
+        yList.add(1.4);
+        yList.add(1.5);
+
+        LineChart chart = new LineChart("TestTitel", "Worte", xList, "Werte", yList);
         JPanel panel = chart.getContent();
         chartView.add(panel);
 
