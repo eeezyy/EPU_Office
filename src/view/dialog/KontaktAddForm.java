@@ -13,7 +13,7 @@ package view.dialog;
 import java.awt.Frame;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import utils.log.Logger;
 import model.Kontakt;
 import model.dal.DALException;
 import model.dal.DALFactory;
@@ -79,11 +79,11 @@ public class KontaktAddForm extends AbstractViewDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktAddLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        kontaktAddLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktAddLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kontaktAddLabel.setText("Kontakt hinzufügen");
         kontaktAddLabel.setAlignmentX(0.5F);
-        jPanel1.add(kontaktAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
+        jPanel1.add(kontaktAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         dialogKontaktKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktKontoNrLabel.setText("Konto-Nr.");
@@ -192,7 +192,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         jPanel1.add(dialogKontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 150, -1));
         jPanel1.add(dialogKontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 150, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 310));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,7 +243,7 @@ public class KontaktAddForm extends AbstractViewDialog {
             // --> controller add
             //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
         } catch (DALException ex) {
-            Logger.getLogger(KontaktAddForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         }
     }//GEN-LAST:event_dialogKontaktHinzufuegenActionPerformed
     

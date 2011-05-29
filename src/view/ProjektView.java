@@ -64,7 +64,7 @@ public class ProjektView extends javax.swing.JPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         projektListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Projekt 1  |  Auftrag 1", "Projekt 2", "Projekt 3", "Projekt 4", "Projekt 5", "Projekt 6", "Projekt 7" };
             public int getSize() { return strings.length; }

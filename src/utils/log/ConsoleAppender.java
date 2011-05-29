@@ -15,7 +15,7 @@ public class ConsoleAppender implements Appender {
         System.out.println("Fehlerausgabe (Konsole) aktiviert.");
     }
 
-    public void log(Level level, String message) {
-        System.out.println(level.toString() + ": " + message);
+    public void log(Level level, Class c, String message) {
+        System.out.println(level.toString() + ": " + c.getName() + " -> " + message);
     }
 }

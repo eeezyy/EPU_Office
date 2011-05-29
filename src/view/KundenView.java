@@ -10,15 +10,24 @@
  */
 package view;
 
+import controller.KundenController;
+import model.dal.DALFactory;
+import model.dal.IDAL;
+
 /**
  *
  * @author Goran-Goggy
  */
 public class KundenView extends javax.swing.JPanel {
 
+    private KundenController controller;
+    private IDAL db = DALFactory.getDAL();
+
     /** Creates new form Kunden */
-    public KundenView() {
+    public KundenView(KundenController controller) {
         initComponents();
+        this.controller = controller;
+
     }
 
     /** This method is called from within the constructor to
@@ -131,8 +140,8 @@ public class KundenView extends javax.swing.JPanel {
         add(kundenStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
         add(kundenStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
 
-        kundenTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kundenTuerNrLabel.setText("Tür-Nr.");
+        kundenTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kundenTuerNrLabel.setText("Haus-Nr.");
         add(kundenTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
         kundenPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));

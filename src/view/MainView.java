@@ -13,6 +13,7 @@ package view;
 import controller.*;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import view.dialog.ConfigForm;
 
 /**
  *
@@ -101,7 +102,8 @@ public class MainView extends javax.swing.JFrame {
         //ConfigView conf = new ConfigView(this, true);
         //conf.setLocationRelativeTo(this);
         //conf.setVisible(true);
-        System.out.println("Konfiguration pressed");
+        ConfigForm config = new ConfigForm(null, true);
+        config.setVisible(true);
     }//GEN-LAST:event_konfigButtonActionPerformed
 
     /**

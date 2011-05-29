@@ -9,7 +9,6 @@ import controller.MainController;
 import java.util.logging.Level;
 import utils.documents.Formular;
 import utils.log.Logger;
-import view.StatistikView;
 
 /**
  *
@@ -26,14 +25,9 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         config = new Config();
-       
-        Logger.log(Level.INFO, "Hallo, das ist ein Test!");
-
-        //BaseDoc test = new BaseDoc();
+        //Logger.log(Level.INFO, Main.class, "Main gestartet.");
         Formular formular = new Formular();
         formular.createPDF("TestPDFDOKUMENT____2011.pdf");
-        //System.out.println("Dokument gespeichert");
-        //test.createPDF("TestPDFDOKUMENT____2011.pdf");
         controller = new MainController();
         
     }

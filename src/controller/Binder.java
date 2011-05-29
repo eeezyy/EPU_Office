@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import utils.log.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 
@@ -52,9 +52,9 @@ public class Binder {
                                     try {
                                         method = am.getClass().getMethod("get" + propertyName, new Class[]{});
                                     } catch (NoSuchMethodException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     } catch (SecurityException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     }
                                 }
                                 boolean value = false;
@@ -68,11 +68,11 @@ public class Binder {
                                             
                                         } 
                                     } catch (IllegalAccessException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     } catch (IllegalArgumentException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     } catch (InvocationTargetException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     }
                                 }
                                 jcb.setSelected(value);
@@ -101,9 +101,9 @@ public class Binder {
                                     try {
                                         method = am.getClass().getMethod("get" + propertyName, new Class[]{});
                                     } catch (NoSuchMethodException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     } catch (SecurityException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     }
                                 }
                                 String text = null;
@@ -118,11 +118,11 @@ public class Binder {
                                             text = Long.toString((Long) result);
                                         }
                                     } catch (IllegalAccessException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     } catch (IllegalArgumentException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     } catch (InvocationTargetException ex) {
-                                        Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
                                     }
                                 }
                                 if (text != null) {
@@ -172,7 +172,7 @@ public class Binder {
             jl.setModel(list);
 
         } catch (DALException ex) {
-            Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
         }
     }
 
@@ -184,12 +184,12 @@ public class Binder {
                 logic = (AbstractLogic) Class.forName("model.bl." + getClassName(object.getClass()) + "Logic").newInstance();
                 errorList = logic.check(object);
             } catch (InstantiationException ex) {
-                Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
         }
         if(errorList.isEmpty())
         try {
@@ -198,16 +198,16 @@ public class Binder {
             try {
                 m.invoke(db, object);
             } catch (IllegalAccessException ex) {
-                Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
             } catch (IllegalArgumentException ex) {
-                Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
             } catch (InvocationTargetException ex) {
-                Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
             }
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
         } catch (SecurityException ex) {
-            Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, Binder.class,ex.getMessage());
         }
 
         return errorList;

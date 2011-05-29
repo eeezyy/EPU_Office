@@ -18,13 +18,13 @@ public class AppenderManager {
 
     protected AppenderManager() {
         appenderList = new HashSet<Appender>();
-        if (!(addAppender(new ConsoleAppender()))){
+        if (!(addAppender(new ConsoleAppender()))) {
             System.out.println("ConsoleAppender konnte nicht hinzugefügt werden.");
-            
+
         }
-        if(!(addAppender(new FileAppender()))){
-                System.out.println("FileAppender konnte nicht hinzugefügt werden.");
-            }
+        if (!(addAppender(new FileAppender()))) {
+            System.out.println("FileAppender konnte nicht hinzugefügt werden.");
+        }
     }
 
     public static AppenderManager getInstance() {
@@ -48,13 +48,13 @@ public class AppenderManager {
         return appenderList.remove(appender);
     }
 
-    void log(Level level,String message){
+    void log(Level level, Class c, String message) {
         Iterator<Appender> it = appenderList.iterator();
-        while(it.hasNext()){
-            it.next().log(level, message);
+        while (it.hasNext()) {
+            it.next().log(level, c, message);
         }
     }
-    
+
     static {
         instance = new AppenderManager();
     }

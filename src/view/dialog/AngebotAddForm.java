@@ -59,11 +59,11 @@ public class AngebotAddForm extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        angebotAddLabel.setFont(new java.awt.Font("Arial", 1, 18));
+        angebotAddLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         angebotAddLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         angebotAddLabel.setText("Angebot erstellen");
         angebotAddLabel.setAlignmentX(0.5F);
-        jPanel1.add(angebotAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 11, -1, -1));
+        jPanel1.add(angebotAddLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         dialogAngebotAbbrechen.setText("Abbrechen");
         dialogAngebotAbbrechen.addActionListener(new java.awt.event.ActionListener() {

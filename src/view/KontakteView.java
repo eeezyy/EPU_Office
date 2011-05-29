@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import utils.log.Logger;
 import model.dal.DALException;
 import view.dialog.KontaktAddForm;
 import java.util.ArrayList;
@@ -44,11 +44,11 @@ public class KontakteView extends AbstractViewPanel {
     }
 
     public void initialize() {
-        System.out.println("initialize");
+        //System.out.println("initialize");
         try {
             this.setKontaktListe(db.getKontaktListe());
         } catch (DALException ex) {
-            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
         try {
             Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
@@ -68,13 +68,13 @@ public class KontakteView extends AbstractViewPanel {
             Binder.bind(Kontakt.class, kontaktListe);
 
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         } catch (IllegalArgumentException ex) {
-            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         } catch (InvocationTargetException ex) {
-            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
     }
 
@@ -245,7 +245,7 @@ public class KontakteView extends AbstractViewPanel {
         add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
         kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        kontaktTuerNrLabel.setText("Hausnr.");
+        kontaktTuerNrLabel.setText("Haus-Nr.");
         add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
         kontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -302,7 +302,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
-        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktIsKundeFeld.setText("Kunde");
         kontaktIsKundeFeld.setName("Kunde"); // NOI18N
         kontaktIsKundeFeld.addActionListener(new java.awt.event.ActionListener() {
@@ -417,7 +417,7 @@ public class KontakteView extends AbstractViewPanel {
         try {
             db.deleteKontakt(k);
         } catch (DALException ex) {
-            Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 

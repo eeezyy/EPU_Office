@@ -22,6 +22,7 @@ public class MainController extends AbstractController {
     public MainController() {
 
         new KontaktController();
+        new KundenController();
         mainGUI.addTabPanel(new StatistikView(), "Statistik");
         mainGUI.setVisible(true);
     }

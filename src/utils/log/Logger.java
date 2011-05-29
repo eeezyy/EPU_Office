@@ -11,7 +11,8 @@ import java.util.logging.Level;
  * @author Goran-Goggy
  */
 public class Logger {
-    public static void log(Level level, String message) {
-        AppenderManager.getInstance().log(level, message);
+
+    public static void log(Level level, Class c, String message) {
+        AppenderManager.getInstance().log(level, c, message);
     }
 }

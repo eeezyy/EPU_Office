@@ -23,7 +23,7 @@ import org.jfree.ui.ApplicationFrame;
  *
  * @author Goran-Goggy
  */
-public class LineChart extends ApplicationFrame{
+public class LineChart extends ApplicationFrame {
 
     private ChartPanel panel;
     private CategoryPlot plot;
@@ -32,14 +32,14 @@ public class LineChart extends ApplicationFrame{
     private int secondaryDatasetIndex = 0;
     private CategoryDataset dataset1;
 
-    public LineChart(final String title, String x, ArrayList<String>xCoord, String y, ArrayList<Double> yCoord) {
+    public LineChart(final String title, String x, ArrayList<String> xCoord, String y, ArrayList<Double> yCoord) {
         super(title);
         dataset1 = createDataSet(xCoord, yCoord);
         chart = ChartFactory.createLineChart("", x, y, dataset1, PlotOrientation.VERTICAL, false, false, false);
         chart.setBackgroundPaint(Color.white);
         chart.setBorderStroke(new BasicStroke(1));
         chart.setBorderVisible(true);
-        
+
         this.plot = chart.getCategoryPlot();
         this.plot.setBackgroundPaint(Color.WHITE);
         //this.plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 4, 4, 4, 4));
@@ -53,18 +53,7 @@ public class LineChart extends ApplicationFrame{
         setContentPane(content);
     }
 //http://www.java2s.com/Code/Java/Chart/JFreeChartSecondaryDatasetDemo2.htm
-    
-    /*private CategoryDataset createRandomDataset(final String name) {
-        final DefaultCategoryDataset result = new DefaultCategoryDataset();
-        double value = 100.0;
-        for (int i = 0; i < 10; i++) {
-            final String key = "T" + i;
-            value = value * (1.0 + Math.random() / 100);
-            result.addValue(value, name, key);
-        }
-        return result;
-    }*/
-    
+
     public JPanel getContent() {
         return this.content;
     }
@@ -72,15 +61,13 @@ public class LineChart extends ApplicationFrame{
     public JFreeChart getChart() {
         return chart;
     }
-    
-    public CategoryDataset createDataSet(ArrayList<String>xCoord, ArrayList<Double>yCoord){
+
+    public CategoryDataset createDataSet(ArrayList<String> xCoord, ArrayList<Double> yCoord) {
         DefaultCategoryDataset result = new DefaultCategoryDataset();
-        for(int i = 0; i < xCoord.size(); i++) {
+        for (int i = 0; i < xCoord.size(); i++) {
             result.addValue(yCoord.get(i), "", xCoord.get(i));
-            
-            System.out.println("Ausgabe: X: " + xCoord.get(i) + "        " + "Ausgabe: Y: " + yCoord.get(i));
+            //System.out.println("Ausgabe: X: " + xCoord.get(i) + "        " + "Ausgabe: Y: " + yCoord.get(i));
         }
-        
         return result;
     }
 }

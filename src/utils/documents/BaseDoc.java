@@ -14,7 +14,6 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.DefaultFontMapper;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -31,7 +30,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import utils.log.Logger;
 import org.jfree.chart.JFreeChart;
 
 /**
@@ -45,35 +44,30 @@ public abstract class BaseDoc {
     protected SimpleDateFormat dateFormat;
     protected PdfWriter pdfWrite;
     protected StringBuilder printedDate;
-    
     //Header 
     /* ----------------
      * | TL | TC | TR |
      * | BL | BC | BR |
      * ----------------
      */
-    
     private String hTopLeft = "HEAD: TOP LEFT";
     private String hTopCenter = "HEAD: TOP CENTER";
     private String hTopRight = "HEAD: TOP RIGHT";
     private String hBottomLeft = "HEAD: BOTTOM LEFT";
     private String hBottomCenter = "HEAD: BOTTOM CENTER";
     private String hBottomRight = "HEAD: BOTTOM RIGHT";
-    
     //Footer
     /* ----------------
      * | TL | TC | TR |
      * | BL | BC | BR |
      * ----------------
      */
-    
     private String fTopLeft = "FOOT: TOP LEFT";
     private String fTopCenter = "FOOT: TOP CENTER";
     private String fTopRight = "FOOT: TOP RIGHT";
     private String fBottomLeft = "FOOT: BOTTOM LEFT";
     private String fBottomCenter = "FOOT: BOTTOM CENTER";
     private String fBottomRight = "FOOT: BOTTOM RIGHT";
-    
     // Leseobjekt (PDF)
     private PdfReader reader;
     // Stempelobjekt (PDF)
@@ -87,13 +81,11 @@ public abstract class BaseDoc {
         try {
             pdfWrite = PdfWriter.getInstance(doc, baos);
         } catch (DocumentException ex) {
-            //Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace(System.err);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
         doc.open();
         writePDF(doc, pdfWrite);
         doc.close();
-
         printHeaderFooter(baos, fileName);
     }
 
@@ -101,15 +93,15 @@ public abstract class BaseDoc {
         try {
             reader = new PdfReader(baos.toByteArray());
         } catch (IOException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
 
         try {
             stamper = new PdfStamper(reader, new FileOutputStream(fileName));
         } catch (DocumentException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
         // Loop over the pages and add a header to each page
         int n = reader.getNumberOfPages();
@@ -121,9 +113,9 @@ public abstract class BaseDoc {
             // Close the stamper
             stamper.close();
         } catch (DocumentException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
     }
 
@@ -254,8 +246,9 @@ public abstract class BaseDoc {
     public void writeHeader1(String text, Document doc) {
         try {
             doc.add(Chunk.NEWLINE);
+            doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            //Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
         Paragraph paragraph = new Paragraph("");
         Chunk chunk = new Chunk(text,
@@ -267,16 +260,16 @@ public abstract class BaseDoc {
             doc.add(paragraph);
             //doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
-
     }
 
     public void writeHeader2(String text, Document doc) {
         try {
             doc.add(Chunk.NEWLINE);
+            doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            //Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
         Paragraph paragraph = new Paragraph("");
         Chunk chunk = new Chunk(text,
@@ -288,25 +281,24 @@ public abstract class BaseDoc {
             doc.add(paragraph);
             //doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.getLogger(BaseDoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
-
     }
-
+    
     public void drawChart(Document doc, JFreeChart chart, int height, int width) {
         // get the direct pdf content
         PdfContentByte dc = pdfWrite.getDirectContent();
         // get a pdf template from the direct content
         PdfTemplate tp = dc.createTemplate(width, height);
-        
+
         Image chartPic = null;
         try {
             chartPic = Image.getInstance(tp);
             chartPic.setAlignment(Element.ALIGN_CENTER);
         } catch (BadElementException ex) {
-            Logger.getLogger(Formular.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
-        
+
         // AWT Renderer erzeugen (aud dem PdfTemplate)
         Graphics2D g2 = tp.createGraphics(width, height, new DefaultFontMapper());
         Rectangle2D r2D = new Rectangle2D.Double(0, 0, width, height);
@@ -314,12 +306,10 @@ public abstract class BaseDoc {
         g2.dispose();
         try {
             doc.add(chartPic);
-            //dc.addTemplate(tp, 45, pdfWrite.getVerticalPosition(true) - (height + 20));
-            //      dc.addTemplate(tp, 0,0);
         } catch (DocumentException ex) {
-            //Logger.getLogger(Formular.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
         }
 
-        
+
     }
 }
