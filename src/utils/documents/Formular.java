@@ -48,6 +48,8 @@ public class Formular extends BaseDoc {
         yList.add(1.3);
         yList.add(1.4);
         yList.add(1.5);
+        
+        //Hier könnte man auch eine Table erstellen --> wäre dann für Jahresüberblick->PDF drucken geeignet.
 
         LineChart chart = new LineChart("TestTitel", "Worte", xList, "Werte", yList);
         drawChart(doc, (JFreeChart) chart.getChart(), 210, 350);

@@ -10,8 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import utils.log.Logger;
 
 import model.*;
 
@@ -228,9 +229,10 @@ public class DALDatabase implements IDAL {
 //        }
 //    }*/
     public void saveKontakt(AbstractObject ao) throws DALException {
-        if(!(ao instanceof Kontakt))
+        if (!(ao instanceof Kontakt)) {
             return;
-        Kontakt k = (Kontakt)ao;
+        }
+        Kontakt k = (Kontakt) ao;
         try {
             // Datenbankverbindung �ffnen
             Connection db = DALDatabase.getConnection();
@@ -263,6 +265,8 @@ public class DALDatabase implements IDAL {
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
                 cmd.setInt(14, k.getId());
+                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt upgedated");
+
             } else {
                 cmd = db.prepareStatement(
                         "INSERT INTO Kontakt (Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde) "
@@ -282,6 +286,7 @@ public class DALDatabase implements IDAL {
                 cmd.setInt(11, k.getPlz());
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
+                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt hinzugefügt");
             }
             // execute insert/update
             int result = cmd.executeUpdate();
@@ -304,7 +309,6 @@ public class DALDatabase implements IDAL {
 
     public ArrayList<Kontakt> getKontaktListe() {
         ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
-
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -331,19 +335,18 @@ public class DALDatabase implements IDAL {
                 k.setPlz(rd.getInt(12));
                 k.setOrt(rd.getString(13));
                 k.setIsKunde(rd.getBoolean(14));
-                
                 kontakte.add(k);
             }
             rd.close();
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DALDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
         }
 
         return kontakte;
     }
-    
+
     public void deleteKontakt(Kontakt k) throws DALException {
         try {
             // Datenbankverbindung öffnen
@@ -359,6 +362,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != 0) {
                 // successful
+                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt gelöscht");
             }
             cmd.close();
             db.close();
@@ -368,5 +372,194 @@ public class DALDatabase implements IDAL {
             throw new DALException(e.getMessage());
         }
 
+    }
+
+    public void addAngebotToKontakt(Kontakt k, Angebot a) {
+        try {
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM ANGEBOT WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, a.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            cmd = db.prepareStatement(
+                    "INSERT INTO Kontakt_has_Angebot (Kontakt_ID, Angebot_ID"
+                    + "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            cmd.setInt(1, k.getId());
+            cmd.setInt(2, a.getId());
+            Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot einem Kunden hinzugefügt");
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+        }
+    }
+
+    public void saveAngebot(AbstractObject ao) throws DALException {
+        java.util.Date today = new java.util.Date();
+        if (!(ao instanceof Angebot)) {
+            return;
+        }
+        Angebot a = (Angebot) ao;
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM ANGEBOT WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, a.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE Angebot SET Impl_Dauer = ?, GueltigAb = ?, GueltigBis = ?, Impl_Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, "
+                        + "WHERE id = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, a.getImplDauer());
+                cmd.setDate(2, (java.sql.Date) a.getGueltigAb());
+                cmd.setDate(3, (java.sql.Date) a.getGueltigBis());
+                cmd.setInt(4, a.getImplChance());
+                cmd.setDate(5, (java.sql.Date) today);
+                cmd.setString(6, a.getBeschreibung());
+                cmd.setLong(7, a.getImplPreis());
+                cmd.setInt(8, a.getId());
+                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot upgedated");
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO Angebot (Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis"
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, a.getImplDauer());
+                cmd.setDate(2, (java.sql.Date) a.getGueltigAb());
+                cmd.setDate(3, (java.sql.Date) a.getGueltigBis());
+                cmd.setInt(4, a.getImplChance());
+                cmd.setDate(5, (java.sql.Date) today);
+                cmd.setString(6, a.getBeschreibung());
+                cmd.setLong(7, a.getImplPreis());
+                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot hinzugefügt");
+            }
+            // execute insert/update
+            int result = cmd.executeUpdate();
+            // get generated id
+            ResultSet generatedKeys = cmd.getGeneratedKeys();
+            if (result != 0 && generatedKeys.next()) {
+                a.setId(generatedKeys.getInt(1));
+            }
+            cmd.close();
+
+            rd.close();
+            cmdSelect.close();
+            db.close();
+            Binder.notify(Angebot.class);
+
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
+
+    }
+
+    public void deleteAngebot(Angebot a) throws DALException {
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM Angebot WHERE id = ?");
+            // Parameter setzen
+            cmd.setInt(1, a.getId());
+            // Ausf�hren
+            int result = cmd.executeUpdate();
+
+            // was deleted?
+            if (result != 0) {
+                // successful
+                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot gelöscht");
+            }
+            cmd.close();
+            db.close();
+            Binder.notify(Kontakt.class);
+
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
+    }
+
+    public ArrayList<Angebot> getAngebotListe() throws DALException {
+        ArrayList<Angebot> angebote = new ArrayList<Angebot>();
+// Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis "
+                    + "FROM Angebot");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Angebot a = new Angebot();
+                a.setId(rd.getInt(1));
+                a.setImplDauer(rd.getInt(2));
+                a.setGueltigAb((Date) rd.getDate(3));
+                a.setGueltigBis((Date) rd.getDate(4));
+                a.setImplChance(rd.getInt(5));
+                a.setAenderungsDatum((Date) rd.getDate(6));
+                a.setBeschreibung(rd.getString(7));
+                a.setImplPreis(rd.getLong(8));
+                angebote.add(a);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+        }
+        return angebote;
+    }
+
+    public ArrayList<Kontakt> getKundenListe() throws DALException {
+        ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, "
+                    + "Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde FROM kontakt WHERE isKunde = 1;");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Kontakt k = new Kontakt();
+                k.setId(rd.getInt(1));
+                k.setVorname(rd.getString(2));
+                k.setNachname(rd.getString(3));
+                k.setEmail(rd.getString(4));
+                k.setTelefon(rd.getString(5));
+                k.setBlz(rd.getInt(6));
+                k.setBankinstitut(rd.getString(7));
+                k.setKonto(rd.getLong(8));
+                k.setFirmenname(rd.getString(9));
+                k.setStrasse(rd.getString(10));
+                k.setHausnr(rd.getInt(11));
+                k.setPlz(rd.getInt(12));
+                k.setOrt(rd.getString(13));
+                k.setIsKunde(rd.getBoolean(14));
+                kontakte.add(k);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+        }
+
+        return kontakte;
     }
 }

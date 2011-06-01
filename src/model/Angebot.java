@@ -10,11 +10,12 @@ import java.util.Date;
  *
  * @author Goran-Goggy
  */
-public class Angebot {
+public class Angebot extends AbstractObject {
+    private int Id;
     private String name;
     private Date gueltigAb;
     private Date gueltigBis;
-    private int implPreis;
+    private long implPreis;
     private int implDauer;
     private int implChance;
     private String beschreibung;
@@ -52,11 +53,11 @@ public class Angebot {
         this.implDauer = implDauer;
     }
 
-    public int getImplPreis() {
+    public long getImplPreis() {
         return implPreis;
     }
 
-    public void setImplPreis(int implPreis) {
+    public void setImplPreis(long implPreis) {
         this.implPreis = implPreis;
     }
 
