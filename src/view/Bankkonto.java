@@ -42,7 +42,7 @@ public class Bankkonto extends javax.swing.JPanel {
         angebotNameFeld = new javax.swing.JTextField();
         BankKontoStandFeld = new javax.swing.JTextField();
         BankBLZFeld = new javax.swing.JTextField();
-        bankRechnungZahlen = new javax.swing.JButton();
+        bankRechnungHistory = new javax.swing.JButton();
         BankKategorieLabel = new javax.swing.JLabel();
         BankBankInstitutLabel = new javax.swing.JLabel();
         BankBankInstitutFeld = new javax.swing.JTextField();
@@ -51,6 +51,7 @@ public class Bankkonto extends javax.swing.JPanel {
         bankBetragNettoLabel = new javax.swing.JLabel();
         BankKontoStandLabel = new javax.swing.JLabel();
         bankBetragNettoFeld1 = new javax.swing.JTextField();
+        bankRechnungZahlen1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -112,8 +113,8 @@ public class Bankkonto extends javax.swing.JPanel {
         });
         add(BankBLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
-        bankRechnungZahlen.setText("Rechnung einzahlen");
-        add(bankRechnungZahlen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        bankRechnungHistory.setText("Bezahlte Rechnungen einsehen");
+        add(bankRechnungHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         BankKategorieLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         BankKategorieLabel.setText("Kategorie");
@@ -146,6 +147,9 @@ public class Bankkonto extends javax.swing.JPanel {
 
         bankBetragNettoFeld1.setEditable(false);
         add(bankBetragNettoFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
+
+        bankRechnungZahlen1.setText("Rechnung einzahlen");
+        add(bankRechnungZahlen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void bankBetragBruttoFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankBetragBruttoFeldActionPerformed
@@ -179,7 +183,8 @@ public class Bankkonto extends javax.swing.JPanel {
     private javax.swing.JLabel bankBetragNettoLabel;
     private javax.swing.JTextField bankBetragUstFeld;
     private javax.swing.JLabel bankBetragUstLabel;
-    private javax.swing.JButton bankRechnungZahlen;
+    private javax.swing.JButton bankRechnungHistory;
+    private javax.swing.JButton bankRechnungZahlen1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kontaktTelLabel;
     // End of variables declaration//GEN-END:variables
