@@ -242,6 +242,7 @@ public class KontaktAddForm extends AbstractViewDialog {
             DALFactory.getDAL().saveKontakt(k);
             // --> controller add
             //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
+            this.dispose();
         } catch (DALException ex) {
             Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         }

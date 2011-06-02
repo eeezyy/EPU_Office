@@ -495,6 +495,7 @@
           <Font name="Tahoma" size="15" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Kunde"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="Kunde" noResource="true"/>
       </Properties>
       <Events>

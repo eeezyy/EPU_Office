@@ -244,7 +244,7 @@ public class KontakteView extends AbstractViewPanel {
         kontaktStrasseFeld.setName("Strasse"); // NOI18N
         add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
-        kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktTuerNrLabel.setText("Haus-Nr.");
         add(kontaktTuerNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
@@ -302,8 +302,9 @@ public class KontakteView extends AbstractViewPanel {
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
-        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         kontaktIsKundeFeld.setText("Kunde");
+        kontaktIsKundeFeld.setEnabled(false);
         kontaktIsKundeFeld.setName("Kunde"); // NOI18N
         kontaktIsKundeFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -47,12 +47,11 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktListeLabel1 = new javax.swing.JLabel();
         statistikMonat = new javax.swing.JComboBox();
         kontaktListeLabel2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        statistikErloes = new javax.swing.JTextPane();
+        statistikErloes = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         kontaktListeLabel.setText("Erlösstand (€)");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 20));
 
@@ -62,7 +61,7 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikEingang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -105,7 +104,7 @@ public class StatistikView extends javax.swing.JPanel {
         });
         add(statistikPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
-        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikAusgang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -132,14 +131,8 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktListeLabel2.setText("Betroffener Monat");
         add(kontaktListeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        statistikErloes.setBorder(null);
         statistikErloes.setEditable(false);
-        statistikErloes.setFont(new java.awt.Font("Tahoma", 0, 14));
-        statistikErloes.setText("55550,00");
-        statistikErloes.setName("result"); // NOI18N
-        jScrollPane3.setViewportView(statistikErloes);
-
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 110, 20));
+        add(statistikErloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void statistikAusgangHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikAusgangHinzufuegenActionPerformed
@@ -173,7 +166,6 @@ public class StatistikView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel kontaktInfoLabel;
     private javax.swing.JLabel kontaktListeLabel;
     private javax.swing.JLabel kontaktListeLabel1;
@@ -182,7 +174,7 @@ public class StatistikView extends javax.swing.JPanel {
     private javax.swing.JButton statistikAusgangHinzufuegen;
     private javax.swing.JList statistikEingang;
     private javax.swing.JButton statistikEingangHinzufuegen;
-    private javax.swing.JTextPane statistikErloes;
+    private javax.swing.JTextField statistikErloes;
     private javax.swing.JButton statistikJahr;
     private javax.swing.JComboBox statistikMonat;
     private javax.swing.JButton statistikPDF;

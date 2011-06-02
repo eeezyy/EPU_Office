@@ -367,11 +367,9 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
             Binder.notify(Kontakt.class);
-
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
-
     }
 
     public void addAngebotToKontakt(Kontakt k, Angebot a) {
@@ -391,6 +389,10 @@ public class DALDatabase implements IDAL {
                     + "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setInt(1, k.getId());
             cmd.setInt(2, a.getId());
+            
+            cmd = db.prepareStatement(
+                    "UPDAT Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
+            cmd.setBoolean(1, k.getIsKunde());
             Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot einem Kunden hinzugefügt");
         } catch (SQLException ex) {
             Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
@@ -559,7 +561,6 @@ public class DALDatabase implements IDAL {
         } catch (SQLException ex) {
             Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
         }
-
         return kontakte;
     }
 }
