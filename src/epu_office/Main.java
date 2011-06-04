@@ -29,8 +29,8 @@ public class Main {
 //        Logger.log(Level.INFO, Main.class, "Main gestartet.");
 //        Logger.log(Level.FINEST, Main.class, "TEST");
         //Logger.log(Level.SEVERE, Main.class, new DALModelModified("test"));
-        Formular formular = new Formular();
-        formular.createPDF("TestPDFDOKUMENT____2011.pdf");
+        //new Formular().createPDF("test.pdf");
+        //formular.createPDF("TestPDFDOKUMENT____2011.pdf");
         
         controller = new MainController();
         

@@ -13,20 +13,18 @@ package view;
 import controller.Binder;
 import controller.BinderProperty;
 import controller.KontaktController;
-import java.awt.Color;
-import java.awt.Component;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import utils.log.Logger;
 import model.dal.DALException;
 import view.dialog.KontaktAddForm;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.JTextField;
 import model.Kontakt;
 import model.dal.DALFactory;
 import model.dal.IDAL;
+import utils.documents.Formular;
 
 /**
  *
@@ -213,6 +211,11 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         KontaktangebotZuweisen.setText("Angebot zuweisen");
+        KontaktangebotZuweisen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KontaktangebotZuweisenActionPerformed(evt);
+            }
+        });
         add(KontaktangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kontaktNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -279,7 +282,7 @@ public final class KontakteView extends AbstractViewPanel {
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
-        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktIsKundeFeld.setText("Kunde");
         kontaktIsKundeFeld.setEnabled(false);
         kontaktIsKundeFeld.setName("Kunde"); // NOI18N
@@ -313,7 +316,7 @@ public final class KontakteView extends AbstractViewPanel {
 
     private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
         ArrayList list = new ArrayList<BinderProperty>();
-        
+
         list.add(new BinderProperty(kontaktStrasseFeld.getName(), kontaktStrasseFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktHausnrFeld.getName(), kontaktHausnrFeld.getText(), Integer.class));
         list.add(new BinderProperty(kontaktPlzFeld.getName(), kontaktPlzFeld.getText(), Integer.class));
@@ -363,6 +366,31 @@ public final class KontakteView extends AbstractViewPanel {
     private void kontaktIsKundeFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktIsKundeFeldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kontaktIsKundeFeldActionPerformed
+
+    private void KontaktangebotZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KontaktangebotZuweisenActionPerformed
+        // TODO add your handling code here:
+//        ArrayList<String> text = new ArrayList<String>();
+//        text.add("1234567810");
+//        text.add("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+//
+//        Formular formular = new Formular(text);
+//        formular.sethTopCenter("TextExample");
+//        formular.createPDF("KontakteView.pdf");
+//
+//        Process p;
+//        try {
+//            p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler KontakteView.pdf");
+//            try {
+//                int waitFor = p.waitFor();
+//            } catch (InterruptedException ex) {
+//                java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (IOException ex) {
+//            java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//       
+//        System.out.println("Done.");
+    }//GEN-LAST:event_KontaktangebotZuweisenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;
