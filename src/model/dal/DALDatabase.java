@@ -255,13 +255,25 @@ public class DALDatabase implements IDAL {
                 cmd.setString(2, k.getNachname());
                 cmd.setString(3, k.getEmail());
                 cmd.setString(4, k.getTelefon());
-                cmd.setInt(5, k.getBlz());
+                if(k.getBlz() != null)
+                    cmd.setInt(5, k.getBlz());
+                else
+                    cmd.setNull(5, java.sql.Types.INTEGER);
                 cmd.setString(6, k.getBankinstitut());
-                cmd.setLong(7, k.getKonto());
+                if(k.getKonto() != null)
+                    cmd.setLong(7, k.getKonto());
+                else
+                    cmd.setNull(7, java.sql.Types.BIGINT);
                 cmd.setString(8, k.getFirmenname());
                 cmd.setString(9, k.getStrasse());
-                cmd.setInt(10, k.getHausnr());
-                cmd.setInt(11, k.getPlz());
+                if(k.getHausnr() != null)
+                    cmd.setInt(10, k.getHausnr());
+                else
+                    cmd.setNull(10, java.sql.Types.INTEGER);
+                if(k.getPlz() != null)
+                    cmd.setInt(11, k.getPlz());
+                else
+                    cmd.setNull(11, java.sql.Types.INTEGER);
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
                 cmd.setInt(14, k.getId());
@@ -276,14 +288,25 @@ public class DALDatabase implements IDAL {
                 cmd.setString(2, k.getNachname());
                 cmd.setString(3, k.getEmail());
                 cmd.setString(4, k.getTelefon());
-                cmd.setInt(5, k.getBlz());
+                if(k.getBlz() != null)
+                    cmd.setInt(5, k.getBlz());
+                else
+                    cmd.setNull(5, java.sql.Types.INTEGER);
                 cmd.setString(6, k.getBankinstitut());
-                System.out.println(k.getKonto());
-                cmd.setLong(7, k.getKonto());
+                if(k.getKonto() != null)
+                    cmd.setLong(7, k.getKonto());
+                else
+                    cmd.setNull(7, java.sql.Types.BIGINT);
                 cmd.setString(8, k.getFirmenname());
                 cmd.setString(9, k.getStrasse());
-                cmd.setInt(10, k.getHausnr());
-                cmd.setInt(11, k.getPlz());
+                if(k.getHausnr() != null)
+                    cmd.setInt(10, k.getHausnr());
+                else
+                    cmd.setNull(10, java.sql.Types.INTEGER);
+                if(k.getPlz() != null)
+                    cmd.setInt(11, k.getPlz());
+                else
+                    cmd.setNull(11, java.sql.Types.INTEGER);
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
                 Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt hinzugefügt");
@@ -320,14 +343,18 @@ public class DALDatabase implements IDAL {
             rd = cmd.executeQuery();
             // Daten holen
             while (rd.next()) {
+                Integer intResult = null;
+                
                 Kontakt k = new Kontakt();
                 k.setId(rd.getInt(1));
                 k.setVorname(rd.getString(2));
                 k.setNachname(rd.getString(3));
                 k.setEmail(rd.getString(4));
                 k.setTelefon(rd.getString(5));
-                k.setBlz(rd.getInt(6));
+                intResult = rd.getInt(6);
+                k.setBlz((!rd.wasNull()) ? intResult : null);
                 k.setBankinstitut(rd.getString(7));
+                rd.wasNull();
                 k.setKonto(rd.getLong(8));
                 k.setFirmenname(rd.getString(9));
                 k.setStrasse(rd.getString(10));

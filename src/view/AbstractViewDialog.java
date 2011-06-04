@@ -9,9 +9,13 @@
 package view;
 
 import controller.AbstractController;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Frame;
-import java.util.List;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
 
 /**
  * This class provides the base level abstraction for views in this example. All
@@ -24,25 +28,51 @@ import javax.swing.JDialog;
  */
 public abstract class AbstractViewDialog extends JDialog {
 
-    private AbstractController controller;
-
-    public AbstractController getController() {
-        return controller;
-    }
-
     public AbstractViewDialog(Frame owner, boolean modal) {
         super(owner, modal);
     }
 
-    public void setController(AbstractController controller) {
-        this.controller = controller;
+    protected abstract void resetTextFields();
+
+    protected void showErrors(ArrayList<String> errorList) {
+        cleanErrors();
+        if (errorList != null && !errorList.isEmpty()) {
+            for (String error : errorList) {
+                for (Component c : this.getComponents()) {
+                    if (c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
+                        ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
+                        System.out.println(((JTextField) c).getText());
+                        break;
+
+                    }
+                }
+            }
+        } else {
+            resetTextFields();
+        }
     }
 
-    /**
-     * Called by the controller when it needs to pass along a property change 
-     * from a model.
-     *
-     * @param evt The property change event from the model
-     */
-    public abstract void modelPropertyChange(List<?> properties);
+    protected void cleanErrors() {
+        for (Component c : this.getComponents()) {
+            if (c.getClass() == JTextField.class && c.getName() != null) {
+                ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());//BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+            }
+        }
+    }
+    
+    protected Integer toInt(String text) {
+        if (text.length() != 0) {
+            return Integer.parseInt(text);
+        } else {
+            return null;
+        }
+    }
+
+    protected Long toLong(String text) {
+        if (text.length() != 0) {
+            return Long.parseLong(text);
+        } else {
+            return null;
+        }
+    }
 }

@@ -4,7 +4,9 @@
  */
 package model.bl;
 
+import controller.BinderProperty;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.AbstractObject;
@@ -14,22 +16,77 @@ import model.Kontakt;
  *
  * @author MAS
  */
-public class KontaktLogic implements AbstractLogic {
+public class KontaktLogic extends AbstractLogic {
+
+    public ArrayList<String> check(ArrayList<BinderProperty> propertyList) {
+        ArrayList<String> errorList = new ArrayList<String>();
+
+        BinderProperty property = null;
+        for (Iterator i = propertyList.iterator(); i.hasNext(); property = (BinderProperty) i.next()) {
+            if (property == null) {
+                System.out.println("property null");
+                return null;
+            }
+            if (property.getProperty().equals("Blz")) {
+                if (!isValidString(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Email")) {
+                if (!isValidEmail(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Konto")) {
+                if (!isValidEmail(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Hausnr")) {
+                if (!isValidHausnr(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Plz")) {
+                if (!isValidPlz(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Vorname")) {
+                if (!isValidStringNotEmpty(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Nachname")) {
+                if (!isValidStringNotEmpty(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getClasstype() == String.class) {
+                if (!isValidString(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getClasstype() == Integer.class) {
+                if (!isValidInteger(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getClasstype() == Long.class) {
+                if (!isValidLong(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            }
+        }
+
+        return errorList;
+    }
 
     @Override
     public ArrayList<String> check(AbstractObject k) {
         // Bank
-        
+
         ArrayList<String> errorList = new ArrayList<String>();
-        
-        Kontakt kontakt = (Kontakt)k;
+
+        Kontakt kontakt = (Kontakt) k;
         if (kontakt.getBankinstitut() == null || kontakt.getBankinstitut().length() == 0) {
             // Bank darf nicht leer sein
             errorList.add("Bankinstitut");
         }
         // BLZ
-        if (!(kontakt.getBlz() >= 10000 && kontakt.getBlz() <= 99999)) {
-            // BLZ im Bereich von 10.000 bis 99.999
+        if (kontakt.getBlz() != null && !(kontakt.getBlz() >= 10000 && kontakt.getBlz() <= 99999)) {
+            // BLZ im Bereich von 10.000 bis 99.999 oder null (=leer)
             errorList.add("Blz");
         }
         // Email
@@ -47,8 +104,8 @@ public class KontaktLogic implements AbstractLogic {
             errorList.add("Email");
         }
         // Kto
-        if (kontakt.getKonto() < 10000000000L) {
-            // Kto muss Elfstellig sein
+        if (kontakt.getKonto() != null && kontakt.getKonto() < 10000000000L) {
+            // Kto muss Elfstellig sein oder null (=leer)
             errorList.add("Konto");
         }
         // Name
@@ -60,7 +117,7 @@ public class KontaktLogic implements AbstractLogic {
             // Telefonnr darf nicht null sein
             errorList.add("Telefon");
         }
-        
+
         return errorList;
     }
 }

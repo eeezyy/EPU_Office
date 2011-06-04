@@ -14,15 +14,15 @@ public class Kontakt extends AbstractObject {
     private String vorname;
     private String nachname;
     private String strasse;
-    private int hausnr;
-    private int plz;
+    private Integer hausnr;
+    private Integer plz;
     private String ort;
     private String email;
     private String telefon;
-    private long konto;
-    private int blz;
+    private Long konto;
+    private Integer blz;
     private String bankinstitut;
-    private boolean isKunde;
+    private Boolean isKunde;
     
     @Override
     public String toString(){
@@ -37,11 +37,11 @@ public class Kontakt extends AbstractObject {
         this.isKunde = isKunde;
     }
 
-    public int getBlz() {
+    public Integer getBlz() {
         return blz;
     }
 
-    public void setBlz(int blz) {
+    public void setBlz(Integer blz) {
         this.blz = blz;
     }
 
@@ -77,11 +77,11 @@ public class Kontakt extends AbstractObject {
         this.firmenname = firmenname;
     }
 
-    public long getKonto() {
+    public Long getKonto() {
         return konto;
     }
 
-    public void setKonto(long konto) {
+    public void setKonto(Long konto) {
         this.konto = konto;
     }
 
@@ -101,11 +101,11 @@ public class Kontakt extends AbstractObject {
         this.vorname = vorname;
     }
     
-    public int getHausnr() {
+    public Integer getHausnr() {
         return hausnr;
     }
 
-    public void setHausnr(int hausnr) {
+    public void setHausnr(Integer hausnr) {
         this.hausnr = hausnr;
     }
 
@@ -117,11 +117,11 @@ public class Kontakt extends AbstractObject {
         this.ort = ort;
     }
 
-    public int getPlz() {
+    public Integer getPlz() {
         return plz;
     }
 
-    public void setPlz(int plz) {
+    public void setPlz(Integer plz) {
         this.plz = plz;
     }
 

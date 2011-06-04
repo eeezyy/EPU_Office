@@ -11,6 +11,7 @@
 package view;
 
 import controller.Binder;
+import controller.BinderProperty;
 import controller.KontaktController;
 import java.awt.Color;
 import java.awt.Component;
@@ -31,7 +32,7 @@ import model.dal.IDAL;
  *
  * @author Goran-Goggy
  */
-public class KontakteView extends AbstractViewPanel {
+public final class KontakteView extends AbstractViewPanel {
 
     private KontaktController controller;
     private IDAL db = DALFactory.getDAL();
@@ -305,38 +306,29 @@ public class KontakteView extends AbstractViewPanel {
         }
 
         ArrayList<String> errorList;
-        errorList = Binder.save(createKontaktFromFields());
+        errorList = Binder.save(Kontakt.class, createBinderPropertiesFromFields());
         showErrors(errorList);
 
     }//GEN-LAST:event_kontaktAendernActionPerformed
 
-    private void showErrors(ArrayList<String> errorList) {
-        cleanErrors();
-        if (errorList != null && !errorList.isEmpty()) {
-            for (String error : errorList) {
-                for (Component c : this.getComponents()) {
-                    if (c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
-                        ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
-                        System.out.println(((JTextField) c).getText());
-                        break;
-
-                    }
-                }
-            }
-        } else {
-            resetTextFields();
-        }
-    }
-
-    private void cleanErrors() {
-        for (Component c : this.getComponents()) {
-            if (c.getClass() == JTextField.class && c.getName() != null) {
-                ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());//BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-            }
-        }
-    }
-
-    private Kontakt createKontaktFromFields() {
+    private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
+        ArrayList list = new ArrayList<BinderProperty>();
+        
+        list.add(new BinderProperty(kontaktStrasseFeld.getName(), kontaktStrasseFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktHausnrFeld.getName(), kontaktHausnrFeld.getText(), Integer.class));
+        list.add(new BinderProperty(kontaktPlzFeld.getName(), kontaktPlzFeld.getText(), Integer.class));
+        list.add(new BinderProperty(kontaktOrtFeld.getName(), kontaktOrtFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktBankinstitutFeld.getName(), kontaktBankinstitutFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktBlzFeld.getName(), kontaktBlzFeld.getText(), Integer.class));
+        list.add(new BinderProperty(kontaktEmailFeld.getName(), kontaktEmailFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktFirmennameFeld.getName(), kontaktFirmennameFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktIsKundeFeld.getName(), kontaktIsKundeFeld.getText(), Boolean.class));
+        list.add(new BinderProperty(kontaktKontoFeld.getName(), kontaktKontoFeld.getText(), Long.class));
+        list.add(new BinderProperty(kontaktNachnameFeld.getName(), kontaktNachnameFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktVornameFeld.getName(), kontaktVornameFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktTelefonFeld.getName(), kontaktTelefonFeld.getText(), String.class));
+        return list;
+        /*
         Kontakt k = new Kontakt();
         k.setId(((Kontakt) this.kontaktListe.getSelectedValue()).getId());
         k.setStrasse(kontaktStrasseFeld.getText());
@@ -352,24 +344,9 @@ public class KontakteView extends AbstractViewPanel {
         k.setNachname(kontaktNachnameFeld.getText());
         k.setTelefon(kontaktTelefonFeld.getText());
         k.setVorname(kontaktVornameFeld.getText());
-        return k;
+        return k;*/
     }
 
-    private void resetTextFields() {
-        kontaktStrasseFeld.setText("");
-        kontaktHausnrFeld.setText("");
-        kontaktPlzFeld.setText("");
-        kontaktOrtFeld.setText("");
-        kontaktBankinstitutFeld.setText("");
-        kontaktBlzFeld.setText("");
-        kontaktEmailFeld.setText("");
-        kontaktFirmennameFeld.setText("");
-        kontaktKontoFeld.setText("");
-        kontaktVornameFeld.setText("");
-        kontaktNachnameFeld.setText("");
-        kontaktTelefonFeld.setText("");
-        cleanErrors();
-    }
     private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed
         Kontakt k = (Kontakt) this.kontaktListe.getSelectedValue();
         try {
@@ -430,5 +407,10 @@ public class KontakteView extends AbstractViewPanel {
         }
 
         this.kontaktListe.setModel(list);
+    }
+
+    @Override
+    protected void resetTextFields() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

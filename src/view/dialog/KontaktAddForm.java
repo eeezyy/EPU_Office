@@ -281,7 +281,7 @@ public class KontaktAddForm extends AbstractViewDialog {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void modelPropertyChange(List<?> properties) {
+    protected void resetTextFields() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
