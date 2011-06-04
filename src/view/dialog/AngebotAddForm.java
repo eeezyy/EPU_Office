@@ -46,20 +46,20 @@ public class AngebotAddForm extends javax.swing.JDialog {
         dialogAngebotImplPreisFeld = new javax.swing.JTextField();
         dialogAngebotNameFeld = new javax.swing.JTextField();
         dialogAngebotImplDauerFeld = new javax.swing.JTextField();
-        dialogAngebotGueltigBisFeld = new javax.swing.JTextField();
         dialogAngebotBeschreibungLabel = new javax.swing.JLabel();
         dialogAngebotGueltigAbLabel = new javax.swing.JLabel();
-        dialogAngebotGueltigAbFeld = new javax.swing.JTextField();
         dialogAngebotImplChanceFeld = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         dialogAngebotBeschreibungFeld = new javax.swing.JTextArea();
+        dialogAngebotGueltigAbFeld = new com.toedter.calendar.JDateChooser();
+        dialogAngebotGueltigBisFeld = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        angebotAddLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        angebotAddLabel.setFont(new java.awt.Font("Arial", 1, 14));
         angebotAddLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         angebotAddLabel.setText("Angebot erstellen");
         angebotAddLabel.setAlignmentX(0.5F);
@@ -111,13 +111,6 @@ public class AngebotAddForm extends javax.swing.JDialog {
         jPanel1.add(dialogAngebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 51, 150, -1));
         jPanel1.add(dialogAngebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 150, -1));
 
-        dialogAngebotGueltigBisFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dialogAngebotGueltigBisFeldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(dialogAngebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 52, 140, -1));
-
         dialogAngebotBeschreibungLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotBeschreibungLabel.setText("Beschreibung");
         jPanel1.add(dialogAngebotBeschreibungLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 133, -1, -1));
@@ -125,13 +118,6 @@ public class AngebotAddForm extends javax.swing.JDialog {
         dialogAngebotGueltigAbLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotGueltigAbLabel.setText("Gültig ab");
         jPanel1.add(dialogAngebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 51, -1, -1));
-
-        dialogAngebotGueltigAbFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dialogAngebotGueltigAbFeldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(dialogAngebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 51, 150, -1));
         jPanel1.add(dialogAngebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 93, 140, -1));
 
         dialogAngebotBeschreibungFeld.setColumns(20);
@@ -139,19 +125,13 @@ public class AngebotAddForm extends javax.swing.JDialog {
         jScrollPane3.setViewportView(dialogAngebotBeschreibungFeld);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 153, 770, 90));
+        jPanel1.add(dialogAngebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 140, -1));
+        jPanel1.add(dialogAngebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 140, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void dialogAngebotGueltigAbFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotGueltigAbFeldActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_dialogAngebotGueltigAbFeldActionPerformed
-
-    private void dialogAngebotGueltigBisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotGueltigBisFeldActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_dialogAngebotGueltigBisFeldActionPerformed
 
     private void dialogAngebotImplPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotImplPreisFeldActionPerformed
         // TODO add your handling code here:
@@ -190,9 +170,9 @@ public class AngebotAddForm extends javax.swing.JDialog {
     private javax.swing.JLabel dialogAngebotBeschreibungLabel;
     private javax.swing.JLabel dialogAngebotChanceLabel;
     private javax.swing.JLabel dialogAngebotDauerLabel;
-    private javax.swing.JTextField dialogAngebotGueltigAbFeld;
+    private com.toedter.calendar.JDateChooser dialogAngebotGueltigAbFeld;
     private javax.swing.JLabel dialogAngebotGueltigAbLabel;
-    private javax.swing.JTextField dialogAngebotGueltigBisFeld;
+    private com.toedter.calendar.JDateChooser dialogAngebotGueltigBisFeld;
     private javax.swing.JLabel dialogAngebotGueltigBisLabel;
     private javax.swing.JButton dialogAngebotHinzufuegen;
     private javax.swing.JTextField dialogAngebotImplChanceFeld;

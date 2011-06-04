@@ -21,6 +21,11 @@ public class Angebot extends AbstractObject {
     private String beschreibung;
     private Date aenderungsDatum;
 
+    @Override
+    public String toString(){
+        return this.name + ", " + this.gueltigBis;
+    }
+        
     public Date getGueltigAb() {
         return gueltigAb;
     }

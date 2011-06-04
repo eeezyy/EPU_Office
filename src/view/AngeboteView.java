@@ -10,6 +10,15 @@
  */
 package view;
 
+import controller.AngebotController;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import javax.swing.DefaultListModel;
+import model.Angebot;
+import model.dal.DALException;
+import model.dal.DALFactory;
+import model.dal.IDAL;
+import utils.log.Logger;
 import view.dialog.AngebotAddForm;
 
 /**
@@ -18,9 +27,22 @@ import view.dialog.AngebotAddForm;
  */
 public class AngeboteView extends javax.swing.JPanel {
 
+    private AngebotController controller;
+    private IDAL db = DALFactory.getDAL();
+
     /** Creates new form Angebote */
-    public AngeboteView() {
+    public AngeboteView(AngebotController controller) {
         initComponents();
+        this.controller = controller;
+        this.initialize();
+    }
+
+    private void initialize() {
+        try {
+            this.setAngebotListe(db.getAngebotListe());
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+        }
     }
 
     /** This method is called from within the constructor to
@@ -37,7 +59,7 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktListeLabel = new javax.swing.JLabel();
         kontaktInfoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        kontaktListe = new javax.swing.JList();
+        angebotListe = new javax.swing.JList();
         angebotGueltigBisLabel = new javax.swing.JLabel();
         kontaktTelLabel = new javax.swing.JLabel();
         kontaktEmailLabel = new javax.swing.JLabel();
@@ -48,15 +70,15 @@ public class AngeboteView extends javax.swing.JPanel {
         angebotImplDauerFeld = new javax.swing.JTextField();
         angebotErstellen = new javax.swing.JButton();
         angebotLoeschen = new javax.swing.JButton();
-        angebotGueltigBisFeld = new javax.swing.JTextField();
         kundeZuweisen = new javax.swing.JButton();
         kontaktStrasseLabel = new javax.swing.JLabel();
         angebotGueltigAbLabel = new javax.swing.JLabel();
-        angebotGueltigAbFeld = new javax.swing.JTextField();
         angebotAendern = new javax.swing.JButton();
         angebotImplChanceFeld = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         angebotBeschreibungFeld = new javax.swing.JTextArea();
+        angebotGueltigAbFeld = new com.toedter.calendar.JDateChooser();
+        angebotGueltigBisFeld = new com.toedter.calendar.JDateChooser();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,14 +109,9 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
-        kontaktListe.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(kontaktListe);
+        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(angebotListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
@@ -138,13 +155,6 @@ public class AngeboteView extends javax.swing.JPanel {
         angebotLoeschen.setText("Angebot löschen");
         add(angebotLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
-        angebotGueltigBisFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                angebotGueltigBisFeldActionPerformed(evt);
-            }
-        });
-        add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
-
         kundeZuweisen.setText("Kunden zuweisen");
         add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
@@ -156,20 +166,13 @@ public class AngeboteView extends javax.swing.JPanel {
         angebotGueltigAbLabel.setText("Gültig ab");
         add(angebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        angebotGueltigAbFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                angebotGueltigAbFeldActionPerformed(evt);
-            }
-        });
-        add(angebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
-
         angebotAendern.setText("Angebot ändern");
         angebotAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 angebotAendernActionPerformed(evt);
             }
         });
-        add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 230, -1));
         add(angebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 140, -1));
 
         angebotBeschreibungFeld.setColumns(20);
@@ -177,6 +180,8 @@ public class AngeboteView extends javax.swing.JPanel {
         jScrollPane3.setViewportView(angebotBeschreibungFeld);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
+        add(angebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 140, -1));
+        add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void angebotImplPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotImplPreisFeldActionPerformed
@@ -188,30 +193,23 @@ public class AngeboteView extends javax.swing.JPanel {
         af.setVisible(true);
 }//GEN-LAST:event_angebotErstellenActionPerformed
 
-    private void angebotGueltigBisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotGueltigBisFeldActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_angebotGueltigBisFeldActionPerformed
-
     private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
         // TODO add your handling code here:
         //modelPropertyChange(null);
 }//GEN-LAST:event_angebotAendernActionPerformed
 
-    private void angebotGueltigAbFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotGueltigAbFeldActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_angebotGueltigAbFeldActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotAendern;
     private javax.swing.JTextArea angebotBeschreibungFeld;
     private javax.swing.JButton angebotErstellen;
-    private javax.swing.JTextField angebotGueltigAbFeld;
+    private com.toedter.calendar.JDateChooser angebotGueltigAbFeld;
     private javax.swing.JLabel angebotGueltigAbLabel;
-    private javax.swing.JTextField angebotGueltigBisFeld;
+    private com.toedter.calendar.JDateChooser angebotGueltigBisFeld;
     private javax.swing.JLabel angebotGueltigBisLabel;
     private javax.swing.JTextField angebotImplChanceFeld;
     private javax.swing.JTextField angebotImplDauerFeld;
     private javax.swing.JTextField angebotImplPreisFeld;
+    private javax.swing.JList angebotListe;
     private javax.swing.JButton angebotLoeschen;
     private javax.swing.JTextField angebotNameFeld;
     private javax.swing.JScrollPane jScrollPane1;
@@ -222,10 +220,18 @@ public class AngeboteView extends javax.swing.JPanel {
     private javax.swing.JLabel kontaktBankInstLabel;
     private javax.swing.JLabel kontaktEmailLabel;
     private javax.swing.JLabel kontaktInfoLabel;
-    private javax.swing.JList kontaktListe;
     private javax.swing.JLabel kontaktListeLabel;
     private javax.swing.JLabel kontaktStrasseLabel;
     private javax.swing.JLabel kontaktTelLabel;
     private javax.swing.JButton kundeZuweisen;
     // End of variables declaration//GEN-END:variables
+
+    private void setAngebotListe(ArrayList<Angebot> angebote) {
+        DefaultListModel list = new DefaultListModel();
+        for (Angebot a : angebote) {
+            list.addElement(a);
+        }
+
+        this.angebotListe.setModel(list);
+    }
 }

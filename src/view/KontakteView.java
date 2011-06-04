@@ -48,9 +48,10 @@ public class KontakteView extends AbstractViewPanel {
         try {
             this.setKontaktListe(db.getKontaktListe());
         } catch (DALException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         }
         try {
+
             Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
             Binder.bind(kontaktListe, kontaktVornameFeld, "Vorname");
             Binder.bind(kontaktListe, kontaktNachnameFeld, "Nachname");
@@ -68,13 +69,13 @@ public class KontakteView extends AbstractViewPanel {
             Binder.bind(Kontakt.class, kontaktListe);
 
         } catch (NoSuchMethodException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         } catch (IllegalAccessException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         } catch (IllegalArgumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         } catch (InvocationTargetException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         }
     }
 
@@ -180,11 +181,6 @@ public class KontakteView extends AbstractViewPanel {
 
         kontaktEmailFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktEmailFeld.setName("Email"); // NOI18N
-        kontaktEmailFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktEmailFeldActionPerformed(evt);
-            }
-        });
         add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
         kontaktTelefonFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -213,11 +209,6 @@ public class KontakteView extends AbstractViewPanel {
 
         kontaktVornameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktVornameFeld.setName("Vorname"); // NOI18N
-        kontaktVornameFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktVornameFeldActionPerformed(evt);
-            }
-        });
         add(kontaktVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         KontaktangebotZuweisen.setText("Angebot zuweisen");
@@ -229,11 +220,6 @@ public class KontakteView extends AbstractViewPanel {
 
         kontaktNachnameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktNachnameFeld.setName("Nachname"); // NOI18N
-        kontaktNachnameFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktNachnameFeldActionPerformed(evt);
-            }
-        });
         add(kontaktNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
         kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -258,11 +244,6 @@ public class KontakteView extends AbstractViewPanel {
 
         kontaktOrtFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktOrtFeld.setName("Ort"); // NOI18N
-        kontaktOrtFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktOrtFeldActionPerformed(evt);
-            }
-        });
         add(kontaktOrtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 150, -1));
 
         kontaktFirmaLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -271,11 +252,6 @@ public class KontakteView extends AbstractViewPanel {
 
         kontaktFirmennameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktFirmennameFeld.setName("Firmenname"); // NOI18N
-        kontaktFirmennameFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kontaktFirmennameFeldActionPerformed(evt);
-            }
-        });
         add(kontaktFirmennameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
 
         kontaktAendern.setText("Kontakt ändern");
@@ -319,34 +295,15 @@ public class KontakteView extends AbstractViewPanel {
         af.setVisible(true);
     }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
 
-    private void kontaktEmailFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktEmailFeldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktEmailFeldActionPerformed
-
     private void kontaktNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeld1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kontaktNameFeld1ActionPerformed
-
-    private void kontaktVornameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktVornameFeldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktVornameFeldActionPerformed
-
-    private void kontaktNachnameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNachnameFeldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktNachnameFeldActionPerformed
-
-    private void kontaktOrtFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktOrtFeldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktOrtFeldActionPerformed
-
-    private void kontaktFirmennameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktFirmennameFeldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kontaktFirmennameFeldActionPerformed
 
     private void kontaktAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktAendernActionPerformed
         if (this.kontaktListe.isSelectionEmpty()) {
             return;
         }
+
         ArrayList<String> errorList;
         errorList = Binder.save(createKontaktFromFields());
         showErrors(errorList);
@@ -418,7 +375,7 @@ public class KontakteView extends AbstractViewPanel {
         try {
             db.deleteKontakt(k);
         } catch (DALException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
         }
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 
@@ -429,7 +386,6 @@ public class KontakteView extends AbstractViewPanel {
     private void kontaktIsKundeFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktIsKundeFeldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kontaktIsKundeFeldActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;
     private javax.swing.JScrollPane jScrollPane1;

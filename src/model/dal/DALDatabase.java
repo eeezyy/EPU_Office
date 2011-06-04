@@ -500,7 +500,7 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT id, Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis "
+            cmd = db.prepareStatement("SELECT id, Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis, Name "
                     + "FROM Angebot");
             rd = cmd.executeQuery();
             // Daten holen
@@ -514,6 +514,7 @@ public class DALDatabase implements IDAL {
                 a.setAenderungsDatum((Date) rd.getDate(6));
                 a.setBeschreibung(rd.getString(7));
                 a.setImplPreis(rd.getLong(8));
+                a.setName(rd.getString(9));
                 angebote.add(a);
             }
             rd.close();
