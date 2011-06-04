@@ -29,7 +29,7 @@ public class Formular extends BaseDoc {
             //http://www.wirelust.com/2008/03/17/creating-an-itext-pdf-with-embedded-jfreechart/
             doc.add(new Paragraph("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, Formular.class,ex);
         }
         ArrayList<String> xList = new ArrayList<String>();
         ArrayList<Double> yList = new ArrayList<Double>();
@@ -63,7 +63,7 @@ public class Formular extends BaseDoc {
             writeHeader2("Überschrift 2", doc);
             doc.add(new Paragraph("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, Formular.class,ex);
         }
     }
 }

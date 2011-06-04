@@ -12,7 +12,7 @@ import java.util.logging.Level;
  */
 public class Logger {
 
-    public static void log(Level level, Class c, String message) {
-        AppenderManager.getInstance().log(level, c, message);
+    public static void log(Level level, Class c, Exception exception) {
+        AppenderManager.getInstance().log(level, c, exception);
     }
 }

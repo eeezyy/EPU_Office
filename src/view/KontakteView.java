@@ -49,7 +49,7 @@ public final class KontakteView extends AbstractViewPanel {
         try {
             this.setKontaktListe(db.getKontaktListe());
         } catch (DALException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
         }
         try {
 
@@ -70,13 +70,13 @@ public final class KontakteView extends AbstractViewPanel {
             Binder.bind(Kontakt.class, kontaktListe);
 
         } catch (NoSuchMethodException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
         } catch (IllegalAccessException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
         } catch (IllegalArgumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
         } catch (InvocationTargetException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
         }
     }
 
@@ -352,7 +352,7 @@ public final class KontakteView extends AbstractViewPanel {
         try {
             db.deleteKontakt(k);
         } catch (DALException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
         }
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 

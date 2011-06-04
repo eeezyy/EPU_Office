@@ -8,14 +8,22 @@
  *
  * Created on 14.04.2011, 16:43:58
  */
-
 package view.dialog;
+
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import model.Angebot;
+import model.dal.DALException;
+import model.dal.DALFactory;
+import utils.log.Logger;
+import view.AbstractViewDialog;
 
 /**
  *
  * @author Goran-Goggy
  */
-public class AngebotAddForm extends javax.swing.JDialog {
+public class AngebotAddForm extends AbstractViewDialog {
 
     /** Creates new form AngebotAddForm */
     public AngebotAddForm(java.awt.Frame parent, boolean modal) {
@@ -91,15 +99,15 @@ public class AngebotAddForm extends javax.swing.JDialog {
         jPanel1.add(dialogAngebotNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, -1, -1));
 
         dialogAngebotPreisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        dialogAngebotPreisLabel.setText("Impl.preis");
+        dialogAngebotPreisLabel.setText("Preis (€)");
         jPanel1.add(dialogAngebotPreisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 92, -1, -1));
 
         dialogAngebotDauerLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        dialogAngebotDauerLabel.setText("Impl.dauer");
+        dialogAngebotDauerLabel.setText("Dauer (Tage)");
         jPanel1.add(dialogAngebotDauerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 92, -1, -1));
 
         dialogAngebotChanceLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        dialogAngebotChanceLabel.setText("Impl.chance");
+        dialogAngebotChanceLabel.setText("Chance (%)");
         jPanel1.add(dialogAngebotChanceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 92, -1, -1));
 
         dialogAngebotImplPreisFeld.addActionListener(new java.awt.event.ActionListener() {
@@ -107,9 +115,9 @@ public class AngebotAddForm extends javax.swing.JDialog {
                 dialogAngebotImplPreisFeldActionPerformed(evt);
             }
         });
-        jPanel1.add(dialogAngebotImplPreisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 150, -1));
-        jPanel1.add(dialogAngebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 51, 150, -1));
-        jPanel1.add(dialogAngebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 150, -1));
+        jPanel1.add(dialogAngebotImplPreisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 150, -1));
+        jPanel1.add(dialogAngebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 150, -1));
+        jPanel1.add(dialogAngebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 150, -1));
 
         dialogAngebotBeschreibungLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotBeschreibungLabel.setText("Beschreibung");
@@ -118,17 +126,17 @@ public class AngebotAddForm extends javax.swing.JDialog {
         dialogAngebotGueltigAbLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotGueltigAbLabel.setText("Gültig ab");
         jPanel1.add(dialogAngebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 51, -1, -1));
-        jPanel1.add(dialogAngebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 93, 140, -1));
+        jPanel1.add(dialogAngebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 140, -1));
 
         dialogAngebotBeschreibungFeld.setColumns(20);
         dialogAngebotBeschreibungFeld.setRows(5);
         jScrollPane3.setViewportView(dialogAngebotBeschreibungFeld);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 153, 770, 90));
-        jPanel1.add(dialogAngebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 140, -1));
-        jPanel1.add(dialogAngebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 140, -1));
+        jPanel1.add(dialogAngebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 140, -1));
+        jPanel1.add(dialogAngebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 140, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 310));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,24 +144,45 @@ public class AngebotAddForm extends javax.swing.JDialog {
     private void dialogAngebotImplPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotImplPreisFeldActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_dialogAngebotImplPreisFeldActionPerformed
-
+    
     private void dialogAngebotHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotHinzufuegenActionPerformed
         // TODO add your handling code here:
+        Date d = new Date();
+        Angebot a = new Angebot();
+        a.setName(dialogAngebotNameFeld.getText());
+        a.setAenderungsDatum(d);
+        a.setBeschreibung(dialogAngebotBeschreibungFeld.getText());
+        a.setGueltigAb(dialogAngebotGueltigAbFeld.getDate());
+        a.setGueltigBis(dialogAngebotGueltigBisFeld.getDate());
+        a.setImplChance(Integer.parseInt(dialogAngebotImplChanceFeld.getText()));
+        a.setImplDauer(Integer.parseInt(dialogAngebotImplDauerFeld.getText()));
+        a.setImplPreis(Long.parseLong(dialogAngebotImplPreisFeld.getText()));
+        try {
+            // Test
+            DALFactory.getDAL().saveAngebot(a);
+            // --> controller add
+            //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
+            this.dispose();
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, AngebotAddForm.class, ex);
+        }
 }//GEN-LAST:event_dialogAngebotHinzufuegenActionPerformed
-
+    
     private void dialogAngebotAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotAbbrechenActionPerformed
         // TODO add your handling code here:
         dispose();
 }//GEN-LAST:event_dialogAngebotAbbrechenActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 AngebotAddForm dialog = new AngebotAddForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -162,7 +191,6 @@ public class AngebotAddForm extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel angebotAddLabel;
     private javax.swing.JButton dialogAngebotAbbrechen;
@@ -186,4 +214,8 @@ public class AngebotAddForm extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    protected void resetTextFields() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

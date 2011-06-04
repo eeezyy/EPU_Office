@@ -41,7 +41,7 @@ public class KundenView extends javax.swing.JPanel {
         try {
             this.setKontaktListe(db.getKundenListe());
         } catch (DALException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, KundenView.class, ex);
         }
     }
 

@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -255,29 +256,33 @@ public class DALDatabase implements IDAL {
                 cmd.setString(2, k.getNachname());
                 cmd.setString(3, k.getEmail());
                 cmd.setString(4, k.getTelefon());
-                if(k.getBlz() != null)
+                if (k.getBlz() != null) {
                     cmd.setInt(5, k.getBlz());
-                else
+                } else {
                     cmd.setNull(5, java.sql.Types.INTEGER);
+                }
                 cmd.setString(6, k.getBankinstitut());
-                if(k.getKonto() != null)
+                if (k.getKonto() != null) {
                     cmd.setLong(7, k.getKonto());
-                else
+                } else {
                     cmd.setNull(7, java.sql.Types.BIGINT);
+                }
                 cmd.setString(8, k.getFirmenname());
                 cmd.setString(9, k.getStrasse());
-                if(k.getHausnr() != null)
+                if (k.getHausnr() != null) {
                     cmd.setInt(10, k.getHausnr());
-                else
+                } else {
                     cmd.setNull(10, java.sql.Types.INTEGER);
-                if(k.getPlz() != null)
+                }
+                if (k.getPlz() != null) {
                     cmd.setInt(11, k.getPlz());
-                else
+                } else {
                     cmd.setNull(11, java.sql.Types.INTEGER);
+                }
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
                 cmd.setInt(14, k.getId());
-                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt upgedated");
+                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveKontakt") );
 
             } else {
                 cmd = db.prepareStatement(
@@ -288,28 +293,32 @@ public class DALDatabase implements IDAL {
                 cmd.setString(2, k.getNachname());
                 cmd.setString(3, k.getEmail());
                 cmd.setString(4, k.getTelefon());
-                if(k.getBlz() != null)
+                if (k.getBlz() != null) {
                     cmd.setInt(5, k.getBlz());
-                else
+                } else {
                     cmd.setNull(5, java.sql.Types.INTEGER);
+                }
                 cmd.setString(6, k.getBankinstitut());
-                if(k.getKonto() != null)
+                if (k.getKonto() != null) {
                     cmd.setLong(7, k.getKonto());
-                else
+                } else {
                     cmd.setNull(7, java.sql.Types.BIGINT);
+                }
                 cmd.setString(8, k.getFirmenname());
                 cmd.setString(9, k.getStrasse());
-                if(k.getHausnr() != null)
+                if (k.getHausnr() != null) {
                     cmd.setInt(10, k.getHausnr());
-                else
+                } else {
                     cmd.setNull(10, java.sql.Types.INTEGER);
-                if(k.getPlz() != null)
+                }
+                if (k.getPlz() != null) {
                     cmd.setInt(11, k.getPlz());
-                else
+                } else {
                     cmd.setNull(11, java.sql.Types.INTEGER);
+                }
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
-                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt hinzugefügt");
+                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveKontakt"));
             }
             // execute insert/update
             int result = cmd.executeUpdate();
@@ -344,7 +353,7 @@ public class DALDatabase implements IDAL {
             // Daten holen
             while (rd.next()) {
                 Integer intResult = null;
-                
+
                 Kontakt k = new Kontakt();
                 k.setId(rd.getInt(1));
                 k.setVorname(rd.getString(2));
@@ -368,7 +377,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
         }
 
         return kontakte;
@@ -389,7 +398,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Kontakt gelöscht");
+                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteKontakt"));
             }
             cmd.close();
             db.close();
@@ -416,13 +425,13 @@ public class DALDatabase implements IDAL {
                     + "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setInt(1, k.getId());
             cmd.setInt(2, a.getId());
-            
+
             cmd = db.prepareStatement(
                     "UPDAT Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setBoolean(1, k.getIsKunde());
-            Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot einem Kunden hinzugefügt");
+            Logger.log(Level.SEVERE, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
         }
     }
 
@@ -432,6 +441,10 @@ public class DALDatabase implements IDAL {
             return;
         }
         Angebot a = (Angebot) ao;
+        java.sql.Date gueltigkeitAb = new java.sql.Date(a.getGueltigAb().getTime());
+        java.sql.Date gueltigkeitBis = new java.sql.Date(a.getGueltigBis().getTime());
+        java.sql.Date now = new java.sql.Date(today.getTime());
+
         try {
             // Datenbankverbindung öffnen
             Connection db = DALDatabase.getConnection();
@@ -447,31 +460,34 @@ public class DALDatabase implements IDAL {
             // Daten holen
             if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
-                        "UPDATE Angebot SET Impl_Dauer = ?, GueltigAb = ?, GueltigBis = ?, Impl_Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, "
+                        "UPDATE Angebot SET Impl_Dauer = ?, GueltigAb = ?, GueltigBis = ?, Impl_Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, Name = ?"
                         + "WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, a.getImplDauer());
-                cmd.setDate(2, (java.sql.Date) a.getGueltigAb());
-                cmd.setDate(3, (java.sql.Date) a.getGueltigBis());
+                cmd.setDate(2, gueltigkeitAb);
+                cmd.setDate(3, gueltigkeitBis);
                 cmd.setInt(4, a.getImplChance());
-                cmd.setDate(5, (java.sql.Date) today);
+                cmd.setDate(5, now);
                 cmd.setString(6, a.getBeschreibung());
                 cmd.setLong(7, a.getImplPreis());
-                cmd.setInt(8, a.getId());
-                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot upgedated");
+                cmd.setString(8, a.getName());
+                cmd.setInt(9, a.getId());
+                Logger.log(Level.INFO, DALDatabase.class,new DALModelModified("saveAngebot"));
             } else {
                 cmd = db.prepareStatement(
-                        "INSERT INTO Angebot (Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis"
+                        "INSERT INTO Angebot (Name, Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis)"
                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
-                cmd.setInt(1, a.getImplDauer());
-                cmd.setDate(2, (java.sql.Date) a.getGueltigAb());
-                cmd.setDate(3, (java.sql.Date) a.getGueltigBis());
-                cmd.setInt(4, a.getImplChance());
-                cmd.setDate(5, (java.sql.Date) today);
-                cmd.setString(6, a.getBeschreibung());
-                cmd.setLong(7, a.getImplPreis());
-                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot hinzugefügt");
+                cmd.setString(1, a.getName());
+                cmd.setInt(2, a.getImplDauer());
+                cmd.setDate(3, gueltigkeitAb);
+                cmd.setDate(4, gueltigkeitBis);
+                cmd.setInt(5, a.getImplChance());
+                cmd.setDate(6, now);
+                cmd.setString(7, a.getBeschreibung());
+                cmd.setLong(8, a.getImplPreis());
+
+
             }
             // execute insert/update
             int result = cmd.executeUpdate();
@@ -481,12 +497,11 @@ public class DALDatabase implements IDAL {
                 a.setId(generatedKeys.getInt(1));
             }
             cmd.close();
-
             rd.close();
             cmdSelect.close();
             db.close();
+            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveAngebot"));
             Binder.notify(Angebot.class);
-
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
@@ -508,7 +523,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class.getClass(), "Angebot gelöscht");
+                Logger.log(Level.INFO, DALDatabase.class,new DALModelModified("deleteAngebot"));
             }
             cmd.close();
             db.close();
@@ -548,7 +563,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, DALDatabase.class,ex);
         }
         return angebote;
     }
@@ -587,8 +602,19 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, DALDatabase.class,ex);
         }
         return kontakte;
     }
+
+//    private static Date StringToSQLDate(String s) {
+//        Date sqlDate = null;
+//        try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+//            sqlDate = new Date(sdf.parse(s).getTime());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return sqlDate;
+//    }
 }

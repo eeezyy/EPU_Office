@@ -4,6 +4,7 @@
  */
 package utils.log;
 
+import config.Config;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -13,6 +14,9 @@ import java.util.logging.Level;
  */
 public class AppenderManager {
 
+    private TracingLevel allowedLevel = Config.getTraceLevel();
+    private int tracingLvl = allowedLevel.ordinal();
+    private boolean stackTrace = Config.getStackTrace();
     private static AppenderManager instance;
     private HashSet<Appender> appenderList;
 
@@ -48,10 +52,12 @@ public class AppenderManager {
         return appenderList.remove(appender);
     }
 
-    void log(Level level, Class c, String message) {
-        Iterator<Appender> it = appenderList.iterator();
-        while (it.hasNext()) {
-            it.next().log(level, c, message);
+    void log(Level level, Class c, Exception ex) {
+        if (level.getName().equalsIgnoreCase(allowedLevel.toString())) {
+            Iterator<Appender> it = appenderList.iterator();
+            while (it.hasNext()) {
+                it.next().log(level, c, ex);
+            }
         }
     }
 

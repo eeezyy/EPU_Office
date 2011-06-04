@@ -10,8 +10,9 @@ import java.util.logging.Level;
  *  @author Alexander Kumbeiz & Goran Janosevic
  */
 public interface Appender {
-
     public void configure();
 
-    public void log(Level level, Class c, String message);
+    public void log(Level level, Class c, Exception ex);
+    
+    
 }

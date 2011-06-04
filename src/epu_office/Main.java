@@ -7,6 +7,7 @@ package epu_office;
 import config.Config;
 import controller.MainController;
 import java.util.logging.Level;
+import model.dal.DALModelModified;
 import utils.documents.Formular;
 import utils.log.Logger;
 
@@ -25,9 +26,12 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         config = new Config();
-        //Logger.log(Level.INFO, Main.class, "Main gestartet.");
+//        Logger.log(Level.INFO, Main.class, "Main gestartet.");
+//        Logger.log(Level.FINEST, Main.class, "TEST");
+        //Logger.log(Level.SEVERE, Main.class, new DALModelModified("test"));
         Formular formular = new Formular();
         formular.createPDF("TestPDFDOKUMENT____2011.pdf");
+        
         controller = new MainController();
         
     }

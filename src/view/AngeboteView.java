@@ -11,6 +11,8 @@
 package view;
 
 import controller.AngebotController;
+import controller.Binder;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.swing.DefaultListModel;
@@ -41,7 +43,28 @@ public class AngeboteView extends javax.swing.JPanel {
         try {
             this.setAngebotListe(db.getAngebotListe());
         } catch (DALException ex) {
-            Logger.log(Level.SEVERE, this.getClass(), ex.getMessage());
+            Logger.log(Level.SEVERE, AngeboteView.class, ex);
+        }
+        try {
+
+            Binder.bind(angebotListe, angebotNameFeld, "Name");
+            Binder.bind(angebotListe, angebotGueltigAbFeld, "GueltigAb");
+            Binder.bind(angebotListe, angebotGueltigBisFeld, "GueltigBis");
+            Binder.bind(angebotListe, angebotImplPreisFeld, "ImplPreis");
+            Binder.bind(angebotListe, angebotImplDauerFeld, "ImplDauer");
+            Binder.bind(angebotListe, angebotImplChanceFeld, "ImplChance");
+            Binder.bind(angebotListe, angebotBeschreibungFeld, "Beschreibung");
+
+            Binder.bind(Angebot.class, angebotListe);
+
+        } catch (NoSuchMethodException ex) {
+            Logger.log(Level.SEVERE, AngeboteView.class, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.log(Level.SEVERE, AngeboteView.class, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.log(Level.SEVERE, AngeboteView.class, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.log(Level.SEVERE, AngeboteView.class, ex);
         }
     }
 
@@ -109,7 +132,7 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(angebotListe);
 
@@ -128,11 +151,11 @@ public class AngeboteView extends javax.swing.JPanel {
         add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBankInstLabel.setText("Impl.dauer");
+        kontaktBankInstLabel.setText("Dauer (Tage)");
         add(kontaktBankInstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         kontaktBLZNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktBLZNrLabel.setText("Impl.chance");
+        kontaktBLZNrLabel.setText("Chance (%)");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
         angebotImplPreisFeld.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +165,7 @@ public class AngeboteView extends javax.swing.JPanel {
         });
         add(angebotImplPreisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
         add(angebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
-        add(angebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
+        add(angebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
 
         angebotErstellen.setText("Angebot erstellen");
         angebotErstellen.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +203,7 @@ public class AngeboteView extends javax.swing.JPanel {
         jScrollPane3.setViewportView(angebotBeschreibungFeld);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
-        add(angebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 140, -1));
+        add(angebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 140, -1));
         add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,7 +220,6 @@ public class AngeboteView extends javax.swing.JPanel {
         // TODO add your handling code here:
         //modelPropertyChange(null);
 }//GEN-LAST:event_angebotAendernActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotAendern;
     private javax.swing.JTextArea angebotBeschreibungFeld;

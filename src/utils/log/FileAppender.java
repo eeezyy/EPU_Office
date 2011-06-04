@@ -24,6 +24,7 @@ public class FileAppender implements Appender {
     private FileWriter fstream;
     private BufferedWriter out;
     private File file;
+    //nur info erlaubt <-- config?
 
     public FileAppender() {
         now = new Date();
@@ -36,7 +37,7 @@ public class FileAppender implements Appender {
         this.file = new File("ErrorLog_YMD_" + dateOutput);
     }
 
-    public void log(Level level, Class c, String message) {
+    public void log(Level level, Class c, Exception exception) {
         Date yet = new Date();
         SimpleDateFormat yetFormat = new SimpleDateFormat("EE dd.MM.yyyy @ HH:mm:ss");
         StringBuilder combine = new StringBuilder(yetFormat.format(yet));
@@ -49,7 +50,12 @@ public class FileAppender implements Appender {
         }
         out = new BufferedWriter(fstream);
         try {
-            out.write(level.toString() + ": " + combine.toString() + " | " + c.getName() + " -> " + message + "\r\n");
+            if (config.Config.getStackTrace()) {
+                //out.write(level.toString() + ": " + combine.toString() + " | " + c.getName() + " -> " + exception.getStackTrace().toString() + "\r\n");
+                exception.printStackTrace();
+            } else {
+                out.write(level.toString() + ": " + combine.toString() + " | " + c.getName() + " -> " + exception.getMessage() + "\r\n");
+            }
         } catch (IOException ex) {
             //Logger.getLogger(FileAppender.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("IO-Fehler bei der Logerstellung aufgetreten: " + ex.getMessage());

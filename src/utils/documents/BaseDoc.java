@@ -81,7 +81,7 @@ public abstract class BaseDoc {
         try {
             pdfWrite = PdfWriter.getInstance(doc, baos);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
         doc.open();
         writePDF(doc, pdfWrite);
@@ -93,15 +93,15 @@ public abstract class BaseDoc {
         try {
             reader = new PdfReader(baos.toByteArray());
         } catch (IOException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
 
         try {
             stamper = new PdfStamper(reader, new FileOutputStream(fileName));
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         } catch (IOException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
         // Loop over the pages and add a header to each page
         int n = reader.getNumberOfPages();
@@ -113,9 +113,9 @@ public abstract class BaseDoc {
             // Close the stamper
             stamper.close();
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         } catch (IOException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
     }
 
@@ -248,7 +248,7 @@ public abstract class BaseDoc {
             doc.add(Chunk.NEWLINE);
             doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
         Paragraph paragraph = new Paragraph("");
         Chunk chunk = new Chunk(text,
@@ -260,7 +260,7 @@ public abstract class BaseDoc {
             doc.add(paragraph);
             //doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
     }
 
@@ -269,7 +269,7 @@ public abstract class BaseDoc {
             doc.add(Chunk.NEWLINE);
             doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
         Paragraph paragraph = new Paragraph("");
         Chunk chunk = new Chunk(text,
@@ -281,7 +281,7 @@ public abstract class BaseDoc {
             doc.add(paragraph);
             //doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
     }
     
@@ -296,7 +296,7 @@ public abstract class BaseDoc {
             chartPic = Image.getInstance(tp);
             chartPic.setAlignment(Element.ALIGN_CENTER);
         } catch (BadElementException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
 
         // AWT Renderer erzeugen (aud dem PdfTemplate)
@@ -307,7 +307,7 @@ public abstract class BaseDoc {
         try {
             doc.add(chartPic);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, this.getClass(),ex.getMessage());
+            Logger.log(Level.SEVERE, BaseDoc.class,ex);
         }
 
 
