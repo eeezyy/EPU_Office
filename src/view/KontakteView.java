@@ -25,6 +25,7 @@ import model.Kontakt;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.documents.Formular;
+import utils.documents.StatistikPDF;
 
 /**
  *
@@ -369,27 +370,6 @@ public final class KontakteView extends AbstractViewPanel {
 
     private void KontaktangebotZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KontaktangebotZuweisenActionPerformed
         // TODO add your handling code here:
-//        ArrayList<String> text = new ArrayList<String>();
-//        text.add("1234567810");
-//        text.add("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-//
-//        Formular formular = new Formular(text);
-//        formular.sethTopCenter("TextExample");
-//        formular.createPDF("KontakteView.pdf");
-//
-//        Process p;
-//        try {
-//            p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler KontakteView.pdf");
-//            try {
-//                int waitFor = p.waitFor();
-//            } catch (InterruptedException ex) {
-//                java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } catch (IOException ex) {
-//            java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//       
-//        System.out.println("Done.");
     }//GEN-LAST:event_KontaktangebotZuweisenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;

@@ -10,6 +10,8 @@
  */
 package view;
 
+import java.util.ArrayList;
+import utils.documents.StatistikPDF;
 import view.dialog.AusgangsrechnungForm;
 import view.dialog.EingangsrechnungForm;
 import view.dialog.JahresUeberblickForm;
@@ -51,7 +53,7 @@ public class StatistikView extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel.setText("Erlösstand (€)");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 20));
 
@@ -61,9 +63,9 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12));
+        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         statistikEingang.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Wien Energie", "FH Technikum-Wien" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -104,9 +106,9 @@ public class StatistikView extends javax.swing.JPanel {
         });
         add(statistikPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
-        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12));
+        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         statistikAusgang.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Wien Energie", "FH Technikum-Wien", "Wien Energie", "FH Technikum-Wien" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -132,6 +134,7 @@ public class StatistikView extends javax.swing.JPanel {
         add(kontaktListeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         statistikErloes.setEditable(false);
+        statistikErloes.setText("50000");
         add(statistikErloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -143,6 +146,42 @@ public class StatistikView extends javax.swing.JPanel {
     private void statistikPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikPDFActionPerformed
         // TODO add your handling code here:
         //modelPropertyChange(null);
+        //        ArrayList<String> text = new ArrayList<String>();
+//        text.add("1234567810");
+//        text.add("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+//
+//        Formular formular = new Formular(text);
+//        formular.sethTopCenter("TextExample");
+//        formular.createPDF("KontakteView.pdf");
+//
+//        Process p;
+//        try {
+//            p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler KontakteView.pdf");
+//            try {
+//                int waitFor = p.waitFor();
+//            } catch (InterruptedException ex) {
+//                java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (IOException ex) {
+//            java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//       
+//        System.out.println("Done.");
+        //http://www.easy-coding.de/externe-datei-pdf-oeffnen-mit-java-t2662.html
+        ArrayList<String> eingang = new ArrayList<String>();
+        for (int i = 0; i < statistikEingang.getModel().getSize(); i++) {
+            eingang.add(statistikEingang.getModel().getElementAt(i).toString());
+        }
+
+        ArrayList<String> ausgang = new ArrayList<String>();
+        for (int i = 0; i < statistikAusgang.getModel().getSize(); i++) {
+            ausgang.add(statistikAusgang.getModel().getElementAt(i).toString());
+        }
+        
+        String monat = statistikMonat.getSelectedItem().toString();
+        String erloes = statistikErloes.getText();
+        StatistikPDF statistik = new StatistikPDF(monat, ausgang, eingang, erloes);
+        statistik.createPDF("StatistikPDF.pdf");
 }//GEN-LAST:event_statistikPDFActionPerformed
 
     private void statistikEingangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statistikEingangMousePressed
@@ -162,7 +201,6 @@ public class StatistikView extends javax.swing.JPanel {
         JahresUeberblickForm jUF = new JahresUeberblickForm(null, true);
         jUF.setVisible(true);
     }//GEN-LAST:event_statistikJahrActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

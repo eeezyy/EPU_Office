@@ -5,6 +5,7 @@
 package utils.documents;
 
 import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -28,6 +29,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import utils.log.Logger;
@@ -81,7 +83,7 @@ public abstract class BaseDoc {
         try {
             pdfWrite = PdfWriter.getInstance(doc, baos);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
         doc.open();
         writePDF(doc, pdfWrite);
@@ -93,15 +95,15 @@ public abstract class BaseDoc {
         try {
             reader = new PdfReader(baos.toByteArray());
         } catch (IOException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
 
         try {
             stamper = new PdfStamper(reader, new FileOutputStream(fileName));
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         } catch (IOException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
         // Loop over the pages and add a header to each page
         int n = reader.getNumberOfPages();
@@ -113,9 +115,9 @@ public abstract class BaseDoc {
             // Close the stamper
             stamper.close();
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         } catch (IOException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
     }
 
@@ -245,10 +247,10 @@ public abstract class BaseDoc {
 
     public void writeHeader1(String text, Document doc) {
         try {
-            doc.add(Chunk.NEWLINE);
+            //doc.add(Chunk.NEWLINE);
             doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
         Paragraph paragraph = new Paragraph("");
         Chunk chunk = new Chunk(text,
@@ -260,16 +262,16 @@ public abstract class BaseDoc {
             doc.add(paragraph);
             //doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
     }
 
     public void writeHeader2(String text, Document doc) {
         try {
-            doc.add(Chunk.NEWLINE);
+            //doc.add(Chunk.NEWLINE);
             doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
         Paragraph paragraph = new Paragraph("");
         Chunk chunk = new Chunk(text,
@@ -281,10 +283,10 @@ public abstract class BaseDoc {
             doc.add(paragraph);
             //doc.add(Chunk.NEWLINE);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
     }
-    
+
     public void drawChart(Document doc, JFreeChart chart, int height, int width) {
         // get the direct pdf content
         PdfContentByte dc = pdfWrite.getDirectContent();
@@ -296,7 +298,7 @@ public abstract class BaseDoc {
             chartPic = Image.getInstance(tp);
             chartPic.setAlignment(Element.ALIGN_CENTER);
         } catch (BadElementException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
 
         // AWT Renderer erzeugen (aud dem PdfTemplate)
@@ -307,9 +309,58 @@ public abstract class BaseDoc {
         try {
             doc.add(chartPic);
         } catch (DocumentException ex) {
-            Logger.log(Level.SEVERE, BaseDoc.class,ex);
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
 
 
     }
+
+    public void drawTable(Document doc,String month, ArrayList<String> out, ArrayList<String> in, String outcome) {
+        //http://www.java-examples.com/java-stringtokenizer---specify-delimiter-example
+        //http://www.geek-tutorials.com/java/itext/itext_table.php
+        PdfPTable table = new PdfPTable(2);
+        PdfPCell cell = new PdfPCell();
+        cell.setBorder(0);
+        table.setSpacingBefore(20);
+        table.setSpacingAfter(20);
+        table.setWidthPercentage(100);
+        table.getDefaultCell().setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell("Ausgangsrechnungen");
+        table.addCell("Eingangsrechnungen");
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_BASELINE);
+        table.getDefaultCell().setBackgroundColor(null);
+        //System.out.println("Size beraegt jetzt noch: " + out.size() + " und " + in.size());
+        if(!(out.size() == in.size())){
+            if(out.size() > in.size()){
+                while(!(out.size() == in.size())){
+                    in.add(" ");
+                }
+            } else {
+                while(!(out.size() == in.size())){
+                    out.add(" ");
+                }
+            }
+        }
+        //System.out.println("Size beraegt: " + out.size() + " und " + in.size());
+
+        for(int i = 0; i < out.size(); i++){
+            table.addCell(out.get(i));
+            table.addCell(in.get(i));
+        }
+//        for (String s : row) {
+//            st = new StringTokenizer(s, ";");
+//            while (st.hasMoreTokens()) {
+//                table.addCell(st.nextToken());
+//                //System.out.println(st.nextToken());
+//            }
+//        }
+        try {
+            doc.add(table);
+            System.out.println("Done");
+        } catch (DocumentException ex) {
+            Logger.log(Level.SEVERE, BaseDoc.class, ex);
+        }
+    }
+    
 }
