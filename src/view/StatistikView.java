@@ -10,11 +10,13 @@
  */
 package view;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
-import utils.documents.StatistikPDF;
 import utils.log.Logger;
+import utils.documents.StatistikPDF;
 import view.dialog.AusgangsrechnungForm;
 import view.dialog.EingangsrechnungForm;
 import view.dialog.JahresUeberblickForm;
@@ -186,7 +188,7 @@ public class StatistikView extends javax.swing.JPanel {
         StatistikPDF statistik = new StatistikPDF(monat, ausgang, eingang, erloes);
         statistik.createPDF("StatistikPDF.pdf");
         
-        Process p;
+        /*Process p;
         try {
             p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler StatistikPDF.pdf");
             try {
@@ -196,6 +198,12 @@ public class StatistikView extends javax.swing.JPanel {
             }
         } catch (IOException ex) {
             Logger.log(Level.SEVERE,  StatistikView.class, ex);
+        }*/
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.open(new File("StatistikPDF.pdf"));
+        } catch (IOException ex) {
+            Logger.log(Level.SEVERE, StatistikView.class, ex);
         }
 }//GEN-LAST:event_statistikPDFActionPerformed
 
