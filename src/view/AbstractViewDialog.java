@@ -41,9 +41,7 @@ public abstract class AbstractViewDialog extends JDialog {
                 for (Component c : this.getComponents()) {
                     if (c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
                         ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
-                        System.out.println(((JTextField) c).getText());
                         break;
-
                     }
                 }
             }

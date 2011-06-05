@@ -8,10 +8,12 @@
  */
 package view;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -26,7 +28,21 @@ import javax.swing.JTextField;
  */
 public abstract class AbstractViewPanel extends JPanel {
 
-    protected abstract void resetTextFields();
+    protected void resetTextFields() {
+        this.cleanErrors();
+        for (Component c : this.getComponents()) {
+            if (c.getName() != null) {
+                //c.setEnabled(false);
+                if (c.getClass() == JTextField.class) {
+                    ((JTextField) c).setText("");
+                } else if(c.getClass() == JCheckBox.class){
+                    ((JCheckBox) c).setSelected(false);
+                } else if(c.getClass() == JDateChooser.class) {
+                    ((JDateChooser) c).setDate(null);
+                }
+            }
+        }
+    }
 
     protected void showErrors(ArrayList<String> errorList) {
         cleanErrors();
@@ -35,7 +51,6 @@ public abstract class AbstractViewPanel extends JPanel {
                 for (Component c : this.getComponents()) {
                     if (c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
                         ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
-                        System.out.println(((JTextField) c).getText());
                         break;
 
                     }
@@ -53,7 +68,7 @@ public abstract class AbstractViewPanel extends JPanel {
             }
         }
     }
-    
+
     protected Integer toInt(String text) {
         if (text.length() != 0) {
             return Integer.parseInt(text);

@@ -52,7 +52,8 @@ public final class KontakteView extends AbstractViewPanel {
             Logger.log(Level.SEVERE, KontakteView.class, ex);
         }
         try {
-
+            kontaktIdFeld.setVisible(false);
+            
             Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
             Binder.bind(kontaktListe, kontaktVornameFeld, "Vorname");
             Binder.bind(kontaktListe, kontaktNachnameFeld, "Nachname");
@@ -66,6 +67,7 @@ public final class KontakteView extends AbstractViewPanel {
             Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
             Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
             Binder.bind(kontaktListe, kontaktIsKundeFeld, "IsKunde");
+            Binder.bind(kontaktListe, kontaktIdFeld, "Id");
 
             Binder.bind(Kontakt.class, kontaktListe);
 
@@ -123,6 +125,7 @@ public final class KontakteView extends AbstractViewPanel {
         kontaktKontoFeld = new javax.swing.JTextField();
         kontaktBlzFeld = new javax.swing.JTextField();
         kontaktIsKundeFeld = new javax.swing.JCheckBox();
+        kontaktIdFeld = new javax.swing.JTextField();
 
         kontaktNameFeld1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,16 +287,21 @@ public final class KontakteView extends AbstractViewPanel {
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
-        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
+        kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         kontaktIsKundeFeld.setText("Kunde");
-        kontaktIsKundeFeld.setEnabled(false);
-        kontaktIsKundeFeld.setName("Kunde"); // NOI18N
+        kontaktIsKundeFeld.setName("IsKunde"); // NOI18N
         kontaktIsKundeFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kontaktIsKundeFeldActionPerformed(evt);
             }
         });
         add(kontaktIsKundeFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 187, -1, 40));
+        kontaktIsKundeFeld.getAccessibleContext().setAccessibleName("null");
+
+        kontaktIdFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktIdFeld.setEnabled(false);
+        kontaktIdFeld.setName("Id"); // NOI18N
+        add(kontaktIdFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 30, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
@@ -327,11 +335,12 @@ public final class KontakteView extends AbstractViewPanel {
         list.add(new BinderProperty(kontaktBlzFeld.getName(), kontaktBlzFeld.getText(), Integer.class));
         list.add(new BinderProperty(kontaktEmailFeld.getName(), kontaktEmailFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktFirmennameFeld.getName(), kontaktFirmennameFeld.getText(), String.class));
-        list.add(new BinderProperty(kontaktIsKundeFeld.getName(), kontaktIsKundeFeld.getText(), Boolean.class));
+        list.add(new BinderProperty(kontaktIsKundeFeld.getName(), ((Boolean)kontaktIsKundeFeld.isSelected()).toString(), Boolean.class));
         list.add(new BinderProperty(kontaktKontoFeld.getName(), kontaktKontoFeld.getText(), Long.class));
         list.add(new BinderProperty(kontaktNachnameFeld.getName(), kontaktNachnameFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktVornameFeld.getName(), kontaktVornameFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktTelefonFeld.getName(), kontaktTelefonFeld.getText(), String.class));
+        list.add(new BinderProperty(kontaktIdFeld.getName(), kontaktIdFeld.getText(), Integer.class));
         return list;
         /*
         Kontakt k = new Kontakt();
@@ -390,6 +399,7 @@ public final class KontakteView extends AbstractViewPanel {
     private javax.swing.JTextField kontaktFirmennameFeld;
     private javax.swing.JTextField kontaktHausnrFeld;
     private javax.swing.JButton kontaktHinzufuegen;
+    private javax.swing.JTextField kontaktIdFeld;
     private javax.swing.JLabel kontaktInfoLabel;
     private javax.swing.JCheckBox kontaktIsKundeFeld;
     private javax.swing.JTextField kontaktKontoFeld;
@@ -420,8 +430,4 @@ public final class KontakteView extends AbstractViewPanel {
         this.kontaktListe.setModel(list);
     }
 
-    @Override
-    protected void resetTextFields() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

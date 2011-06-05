@@ -29,11 +29,11 @@ public class Kontakt extends AbstractObject {
         return this.nachname + ", " + this.vorname;
     }
 
-    public boolean getIsKunde() {
+    public Boolean getIsKunde() {
         return isKunde;
     }
 
-    public void setIsKunde(boolean isKunde) {
+    public void setIsKunde(Boolean isKunde) {
         this.isKunde = isKunde;
     }
 

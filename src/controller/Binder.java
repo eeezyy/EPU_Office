@@ -239,16 +239,12 @@ public class Binder {
             try {
                 logic = (AbstractLogic) Class.forName("model.bl." + getClassName(classtype) + "Logic").newInstance();
                 errorList = logic.check(propertyList);
-                System.out.println(errorList);
             } catch (InstantiationException ex) {
-                System.out.println("instantiation");
                 Logger.log(Level.SEVERE, Binder.class,ex);
             } catch (IllegalAccessException ex) {
-                System.out.println("illegal");
                 Logger.log(Level.SEVERE, Binder.class,ex);
             }
         } catch (ClassNotFoundException ex) {
-            System.out.println("notfound");
             Logger.log(Level.SEVERE, Binder.class,ex);
         }
         if (errorList.isEmpty()) {
@@ -286,7 +282,9 @@ public class Binder {
     private static AbstractObject createObject(Class classtype, ArrayList<BinderProperty> propertyList) throws InstantiationException, IllegalAccessException {
         AbstractObject object = (AbstractObject) classtype.newInstance();
         BinderProperty property = null;
-        for (Iterator i = propertyList.iterator(); i.hasNext(); property = (BinderProperty) i.next()) {
+        Iterator i = propertyList.iterator();
+        while (i.hasNext()) {
+            property = (BinderProperty) i.next();
             try {
                 Method m = classtype.getMethod("set" + property.getProperty(), property.getClasstype());
                 try {
@@ -316,45 +314,6 @@ public class Binder {
             }
         }
         return object;
-    }
-
-    public static ArrayList<String> save(AbstractObject object) {
-        ArrayList<String> errorList = null;
-        AbstractLogic logic = null;
-        try {
-            try {
-                logic = (AbstractLogic) Class.forName("model.bl." + getClassName(object.getClass()) + "Logic").newInstance();
-                errorList = logic.check(object);
-            } catch (InstantiationException ex) {
-                Logger.log(Level.SEVERE, Binder.class,ex);
-            } catch (IllegalAccessException ex) {
-                Logger.log(Level.SEVERE, Binder.class,ex);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.log(Level.SEVERE, Binder.class,ex);
-        }
-        if (errorList.isEmpty()) {
-            try {
-                Method m = db.getClass().getMethod("save" + getClassName(object.getClass()), new Class[]{AbstractObject.class});
-                if (logic != null) {
-                    try {
-                        m.invoke(db, object);
-                    } catch (IllegalAccessException ex) {
-                        Logger.log(Level.SEVERE, Binder.class,ex);
-                    } catch (IllegalArgumentException ex) {
-                        Logger.log(Level.SEVERE, Binder.class,ex);
-                    } catch (InvocationTargetException ex) {
-                        Logger.log(Level.SEVERE, Binder.class,ex);
-                    }
-                }
-            } catch (NoSuchMethodException ex) {
-                Logger.log(Level.SEVERE, Binder.class,ex);
-            } catch (SecurityException ex) {
-                Logger.log(Level.SEVERE, Binder.class,ex);
-            }
-        }
-
-        return errorList;
     }
 
     private static String getClassName(Class c) {
