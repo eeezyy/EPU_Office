@@ -22,11 +22,8 @@ public class KontaktLogic extends AbstractLogic {
         ArrayList<String> errorList = new ArrayList<String>();
 
         BinderProperty property = null;
-        for (Iterator i = propertyList.iterator(); i.hasNext(); property = (BinderProperty) i.next()) {
-            if (property == null) {
-                System.out.println("property null");
-                return null;
-            }
+        Iterator i = propertyList.iterator();
+        for (property = (BinderProperty) i.next(); i.hasNext(); property = (BinderProperty) i.next()) {
             if (property.getProperty().equals("Blz")) {
                 if (!isValidString(property.getValue())) {
                     errorList.add(property.getProperty());
@@ -69,7 +66,6 @@ public class KontaktLogic extends AbstractLogic {
                 }
             }
         }
-
         return errorList;
     }
 

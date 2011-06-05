@@ -54,7 +54,7 @@ public class AngeboteView extends javax.swing.JPanel {
             Binder.bind(angebotListe, angebotImplDauerFeld, "ImplDauer");
             Binder.bind(angebotListe, angebotImplChanceFeld, "ImplChance");
             Binder.bind(angebotListe, angebotBeschreibungFeld, "Beschreibung");
-
+            
             Binder.bind(Angebot.class, angebotListe);
 
         } catch (NoSuchMethodException ex) {

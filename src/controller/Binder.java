@@ -1,9 +1,11 @@
 package controller;
 
 // Binder.java
+import com.toedter.calendar.JDateChooser;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -35,6 +37,53 @@ public class Binder {
     public static void bind(JComponent jc1, JComponent jc2, final String propertyName) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         if (jc1 instanceof JList) {
             final JList jlist = (JList) jc1;
+            
+            if (jc2 instanceof JDateChooser) {
+                final JDateChooser jdc = (JDateChooser) jc2;
+
+                ListSelectionListener lsl;
+                lsl = new ListSelectionListener() {
+
+                    public void valueChanged(ListSelectionEvent e) {
+                        Runnable r = new Runnable() {
+
+                            public void run() {
+                                AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+                                Method method = null;
+                                if (am != null) {
+                                    try {
+                                        method = am.getClass().getMethod("get" + propertyName, new Class[]{});
+                                    } catch (NoSuchMethodException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class,ex);
+                                    } catch (SecurityException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class,ex);
+                                    }
+                                }
+                                Date value = null;
+                                if (method != null) {
+                                    try {
+                                        Object result = method.invoke(am);
+                                        if (result instanceof Date) {
+                                            value = (Date) result;
+                                        } else {
+                                            // Error
+                                        }
+                                    } catch (IllegalAccessException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class,ex);
+                                    } catch (IllegalArgumentException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class,ex);
+                                    } catch (InvocationTargetException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class,ex);
+                                    }
+                                }
+                                jdc.setDate(value);
+                            }
+                        };
+                        SwingUtilities.invokeLater(r);
+                    }
+                };
+                jlist.addListSelectionListener(lsl);
+            }
 
             if (jc2 instanceof JCheckBox) {
                 final JCheckBox jcb = (JCheckBox) jc2;
@@ -111,7 +160,6 @@ public class Binder {
                                         if (result instanceof String) {
                                             text = (String) result;
                                         } else if (result instanceof Integer) {
-                                            System.out.println(result);
                                             if (result != null) {
                                                 text = Integer.toString((Integer) result);
                                             } else {
@@ -191,12 +239,16 @@ public class Binder {
             try {
                 logic = (AbstractLogic) Class.forName("model.bl." + getClassName(classtype) + "Logic").newInstance();
                 errorList = logic.check(propertyList);
+                System.out.println(errorList);
             } catch (InstantiationException ex) {
+                System.out.println("instantiation");
                 Logger.log(Level.SEVERE, Binder.class,ex);
             } catch (IllegalAccessException ex) {
+                System.out.println("illegal");
                 Logger.log(Level.SEVERE, Binder.class,ex);
             }
         } catch (ClassNotFoundException ex) {
+            System.out.println("notfound");
             Logger.log(Level.SEVERE, Binder.class,ex);
         }
         if (errorList.isEmpty()) {
