@@ -10,8 +10,11 @@
  */
 package view;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import utils.documents.StatistikPDF;
+import utils.log.Logger;
 import view.dialog.AusgangsrechnungForm;
 import view.dialog.EingangsrechnungForm;
 import view.dialog.JahresUeberblickForm;
@@ -182,6 +185,18 @@ public class StatistikView extends javax.swing.JPanel {
         String erloes = statistikErloes.getText();
         StatistikPDF statistik = new StatistikPDF(monat, ausgang, eingang, erloes);
         statistik.createPDF("StatistikPDF.pdf");
+        
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler StatistikPDF.pdf");
+            try {
+                int waitFor = p.waitFor();
+            } catch (InterruptedException ex) {
+                java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.log(Level.SEVERE,  StatistikView.class, ex);
+        }
 }//GEN-LAST:event_statistikPDFActionPerformed
 
     private void statistikEingangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statistikEingangMousePressed
