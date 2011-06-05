@@ -33,7 +33,7 @@ public class StatistikPDF extends BaseDoc {
 
     @Override
     protected void writePDF(Document doc, PdfWriter pdfWrite) {
-        sethTopLeft("Statistikauszug");
+        sethTopLeft("Statistikauszug " + monat);
         setfBottomLeft("Erstellt mit EPU_Office 2011");
         writeHeader1("Betroffener Monat: " + monat, doc);
         try {
@@ -42,6 +42,6 @@ public class StatistikPDF extends BaseDoc {
             Logger.log(Level.SEVERE, StatistikPDF.class, ex);
         }
         drawTable(doc, monat, ausgang, eingang, erloes);
-        writeHeader2("Erwirtschafter Erlös dieses Monats: " + erloes + "€", doc);
+        writeHeader2("Erwirtschafter Erlös dieses Monats: " + erloes + " €", doc);
     }
 }

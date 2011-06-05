@@ -27,11 +27,10 @@ public class Main {
         // TODO code application logic here
         config = new Config();
 //        Logger.log(Level.INFO, Main.class, "Main gestartet.");
-//        Logger.log(Level.FINEST, Main.class, "TEST");
+//        Logger.log(Level.FINEST, Main.class, new Exception("bla"));
         //Logger.log(Level.SEVERE, Main.class, new DALModelModified("test"));
         //new Formular().createPDF("test.pdf");
         //formular.createPDF("TestPDFDOKUMENT____2011.pdf");
-        
         controller = new MainController();
         
     }

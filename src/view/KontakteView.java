@@ -26,6 +26,7 @@ import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.documents.Formular;
 import utils.documents.StatistikPDF;
+import view.dialog.AngebotToKundeForm;
 
 /**
  *
@@ -370,6 +371,8 @@ public final class KontakteView extends AbstractViewPanel {
 
     private void KontaktangebotZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KontaktangebotZuweisenActionPerformed
         // TODO add your handling code here:
+        AngebotToKundeForm aTK = new AngebotToKundeForm(null, true);
+        aTK.setVisible(true);
     }//GEN-LAST:event_KontaktangebotZuweisenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;

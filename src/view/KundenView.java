@@ -19,6 +19,7 @@ import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.log.Logger;
+import view.dialog.AngebotToKundeForm;
 
 /**
  *
@@ -96,7 +97,7 @@ public class KundenView extends javax.swing.JPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kundenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(kundenListe);
 
@@ -121,6 +122,11 @@ public class KundenView extends javax.swing.JPanel {
         add(kundenVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         kundenangebotZuweisen.setText("Angebot zuweisen");
+        kundenangebotZuweisen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kundenangebotZuweisenActionPerformed(evt);
+            }
+        });
         add(kundenangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kundenNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -169,6 +175,13 @@ public class KundenView extends javax.swing.JPanel {
         // TODO add your handling code here:
         //modelPropertyChange(null);
 }//GEN-LAST:event_kundenAngebotListeActionPerformed
+
+    private void kundenangebotZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenangebotZuweisenActionPerformed
+        // TODO add your handling code here:
+        AngebotToKundeForm aTK = new AngebotToKundeForm(null, true);
+        aTK.setVisible(true);
+    }//GEN-LAST:event_kundenangebotZuweisenActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kundenAendern;

@@ -23,14 +23,16 @@ public class Config {
     private Properties config;
     
     // block-anfang: aus config auslesen!
-    private static TracingLevel traceLevel = TracingLevel.SEVERE;
-    private static boolean stackTrace = true;
+    private static TracingLevel traceLevel;// = TracingLevel.SEVERE;
+    private static boolean stackTrace;// = true;
     // block-ende
     
     public Config() {
         config = new Properties();
         try {
             config.load(new FileInputStream("config.properties"));
+            traceLevel = TracingLevel.valueOf(config.getProperty("traceLevel"));
+            stackTrace = Boolean.parseBoolean(config.getProperty("stackTrace"));
         } catch (IOException ex) {
             Logger.log(Level.SEVERE, Config.class,ex);
         }
