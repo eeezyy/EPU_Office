@@ -45,41 +45,25 @@ public final class KontakteView extends AbstractViewPanel {
     }
 
     public void initialize() {
-        //System.out.println("initialize");
-        try {
-            this.setKontaktListe(db.getKontaktListe());
-        } catch (DALException ex) {
-            Logger.log(Level.SEVERE, KontakteView.class, ex);
-        }
-        try {
-            kontaktIdFeld.setVisible(false);
-            
-            Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
-            Binder.bind(kontaktListe, kontaktVornameFeld, "Vorname");
-            Binder.bind(kontaktListe, kontaktNachnameFeld, "Nachname");
-            Binder.bind(kontaktListe, kontaktTelefonFeld, "Telefon");
-            Binder.bind(kontaktListe, kontaktEmailFeld, "Email");
-            Binder.bind(kontaktListe, kontaktBankinstitutFeld, "Bankinstitut");
-            Binder.bind(kontaktListe, kontaktBlzFeld, "Blz");
-            Binder.bind(kontaktListe, kontaktKontoFeld, "Konto");
-            Binder.bind(kontaktListe, kontaktStrasseFeld, "Strasse");
-            Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
-            Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
-            Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
-            Binder.bind(kontaktListe, kontaktIsKundeFeld, "IsKunde");
-            Binder.bind(kontaktListe, kontaktIdFeld, "Id");
 
-            Binder.bind(Kontakt.class, kontaktListe);
+        kontaktIdFeld.setVisible(false);
 
-        } catch (NoSuchMethodException ex) {
-            Logger.log(Level.SEVERE, KontakteView.class, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.log(Level.SEVERE, KontakteView.class, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.log(Level.SEVERE, KontakteView.class, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.log(Level.SEVERE, KontakteView.class, ex);
-        }
+        Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
+        Binder.bind(kontaktListe, kontaktVornameFeld, "Vorname");
+        Binder.bind(kontaktListe, kontaktNachnameFeld, "Nachname");
+        Binder.bind(kontaktListe, kontaktTelefonFeld, "Telefon");
+        Binder.bind(kontaktListe, kontaktEmailFeld, "Email");
+        Binder.bind(kontaktListe, kontaktBankinstitutFeld, "Bankinstitut");
+        Binder.bind(kontaktListe, kontaktBlzFeld, "Blz");
+        Binder.bind(kontaktListe, kontaktKontoFeld, "Konto");
+        Binder.bind(kontaktListe, kontaktStrasseFeld, "Strasse");
+        Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
+        Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
+        Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
+        Binder.bind(kontaktListe, kontaktIsKundeFeld, "IsKunde");
+        Binder.bind(kontaktListe, kontaktIdFeld, "Id");
+
+        Binder.bind(Kontakt.class, "getKontaktListe", kontaktListe);
     }
 
     /** This method is called from within the constructor to
@@ -148,8 +132,9 @@ public final class KontakteView extends AbstractViewPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        kontaktListe.setName("KontaktListe"); // NOI18N
         kontaktListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 kontaktListeValueChanged(evt);
@@ -335,7 +320,7 @@ public final class KontakteView extends AbstractViewPanel {
         list.add(new BinderProperty(kontaktBlzFeld.getName(), kontaktBlzFeld.getText(), Integer.class));
         list.add(new BinderProperty(kontaktEmailFeld.getName(), kontaktEmailFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktFirmennameFeld.getName(), kontaktFirmennameFeld.getText(), String.class));
-        list.add(new BinderProperty(kontaktIsKundeFeld.getName(), ((Boolean)kontaktIsKundeFeld.isSelected()).toString(), Boolean.class));
+        list.add(new BinderProperty(kontaktIsKundeFeld.getName(), ((Boolean) kontaktIsKundeFeld.isSelected()).toString(), Boolean.class));
         list.add(new BinderProperty(kontaktKontoFeld.getName(), kontaktKontoFeld.getText(), Long.class));
         list.add(new BinderProperty(kontaktNachnameFeld.getName(), kontaktNachnameFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktVornameFeld.getName(), kontaktVornameFeld.getText(), String.class));
@@ -429,5 +414,4 @@ public final class KontakteView extends AbstractViewPanel {
 
         this.kontaktListe.setModel(list);
     }
-
 }

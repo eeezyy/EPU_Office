@@ -5,8 +5,6 @@
 
 package model;
 
-import javax.swing.event.EventListenerList;
-
 /**
  *
  * @author if09b505

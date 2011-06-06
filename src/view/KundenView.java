@@ -10,6 +10,7 @@
  */
 package view;
 
+import controller.Binder;
 import controller.KundenController;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -39,11 +40,7 @@ public class KundenView extends javax.swing.JPanel {
     }
 
     private void initialize() {
-        try {
-            this.setKontaktListe(db.getKundenListe());
-        } catch (DALException ex) {
-            Logger.log(Level.SEVERE, KundenView.class, ex);
-        }
+        Binder.bind(Kontakt.class, "getKundenListe", kundenListe);
     }
 
     /** This method is called from within the constructor to
@@ -97,8 +94,9 @@ public class KundenView extends javax.swing.JPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         kundenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        kundenListe.setName("KundenListe"); // NOI18N
         jScrollPane1.setViewportView(kundenListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
@@ -181,7 +179,6 @@ public class KundenView extends javax.swing.JPanel {
         AngebotToKundeForm aTK = new AngebotToKundeForm(null, true);
         aTK.setVisible(true);
     }//GEN-LAST:event_kundenangebotZuweisenActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kundenAendern;
@@ -210,13 +207,4 @@ public class KundenView extends javax.swing.JPanel {
     private javax.swing.JLabel kundenVorNameLabel;
     private javax.swing.JButton kundenangebotZuweisen;
     // End of variables declaration//GEN-END:variables
-
-    private void setKontaktListe(ArrayList<Kontakt> kontakte) {
-        DefaultListModel list = new DefaultListModel();
-        for (Kontakt k : kontakte) {
-            list.addElement(k);
-        }
-
-        this.kundenListe.setModel(list);
-    }
 }

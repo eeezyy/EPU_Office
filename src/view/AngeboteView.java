@@ -40,12 +40,6 @@ public class AngeboteView extends javax.swing.JPanel {
     }
 
     private void initialize() {
-        try {
-            this.setAngebotListe(db.getAngebotListe());
-        } catch (DALException ex) {
-            Logger.log(Level.SEVERE, AngeboteView.class, ex);
-        }
-        try {
 
             Binder.bind(angebotListe, angebotNameFeld, "Name");
             Binder.bind(angebotListe, angebotGueltigAbFeld, "GueltigAb");
@@ -55,17 +49,8 @@ public class AngeboteView extends javax.swing.JPanel {
             Binder.bind(angebotListe, angebotImplChanceFeld, "ImplChance");
             Binder.bind(angebotListe, angebotBeschreibungFeld, "Beschreibung");
             
-            Binder.bind(Angebot.class, angebotListe);
+            Binder.bind(Angebot.class, "getAngebotListe", angebotListe);
 
-        } catch (NoSuchMethodException ex) {
-            Logger.log(Level.SEVERE, AngeboteView.class, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.log(Level.SEVERE, AngeboteView.class, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.log(Level.SEVERE, AngeboteView.class, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.log(Level.SEVERE, AngeboteView.class, ex);
-        }
     }
 
     /** This method is called from within the constructor to
@@ -132,8 +117,9 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        angebotListe.setName("AngebotListe"); // NOI18N
         jScrollPane1.setViewportView(angebotListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));

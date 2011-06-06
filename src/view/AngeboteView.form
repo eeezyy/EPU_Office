@@ -96,6 +96,7 @@
               <Font name="Tahoma" size="12" style="2"/>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
+            <Property name="name" type="java.lang.String" value="AngebotListe" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
