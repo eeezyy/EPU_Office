@@ -10,10 +10,13 @@
  */
 package view;
 
+import controller.ZeitErfassungController;
 import java.io.File;
 import javax.swing.Action;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
+import model.dal.DALFactory;
+import model.dal.IDAL;
 import utils.csv.SaveFileAction;
 import utils.csv.OpenFileAction;
 import utils.csv.CSVFilter;
@@ -23,6 +26,9 @@ import utils.csv.CSVFilter;
  * @author Goran-Goggy
  */
 public class ZeitErfassungView extends javax.swing.JPanel {
+
+    private ZeitErfassungController controller;
+    private IDAL db = DALFactory.getDAL();
     private FileSystemView fsv = FileSystemView.getFileSystemView();
     private JFileChooser fc = new JFileChooser(fsv.getRoots()[0]);
 // Create the actions
@@ -31,7 +37,8 @@ public class ZeitErfassungView extends javax.swing.JPanel {
     private File f;
 
     /** Creates new form ProjektView */
-    public ZeitErfassungView() {
+    public ZeitErfassungView(ZeitErfassungController controller) {
+        this.controller = controller;
         initComponents();
         fc.addChoosableFileFilter(new CSVFilter());
     }
@@ -214,7 +221,6 @@ public class ZeitErfassungView extends javax.swing.JPanel {
     private void projektAendern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAendern1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_projektAendern1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;

@@ -29,13 +29,16 @@ import view.dialog.JahresUeberblickForm;
  * @author Goran-Goggy
  */
 public class StatistikView extends javax.swing.JPanel {
+
     private StatistikController controller;
     private IDAL db = DALFactory.getDAL();
+
     /** Creates new form StatistikView */
     public StatistikView(StatistikController controller) {
         initComponents();
         this.controller = controller;
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -154,8 +157,8 @@ public class StatistikView extends javax.swing.JPanel {
 
     private void statistikPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikPDFActionPerformed
         //http://www.easy-coding.de/externe-datei-pdf-oeffnen-mit-java-t2662.html
-        
-        
+
+
         ArrayList<String> eingang = new ArrayList<String>();
         for (int i = 0; i < statistikEingang.getModel().getSize(); i++) {
             eingang.add(statistikEingang.getModel().getElementAt(i).toString());
@@ -165,12 +168,12 @@ public class StatistikView extends javax.swing.JPanel {
         for (int i = 0; i < statistikAusgang.getModel().getSize(); i++) {
             ausgang.add(statistikAusgang.getModel().getElementAt(i).toString());
         }
-        
+
         String monat = statistikMonat.getSelectedItem().toString();
         String erloes = statistikErloes.getText();
         StatistikPDF statistik = new StatistikPDF(monat, ausgang, eingang, erloes);
         statistik.createPDF("StatistikPDF.pdf");
-        
+
         Desktop d = Desktop.getDesktop();
         try {
             d.open(new File("docs\\StatistikPDF.pdf"));

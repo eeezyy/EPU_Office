@@ -154,6 +154,7 @@
                 <StringItem index="51" value="Item 4"/>
               </StringArray>
             </Property>
+            <Property name="name" type="java.lang.String" value="dialogConfigQuelleDropDown" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -188,6 +189,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogConfigNameFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="dialogConfigNameFeld" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="90" width="150" height="-1"/>
@@ -195,6 +199,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JPasswordField" name="dialogConfigPasswortFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="dialogConfigPasswortFeld" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="130" width="150" height="-1"/>
@@ -215,6 +222,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogConfigPortFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="dialogConfigPortFeld" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="210" width="150" height="-1"/>
@@ -234,7 +244,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="dialogConfigIPFeld1">
+        <Component class="javax.swing.JTextField" name="dialogConfigIPFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="dialogConfigIPFeld" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="170" width="150" height="-1"/>

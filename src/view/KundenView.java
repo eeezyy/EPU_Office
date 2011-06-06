@@ -36,7 +36,6 @@ public class KundenView extends javax.swing.JPanel {
         initComponents();
         initialize();
         this.controller = controller;
-
     }
 
     private void initialize() {

@@ -2,27 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import model.dal.DALFactory;
 import model.dal.IDAL;
-import view.KontakteView;
+import view.BankKontoView;
 
 /**
  *
- * @author if09b505
+ * @author Goran-Goggy
  */
-public class KontaktController extends AbstractController {
-    
-    private KontakteView view;
+public class BankKontoController {
+        
+    private BankKontoView view;
     private IDAL db;
     
-    public KontaktController() {
+    public BankKontoController() {
         this.db = DALFactory.getDAL();
-        this.view = new KontakteView(this);
+        this.view = new BankKontoView(this);
         //this.initialize();
-        MainController.mainGUI.addTabPanel(view, "Kontakte");
+        MainController.mainGUI.addTabPanel(view, "Bankkonto");
     }
-
 }

@@ -17,12 +17,19 @@ import config.Config;
  * @author Goran-Goggy
  */
 public class ConfigForm extends javax.swing.JDialog {
-private Config c = ;
+
+    private Config c = epu_office.Main.config;
+
     /** Creates new form ConfigForm */
     public ConfigForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        initialize();
+    }
+
+    private void initialize() {
+        //this.dialogConfigQuelleDropDown.
     }
 
     /** This method is called from within the constructor to
@@ -48,7 +55,7 @@ private Config c = ;
         dialogConfigIPLabel = new javax.swing.JLabel();
         dialogConfigPortFeld = new javax.swing.JTextField();
         dialogConfigPortLabel = new javax.swing.JLabel();
-        dialogConfigIPFeld1 = new javax.swing.JTextField();
+        dialogConfigIPFeld = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,6 +90,7 @@ private Config c = ;
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 290, 10));
 
         dialogConfigQuelleDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4" }));
+        dialogConfigQuelleDropDown.setName("dialogConfigQuelleDropDown"); // NOI18N
         jPanel1.add(dialogConfigQuelleDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 150, -1));
 
         dialogConfigQuelleLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -92,18 +100,26 @@ private Config c = ;
         dialogConfigNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogConfigNameLabel.setText("Username");
         jPanel1.add(dialogConfigNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        dialogConfigNameFeld.setName("dialogConfigNameFeld"); // NOI18N
         jPanel1.add(dialogConfigNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, -1));
+
+        dialogConfigPasswortFeld.setName("dialogConfigPasswortFeld"); // NOI18N
         jPanel1.add(dialogConfigPasswortFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 150, -1));
 
         dialogConfigIPLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogConfigIPLabel.setText("IP-Adresse");
         jPanel1.add(dialogConfigIPLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+
+        dialogConfigPortFeld.setName("dialogConfigPortFeld"); // NOI18N
         jPanel1.add(dialogConfigPortFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 150, -1));
 
         dialogConfigPortLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         dialogConfigPortLabel.setText("Port");
         jPanel1.add(dialogConfigPortLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
-        jPanel1.add(dialogConfigIPFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 150, -1));
+
+        dialogConfigIPFeld.setName("dialogConfigIPFeld"); // NOI18N
+        jPanel1.add(dialogConfigIPFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 150, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 300));
 
@@ -111,7 +127,6 @@ private Config c = ;
     }// </editor-fold>//GEN-END:initComponents
 
     private void dialogUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogUebernehmenActionPerformed
-
 }//GEN-LAST:event_dialogUebernehmenActionPerformed
 
     private void dialogAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAbbrechenActionPerformed
@@ -140,7 +155,7 @@ private Config c = ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel configMenueLabel;
     private javax.swing.JButton dialogAbbrechen;
-    private javax.swing.JTextField dialogConfigIPFeld1;
+    private javax.swing.JTextField dialogConfigIPFeld;
     private javax.swing.JLabel dialogConfigIPLabel;
     private javax.swing.JTextField dialogConfigNameFeld;
     private javax.swing.JLabel dialogConfigNameLabel;

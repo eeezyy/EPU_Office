@@ -128,7 +128,7 @@
     <Component class="javax.swing.JTextField" name="projektImplVon">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="320" y="90" width="140" height="-1"/>
+          <AbsoluteConstraints x="320" y="90" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -161,7 +161,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="320" y="40" width="140" height="-1"/>
+          <AbsoluteConstraints x="320" y="40" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

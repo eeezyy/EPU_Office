@@ -25,8 +25,10 @@ public class MainController extends AbstractController {
         new KontaktController();
         new KundenController();
         new AngebotController();
-        new StatistikController();
         new ProjektController();
+        new StatistikController();
+        new ZeitErfassungController();
+        new BankKontoController();
         mainGUI.setVisible(true);
     }
     
