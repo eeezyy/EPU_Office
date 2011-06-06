@@ -11,22 +11,19 @@
 package view;
 
 import controller.Binder;
+import controller.BinderProperty;
 import controller.KundenController;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import javax.swing.DefaultListModel;
 import model.Kontakt;
-import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
-import utils.log.Logger;
 import view.dialog.AngebotToKundeForm;
 
 /**
  *
  * @author Goran-Goggy
  */
-public class KundenView extends javax.swing.JPanel {
+public class KundenView extends AbstractViewPanel {
 
     private KundenController controller;
     private IDAL db = DALFactory.getDAL();
@@ -39,7 +36,19 @@ public class KundenView extends javax.swing.JPanel {
     }
 
     private void initialize() {
+        kundenIdFeld.setVisible(false);
+        
         Binder.bind(Kontakt.class, kundenListe);
+        Binder.bind(kundenListe, kundenHausnrFeld, null);
+        Binder.bind(kundenListe, kundenEmailFeld, null);
+        Binder.bind(kundenListe, kundenFirmaFeld, null);
+        Binder.bind(kundenListe, kundenNachnameFeld, null);
+        Binder.bind(kundenListe, kundenOrtFeld, null);
+        Binder.bind(kundenListe, kundenPlzFeld, null);
+        Binder.bind(kundenListe, kundenStrasseFeld, null);
+        Binder.bind(kundenListe, kundenTelefonFeld, null);
+        Binder.bind(kundenListe, kundenVornameFeld, null);
+        Binder.bind(kundenListe, kundenIdFeld, null);
     }
 
     /** This method is called from within the constructor to
@@ -59,12 +68,12 @@ public class KundenView extends javax.swing.JPanel {
         kundenTelLabel = new javax.swing.JLabel();
         kundenEmailLabel = new javax.swing.JLabel();
         kundenEmailFeld = new javax.swing.JTextField();
-        kundenTelFeld = new javax.swing.JTextField();
+        kundenTelefonFeld = new javax.swing.JTextField();
         kundenLoeschen = new javax.swing.JButton();
-        kundenVorNameFeld = new javax.swing.JTextField();
+        kundenVornameFeld = new javax.swing.JTextField();
         kundenangebotZuweisen = new javax.swing.JButton();
         kundenNachNameLabel = new javax.swing.JLabel();
-        kundenNachNameFeld = new javax.swing.JTextField();
+        kundenNachnameFeld = new javax.swing.JTextField();
         kundenStrasseLabel = new javax.swing.JLabel();
         kundenStrasseFeld = new javax.swing.JTextField();
         kundenTuerNrLabel = new javax.swing.JLabel();
@@ -75,8 +84,9 @@ public class KundenView extends javax.swing.JPanel {
         kundenFirmaFeld = new javax.swing.JTextField();
         kundenAngebotListe = new javax.swing.JButton();
         kundenPlzFeld = new javax.swing.JTextField();
-        kundenBlzNrFeld = new javax.swing.JTextField();
+        kundenHausnrFeld = new javax.swing.JTextField();
         kundenAendern = new javax.swing.JButton();
+        kundenIdFeld = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(572, 380));
         setMinimumSize(new java.awt.Dimension(572, 380));
@@ -111,12 +121,18 @@ public class KundenView extends javax.swing.JPanel {
         kundenEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenEmailLabel.setText("Email");
         add(kundenEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
+
+        kundenEmailFeld.setName("Email"); // NOI18N
         add(kundenEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
-        add(kundenTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
+
+        kundenTelefonFeld.setName("Telefon"); // NOI18N
+        add(kundenTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kundenLoeschen.setText("Kunden löschen");
         add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
-        add(kundenVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
+
+        kundenVornameFeld.setName("Vorname"); // NOI18N
+        add(kundenVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         kundenangebotZuweisen.setText("Angebot zuweisen");
         kundenangebotZuweisen.addActionListener(new java.awt.event.ActionListener() {
@@ -129,11 +145,15 @@ public class KundenView extends javax.swing.JPanel {
         kundenNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenNachNameLabel.setText("Nachname");
         add(kundenNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
-        add(kundenNachNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
+
+        kundenNachnameFeld.setName("Nachname"); // NOI18N
+        add(kundenNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
         kundenStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenStrasseLabel.setText("Straße");
         add(kundenStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+
+        kundenStrasseFeld.setName("Strasse"); // NOI18N
         add(kundenStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
 
         kundenTuerNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -147,11 +167,15 @@ public class KundenView extends javax.swing.JPanel {
         kundenOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenOrtLabel.setText("Ort");
         add(kundenOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
+
+        kundenOrtFeld.setName("Ort"); // NOI18N
         add(kundenOrtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
         kundenFirmaLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenFirmaLabel.setText("Firma");
         add(kundenFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+
+        kundenFirmaFeld.setName("Firmenname"); // NOI18N
         add(kundenFirmaFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
 
         kundenAngebotListe.setText("Zugewiesene Angebote anzeigen");
@@ -161,11 +185,30 @@ public class KundenView extends javax.swing.JPanel {
             }
         });
         add(kundenAngebotListe, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 230, -1));
+
+        kundenPlzFeld.setName("Plz"); // NOI18N
         add(kundenPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
-        add(kundenBlzNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
+
+        kundenHausnrFeld.setName("Hausnr"); // NOI18N
+        kundenHausnrFeld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kundenHausnrFeldActionPerformed(evt);
+            }
+        });
+        add(kundenHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
         kundenAendern.setText("Kunden ändern");
+        kundenAendern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kundenAendernActionPerformed(evt);
+            }
+        });
         add(kundenAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+
+        kundenIdFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kundenIdFeld.setEnabled(false);
+        kundenIdFeld.setName("Id"); // NOI18N
+        add(kundenIdFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 30, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void kundenAngebotListeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenAngebotListeActionPerformed
@@ -175,35 +218,72 @@ public class KundenView extends javax.swing.JPanel {
 
     private void kundenangebotZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenangebotZuweisenActionPerformed
         // TODO add your handling code here:
-        AngebotToKundeForm aTK = new AngebotToKundeForm(null, true);
-        aTK.setVisible(true);
+        if (kundenListe.getSelectedValue() != null) {
+            AngebotToKundeForm aTK = new AngebotToKundeForm(null, true, (Kontakt) kundenListe.getSelectedValue());
+            aTK.setVisible(true);
+        }
     }//GEN-LAST:event_kundenangebotZuweisenActionPerformed
+
+    private void kundenHausnrFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenHausnrFeldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kundenHausnrFeldActionPerformed
+
+    private void kundenAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenAendernActionPerformed
+        if (this.kundenListe.isSelectionEmpty()) {
+            return;
+        }
+
+        ArrayList<String> errorList;
+        errorList = Binder.save(Kontakt.class, createBinderPropertiesFromFields());
+        showErrors(errorList);
+    }//GEN-LAST:event_kundenAendernActionPerformed
+
+    private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
+        ArrayList list = new ArrayList<BinderProperty>();
+
+        list.add(new BinderProperty(kundenStrasseFeld.getName(), kundenStrasseFeld.getText(), String.class));
+        list.add(new BinderProperty(kundenHausnrFeld.getName(), kundenHausnrFeld.getText(), Integer.class));
+        list.add(new BinderProperty(kundenPlzFeld.getName(), kundenPlzFeld.getText(), Integer.class));
+        list.add(new BinderProperty(kundenOrtFeld.getName(), kundenOrtFeld.getText(), String.class));
+        list.add(new BinderProperty("Bankinstitut", ((Kontakt) kundenListe.getSelectedValue()).getBankinstitut(), String.class));
+        list.add(new BinderProperty("Blz", ((Kontakt) kundenListe.getSelectedValue()).getBlz().toString(), Integer.class));
+        list.add(new BinderProperty(kundenEmailFeld.getName(), kundenEmailFeld.getText(), String.class));
+        list.add(new BinderProperty("Firmenname", ((Kontakt) kundenListe.getSelectedValue()).getFirmenname(), String.class));
+        list.add(new BinderProperty("IsKunde", ((Kontakt) kundenListe.getSelectedValue()).getIsKunde().toString(), Boolean.class));
+        list.add(new BinderProperty("Konto", ((Kontakt) kundenListe.getSelectedValue()).getKonto().toString(), Long.class));
+        list.add(new BinderProperty(kundenNachnameFeld.getName(), kundenNachnameFeld.getText(), String.class));
+        list.add(new BinderProperty(kundenVornameFeld.getName(), kundenVornameFeld.getText(), String.class));
+        list.add(new BinderProperty(kundenTelefonFeld.getName(), kundenTelefonFeld.getText(), String.class));
+        list.add(new BinderProperty(kundenIdFeld.getName(), kundenIdFeld.getText(), Integer.class));
+        return list;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kundenAendern;
     private javax.swing.JButton kundenAngebotListe;
-    private javax.swing.JTextField kundenBlzNrFeld;
     private javax.swing.JTextField kundenEmailFeld;
     private javax.swing.JLabel kundenEmailLabel;
     private javax.swing.JTextField kundenFirmaFeld;
     private javax.swing.JLabel kundenFirmaLabel;
+    private javax.swing.JTextField kundenHausnrFeld;
+    private javax.swing.JTextField kundenIdFeld;
     private javax.swing.JLabel kundenInfoLabel;
     private javax.swing.JList kundenListe;
     private javax.swing.JLabel kundenListeLabel;
     private javax.swing.JButton kundenLoeschen;
-    private javax.swing.JTextField kundenNachNameFeld;
     private javax.swing.JLabel kundenNachNameLabel;
+    private javax.swing.JTextField kundenNachnameFeld;
     private javax.swing.JTextField kundenOrtFeld;
     private javax.swing.JLabel kundenOrtLabel;
     private javax.swing.JLabel kundenPLZLabel;
     private javax.swing.JTextField kundenPlzFeld;
     private javax.swing.JTextField kundenStrasseFeld;
     private javax.swing.JLabel kundenStrasseLabel;
-    private javax.swing.JTextField kundenTelFeld;
     private javax.swing.JLabel kundenTelLabel;
+    private javax.swing.JTextField kundenTelefonFeld;
     private javax.swing.JLabel kundenTuerNrLabel;
-    private javax.swing.JTextField kundenVorNameFeld;
     private javax.swing.JLabel kundenVorNameLabel;
+    private javax.swing.JTextField kundenVornameFeld;
     private javax.swing.JButton kundenangebotZuweisen;
     // End of variables declaration//GEN-END:variables
 }

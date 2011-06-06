@@ -120,13 +120,19 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="kundenEmailFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Email" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="580" y="80" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="kundenTelFeld">
+    <Component class="javax.swing.JTextField" name="kundenTelefonFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Telefon" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="310" y="80" width="150" height="-1"/>
@@ -143,7 +149,10 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="kundenVorNameFeld">
+    <Component class="javax.swing.JTextField" name="kundenVornameFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Vorname" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="580" y="40" width="150" height="-1"/>
@@ -176,7 +185,10 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="kundenNachNameFeld">
+    <Component class="javax.swing.JTextField" name="kundenNachnameFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Nachname" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="850" y="40" width="150" height="-1"/>
@@ -197,6 +209,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="kundenStrasseFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Strasse" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="310" y="120" width="150" height="-1"/>
@@ -243,6 +258,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="kundenOrtFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Ort" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="310" y="160" width="150" height="-1"/>
@@ -263,6 +281,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="kundenFirmaFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Firmenname" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="310" y="40" width="150" height="-1"/>
@@ -283,13 +304,22 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="kundenPlzFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Plz" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="850" y="120" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="kundenBlzNrFeld">
+    <Component class="javax.swing.JTextField" name="kundenHausnrFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Hausnr" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kundenHausnrFeldActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="580" y="120" width="150" height="-1"/>
@@ -300,9 +330,28 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Kunden &#xe4;ndern"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kundenAendernActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="240" y="240" width="230" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JTextField" name="kundenIdFeld">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="Id" noResource="true"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="380" y="10" width="30" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

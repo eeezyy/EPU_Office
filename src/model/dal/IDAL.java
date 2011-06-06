@@ -30,5 +30,8 @@ public interface IDAL {
 
     public ArrayList<Angebot> getAngebotListe() throws DALException;
     
+    public ArrayList<Projekt> getProjektListe() throws DALException;
+    
+    public Angebot getAngebot(int id) throws DALException;
     
 }

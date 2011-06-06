@@ -10,18 +10,28 @@
  */
 package view.dialog;
 
+import model.Kontakt;
+import view.AbstractViewDialog;
+
 /**
  *
  * @author Goran-Goggy
  */
-public class AngebotToKundeForm extends javax.swing.JDialog {
+public class AngebotToKundeForm extends AbstractViewDialog {
 
+    private final Kontakt kunde;
     /** Creates new form AngebotToKundeForm */
-    public AngebotToKundeForm(java.awt.Frame parent, boolean modal) {
+    public AngebotToKundeForm(java.awt.Frame parent, boolean modal, Kontakt kunde) {
         super(parent, modal);
+        this.kunde = kunde;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        initialize();
+    }
+    
+    private void initialize() {
+        
     }
 
     /** This method is called from within the constructor to
@@ -107,24 +117,6 @@ public class AngebotToKundeForm extends javax.swing.JDialog {
         dispose();
 }//GEN-LAST:event_dialogAngebotToKundeAbbrechenActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                AngebotToKundeForm dialog = new AngebotToKundeForm(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel configMenueLabel;
     private javax.swing.JButton dialogAngebotToKundeAbbrechen;

@@ -13,8 +13,6 @@ package view;
 import controller.Binder;
 import controller.BinderProperty;
 import controller.KontaktController;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import utils.log.Logger;
 import model.dal.DALException;
@@ -24,8 +22,6 @@ import javax.swing.DefaultListModel;
 import model.Kontakt;
 import model.dal.DALFactory;
 import model.dal.IDAL;
-import utils.documents.Formular;
-import utils.documents.StatistikPDF;
 import view.dialog.AngebotToKundeForm;
 
 /**
@@ -361,8 +357,10 @@ public final class KontakteView extends AbstractViewPanel {
 
     private void KontaktangebotZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KontaktangebotZuweisenActionPerformed
         // TODO add your handling code here:
-        AngebotToKundeForm aTK = new AngebotToKundeForm(null, true);
-        aTK.setVisible(true);
+        if (kontaktListe.getSelectedValue() != null) {
+            AngebotToKundeForm aTK = new AngebotToKundeForm(null, true, (Kontakt) kontaktListe.getSelectedValue());
+            aTK.setVisible(true);
+        }
     }//GEN-LAST:event_KontaktangebotZuweisenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KontaktangebotZuweisen;

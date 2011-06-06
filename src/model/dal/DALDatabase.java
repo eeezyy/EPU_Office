@@ -132,7 +132,7 @@ public class DALDatabase implements IDAL {
                 }
                 cmd.setString(12, k.getOrt());
                 cmd.setBoolean(13, k.getIsKunde());
-                
+
             }
             // execute insert/update
             int result = cmd.executeUpdate();
@@ -291,7 +291,7 @@ public class DALDatabase implements IDAL {
                 cmd.setLong(7, a.getPreis());
                 cmd.setString(8, a.getName());
                 cmd.setInt(9, a.getId());
-                Logger.log(Level.INFO, DALDatabase.class,new DALModelModified("saveAngebot"));
+                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveAngebot"));
             } else {
                 cmd = db.prepareStatement(
                         "INSERT INTO Angebot (Name, Dauer, GueltigAb, GueltigBis, Chance, Aenderungsdatum, Beschreibung, Preis)"
@@ -343,7 +343,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class,new DALModelModified("deleteAngebot"));
+                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteAngebot"));
             }
             cmd.close();
             db.close();
@@ -384,9 +384,79 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class,ex);
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
         }
         return angebote;
+    }
+
+    @Override
+    public Angebot getAngebot(int id) throws DALException {
+        Angebot angebot = new Angebot();
+// Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, Dauer, GueltigAb, GueltigBis, Chance, Aenderungsdatum, Beschreibung, Preis, Name "
+                    + "FROM Angebot WHERE id = ?");
+            cmd.setInt(1, id);
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Angebot a = new Angebot();
+                a.setId(rd.getInt(1));
+                a.setDauer(rd.getInt(2));
+                a.setGueltigAb((Date) rd.getDate(3));
+                a.setGueltigBis((Date) rd.getDate(4));
+                a.setChance(rd.getInt(5));
+                a.setAenderungsDatum((Date) rd.getDate(6));
+                a.setBeschreibung(rd.getString(7));
+                a.setPreis(rd.getLong(8));
+                a.setName(rd.getString(9));
+                angebot = a;
+                break;
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+        }
+        return angebot;
+    }
+    
+    @Override
+    public ArrayList<Projekt> getProjektListe() throws DALException {
+        ArrayList<Projekt> projekte = new ArrayList<Projekt>();
+// Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, Angebot_ID, Name, Abgeschlossen, Von, Bis "
+                    + "FROM Projekt");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Projekt a = new Projekt();
+                a.setId(rd.getInt(1));
+                // Angebot Objekt zuweisen
+                a.setAngebot(this.getAngebot(rd.getInt(2)));
+                a.setName(rd.getString(3));
+                a.setAbgeschlossen(rd.getBoolean(4));
+                a.setVon((Date)rd.getDate(5));
+                a.setBis((Date) rd.getDate(6));
+                projekte.add(a);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+        }
+        return projekte;
     }
 
     @Override
@@ -424,11 +494,10 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class,ex);
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
         }
         return kontakte;
     }
-
 //    private static Date StringToSQLDate(String s) {
 //        Date sqlDate = null;
 //        try {

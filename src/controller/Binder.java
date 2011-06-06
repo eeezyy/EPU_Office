@@ -10,9 +10,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
+import javax.swing.DefaultComboBoxModel;
 import utils.log.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
@@ -294,6 +296,9 @@ public class Binder {
             // insert component into arraylist to class
             JList jl = (JList) jc;
             ((ArrayList<JComponent>) observer.get(c)).add(jl);
+        } else if (jc instanceof JComboBox) {
+            JComboBox jcb = (JComboBox) jc;
+            ((ArrayList<JComponent>) observer.get(c)).add(jcb);
         }
         notify(c);
     }
@@ -304,8 +309,45 @@ public class Binder {
             JComponent jc = (JComponent) it.next();
             if (jc instanceof JList) {
                 pushList(c, (JList) jc);
+            } else if (jc instanceof JComboBox) {
+                pushList(c, (JComboBox) jc);
             }
         }
+    }
+    
+    private static void pushList(Class c, JComboBox jcb) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        ArrayList<AbstractObject> resultList = null;
+        String function = null;
+        if (jcb.getName() == null && jcb.getName().isEmpty()) {
+            System.out.println("pushList: funktion nicht definiert");
+            return;
+        }
+        if (jcb.getName() == null || jcb.getName().isEmpty()) {
+            System.out.println("pushList: jlist hat keinen funktionsnamen. property name.");
+            return;
+        }
+        try {
+            Method m = db.getClass().getMethod("get" + jcb.getName(), new Class[]{});
+            try {
+                resultList = (ArrayList<AbstractObject>) m.invoke(db);
+            } catch (IllegalAccessException ex) {
+                Logger.log(Level.SEVERE, Binder.class, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.log(Level.SEVERE, Binder.class, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.log(Level.SEVERE, Binder.class, ex);
+            }
+        } catch (NoSuchMethodException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+        } catch (SecurityException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+        }
+
+        for (AbstractObject k : resultList) {
+            model.addElement(k);
+        }
+        jcb.setModel(model);
     }
 
     private static void pushList(Class c, JList jl) {

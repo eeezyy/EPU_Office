@@ -12,10 +12,10 @@ import java.util.Date;
  */
 public class Projekt extends AbstractObject {
     private String name;
-    private Angebot zugewiesenesAngebot;
+    private Angebot angebot;
     private boolean abgeschlossen;
-    private Date dauerVon;
-    private Date dauerBis;
+    private Date von;
+    private Date bis;
     private Long arbeitsStunden;
 
     public Long getArbeitsStunden() {
@@ -34,20 +34,20 @@ public class Projekt extends AbstractObject {
         this.abgeschlossen = abgeschlossen;
     }
 
-    public Date getDauerBis() {
-        return dauerBis;
+    public Date getBis() {
+        return bis;
     }
 
-    public void setDauerBis(Date dauerBis) {
-        this.dauerBis = dauerBis;
+    public void setBis(Date bis) {
+        this.bis = bis;
     }
 
-    public Date getDauerVon() {
-        return dauerVon;
+    public Date getVon() {
+        return von;
     }
 
-    public void setDauerVon(Date dauerVon) {
-        this.dauerVon = dauerVon;
+    public void setVon(Date von) {
+        this.von = von;
     }
 
     public String getName() {
@@ -58,12 +58,12 @@ public class Projekt extends AbstractObject {
         this.name = name;
     }
 
-    public Angebot getZugewiesenesAngebot() {
-        return zugewiesenesAngebot;
+    public Angebot getAngebot() {
+        return angebot;
     }
 
-    public void setZugewiesenesAngebot(Angebot zugewiesenesAngebot) {
-        this.zugewiesenesAngebot = zugewiesenesAngebot;
+    public void setAngebot(Angebot angebot) {
+        this.angebot = angebot;
     }
     
     
