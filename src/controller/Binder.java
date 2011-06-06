@@ -193,7 +193,7 @@ public class Binder {
         }
     }
 
-    public static void bind(Class c, String functionName, JComponent jc) {
+    public static void bind(Class c, JComponent jc) {
         if (!observer.containsKey(c)) {
             observer.put(c, new ArrayList<JComponent>());
         }
@@ -219,8 +219,12 @@ public class Binder {
         DefaultListModel list = new DefaultListModel();
         ArrayList<AbstractObject> resultList = null;
         String function = null;
-        if (jl.getName() == null && jl.getName() == "") {
+        if (jl.getName() == null && jl.getName().isEmpty()) {
             System.out.println("pushList: funktion nicht definiert");
+            return;
+        }
+        if (jl.getName() == null || jl.getName().isEmpty()) {
+            System.out.println("pushList: jlist hat keinen funktionsnamen. property name.");
             return;
         }
         try {

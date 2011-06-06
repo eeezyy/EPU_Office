@@ -40,7 +40,7 @@ public class KundenView extends javax.swing.JPanel {
     }
 
     private void initialize() {
-        Binder.bind(Kontakt.class, "getKundenListe", kundenListe);
+        Binder.bind(Kontakt.class, kundenListe);
     }
 
     /** This method is called from within the constructor to

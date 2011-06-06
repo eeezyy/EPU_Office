@@ -63,7 +63,7 @@ public final class KontakteView extends AbstractViewPanel {
         Binder.bind(kontaktListe, kontaktIsKundeFeld, "IsKunde");
         Binder.bind(kontaktListe, kontaktIdFeld, "Id");
 
-        Binder.bind(Kontakt.class, "getKontaktListe", kontaktListe);
+        Binder.bind(Kontakt.class, kontaktListe);
     }
 
     /** This method is called from within the constructor to
