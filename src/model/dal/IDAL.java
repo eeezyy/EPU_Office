@@ -34,4 +34,6 @@ public interface IDAL {
     
     public Angebot getAngebot(int id) throws DALException;
     
+    public Kontakt getKontakt(int id);
+    
 }

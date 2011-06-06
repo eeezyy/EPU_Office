@@ -319,7 +319,7 @@ public class Binder {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         ArrayList<AbstractObject> resultList = null;
         String function = null;
-        if (jcb.getName() == null && jcb.getName().isEmpty()) {
+        if (jcb.getName() == null || jcb.getName().isEmpty()) {
             System.out.println("pushList: funktion nicht definiert");
             return;
         }
@@ -354,7 +354,7 @@ public class Binder {
         DefaultListModel list = new DefaultListModel();
         ArrayList<AbstractObject> resultList = null;
         String function = null;
-        if (jl.getName() == null && jl.getName().isEmpty()) {
+        if (jl.getName() == null || jl.getName().isEmpty()) {
             System.out.println("pushList: funktion nicht definiert");
             return;
         }

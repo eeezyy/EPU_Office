@@ -198,6 +198,53 @@ public class DALDatabase implements IDAL {
 
         return kontakte;
     }
+    
+    @Override
+    public Kontakt getKontakt(int id) {
+        Kontakt kontakt = null;
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, Vorname, Nachname, Email, Telefon, BLZ, Bankinstitut, Konto, "
+                    + "Firmenname, Strasse, Hausnr, PLZ, Ort, isKunde FROM kontakt WHERE id = ? ");
+            cmd.setInt(1, id);
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Integer intResult = null;
+
+                Kontakt k = new Kontakt();
+                k.setId(rd.getInt(1));
+                k.setVorname(rd.getString(2));
+                k.setNachname(rd.getString(3));
+                k.setEmail(rd.getString(4));
+                k.setTelefon(rd.getString(5));
+                intResult = rd.getInt(6);
+                k.setBlz((!rd.wasNull()) ? intResult : null);
+                k.setBankinstitut(rd.getString(7));
+                rd.wasNull();
+                k.setKonto(rd.getLong(8));
+                k.setFirmenname(rd.getString(9));
+                k.setStrasse(rd.getString(10));
+                k.setHausnr(rd.getInt(11));
+                k.setPlz(rd.getInt(12));
+                k.setOrt(rd.getString(13));
+                k.setIsKunde(rd.getBoolean(14));
+                kontakt = k;
+                break;
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+        }
+
+        return kontakt;
+    }
 
     @Override
     public void deleteKontakt(Kontakt k) throws DALException {

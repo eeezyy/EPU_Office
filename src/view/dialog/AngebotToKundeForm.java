@@ -10,6 +10,8 @@
  */
 package view.dialog;
 
+import controller.Binder;
+import model.Angebot;
 import model.Kontakt;
 import view.AbstractViewDialog;
 
@@ -20,6 +22,7 @@ import view.AbstractViewDialog;
 public class AngebotToKundeForm extends AbstractViewDialog {
 
     private final Kontakt kunde;
+
     /** Creates new form AngebotToKundeForm */
     public AngebotToKundeForm(java.awt.Frame parent, boolean modal, Kontakt kunde) {
         super(parent, modal);
@@ -29,9 +32,11 @@ public class AngebotToKundeForm extends AbstractViewDialog {
         setResizable(false);
         initialize();
     }
-    
+
     private void initialize() {
-        
+        dialogAngebotToKundeNameFeld.setText(kunde.toString());
+
+        Binder.bind(Angebot.class, dialogAngebotToKundeAngebotComboBox);
     }
 
     /** This method is called from within the constructor to
@@ -45,8 +50,6 @@ public class AngebotToKundeForm extends AbstractViewDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        dialogAngebotToKundeProjektComboBox = new javax.swing.JComboBox();
-        dialogAngebotToKundeProjekttLabel = new javax.swing.JLabel();
         dialogAngebotToKundeAngebotLabel = new javax.swing.JLabel();
         dialogAngebotToKundeNameLabel = new javax.swing.JLabel();
         configMenueLabel = new javax.swing.JLabel();
@@ -59,14 +62,7 @@ public class AngebotToKundeForm extends AbstractViewDialog {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 280, 10));
-
-        dialogAngebotToKundeProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4" }));
-        jPanel1.add(dialogAngebotToKundeProjektComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 150, -1));
-
-        dialogAngebotToKundeProjekttLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        dialogAngebotToKundeProjekttLabel.setText("Projekt");
-        jPanel1.add(dialogAngebotToKundeProjekttLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 280, 10));
 
         dialogAngebotToKundeAngebotLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAngebotToKundeAngebotLabel.setText("Angebot");
@@ -83,9 +79,11 @@ public class AngebotToKundeForm extends AbstractViewDialog {
         jPanel1.add(configMenueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         dialogAngebotToKundeNameFeld.setEditable(false);
+        dialogAngebotToKundeNameFeld.setName("Kunde"); // NOI18N
         jPanel1.add(dialogAngebotToKundeNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 150, -1));
 
         dialogAngebotToKundeAngebotComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4", "Item 3", "Item 4" }));
+        dialogAngebotToKundeAngebotComboBox.setName("AngebotListe"); // NOI18N
         jPanel1.add(dialogAngebotToKundeAngebotComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, -1));
 
         dialogAngebotToKundeAbbrechen.setText("Abbrechen");
@@ -94,7 +92,7 @@ public class AngebotToKundeForm extends AbstractViewDialog {
                 dialogAngebotToKundeAbbrechenActionPerformed(evt);
             }
         });
-        jPanel1.add(dialogAngebotToKundeAbbrechen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 110, -1));
+        jPanel1.add(dialogAngebotToKundeAbbrechen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 110, -1));
 
         dialogAngebotToKundeUebernehmen.setText("Übernehmen");
         dialogAngebotToKundeUebernehmen.addActionListener(new java.awt.event.ActionListener() {
@@ -102,21 +100,21 @@ public class AngebotToKundeForm extends AbstractViewDialog {
                 dialogAngebotToKundeUebernehmenActionPerformed(evt);
             }
         });
-        jPanel1.add(dialogAngebotToKundeUebernehmen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 110, -1));
+        jPanel1.add(dialogAngebotToKundeUebernehmen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 220));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 180));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void dialogAngebotToKundeUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotToKundeUebernehmenActionPerformed
+        
 }//GEN-LAST:event_dialogAngebotToKundeUebernehmenActionPerformed
 
     private void dialogAngebotToKundeAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotToKundeAbbrechenActionPerformed
         // TODO add your handling code here:
         dispose();
 }//GEN-LAST:event_dialogAngebotToKundeAbbrechenActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel configMenueLabel;
     private javax.swing.JButton dialogAngebotToKundeAbbrechen;
@@ -124,8 +122,6 @@ public class AngebotToKundeForm extends AbstractViewDialog {
     private javax.swing.JLabel dialogAngebotToKundeAngebotLabel;
     private javax.swing.JTextField dialogAngebotToKundeNameFeld;
     private javax.swing.JLabel dialogAngebotToKundeNameLabel;
-    private javax.swing.JComboBox dialogAngebotToKundeProjektComboBox;
-    private javax.swing.JLabel dialogAngebotToKundeProjekttLabel;
     private javax.swing.JButton dialogAngebotToKundeUebernehmen;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
