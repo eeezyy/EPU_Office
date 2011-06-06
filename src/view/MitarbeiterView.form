@@ -51,7 +51,7 @@
               <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Kontaktinformation"/>
+            <Property name="text" type="java.lang.String" value="Mitarbeiterinformation"/>
             <Property name="alignmentX" type="float" value="0.5"/>
           </Properties>
           <Constraints>

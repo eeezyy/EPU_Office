@@ -68,17 +68,17 @@ public class MitarbeiterView extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mitarbeiterListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mitarbeiterListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterListeLabel.setText("Mitarbeiterliste");
         jPanel1.add(mitarbeiterListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         mitarbeiterInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         mitarbeiterInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        mitarbeiterInfoLabel.setText("Kontaktinformation");
+        mitarbeiterInfoLabel.setText("Mitarbeiterinformation");
         mitarbeiterInfoLabel.setAlignmentX(0.5F);
         jPanel1.add(mitarbeiterInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        mitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        mitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         mitarbeiterListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         mitarbeiterListe.setName("KontaktListe"); // NOI18N
         mitarbeiterListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -94,11 +94,11 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterKontoNrLabel.setText("Konto-Nr.");
         jPanel1.add(mitarbeiterKontoNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
-        mitarbeiterVornameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterVornameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterVornameLabel.setText("Vorname");
         jPanel1.add(mitarbeiterVornameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        mitarbeiterGeburtsDatumLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterGeburtsDatumLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterGeburtsDatumLabel.setText("Geburtsdatum");
         jPanel1.add(mitarbeiterGeburtsDatumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
@@ -138,7 +138,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         });
         jPanel1.add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
-        mitarbeiterNachnameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterNachnameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterNachnameLabel.setText("Nachname");
         jPanel1.add(mitarbeiterNachnameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
@@ -146,7 +146,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterNachnameFeld.setName("Nachname"); // NOI18N
         jPanel1.add(mitarbeiterNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
-        mitarbeiterStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterStrasseLabel.setText("Straße");
         jPanel1.add(mitarbeiterStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
@@ -158,11 +158,11 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterHausNrLabel.setText("Haus-Nr.");
         jPanel1.add(mitarbeiterHausNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
-        mitarbeiterPlzLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterPlzLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterPlzLabel.setText("PLZ");
         jPanel1.add(mitarbeiterPlzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
 
-        mitarbeiterOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterOrtLabel.setText("Ort");
         jPanel1.add(mitarbeiterOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 

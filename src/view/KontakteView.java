@@ -341,7 +341,9 @@ public final class KontakteView extends AbstractViewPanel {
     private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed
         Kontakt k = (Kontakt) this.kontaktListe.getSelectedValue();
         try {
+            if(!(kontaktListe.isSelectionEmpty())){
             db.deleteKontakt(k);
+            }
         } catch (DALException ex) {
             Logger.log(Level.SEVERE, KontakteView.class, ex);
         }
