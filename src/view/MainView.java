@@ -24,7 +24,6 @@ public class MainView extends javax.swing.JFrame {
     /** Creates new form MainGUI */
     public MainView() {
         initComponents();
-
         setLocationRelativeTo(null);
         setResizable(false);
         //pack();

@@ -12,15 +12,11 @@ package view;
 
 import controller.AngebotController;
 import controller.Binder;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import javax.swing.DefaultListModel;
 import model.Angebot;
-import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
-import utils.log.Logger;
 import view.dialog.AngebotAddForm;
 
 /**

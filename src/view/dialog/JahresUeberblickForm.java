@@ -25,7 +25,7 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        
+        setResizable(false);
         //Werte aus der Datenbank holen...
         ArrayList<String> xList = new ArrayList<String>();
         ArrayList<Double> yList = new ArrayList<Double>();

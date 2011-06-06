@@ -29,6 +29,7 @@ public class AngebotAddForm extends AbstractViewDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /** This method is called from within the constructor to
@@ -143,7 +144,7 @@ public class AngebotAddForm extends AbstractViewDialog {
     private void dialogAngebotImplPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotImplPreisFeldActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_dialogAngebotImplPreisFeldActionPerformed
-    
+
     private void dialogAngebotHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotHinzufuegenActionPerformed
         // TODO add your handling code here:
         Date d = new Date();
@@ -166,7 +167,7 @@ public class AngebotAddForm extends AbstractViewDialog {
             Logger.log(Level.SEVERE, AngebotAddForm.class, ex);
         }
 }//GEN-LAST:event_dialogAngebotHinzufuegenActionPerformed
-    
+
     private void dialogAngebotAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotAbbrechenActionPerformed
         // TODO add your handling code here:
         dispose();

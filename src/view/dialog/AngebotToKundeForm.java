@@ -21,6 +21,7 @@ public class AngebotToKundeForm extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /** This method is called from within the constructor to
@@ -99,7 +100,6 @@ public class AngebotToKundeForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dialogAngebotToKundeUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotToKundeUebernehmenActionPerformed
-        
 }//GEN-LAST:event_dialogAngebotToKundeUebernehmenActionPerformed
 
     private void dialogAngebotToKundeAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotToKundeAbbrechenActionPerformed

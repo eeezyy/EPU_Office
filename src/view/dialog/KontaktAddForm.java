@@ -26,11 +26,10 @@ public class KontaktAddForm extends AbstractViewDialog {
     /** Creates new form KontaktAddForm */
     public KontaktAddForm(Frame parent, boolean modal) {
         super(parent, modal);
-
         //this.observer = new ModelObserver();
-
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /** This method is called from within the constructor to
