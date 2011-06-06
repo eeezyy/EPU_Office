@@ -10,12 +10,21 @@ import java.util.Date;
  *
  * @author Goran-Goggy
  */
-public class Projekt {
+public class Projekt extends AbstractObject {
     private String name;
     private Angebot zugewiesenesAngebot;
     private boolean abgeschlossen;
     private Date dauerVon;
     private Date dauerBis;
+    private Long arbeitsStunden;
+
+    public Long getArbeitsStunden() {
+        return arbeitsStunden;
+    }
+
+    public void setArbeitsStunden(Long arbeitsStunden) {
+        this.arbeitsStunden = arbeitsStunden;
+    }
 
     public boolean isAbgeschlossen() {
         return abgeschlossen;

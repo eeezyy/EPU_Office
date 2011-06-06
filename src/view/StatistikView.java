@@ -149,30 +149,9 @@ public class StatistikView extends javax.swing.JPanel {
 }//GEN-LAST:event_statistikAusgangHinzufuegenActionPerformed
 
     private void statistikPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikPDFActionPerformed
-        // TODO add your handling code here:
-        //modelPropertyChange(null);
-        //        ArrayList<String> text = new ArrayList<String>();
-//        text.add("1234567810");
-//        text.add("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-//
-//        Formular formular = new Formular(text);
-//        formular.sethTopCenter("TextExample");
-//        formular.createPDF("KontakteView.pdf");
-//
-//        Process p;
-//        try {
-//            p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler KontakteView.pdf");
-//            try {
-//                int waitFor = p.waitFor();
-//            } catch (InterruptedException ex) {
-//                java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } catch (IOException ex) {
-//            java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//       
-//        System.out.println("Done.");
         //http://www.easy-coding.de/externe-datei-pdf-oeffnen-mit-java-t2662.html
+        
+        
         ArrayList<String> eingang = new ArrayList<String>();
         for (int i = 0; i < statistikEingang.getModel().getSize(); i++) {
             eingang.add(statistikEingang.getModel().getElementAt(i).toString());
@@ -188,20 +167,9 @@ public class StatistikView extends javax.swing.JPanel {
         StatistikPDF statistik = new StatistikPDF(monat, ausgang, eingang, erloes);
         statistik.createPDF("StatistikPDF.pdf");
         
-        /*Process p;
-        try {
-            p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler StatistikPDF.pdf");
-            try {
-                int waitFor = p.waitFor();
-            } catch (InterruptedException ex) {
-                java.util.logging.Logger.getLogger(KontakteView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (IOException ex) {
-            Logger.log(Level.SEVERE,  StatistikView.class, ex);
-        }*/
         Desktop d = Desktop.getDesktop();
         try {
-            d.open(new File("StatistikPDF.pdf"));
+            d.open(new File("docs\\StatistikPDF.pdf"));
         } catch (IOException ex) {
             Logger.log(Level.SEVERE, StatistikView.class, ex);
         }

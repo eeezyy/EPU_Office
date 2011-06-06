@@ -42,6 +42,6 @@ public class StatistikPDF extends BaseDoc {
             Logger.log(Level.SEVERE, StatistikPDF.class, ex);
         }
         drawTable(doc, monat, ausgang, eingang, erloes);
-        writeHeader2("Erwirtschafter Erlös dieses Monats: " + erloes + " €", doc);
+        writeHeader2("Erwirtschafteter Erlös: " + erloes + " €", doc);
     }
 }

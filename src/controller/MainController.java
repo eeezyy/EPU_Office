@@ -5,6 +5,7 @@
 package controller;
 
 import view.MainView;
+import view.ProjektView;
 import view.StatistikView;
 
 /**
@@ -25,6 +26,7 @@ public class MainController extends AbstractController {
         new KundenController();
         new AngebotController();
         mainGUI.addTabPanel(new StatistikView(), "Statistik");
+        mainGUI.addTabPanel(new ProjektView(), "Projekte");
         mainGUI.setVisible(true);
     }
     

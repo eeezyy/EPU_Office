@@ -76,10 +76,10 @@ public abstract class BaseDoc {
     PdfStamper stamper;
 
     public void createPDF(String fileName) {
+        String newFileName = "docs\\" +fileName;
         dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Document doc = new Document(PageSize.A4, 36, 36, 54, 36);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
         try {
             pdfWrite = PdfWriter.getInstance(doc, baos);
         } catch (DocumentException ex) {

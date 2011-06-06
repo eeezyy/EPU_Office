@@ -10,15 +10,35 @@
  */
 package view;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import javax.swing.Action;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
+import utils.csv.CSVFilter;
+import utils.csv.OpenFileAction;
+import utils.csv.SaveFileAction;
+import utils.log.Logger;
+
 /**
  *
  * @author Goran-Goggy
  */
 public class ProjektView extends javax.swing.JPanel {
+// Create a file chooser
+
+    private FileSystemView fsv = FileSystemView.getFileSystemView();
+    private JFileChooser fc = new JFileChooser(fsv.getRoots()[0]);
+// Create the actions
+    private Action openAction = new OpenFileAction(this, fc);
+    private Action saveAction = new SaveFileAction(this, fc);
+    private File f;
 
     /** Creates new form ProjektView */
     public ProjektView() {
         initComponents();
+        fc.addChoosableFileFilter(new CSVFilter());
     }
 
     /** This method is called from within the constructor to
@@ -39,9 +59,9 @@ public class ProjektView extends javax.swing.JPanel {
         projektImplementierungBisLabel = new javax.swing.JLabel();
         projektStundenGesamt = new javax.swing.JTextField();
         projektImplVon = new javax.swing.JTextField();
-        projektExport = new javax.swing.JButton();
+        projektExport = new javax.swing.JButton(saveAction);
         projektAuftragFeld = new javax.swing.JTextField();
-        projektImport = new javax.swing.JButton();
+        projektImport = new javax.swing.JButton(openAction);
         projektNameLabel = new javax.swing.JLabel();
         projektNameFeld = new javax.swing.JTextField();
         projektImplementierungVonLabel1 = new javax.swing.JLabel();
@@ -80,11 +100,11 @@ public class ProjektView extends javax.swing.JPanel {
         add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektImplementierungVonLabel.setText("Impl. (von)");
+        projektImplementierungVonLabel.setText("Dauer (von)");
         add(projektImplementierungVonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         projektImplementierungBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektImplementierungBisLabel.setText("Impl. (bis)");
+        projektImplementierungBisLabel.setText("Dauer (bis)");
         add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         projektStundenGesamt.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +112,8 @@ public class ProjektView extends javax.swing.JPanel {
                 projektStundenGesamtActionPerformed(evt);
             }
         });
-        add(projektStundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 60, -1));
-        add(projektImplVon, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 140, -1));
+        add(projektStundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 140, -1));
+        add(projektImplVon, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 140, -1));
 
         projektExport.setText("Datensätze exportieren");
         add(projektExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 230, -1));
@@ -106,6 +126,11 @@ public class ProjektView extends javax.swing.JPanel {
         add(projektAuftragFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         projektImport.setText("Datensätze Importieren");
+        projektImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projektImportActionPerformed(evt);
+            }
+        });
         add(projektImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 230, -1));
 
         projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -117,14 +142,14 @@ public class ProjektView extends javax.swing.JPanel {
                 projektNameFeldActionPerformed(evt);
             }
         });
-        add(projektNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 140, -1));
+        add(projektNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 140, -1));
 
         projektImplementierungVonLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektImplementierungVonLabel1.setText("Abgeschlossen");
         add(projektImplementierungVonLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         projektArbeitsstundenGesamt.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektArbeitsstundenGesamt.setText("Arbeitsstunden (gesamt)");
+        projektArbeitsstundenGesamt.setText("Arbeitsstunden");
         add(projektArbeitsstundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
         add(projektCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
 
@@ -171,6 +196,13 @@ public class ProjektView extends javax.swing.JPanel {
         //af.setVisible(true);
 }//GEN-LAST:event_projektAendernActionPerformed
 
+    private void projektImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektImportActionPerformed
+        // TODO add your handling code here:
+        //fc.showOpenDialog(this);
+        //System.out.println("OPEN");
+        //geparst wird im CSVReader
+        //openAction(fc.getSelectedFile());
+    }//GEN-LAST:event_projektImportActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kundenInfoLabel;
