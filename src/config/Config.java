@@ -37,6 +37,11 @@ public class Config {
                 dbPath += (config.getProperty("db_name"));
 
                 //localhost\:3306/swe_epu_office"
+            } else {
+                dbPath = "jdbc:mysql://";
+                dbPath += ((config.getProperty("db_ip")) + ":");
+                dbPath += (config.getProperty("db_port") + "/");
+                dbPath += (config.getProperty("db_name"));
             }
             traceLevel = TracingLevel.valueOf(config.getProperty("traceLevel"));
             stackTrace = Boolean.parseBoolean(config.getProperty("stackTrace"));

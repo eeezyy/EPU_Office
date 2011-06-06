@@ -21,7 +21,7 @@ import javax.swing.JComboBox;
  * @author Goran-Goggy
  */
 public class ConfigForm extends javax.swing.JDialog {
-    private DefaultComboBoxModel model = new DefaultComboBoxModel();
+    
     private Config c = epu_office.Main.config;
 
     /** Creates new form ConfigForm */
@@ -31,18 +31,21 @@ public class ConfigForm extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         initialize();
-        model.addElement("Datenbank (mySQL)");
-        model.addElement("Mock");
+        
     }
     
     private void initialize() {
         //this.dialogConfigQuelleDropDown.
-        
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.addElement("Datenbank (mySQL)");
+        model.addElement("Mock");
         //model.setSelectedItem(c.getProperties().getProperty("db"));
         String choice = c.getProperties().getProperty("db");
-        /*if(choice.equals("mock")){
-            model.setSelectedItem(model.);
-        }*/
+        if(choice.equals("mock")){
+            model.setSelectedItem(model.getElementAt(1));
+        } else {
+            model.setSelectedItem(model.getElementAt(0));
+        }
         dialogConfigQuelleDropDown.setModel(model);
         dialogConfigNameFeld.setText(c.getProperties().getProperty("db_user"));
         dialogConfigPasswortFeld.setText(c.getProperties().getProperty("db_pwd"));
