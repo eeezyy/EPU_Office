@@ -94,7 +94,7 @@ public class KundenView extends javax.swing.JPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kundenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         kundenListe.setName("KundenListe"); // NOI18N
         jScrollPane1.setViewportView(kundenListe);
@@ -116,7 +116,7 @@ public class KundenView extends javax.swing.JPanel {
         add(kundenTelFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kundenLoeschen.setText("Kunden löschen");
-        add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
         add(kundenVorNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
         kundenangebotZuweisen.setText("Angebot zuweisen");
@@ -166,7 +166,7 @@ public class KundenView extends javax.swing.JPanel {
         add(kundenBlzNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
         kundenAendern.setText("Kunden ändern");
-        add(kundenAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(kundenAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void kundenAngebotListeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenAngebotListeActionPerformed
