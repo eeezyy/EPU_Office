@@ -10,12 +10,14 @@
  */
 package view.dialog;
 
+import config.Config;
+
 /**
  *
  * @author Goran-Goggy
  */
 public class ConfigForm extends javax.swing.JDialog {
-
+private Config c = ;
     /** Creates new form ConfigForm */
     public ConfigForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -53,14 +55,14 @@ public class ConfigForm extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        configMenueLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        configMenueLabel.setFont(new java.awt.Font("Arial", 1, 14));
         configMenueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         configMenueLabel.setText("Konfigurationsmenü");
         configMenueLabel.setAlignmentX(0.5F);
         jPanel1.add(configMenueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         dialogConfigPasswortLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        dialogConfigPasswortLabel.setText("Passwort:");
+        dialogConfigPasswortLabel.setText("Passwort");
         jPanel1.add(dialogConfigPasswortLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
         dialogUebernehmen.setText("Übernehmen");
@@ -84,22 +86,22 @@ public class ConfigForm extends javax.swing.JDialog {
         jPanel1.add(dialogConfigQuelleDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 150, -1));
 
         dialogConfigQuelleLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        dialogConfigQuelleLabel.setText("Datenquelle: ");
+        dialogConfigQuelleLabel.setText("Datenquelle ");
         jPanel1.add(dialogConfigQuelleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         dialogConfigNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        dialogConfigNameLabel.setText("Username: ");
+        dialogConfigNameLabel.setText("Username");
         jPanel1.add(dialogConfigNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
         jPanel1.add(dialogConfigNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, -1));
         jPanel1.add(dialogConfigPasswortFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 150, -1));
 
         dialogConfigIPLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        dialogConfigIPLabel.setText("IP-Adresse:");
+        dialogConfigIPLabel.setText("IP-Adresse");
         jPanel1.add(dialogConfigIPLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
         jPanel1.add(dialogConfigPortFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 150, -1));
 
         dialogConfigPortLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        dialogConfigPortLabel.setText("Port:");
+        dialogConfigPortLabel.setText("Port");
         jPanel1.add(dialogConfigPortLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
         jPanel1.add(dialogConfigIPFeld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 150, -1));
 

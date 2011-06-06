@@ -10,25 +10,20 @@
  */
 package view;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import javax.swing.Action;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileSystemView;
-import utils.csv.CSVFilter;
-import utils.csv.OpenFileAction;
-import utils.csv.SaveFileAction;
-import utils.log.Logger;
+import model.dal.DALFactory;
+import model.dal.IDAL;
+import controller.ProjektController;
 
 /**
  *
  * @author Goran-Goggy
  */
 public class ProjektView extends javax.swing.JPanel {
-
+    private ProjektController controller;
+    private IDAL db = DALFactory.getDAL();
     /** Creates new form ProjektView */
-    public ProjektView() {
+    public ProjektView(ProjektController controller) {
+        this.controller = controller;
         initComponents();
     }
 

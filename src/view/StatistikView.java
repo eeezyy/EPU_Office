@@ -10,11 +10,14 @@
  */
 package view;
 
+import controller.StatistikController;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import model.dal.DALFactory;
+import model.dal.IDAL;
 import utils.log.Logger;
 import utils.documents.StatistikPDF;
 import view.dialog.AusgangsrechnungForm;
@@ -26,12 +29,13 @@ import view.dialog.JahresUeberblickForm;
  * @author Goran-Goggy
  */
 public class StatistikView extends javax.swing.JPanel {
-
+    private StatistikController controller;
+    private IDAL db = DALFactory.getDAL();
     /** Creates new form StatistikView */
-    public StatistikView() {
+    public StatistikView(StatistikController controller) {
         initComponents();
+        this.controller = controller;
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
