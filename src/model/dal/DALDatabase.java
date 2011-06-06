@@ -23,7 +23,7 @@ import model.*;
 public class DALDatabase implements IDAL {
 
     private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(epu_office.Main.config.getProperties().getProperty("db"),
+        return DriverManager.getConnection(epu_office.Main.config.getDbPath(),
                 epu_office.Main.config.getProperties().getProperty("db_user"),
                 epu_office.Main.config.getProperties().getProperty("db_pwd"));
     }

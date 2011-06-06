@@ -31,8 +31,8 @@ public class Config {
         try {
             config.load(new FileInputStream("config.properties"));
             if (config.getProperty("db").equals("mySQL")) {
-                dbPath = "jdbc\\:mysql\\://";
-                dbPath += ((config.getProperty("db_ip")) + "\\:");
+                dbPath = "jdbc:mysql://";
+                dbPath += ((config.getProperty("db_ip")) + ":");
                 dbPath += (config.getProperty("db_port") + "/");
                 dbPath += (config.getProperty("db_name"));
 
@@ -70,7 +70,7 @@ public class Config {
         return stackTrace;
     }
 
-    public String getDbPah() {
+    public String getDbPath() {
         return dbPath;
     }
 }

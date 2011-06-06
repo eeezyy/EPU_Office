@@ -32,12 +32,16 @@ public class CSVWriter {
             // int dotPos = filenameExtension.lastIndexOf(".");
             //extension = filenameExtension.substring(dotPos);
             String extension = selectedFile.toString();
-            int dotPos = extension.lastIndexOf(".");
-            String type = extension.substring(dotPos);
-            if(!(type.equals(".csv"))){
-            this.writer = new PrintWriter(selectedFile + ".csv");
+            if (extension.contains(".")) {
+                int dotPos = extension.lastIndexOf(".");
+                String type = extension.substring(dotPos);
+                if (!(type.equals(".csv"))) {
+                    this.writer = new PrintWriter(selectedFile + ".csv");
+                } else {
+                    this.writer = new PrintWriter(selectedFile);
+                }
             } else {
-                 this.writer = new PrintWriter(selectedFile);
+                this.writer = new PrintWriter(selectedFile + ".csv");
             }
             //System.out.println("selected File: " + selectedFile);
         } catch (IOException ex) {
