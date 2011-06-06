@@ -11,13 +11,12 @@ import java.util.Date;
  * @author Goran-Goggy
  */
 public class Angebot extends AbstractObject {
-    private int Id;
     private String name;
     private Date gueltigAb;
     private Date gueltigBis;
-    private long implPreis;
-    private int implDauer;
-    private int implChance;
+    private long preis;
+    private int dauer;
+    private int chance;
     private String beschreibung;
     private Date aenderungsDatum;
 
@@ -42,28 +41,28 @@ public class Angebot extends AbstractObject {
         this.gueltigBis = gueltigBis;
     }
 
-    public int getImplChance() {
-        return implChance;
+    public int getChance() {
+        return chance;
     }
 
-    public void setImplChance(int implChance) {
-        this.implChance = implChance;
+    public void setChance(int chance) {
+        this.chance = chance;
     }
 
-    public int getImplDauer() {
-        return implDauer;
+    public int getDauer() {
+        return dauer;
     }
 
-    public void setImplDauer(int implDauer) {
-        this.implDauer = implDauer;
+    public void setDauer(int dauer) {
+        this.dauer = dauer;
     }
 
-    public long getImplPreis() {
-        return implPreis;
+    public long getPreis() {
+        return preis;
     }
 
-    public void setImplPreis(long implPreis) {
-        this.implPreis = implPreis;
+    public void setPreis(long preis) {
+        this.preis = preis;
     }
 
     public String getName() {

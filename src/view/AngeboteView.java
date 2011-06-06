@@ -41,15 +41,16 @@ public class AngeboteView extends javax.swing.JPanel {
 
     private void initialize() {
 
-            Binder.bind(angebotListe, angebotNameFeld, "Name");
-            Binder.bind(angebotListe, angebotGueltigAbFeld, "GueltigAb");
-            Binder.bind(angebotListe, angebotGueltigBisFeld, "GueltigBis");
-            Binder.bind(angebotListe, angebotImplPreisFeld, "ImplPreis");
-            Binder.bind(angebotListe, angebotImplDauerFeld, "ImplDauer");
-            Binder.bind(angebotListe, angebotImplChanceFeld, "ImplChance");
-            Binder.bind(angebotListe, angebotBeschreibungFeld, "Beschreibung");
-            
-            Binder.bind(Angebot.class, angebotListe);
+        Binder.bind(angebotListe, angebotBeschreibungFeld, "Beschreibung");
+        Binder.bind(angebotListe, angebotNameFeld, "Name");
+        Binder.bind(angebotListe, angebotGueltigAbFeld, "GueltigAb");
+        Binder.bind(angebotListe, angebotGueltigBisFeld, "GueltigBis");
+        Binder.bind(angebotListe, angebotImplPreisFeld, "Preis");
+        Binder.bind(angebotListe, angebotImplDauerFeld, "Dauer");
+        Binder.bind(angebotListe, angebotImplChanceFeld, "Chance");
+
+
+        Binder.bind(Angebot.class, angebotListe);
 
     }
 
@@ -117,7 +118,7 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         angebotListe.setName("AngebotListe"); // NOI18N
         jScrollPane1.setViewportView(angebotListe);
@@ -133,7 +134,8 @@ public class AngeboteView extends javax.swing.JPanel {
         add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         kontaktEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        kontaktEmailLabel.setText("Impl.preis (€)");
+        kontaktEmailLabel.setText("Preis (€)");
+        kontaktEmailLabel.setName("Preis"); // NOI18N
         add(kontaktEmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         kontaktBankInstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -144,13 +146,21 @@ public class AngeboteView extends javax.swing.JPanel {
         kontaktBLZNrLabel.setText("Chance (%)");
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
+        angebotImplPreisFeld.setEnabled(false);
+        angebotImplPreisFeld.setName("Preis"); // NOI18N
         angebotImplPreisFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 angebotImplPreisFeldActionPerformed(evt);
             }
         });
         add(angebotImplPreisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
+
+        angebotNameFeld.setEnabled(false);
+        angebotNameFeld.setName("Name"); // NOI18N
         add(angebotNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
+
+        angebotImplDauerFeld.setEnabled(false);
+        angebotImplDauerFeld.setName("Impl_Dauer"); // NOI18N
         add(angebotImplDauerFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
 
         angebotErstellen.setText("Angebot erstellen");
@@ -165,6 +175,11 @@ public class AngeboteView extends javax.swing.JPanel {
         add(angebotLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
         kundeZuweisen.setText("Kunden zuweisen");
+        kundeZuweisen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kundeZuweisenActionPerformed(evt);
+            }
+        });
         add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -182,14 +197,25 @@ public class AngeboteView extends javax.swing.JPanel {
             }
         });
         add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 230, -1));
+
+        angebotImplChanceFeld.setEnabled(false);
+        angebotImplChanceFeld.setName("Impl_Chance"); // NOI18N
         add(angebotImplChanceFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 140, -1));
 
         angebotBeschreibungFeld.setColumns(20);
         angebotBeschreibungFeld.setRows(5);
+        angebotBeschreibungFeld.setEnabled(false);
+        angebotBeschreibungFeld.setName("Beschreibung"); // NOI18N
         jScrollPane3.setViewportView(angebotBeschreibungFeld);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
+
+        angebotGueltigAbFeld.setEnabled(false);
+        angebotGueltigAbFeld.setName("GueltigAb"); // NOI18N
         add(angebotGueltigAbFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 140, -1));
+
+        angebotGueltigBisFeld.setEnabled(false);
+        angebotGueltigBisFeld.setName("GueltigBis"); // NOI18N
         add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -206,6 +232,11 @@ public class AngeboteView extends javax.swing.JPanel {
         // TODO add your handling code here:
         //modelPropertyChange(null);
 }//GEN-LAST:event_angebotAendernActionPerformed
+
+    private void kundeZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundeZuweisenActionPerformed
+        // TODO add your handling code here:
+        angebotBeschreibungFeld.setText("klsdajf");
+    }//GEN-LAST:event_kundeZuweisenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotAendern;
     private javax.swing.JTextArea angebotBeschreibungFeld;

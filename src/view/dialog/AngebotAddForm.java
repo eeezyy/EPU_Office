@@ -11,7 +11,6 @@
 package view.dialog;
 
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import model.Angebot;
 import model.dal.DALException;
@@ -154,9 +153,9 @@ public class AngebotAddForm extends AbstractViewDialog {
         a.setBeschreibung(dialogAngebotBeschreibungFeld.getText());
         a.setGueltigAb(dialogAngebotGueltigAbFeld.getDate());
         a.setGueltigBis(dialogAngebotGueltigBisFeld.getDate());
-        a.setImplChance(Integer.parseInt(dialogAngebotImplChanceFeld.getText()));
-        a.setImplDauer(Integer.parseInt(dialogAngebotImplDauerFeld.getText()));
-        a.setImplPreis(Long.parseLong(dialogAngebotImplPreisFeld.getText()));
+        a.setChance(Integer.parseInt(dialogAngebotImplChanceFeld.getText()));
+        a.setDauer(Integer.parseInt(dialogAngebotImplDauerFeld.getText()));
+        a.setPreis(Long.parseLong(dialogAngebotImplPreisFeld.getText()));
         try {
             // Test
             DALFactory.getDAL().saveAngebot(a);
@@ -179,10 +178,12 @@ public class AngebotAddForm extends AbstractViewDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 AngebotAddForm dialog = new AngebotAddForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }

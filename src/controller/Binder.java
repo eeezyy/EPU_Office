@@ -16,6 +16,7 @@ import javax.swing.JCheckBox;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -24,7 +25,6 @@ import javax.swing.event.ListSelectionListener;
 
 import model.AbstractObject;
 import model.bl.AbstractLogic;
-import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 
@@ -43,20 +43,29 @@ public class Binder {
                 ListSelectionListener lsl;
                 lsl = new ListSelectionListener() {
 
+                    @Override
                     public void valueChanged(ListSelectionEvent e) {
                         Runnable r = new Runnable() {
 
+                            @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
                                 if (am != null) {
+                                    if(jdc.getName() == null || jdc.getName().isEmpty()) {
+                                        System.out.println("Binding: Componente enthält keinen property:name");
+                                        return;
+                                    }
                                     try {
-                                        method = am.getClass().getMethod("get" + propertyName, new Class[]{});
+                                        method = am.getClass().getMethod("get" + jdc.getName(), new Class[]{});
                                     } catch (NoSuchMethodException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     } catch (SecurityException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
+                                } else {
+                                    jdc.setDate(null);
+                                    jdc.setEnabled(false);
                                 }
                                 Date value = null;
                                 if (method != null) {
@@ -75,7 +84,10 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                jdc.setDate(value);
+                                if (value != null) {
+                                    jdc.setDate(value);
+                                    jdc.setEnabled(true);
+                                }
                             }
                         };
                         SwingUtilities.invokeLater(r);
@@ -84,28 +96,38 @@ public class Binder {
                 jlist.addListSelectionListener(lsl);
             }
 
+            
             if (jc2 instanceof JCheckBox) {
                 final JCheckBox jcb = (JCheckBox) jc2;
 
                 ListSelectionListener lsl;
                 lsl = new ListSelectionListener() {
 
+                    @Override
                     public void valueChanged(ListSelectionEvent e) {
                         Runnable r = new Runnable() {
 
+                            @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
                                 if (am != null) {
+                                    if(jcb.getName() == null || jcb.getName().isEmpty()) {
+                                        System.out.println("Binding: Componente enthält keinen property:name");
+                                        return;
+                                    }
                                     try {
-                                        method = am.getClass().getMethod("get" + propertyName, new Class[]{});
+                                        method = am.getClass().getMethod("get" + jcb.getName(), new Class[]{});
                                     } catch (NoSuchMethodException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     } catch (SecurityException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
+                                } else {
+                                    jcb.setEnabled(false);
+                                    jcb.setSelected(false);
                                 }
-                                boolean value = false;
+                                Boolean value = null;
                                 if (method != null) {
                                     try {
                                         Object result = method.invoke(am);
@@ -122,7 +144,10 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                jcb.setSelected(value);
+                                if (value != null) {
+                                    jcb.setSelected(value);
+                                    jcb.setEnabled(true);
+                                }
                             }
                         };
                         SwingUtilities.invokeLater(r);
@@ -137,20 +162,29 @@ public class Binder {
                 ListSelectionListener lsl;
                 lsl = new ListSelectionListener() {
 
+                    @Override
                     public void valueChanged(ListSelectionEvent e) {
                         Runnable r = new Runnable() {
 
+                            @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
                                 if (am != null) {
+                                    if(jtf.getName() == null || jtf.getName().isEmpty()) {
+                                        System.out.println("Binding: Componente enthält keinen property:name");
+                                        return;
+                                    }
                                     try {
-                                        method = am.getClass().getMethod("get" + propertyName, new Class[]{});
+                                        method = am.getClass().getMethod("get" + jtf.getName(), new Class[]{});
                                     } catch (NoSuchMethodException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     } catch (SecurityException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
+                                } else {
+                                    jtf.setText("");
+                                    jtf.setEnabled(false);
                                 }
                                 String text = null;
                                 if (method != null) {
@@ -181,6 +215,65 @@ public class Binder {
                                 }
                                 if (text != null) {
                                     jtf.setText(text);
+                                    jtf.setEnabled(true);
+                                }
+                            }
+                        };
+                        SwingUtilities.invokeLater(r);
+                    }
+                };
+
+                jlist.addListSelectionListener(lsl);
+            }
+            
+            if (jc2 instanceof JTextArea) {
+                final JTextArea jta = (JTextArea) jc2;
+
+                ListSelectionListener lsl;
+                lsl = new ListSelectionListener() {
+
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                        Runnable r = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+                                Method method = null;
+                                if (am != null) {
+                                    if(jta.getName() == null || jta.getName().isEmpty()) {
+                                        System.out.println("Binding: Componente enthält keinen property:name");
+                                        return;
+                                    }
+                                    try {
+                                        method = am.getClass().getMethod("get" + jta.getName(), new Class[]{});
+                                    } catch (NoSuchMethodException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (SecurityException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                } else {
+                                    jta.setText("");
+                                    jta.setEnabled(false);
+                                }
+                                String text = null;
+                                if (method != null) {
+                                    try {
+                                        Object result = method.invoke(am);
+                                        if (result instanceof String) {
+                                            text = (String) result;
+                                        }
+                                    } catch (IllegalAccessException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (IllegalArgumentException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (InvocationTargetException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                }
+                                if (text != null) {
+                                    jta.setText(text);
+                                    jta.setEnabled(true);
                                 }
                             }
                         };

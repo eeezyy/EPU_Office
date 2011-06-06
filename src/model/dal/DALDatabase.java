@@ -43,6 +43,7 @@ public class DALDatabase implements IDAL {
 
     }
 
+    @Override
     public void saveKontakt(AbstractObject ao) throws DALException {
         if (!(ao instanceof Kontakt)) {
             return;
@@ -153,6 +154,7 @@ public class DALDatabase implements IDAL {
         }
     }
 
+    @Override
     public ArrayList<Kontakt> getKontaktListe() {
         ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
         // Datenbankverbindung �ffnen
@@ -197,6 +199,7 @@ public class DALDatabase implements IDAL {
         return kontakte;
     }
 
+    @Override
     public void deleteKontakt(Kontakt k) throws DALException {
         try {
             // Datenbankverbindung öffnen
@@ -222,6 +225,7 @@ public class DALDatabase implements IDAL {
         }
     }
 
+    @Override
     public void addAngebotToKontakt(Kontakt k, Angebot a) {
         try {
             Connection db = DALDatabase.getConnection();
@@ -249,6 +253,7 @@ public class DALDatabase implements IDAL {
         }
     }
 
+    @Override
     public void saveAngebot(AbstractObject ao) throws DALException {
         java.util.Date today = new java.util.Date();
         if (!(ao instanceof Angebot)) {
@@ -274,32 +279,32 @@ public class DALDatabase implements IDAL {
             // Daten holen
             if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
-                        "UPDATE Angebot SET Impl_Dauer = ?, GueltigAb = ?, GueltigBis = ?, Impl_Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, Name = ?"
+                        "UPDATE Angebot SET Dauer = ?, GueltigAb = ?, GueltigBis = ?, Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, Name = ?"
                         + "WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
-                cmd.setInt(1, a.getImplDauer());
+                cmd.setInt(1, a.getDauer());
                 cmd.setDate(2, gueltigkeitAb);
                 cmd.setDate(3, gueltigkeitBis);
-                cmd.setInt(4, a.getImplChance());
+                cmd.setInt(4, a.getChance());
                 cmd.setDate(5, now);
                 cmd.setString(6, a.getBeschreibung());
-                cmd.setLong(7, a.getImplPreis());
+                cmd.setLong(7, a.getPreis());
                 cmd.setString(8, a.getName());
                 cmd.setInt(9, a.getId());
                 Logger.log(Level.INFO, DALDatabase.class,new DALModelModified("saveAngebot"));
             } else {
                 cmd = db.prepareStatement(
-                        "INSERT INTO Angebot (Name, Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis)"
+                        "INSERT INTO Angebot (Name, Dauer, GueltigAb, GueltigBis, Chance, Aenderungsdatum, Beschreibung, Preis)"
                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, a.getName());
-                cmd.setInt(2, a.getImplDauer());
+                cmd.setInt(2, a.getDauer());
                 cmd.setDate(3, gueltigkeitAb);
                 cmd.setDate(4, gueltigkeitBis);
-                cmd.setInt(5, a.getImplChance());
+                cmd.setInt(5, a.getChance());
                 cmd.setDate(6, now);
                 cmd.setString(7, a.getBeschreibung());
-                cmd.setLong(8, a.getImplPreis());
+                cmd.setLong(8, a.getPreis());
 
 
             }
@@ -322,6 +327,7 @@ public class DALDatabase implements IDAL {
 
     }
 
+    @Override
     public void deleteAngebot(Angebot a) throws DALException {
         try {
             // Datenbankverbindung öffnen
@@ -348,6 +354,7 @@ public class DALDatabase implements IDAL {
         }
     }
 
+    @Override
     public ArrayList<Angebot> getAngebotListe() throws DALException {
         ArrayList<Angebot> angebote = new ArrayList<Angebot>();
 // Datenbankverbindung �ffnen
@@ -356,20 +363,20 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT id, Impl_Dauer, GueltigAb, GueltigBis, Impl_Chance, Aenderungsdatum, Beschreibung, Preis, Name "
+            cmd = db.prepareStatement("SELECT id, Dauer, GueltigAb, GueltigBis, Chance, Aenderungsdatum, Beschreibung, Preis, Name "
                     + "FROM Angebot");
             rd = cmd.executeQuery();
             // Daten holen
             while (rd.next()) {
                 Angebot a = new Angebot();
                 a.setId(rd.getInt(1));
-                a.setImplDauer(rd.getInt(2));
+                a.setDauer(rd.getInt(2));
                 a.setGueltigAb((Date) rd.getDate(3));
                 a.setGueltigBis((Date) rd.getDate(4));
-                a.setImplChance(rd.getInt(5));
+                a.setChance(rd.getInt(5));
                 a.setAenderungsDatum((Date) rd.getDate(6));
                 a.setBeschreibung(rd.getString(7));
-                a.setImplPreis(rd.getLong(8));
+                a.setPreis(rd.getLong(8));
                 a.setName(rd.getString(9));
                 angebote.add(a);
             }
@@ -382,6 +389,7 @@ public class DALDatabase implements IDAL {
         return angebote;
     }
 
+    @Override
     public ArrayList<Kontakt> getKundenListe() throws DALException {
         ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
         // Datenbankverbindung �ffnen
