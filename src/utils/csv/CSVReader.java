@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import model.Angebot;
+import model.Mitarbeiter;
 import model.Projekt;
+import model.ZeitErfassung;
 import utils.log.Logger;
 
 /**
@@ -44,18 +46,14 @@ public class CSVReader {
         }
     }
 
-    public ArrayList<Projekt> parse() {
-        ArrayList<Projekt> projektListe = new ArrayList<Projekt>();
+    public ArrayList<ZeitErfassung> parse() {
+        ArrayList<ZeitErfassung> log = new ArrayList<ZeitErfassung>();
         try {
             if ((line = bufReader.readLine()) != null) {
                 st = new StringTokenizer(line, ";");
                 if (st.hasMoreTokens()) {
                     if (headerFlag) {
                         Object dump = st.nextToken();
-                        System.out.println(dump.toString());
-                        dump = st.nextToken();
-                        System.out.println(dump.toString());
-                        dump = st.nextToken();
                         System.out.println(dump.toString());
                         dump = st.nextToken();
                         System.out.println(dump.toString());
@@ -72,61 +70,50 @@ public class CSVReader {
                 while ((line = bufReader.readLine()) != null) {
                     st = new StringTokenizer(line, ";");
 
-                    Projekt projekt = new Projekt();
+                    ZeitErfassung logEintrag = new ZeitErfassung();
                     st = new StringTokenizer(line, ";");
                     if (counter == 0) {
-                        
+                        Projekt projekt = new Projekt();
                         projekt.setId(Integer.parseInt(st.nextToken()));
-                        System.out.println(counter + " ID  " + projekt.getId());
+                        logEintrag.setProjekt(projekt);
+                        System.out.println(counter + " Projekt_ID  " + logEintrag.getProjekt().getId());
                         counter++;
                     }
+
                     if (counter == 1) {
-                        angebot = new Angebot();
-                        angebot.setId(Integer.parseInt(st.nextToken()));
-                        projekt.setZugewiesenesAngebot(angebot);
-                        System.out.println(counter + "  Angebot " + projekt.getZugewiesenesAngebot().getId());
+                        Mitarbeiter mitarbeiter = new Mitarbeiter();
+                        mitarbeiter.setId(Integer.parseInt(st.nextToken()));
+                        logEintrag.setMitarbeiter(mitarbeiter);
+
+                        System.out.println(counter + " Mitarbeiter_ID  " + logEintrag.getMitarbeiter().getId());
                         counter++;
                     }
                     if (counter == 2) {
-                        projekt.setName(st.nextToken());
-                        System.out.println(counter + " Name  " + projekt.getName());
+                        try {
+
+                            logEintrag.setDatum(df.parse(st.nextToken()));
+                            System.out.println(counter + " Datum  " + df.format(logEintrag.getDatum()));
+                        } catch (ParseException ex) {
+                            Logger.log(Level.SEVERE, CSVReader.class, ex);
+                        }
                         counter++;
                     }
                     if (counter == 3) {
-                        projekt.setAbgeschlossen(Boolean.parseBoolean(st.nextToken()));
-                        System.out.println(counter + " boolean  " + projekt.isAbgeschlossen());
+                        logEintrag.setStunden(Integer.parseInt(st.nextToken()));
+                        System.out.println(counter + " Stunden  " + logEintrag.getStunden());
                         counter++;
                     }
                     if (counter == 4) {
-                        try {
-                            projekt.setDauerVon(df.parse(st.nextToken()));
-                            System.out.println(counter + " dauerVon  " + df.format(projekt.getDauerVon()));
-                        } catch (ParseException ex) {
-                            Logger.log(Level.SEVERE, CSVReader.class, ex);
-                        }
-                        counter++;
-                    }
-                    if (counter == 5) {
-                        try {
-                            projekt.setDauerBis(df.parse(st.nextToken()));
-                            System.out.println(counter + " dauerBis  " + df.format(projekt.getDauerBis()));
-                        } catch (ParseException ex) {
-                            Logger.log(Level.SEVERE, CSVReader.class, ex);
-                        }
-                        counter++;
-                    }
-                    if (counter == 6) {
-                        projekt.setArbeitsStunden(Long.parseLong(st.nextToken()));
-                        System.out.println(counter + " Arbeitsstunden  " + projekt.getArbeitsStunden());
+                        logEintrag.setTaetigkeit(st.nextToken());
+                        System.out.println(counter + " Taetigkeit  " + logEintrag.getTaetigkeit());
                         counter = 0;
                     }
-                    projektListe.add(projekt);
+                    log.add(logEintrag);
                 }
-                return projektListe;
             }
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return projektListe;
+        return log;
     }
 }
