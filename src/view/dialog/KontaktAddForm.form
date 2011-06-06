@@ -129,6 +129,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktEmailFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Email" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogKontaktEmailFeldActionPerformed"/>
           </Events>
@@ -139,6 +142,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktTelefonFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Telefon" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="100" y="90" width="150" height="-1"/>
@@ -146,6 +152,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktBankinstitutFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Bankinstitut" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="100" y="130" width="150" height="-1"/>
@@ -153,6 +162,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktVornameFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Vorname" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogKontaktVornameFeldActionPerformed"/>
           </Events>
@@ -176,6 +188,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktNachnameFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Nachname" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogKontaktNachnameFeldActionPerformed"/>
           </Events>
@@ -199,6 +214,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktStrasseFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Strasse" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="100" y="170" width="150" height="-1"/>
@@ -232,6 +250,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktOrtFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Ort" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogKontaktOrtFeldActionPerformed"/>
           </Events>
@@ -255,6 +276,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktFirmennameFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Firmenname" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dialogKontaktFirmennameFeldActionPerformed"/>
           </Events>
@@ -311,6 +335,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktHausnrFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Hausnr" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="370" y="170" width="150" height="-1"/>
@@ -318,6 +345,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktBlzFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Blz" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="370" y="130" width="150" height="-1"/>
@@ -325,6 +355,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktKontoFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Konto" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="640" y="130" width="150" height="-1"/>
@@ -332,6 +365,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="dialogKontaktPlzFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Plz" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="640" y="170" width="150" height="-1"/>

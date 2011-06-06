@@ -7,10 +7,6 @@ package model.bl;
 import controller.BinderProperty;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import model.AbstractObject;
-import model.Kontakt;
 
 /**
  *
@@ -18,6 +14,7 @@ import model.Kontakt;
  */
 public class KontaktLogic extends AbstractLogic {
 
+    @Override
     public ArrayList<String> check(ArrayList<BinderProperty> propertyList) {
         ArrayList<String> errorList = new ArrayList<String>();
 
@@ -25,8 +22,8 @@ public class KontaktLogic extends AbstractLogic {
         Iterator i = propertyList.iterator();
         while (i.hasNext()) {
             property = (BinderProperty) i.next();
-            if (property.getProperty().equals("Blz")) {
-                if (!isValidBlz(property.getValue())) {
+            if (property.getProperty().equals("Id")) {
+                if (!isValidId(property.getValue())) {
                     errorList.add(property.getProperty());
                 }
             } else if (property.getProperty().equals("Email")) {
@@ -35,6 +32,10 @@ public class KontaktLogic extends AbstractLogic {
                 }
             } else if (property.getProperty().equals("Konto")) {
                 if (!isValidKonto(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Blz")) {
+                if (!isValidBlz(property.getValue())) {
                     errorList.add(property.getProperty());
                 }
             } else if (property.getProperty().equals("Hausnr")) {
@@ -69,5 +70,4 @@ public class KontaktLogic extends AbstractLogic {
         }
         return errorList;
     }
-
 }

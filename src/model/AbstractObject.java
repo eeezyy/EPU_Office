@@ -11,9 +11,12 @@ package model;
  */
 public class AbstractObject {
     
-    private int id;
+    private Integer id;
 
     public Integer getId() {
+        if(this.id == null) {
+            return 0;
+        }
         return this.id;
     }
 

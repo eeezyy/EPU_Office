@@ -8,13 +8,17 @@
  */
 package view;
 
-import controller.AbstractController;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -32,16 +36,57 @@ public abstract class AbstractViewDialog extends JDialog {
         super(owner, modal);
     }
 
-    protected abstract void resetTextFields();
+    protected void resetTextFields() {
+        this.cleanErrors();
+        for (Component c : this.getRootPane().getComponents()) {
+            if (c instanceof JLayeredPane) {
+                for (Component lpc : ((JLayeredPane) c).getComponents()) {
+                    if (lpc instanceof JPanel) {
+                        for (Component ppc : ((JPanel) lpc).getComponents()) {
+                            if (ppc instanceof JPanel) {
+                                for (Component pc : ((JPanel) ppc).getComponents()) {
+                                    if (pc.getName() != null) {
+                                        if (pc.getClass() == JTextField.class) {
+                                            ((JTextField) pc).setText("");
+                                        } else if (pc.getClass() == JCheckBox.class) {
+                                            ((JCheckBox) pc).setSelected(false);
+                                        } else if (pc.getClass() == JDateChooser.class) {
+                                            ((JDateChooser) pc).setDate(null);
+                                        } else if (pc.getClass() == JTextArea.class) {
+                                            ((JTextArea) pc).setText("");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 
     protected void showErrors(ArrayList<String> errorList) {
         cleanErrors();
         if (errorList != null && !errorList.isEmpty()) {
             for (String error : errorList) {
-                for (Component c : this.getComponents()) {
-                    if (c.getClass() == JTextField.class && c.getName() != null && c.getName().equals(error)) {
-                        ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
-                        break;
+                for (Component c : this.getRootPane().getComponents()) {
+                    if (c instanceof JLayeredPane) {
+                        for (Component lpc : ((JLayeredPane) c).getComponents()) {
+                            if (lpc instanceof JPanel) {
+                                for (Component ppc : ((JPanel) lpc).getComponents()) {
+                                    if (ppc instanceof JPanel) {
+                                        for (Component pc : ((JPanel) ppc).getComponents()) {
+                                            if (pc.getClass() == JTextField.class && pc.getName() != null && pc.getName().equals(error)) {
+                                                ((JTextField) pc).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
                     }
                 }
             }
@@ -51,13 +96,26 @@ public abstract class AbstractViewDialog extends JDialog {
     }
 
     protected void cleanErrors() {
-        for (Component c : this.getComponents()) {
-            if (c.getClass() == JTextField.class && c.getName() != null) {
-                ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());//BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+        for (Component c : this.getRootPane().getComponents()) {
+            if (c instanceof JLayeredPane) {
+                for (Component lpc : ((JLayeredPane) c).getComponents()) {
+                    if (lpc instanceof JPanel) {
+                        for (Component ppc : ((JPanel) lpc).getComponents()) {
+                            if (ppc instanceof JPanel) {
+                                for (Component pc : ((JPanel) ppc).getComponents()) {
+                                    if (pc.getClass() == JTextField.class && pc.getName() != null) {
+                                        ((JTextField) pc).setBorder(BorderFactory.createEtchedBorder());//BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
         }
     }
-    
+
     protected Integer toInt(String text) {
         if (text.length() != 0) {
             return Integer.parseInt(text);

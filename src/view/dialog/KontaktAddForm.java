@@ -10,13 +10,11 @@
  */
 package view.dialog;
 
+import controller.Binder;
+import controller.BinderProperty;
 import java.awt.Frame;
-import java.util.List;
-import java.util.logging.Level;
-import utils.log.Logger;
+import java.util.ArrayList;
 import model.Kontakt;
-import model.dal.DALException;
-import model.dal.DALFactory;
 import view.AbstractViewDialog;
 
 /**
@@ -30,7 +28,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         super(parent, modal);
 
         //this.observer = new ModelObserver();
-        
+
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -109,15 +107,21 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktBLZNrLabel.setText("BLZ");
         jPanel1.add(dialogKontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
+        dialogKontaktEmailFeld.setName("Email"); // NOI18N
         dialogKontaktEmailFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogKontaktEmailFeldActionPerformed(evt);
             }
         });
         jPanel1.add(dialogKontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 150, -1));
+
+        dialogKontaktTelefonFeld.setName("Telefon"); // NOI18N
         jPanel1.add(dialogKontaktTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 150, -1));
+
+        dialogKontaktBankinstitutFeld.setName("Bankinstitut"); // NOI18N
         jPanel1.add(dialogKontaktBankinstitutFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 150, -1));
 
+        dialogKontaktVornameFeld.setName("Vorname"); // NOI18N
         dialogKontaktVornameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogKontaktVornameFeldActionPerformed(evt);
@@ -129,6 +133,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktNachNameLabel.setText("Nachname");
         jPanel1.add(dialogKontaktNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, -1));
 
+        dialogKontaktNachnameFeld.setName("Nachname"); // NOI18N
         dialogKontaktNachnameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogKontaktNachnameFeldActionPerformed(evt);
@@ -139,6 +144,8 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktStrasseLabel.setText("Straße");
         jPanel1.add(dialogKontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        dialogKontaktStrasseFeld.setName("Strasse"); // NOI18N
         jPanel1.add(dialogKontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 150, -1));
 
         dialogKontaktPLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -149,6 +156,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontakOrtLabel.setText("Ort");
         jPanel1.add(dialogKontakOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
+        dialogKontaktOrtFeld.setName("Ort"); // NOI18N
         dialogKontaktOrtFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogKontaktOrtFeldActionPerformed(evt);
@@ -160,6 +168,7 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktFirmaLabel.setText("Firma");
         jPanel1.add(dialogKontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
+        dialogKontaktFirmennameFeld.setName("Firmenname"); // NOI18N
         dialogKontaktFirmennameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dialogKontaktFirmennameFeldActionPerformed(evt);
@@ -187,9 +196,17 @@ public class KontaktAddForm extends AbstractViewDialog {
         dialogKontaktStrasseLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogKontaktStrasseLabel1.setText("Hausnr.");
         jPanel1.add(dialogKontaktStrasseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
+
+        dialogKontaktHausnrFeld.setName("Hausnr"); // NOI18N
         jPanel1.add(dialogKontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 150, -1));
+
+        dialogKontaktBlzFeld.setName("Blz"); // NOI18N
         jPanel1.add(dialogKontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 150, -1));
+
+        dialogKontaktKontoFeld.setName("Konto"); // NOI18N
         jPanel1.add(dialogKontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 150, -1));
+
+        dialogKontaktPlzFeld.setName("Plz"); // NOI18N
         jPanel1.add(dialogKontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 150, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 290));
@@ -223,31 +240,30 @@ public class KontaktAddForm extends AbstractViewDialog {
     }//GEN-LAST:event_dialogAbbrechenActionPerformed
 
     private void dialogKontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogKontaktHinzufuegenActionPerformed
-        Kontakt k = new Kontakt();
-        k.setStrasse(dialogKontaktStrasseFeld.getText());
-        k.setHausnr(Integer.parseInt(dialogKontaktHausnrFeld.getText()));
-        k.setPlz(Integer.parseInt(dialogKontaktPlzFeld.getText()));
-        k.setOrt(dialogKontaktOrtFeld.getText());
-        k.setBankinstitut(dialogKontaktBankinstitutFeld.getText());
-        k.setBlz(Integer.parseInt(dialogKontaktBlzFeld.getText()));
-        k.setEmail(dialogKontaktEmailLabel.getText());
-        k.setFirmenname(dialogKontaktFirmennameFeld.getText());
-        k.setIsKunde(false);
-        k.setKonto(Long.parseLong(dialogKontaktKontoFeld.getText()));
-        k.setNachname(dialogKontaktNachnameFeld.getText());
-        k.setTelefon(dialogKontaktTelefonFeld.getText());
-        k.setVorname(dialogKontaktVornameFeld.getText());
-        try {
-            // Test
-            DALFactory.getDAL().saveKontakt(k);
-            // --> controller add
-            //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
-            this.dispose();
-        } catch (DALException ex) {
-            Logger.log(Level.SEVERE, KontaktAddForm.class, ex);
-        }
+        ArrayList<String> errorList;
+        errorList = Binder.save(Kontakt.class, createBinderPropertiesFromFields());
+        showErrors(errorList);
     }//GEN-LAST:event_dialogKontaktHinzufuegenActionPerformed
-    
+
+    private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
+        ArrayList list = new ArrayList<BinderProperty>();
+
+        list.add(new BinderProperty(dialogKontaktStrasseFeld.getName(), dialogKontaktStrasseFeld.getText(), String.class));
+        list.add(new BinderProperty(dialogKontaktHausnrFeld.getName(), dialogKontaktHausnrFeld.getText(), Integer.class));
+        list.add(new BinderProperty(dialogKontaktPlzFeld.getName(), dialogKontaktPlzFeld.getText(), Integer.class));
+        list.add(new BinderProperty(dialogKontaktOrtFeld.getName(), dialogKontaktOrtFeld.getText(), String.class));
+        list.add(new BinderProperty(dialogKontaktBankinstitutFeld.getName(), dialogKontaktBankinstitutFeld.getText(), String.class));
+        list.add(new BinderProperty(dialogKontaktBlzFeld.getName(), dialogKontaktBlzFeld.getText(), Integer.class));
+        list.add(new BinderProperty(dialogKontaktEmailFeld.getName(), dialogKontaktEmailFeld.getText(), String.class));
+        list.add(new BinderProperty(dialogKontaktFirmennameFeld.getName(), dialogKontaktFirmennameFeld.getText(), String.class));
+        list.add(new BinderProperty("IsKunde", null, Boolean.class));
+        list.add(new BinderProperty(dialogKontaktKontoFeld.getName(), dialogKontaktKontoFeld.getText(), Long.class));
+        list.add(new BinderProperty(dialogKontaktNachnameFeld.getName(), dialogKontaktNachnameFeld.getText(), String.class));
+        list.add(new BinderProperty(dialogKontaktVornameFeld.getName(), dialogKontaktVornameFeld.getText(), String.class));
+        list.add(new BinderProperty(dialogKontaktTelefonFeld.getName(), dialogKontaktTelefonFeld.getText(), String.class));
+        list.add(new BinderProperty("Id", null, Integer.class));
+        return list;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dialogAbbrechen;
     private javax.swing.JLabel dialogKdialogK;
@@ -279,9 +295,4 @@ public class KontaktAddForm extends AbstractViewDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel kontaktAddLabel;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    protected void resetTextFields() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

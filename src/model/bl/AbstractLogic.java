@@ -8,7 +8,6 @@ import controller.BinderProperty;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.AbstractObject;
 
 /**
  *
@@ -65,6 +64,18 @@ public abstract class AbstractLogic {
         } catch (NumberFormatException nfex) {
             return false;
         }
+        return true;
+    }
+    
+    protected boolean isValidId(String text) {
+        if (text == null) {
+            return true;
+        }
+        
+        if (!isValidInteger(text)) {
+            return false;
+        }
+        
         return true;
     }
 

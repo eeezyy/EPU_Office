@@ -132,7 +132,7 @@ public final class KontakteView extends AbstractViewPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        kontaktListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kontaktListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         kontaktListe.setName("KontaktListe"); // NOI18N
         kontaktListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -169,14 +169,17 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktBLZNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
         kontaktEmailFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktEmailFeld.setEnabled(false);
         kontaktEmailFeld.setName("Email"); // NOI18N
         add(kontaktEmailFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, 150, -1));
 
         kontaktTelefonFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktTelefonFeld.setEnabled(false);
         kontaktTelefonFeld.setName("Telefon"); // NOI18N
         add(kontaktTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kontaktBankinstitutFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktBankinstitutFeld.setEnabled(false);
         kontaktBankinstitutFeld.setName("Bankinstitut"); // NOI18N
         add(kontaktBankinstitutFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 150, -1));
 
@@ -197,6 +200,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         kontaktVornameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktVornameFeld.setEnabled(false);
         kontaktVornameFeld.setName("Vorname"); // NOI18N
         add(kontaktVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
 
@@ -213,6 +217,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktNachNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
         kontaktNachnameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktNachnameFeld.setEnabled(false);
         kontaktNachnameFeld.setName("Nachname"); // NOI18N
         add(kontaktNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 150, -1));
 
@@ -221,6 +226,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         kontaktStrasseFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktStrasseFeld.setEnabled(false);
         kontaktStrasseFeld.setName("Strasse"); // NOI18N
         add(kontaktStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
@@ -237,6 +243,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontakOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 
         kontaktOrtFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktOrtFeld.setEnabled(false);
         kontaktOrtFeld.setName("Ort"); // NOI18N
         add(kontaktOrtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 150, -1));
 
@@ -245,6 +252,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktFirmaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         kontaktFirmennameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktFirmennameFeld.setEnabled(false);
         kontaktFirmennameFeld.setName("Firmenname"); // NOI18N
         add(kontaktFirmennameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
 
@@ -257,23 +265,28 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
         kontaktPlzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktPlzFeld.setEnabled(false);
         kontaktPlzFeld.setName("Plz"); // NOI18N
         add(kontaktPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
 
         kontaktHausnrFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktHausnrFeld.setEnabled(false);
         kontaktHausnrFeld.setName("Hausnr"); // NOI18N
         add(kontaktHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
 
         kontaktKontoFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktKontoFeld.setEnabled(false);
         kontaktKontoFeld.setName("Konto"); // NOI18N
         add(kontaktKontoFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
 
         kontaktBlzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        kontaktBlzFeld.setEnabled(false);
         kontaktBlzFeld.setName("Blz"); // NOI18N
         add(kontaktBlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
         kontaktIsKundeFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         kontaktIsKundeFeld.setText("Kunde");
+        kontaktIsKundeFeld.setEnabled(false);
         kontaktIsKundeFeld.setName("IsKunde"); // NOI18N
         kontaktIsKundeFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +294,7 @@ public final class KontakteView extends AbstractViewPanel {
             }
         });
         add(kontaktIsKundeFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 187, -1, 40));
-        kontaktIsKundeFeld.getAccessibleContext().setAccessibleName("null");
+        kontaktIsKundeFeld.getAccessibleContext().setAccessibleName(null);
 
         kontaktIdFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kontaktIdFeld.setEnabled(false);
@@ -327,23 +340,6 @@ public final class KontakteView extends AbstractViewPanel {
         list.add(new BinderProperty(kontaktTelefonFeld.getName(), kontaktTelefonFeld.getText(), String.class));
         list.add(new BinderProperty(kontaktIdFeld.getName(), kontaktIdFeld.getText(), Integer.class));
         return list;
-        /*
-        Kontakt k = new Kontakt();
-        k.setId(((Kontakt) this.kontaktListe.getSelectedValue()).getId());
-        k.setStrasse(kontaktStrasseFeld.getText());
-        k.setHausnr(Integer.parseInt(kontaktHausnrFeld.getText()));
-        k.setPlz(Integer.parseInt(kontaktPlzFeld.getText()));
-        k.setOrt(kontaktOrtFeld.getText());
-        k.setBankinstitut(kontaktBankinstitutFeld.getText());
-        k.setBlz(Integer.parseInt(kontaktBlzFeld.getText()));
-        k.setEmail(kontaktEmailFeld.getText());
-        k.setFirmenname(kontaktFirmennameFeld.getText());
-        k.setIsKunde(kontaktIsKundeFeld.isSelected());
-        k.setKonto(Long.parseLong(kontaktKontoFeld.getText()));
-        k.setNachname(kontaktNachnameFeld.getText());
-        k.setTelefon(kontaktTelefonFeld.getText());
-        k.setVorname(kontaktVornameFeld.getText());
-        return k;*/
     }
 
     private void kontaktLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktLoeschenActionPerformed

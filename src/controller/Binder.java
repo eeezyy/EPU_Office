@@ -407,7 +407,11 @@ public class Binder {
                     if (property.getClasstype().equals(String.class)) {
                         m.invoke(object, property.getValue());
                     } else if (property.getClasstype().equals(Integer.class)) {
-                        m.invoke(object, Integer.parseInt(property.getValue()));
+                        if(property.getValue() != null) {
+                            m.invoke(object, Integer.parseInt(property.getValue()));
+                        } else {
+                            m.invoke(object, property.getValue());
+                        }
                     } else if (property.getClasstype().equals(Long.class)) {
                         m.invoke(object, Long.parseLong(property.getValue()));
                     } else if (property.getClasstype().equals(Boolean.class)) {

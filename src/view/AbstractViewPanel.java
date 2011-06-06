@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -35,10 +36,12 @@ public abstract class AbstractViewPanel extends JPanel {
                 //c.setEnabled(false);
                 if (c.getClass() == JTextField.class) {
                     ((JTextField) c).setText("");
-                } else if(c.getClass() == JCheckBox.class){
+                } else if (c.getClass() == JCheckBox.class) {
                     ((JCheckBox) c).setSelected(false);
-                } else if(c.getClass() == JDateChooser.class) {
+                } else if (c.getClass() == JDateChooser.class) {
                     ((JDateChooser) c).setDate(null);
+                } else if (c.getClass() == JTextArea.class) {
+                    ((JTextArea) c).setText("");
                 }
             }
         }
