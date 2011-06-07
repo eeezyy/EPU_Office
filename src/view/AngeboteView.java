@@ -12,6 +12,7 @@ package view;
 
 import controller.AngebotController;
 import controller.Binder;
+import controller.BinderProperty;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -246,6 +247,14 @@ public class AngeboteView extends AbstractViewPanel {
 }//GEN-LAST:event_angebotErstellenActionPerformed
 
     private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
+        if (this.angebotListe.isSelectionEmpty()) {
+            return;
+        }
+
+        ArrayList<String> errorList;
+        errorList = Binder.save(Angebot.class, createBinderPropertiesFromFields());
+        showErrors(errorList);
+        /*
         Date d = new Date();
         Angebot a = new Angebot();
         a.setName(angebotNameFeld.getText());
@@ -263,7 +272,7 @@ public class AngeboteView extends AbstractViewPanel {
             //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
         } catch (DALException ex) {
             Logger.log(Level.SEVERE, AngebotAddForm.class, ex);
-        }
+        }*/
 }//GEN-LAST:event_angebotAendernActionPerformed
 
     private void kundeZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundeZuweisenActionPerformed
@@ -316,5 +325,25 @@ public class AngeboteView extends AbstractViewPanel {
         }
 
         this.angebotListe.setModel(list);
+    }
+
+    private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
+        ArrayList list = new ArrayList<BinderProperty>();
+
+        list.add(new BinderProperty(angebotNameFeld.getName(), angebotNameFeld.getText(), String.class));
+        list.add(new BinderProperty("AenderungsDatum", new Date().toString(), Date.class));
+        list.add(new BinderProperty(angebotBeschreibungFeld.getName(), angebotBeschreibungFeld.getText(), String.class));
+        list.add(new BinderProperty(angebotGueltigAbFeld.getName(), angebotGueltigAbFeld.getDate().toString(), Date.class));
+        list.add(new BinderProperty(angebotGueltigBisFeld.getName(), angebotGueltigBisFeld.getDate().toString(), Date.class));
+        list.add(new BinderProperty(angebotChanceFeld.getName(), angebotChanceFeld.getText(), Integer.class));
+        list.add(new BinderProperty(angebotDauerFeld.getName(), angebotDauerFeld.getText(), Integer.class));
+        list.add(new BinderProperty(angebotPreisFeld.getName(), angebotPreisFeld.getText(), Double.class));
+        Angebot a = (Angebot) angebotListe.getSelectedValue();
+        if(a != null)
+            list.add(new BinderProperty("Id", a.getId().toString(), Integer.class));
+        else
+            list.add(new BinderProperty("Id", "0", Integer.class));
+
+        return list;
     }
 }

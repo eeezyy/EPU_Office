@@ -156,7 +156,7 @@ public class AngebotAddForm extends AbstractViewDialog {
         a.setGueltigBis(dialogAngebotGueltigBisFeld.getDate());
         a.setChance(Integer.parseInt(dialogAngebotImplChanceFeld.getText()));
         a.setDauer(Integer.parseInt(dialogAngebotImplDauerFeld.getText()));
-        a.setPreis(Long.parseLong(dialogAngebotImplPreisFeld.getText()));
+        a.setPreis(Double.parseDouble(dialogAngebotImplPreisFeld.getText()));
         try {
             // Test
             DALFactory.getDAL().saveAngebot(a);

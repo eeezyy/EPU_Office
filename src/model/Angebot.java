@@ -15,9 +15,9 @@ public class Angebot extends AbstractObject {
     private String name;
     private Date gueltigAb;
     private Date gueltigBis;
-    private long preis;
-    private int dauer;
-    private int chance;
+    private Double preis;
+    private Integer dauer;
+    private Integer chance;
     private String beschreibung;
     private Date aenderungsDatum;
 
@@ -45,27 +45,27 @@ public class Angebot extends AbstractObject {
         this.gueltigBis = gueltigBis;
     }
 
-    public int getChance() {
+    public Integer getChance() {
         return chance;
     }
 
-    public void setChance(int chance) {
+    public void setChance(Integer chance) {
         this.chance = chance;
     }
 
-    public int getDauer() {
+    public Integer getDauer() {
         return dauer;
     }
 
-    public void setDauer(int dauer) {
+    public void setDauer(Integer dauer) {
         this.dauer = dauer;
     }
 
-    public long getPreis() {
+    public Double getPreis() {
         return preis;
     }
 
-    public void setPreis(long preis) {
+    public void setPreis(Double preis) {
         this.preis = preis;
     }
 

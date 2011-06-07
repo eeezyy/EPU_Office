@@ -515,7 +515,7 @@ public class Binder {
         } catch (ClassNotFoundException ex) {
             Logger.log(Level.SEVERE, Binder.class, ex);
         }
-        if (errorList.isEmpty()) {
+        if (errorList == null || errorList.isEmpty()) {
             try {
                 Method m = db.getClass().getMethod("save" + getClassName(classtype), new Class[]{AbstractObject.class});
                 if (logic != null) {
