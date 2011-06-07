@@ -23,7 +23,7 @@ public class Config {
     // block-anfang: aus config auslesen!
     private static TracingLevel traceLevel;// = TracingLevel.SEVERE;
     private static boolean stackTrace;// = true;
-    private String dbPath;
+    private String dbPfad;
     // block-ende
 
     public Config() {
@@ -31,17 +31,17 @@ public class Config {
         try {
             config.load(new FileInputStream("config.properties"));
             if (config.getProperty("db").equals("mySQL")) {
-                dbPath = "jdbc:mysql://";
-                dbPath += ((config.getProperty("db_ip")) + ":");
-                dbPath += (config.getProperty("db_port") + "/");
-                dbPath += (config.getProperty("db_name"));
+                dbPfad = "jdbc:mysql://";
+                dbPfad += ((config.getProperty("db_ip")) + ":");
+                dbPfad += (config.getProperty("db_port") + "/");
+                dbPfad += (config.getProperty("db_name"));
 
                 //localhost\:3306/swe_epu_office"
             } else {
-                dbPath = "jdbc:mysql://";
-                dbPath += ((config.getProperty("db_ip")) + ":");
-                dbPath += (config.getProperty("db_port") + "/");
-                dbPath += (config.getProperty("db_name"));
+                dbPfad = "jdbc:mysql://";
+                dbPfad += ((config.getProperty("db_ip")) + ":");
+                dbPfad += (config.getProperty("db_port") + "/");
+                dbPfad += (config.getProperty("db_name"));
             }
             traceLevel = TracingLevel.valueOf(config.getProperty("traceLevel"));
             stackTrace = Boolean.parseBoolean(config.getProperty("stackTrace"));
@@ -76,6 +76,6 @@ public class Config {
     }
 
     public String getDbPath() {
-        return dbPath;
+        return dbPfad;
     }
 }

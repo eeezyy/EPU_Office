@@ -10,7 +10,8 @@ import java.util.Date;
  *
  * @author Goran-Goggy
  */
-public class Mitarbeiter extends AbstractObject{
+public class Mitarbeiter extends AbstractObject {
+
     private String vorname;
     private String nachname;
     private int stundenSatz;

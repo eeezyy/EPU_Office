@@ -11,6 +11,7 @@ import java.util.Date;
  * @author Goran-Goggy
  */
 public class Projekt extends AbstractObject {
+
     private String name;
     private Angebot angebot;
     private boolean abgeschlossen;
@@ -65,6 +66,4 @@ public class Projekt extends AbstractObject {
     public void setAngebot(Angebot angebot) {
         this.angebot = angebot;
     }
-    
-    
 }

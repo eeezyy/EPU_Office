@@ -290,9 +290,8 @@ public class DALDatabase implements IDAL {
                     + "VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setInt(1, k.getId());
             cmd.setInt(2, a.getId());
-
             cmd = db.prepareStatement(
-                    "UPDAT Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
+                    "UPDATE Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setBoolean(1, k.getIsKunde());
             Logger.log(Level.SEVERE, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
             
@@ -558,4 +557,94 @@ public class DALDatabase implements IDAL {
 //        }
 //        return sqlDate;
 //    }
+
+    @Override
+    public void saveProjekt(AbstractObject p) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteProjekt(Projekt p) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Projekt getProjekt(int id) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Mitarbeiter getMitarbeiter(int id) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<Mitarbeiter> getMitarbeiterListe() throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addMitarbeiterToProjekt(Mitarbeiter m, Projekt p) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteMitarbeiter(Mitarbeiter m) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void saveMitarbeiter(AbstractObject m) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<EingangsRechnung> getEingangsrechnungListe() throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public EingangsRechnung getEingangsrechnung(int id) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void saveEingangsrechnung(AbstractObject eR) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteEingangsrechnung(EingangsRechnung eR) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<AusgangsRechnung> getAusgangsrechnungListe() throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public AusgangsRechnung getAusgangsrechnung(int id) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void saveAusgangsrechnung(AbstractObject eR) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteAusgangsrechnung(AusgangsRechnung aR) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<Kategorie> getKategorieListe() throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Kategorie getKategorie(int id) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

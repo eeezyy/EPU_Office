@@ -23,9 +23,9 @@ public class Kontakt extends AbstractObject {
     private Integer blz;
     private String bankinstitut;
     private Boolean isKunde;
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         if (this.nachname != null || this.vorname != null)
             return this.nachname + ", " + this.vorname;
         else
@@ -103,7 +103,7 @@ public class Kontakt extends AbstractObject {
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
-    
+
     public Integer getHausnr() {
         return hausnr;
     }

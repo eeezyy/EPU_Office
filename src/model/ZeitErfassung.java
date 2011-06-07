@@ -10,7 +10,8 @@ import java.util.Date;
  *
  * @author Goran-Goggy
  */
-public class ZeitErfassung extends AbstractObject{
+public class ZeitErfassung extends AbstractObject {
+
     private Projekt projekt;
     private Mitarbeiter mitarbeiter;
     private Date datum;
@@ -56,6 +57,4 @@ public class ZeitErfassung extends AbstractObject{
     public void setTaetigkeit(String taetigkeit) {
         this.taetigkeit = taetigkeit;
     }
-    
-    
 }

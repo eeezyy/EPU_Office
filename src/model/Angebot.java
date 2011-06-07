@@ -11,6 +11,7 @@ import java.util.Date;
  * @author Goran-Goggy
  */
 public class Angebot extends AbstractObject {
+
     private String name;
     private Date gueltigAb;
     private Date gueltigBis;
@@ -21,13 +22,13 @@ public class Angebot extends AbstractObject {
     private Date aenderungsDatum;
 
     @Override
-    public String toString(){
+    public String toString() {
         if (this.name != null || this.gueltigBis != null)
             return this.name + ", " + this.gueltigBis;
         else
             return "<Neues Angebot>";
     }
-        
+
     public Date getGueltigAb() {
         return gueltigAb;
     }
@@ -91,6 +92,4 @@ public class Angebot extends AbstractObject {
     public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
     }
-    
-    
 }
