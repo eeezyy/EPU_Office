@@ -11,9 +11,12 @@
 package view.dialog;
 
 import controller.Binder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AbstractObject;
 import model.Angebot;
 import model.Kontakt;
+import model.dal.DALException;
 import model.dal.DALFactory;
 import view.AbstractViewDialog;
 
@@ -113,7 +116,11 @@ public class AngebotToKundeForm extends AbstractViewDialog {
         Object o = dialogAngebotToKundeAngebotComboBox.getSelectedItem();
         
         if(o != null && o instanceof Angebot) {
-            DALFactory.getDAL().addAngebotToKontakt(kunde, (Angebot)o);
+            try {
+                DALFactory.getDAL().addAngebotToKontakt(kunde, (Angebot)o);
+            } catch (DALException ex) {
+                Logger.getLogger(AngebotToKundeForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
 }//GEN-LAST:event_dialogAngebotToKundeUebernehmenActionPerformed

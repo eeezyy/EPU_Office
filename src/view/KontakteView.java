@@ -301,7 +301,7 @@ public final class KontakteView extends AbstractViewPanel {
     private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
         DefaultListModel model = (DefaultListModel) kontaktListe.getModel();
         // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
-        if(((Kontakt)model.getElementAt(model.getSize()-1)).getId() == 0)
+        if(model.getSize() > 0 && ((Kontakt)model.getElementAt(model.getSize()-1)).getId() == 0)
             return;
         Kontakt k = new Kontakt();
         k.setId(0);

@@ -61,17 +61,10 @@
               <Font name="Tahoma" size="12" style="2"/>
             </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="Projekt 1  |  Auftrag 1"/>
-                <StringItem index="1" value="Projekt 2"/>
-                <StringItem index="2" value="Projekt 3"/>
-                <StringItem index="3" value="Projekt 4"/>
-                <StringItem index="4" value="Projekt 5"/>
-                <StringItem index="5" value="Projekt 6"/>
-                <StringItem index="6" value="Projekt 7"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
+            <Property name="name" type="java.lang.String" value="ProjektListe" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -115,9 +108,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="projektStundenGesamt">
+    <Component class="javax.swing.JTextField" name="projektStundenGesamtFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="ProjektStundenGesamt" noResource="true"/>
+      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projektStundenGesamtActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projektStundenGesamtFeldActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -139,6 +135,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="projektNameFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Name" noResource="true"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projektNameFeldActionPerformed"/>
       </Events>
@@ -174,7 +173,10 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="projektCheckBox">
+    <Component class="javax.swing.JCheckBox" name="projektAbgeschlossenCheckBox">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="IsAbgeschlossen" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="600" y="120" width="-1" height="-1"/>
@@ -185,6 +187,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Projekt hinzuf&#xfc;gen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projektHinzufuegenActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="10" y="240" width="200" height="-1"/>
@@ -214,16 +219,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JComboBox" name="projektKunde">
+    <Component class="javax.swing.JComboBox" name="projektKundeComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="KundenListe" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -231,16 +232,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JComboBox" name="projektAngebot">
+    <Component class="javax.swing.JComboBox" name="projektAngebotComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="AngebotFromKontakt" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -248,14 +245,20 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+    <Component class="com.toedter.calendar.JDateChooser" name="projektBisFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Bis" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="600" y="80" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+    <Component class="com.toedter.calendar.JDateChooser" name="projektVonFeld">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="Von" noResource="true"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="320" y="80" width="150" height="-1"/>

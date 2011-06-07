@@ -498,7 +498,7 @@ public class DALDatabase implements IDAL {
                 // Angebot Objekt zuweisen
                 a.setAngebot(this.getAngebot(rd.getInt(2)));
                 a.setName(rd.getString(3));
-                a.setAbgeschlossen(rd.getBoolean(4));
+                a.setIsAbgeschlossen(rd.getBoolean(4));
                 a.setVon(new java.util.Date(rd.getDate(5).getTime()));
                 a.setBis(new java.util.Date(rd.getDate(6).getTime()));
                 projekte.add(a);
@@ -581,7 +581,7 @@ public class DALDatabase implements IDAL {
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, p.getAngebot().getId());
                 cmd.setString(2, p.getName());
-                cmd.setBoolean(3, p.isAbgeschlossen());
+                cmd.setBoolean(3, p.getIsAbgeschlossen());
                 cmd.setDate(4, von);
                 cmd.setDate(5, bis);
                 cmd.setInt(6, p.getId());
@@ -591,7 +591,7 @@ public class DALDatabase implements IDAL {
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, p.getAngebot().getId());
                 cmd.setString(2, p.getName());
-                cmd.setBoolean(3, p.isAbgeschlossen());
+                cmd.setBoolean(3, p.getIsAbgeschlossen());
                 cmd.setDate(4, von);
                 cmd.setDate(5, bis);
             }
@@ -657,7 +657,7 @@ public class DALDatabase implements IDAL {
                 projekt.setId(rd.getInt(1));
                 projekt.setAngebot(this.getAngebot(rd.getInt(2)));
                 projekt.setName(rd.getString(3));
-                projekt.setAbgeschlossen(rd.getBoolean(4));
+                projekt.setIsAbgeschlossen(rd.getBoolean(4));
                 projekt.setVon(new java.util.Date(rd.getDate(5).getTime()));
                 projekt.setBis(new java.util.Date(rd.getDate(6).getTime()));
             }

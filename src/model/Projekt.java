@@ -14,24 +14,15 @@ public class Projekt extends AbstractObject {
 
     private String name;
     private Angebot angebot;
-    private boolean abgeschlossen;
+    private Boolean abgeschlossen;
     private Date von;
     private Date bis;
-    private Long arbeitsStunden;
 
-    public Long getArbeitsStunden() {
-        return arbeitsStunden;
-    }
-
-    public void setArbeitsStunden(Long arbeitsStunden) {
-        this.arbeitsStunden = arbeitsStunden;
-    }
-
-    public boolean isAbgeschlossen() {
+    public Boolean getIsAbgeschlossen() {
         return abgeschlossen;
     }
 
-    public void setAbgeschlossen(boolean abgeschlossen) {
+    public void setIsAbgeschlossen(Boolean abgeschlossen) {
         this.abgeschlossen = abgeschlossen;
     }
 

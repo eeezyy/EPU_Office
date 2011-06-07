@@ -243,7 +243,7 @@ public class AngeboteView extends AbstractViewPanel {
     private void angebotErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotErstellenActionPerformed
         DefaultListModel model = (DefaultListModel) angebotListe.getModel();
         // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
-        if (((Angebot) model.getElementAt(model.getSize() - 1)).getId() == 0) {
+        if (model.getSize() > 0 && ((Angebot) model.getElementAt(model.getSize() - 1)).getId() == 0) {
             return;
         }
         Angebot a = new Angebot();
