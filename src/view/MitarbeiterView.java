@@ -72,7 +72,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterListeLabel.setText("Mitarbeiterliste");
         jPanel1.add(mitarbeiterListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        mitarbeiterInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mitarbeiterInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mitarbeiterInfoLabel.setText("Mitarbeiterinformation");
         mitarbeiterInfoLabel.setAlignmentX(0.5F);
@@ -90,7 +90,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
-        mitarbeiterKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterKontoNrLabel.setText("Konto-Nr.");
         jPanel1.add(mitarbeiterKontoNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
@@ -102,7 +102,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterGeburtsDatumLabel.setText("Geburtsdatum");
         jPanel1.add(mitarbeiterGeburtsDatumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
 
-        mitarbeiterStundenSatzLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterStundenSatzLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterStundenSatzLabel.setText("Stundensatz (€)");
         jPanel1.add(mitarbeiterStundenSatzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
 
