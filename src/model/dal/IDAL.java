@@ -48,7 +48,7 @@ public interface IDAL {
 
     public ArrayList<Mitarbeiter> getMitarbeiterListe() throws DALException;
 
-    public void addMitarbeiterToProjekt(Mitarbeiter m, Projekt p) throws DALException;
+    public void addMitarbeiterToProjekt(Integer p, Integer m) throws DALException;
 
     public void deleteMitarbeiter(Mitarbeiter m) throws DALException;
 

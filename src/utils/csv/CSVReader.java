@@ -99,7 +99,7 @@ public class CSVReader {
                         counter++;
                     }
                     if (counter == 3) {
-                        logEintrag.setStunden(Integer.parseInt(st.nextToken()));
+                        logEintrag.setStunden((Integer)Integer.parseInt(st.nextToken()));
                         System.out.println(counter + " Stunden  " + logEintrag.getStunden());
                         counter++;
                     }

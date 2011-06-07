@@ -65,7 +65,7 @@ public class CSVWriter {
             writer.append(";");
             writer.append(df.format(log.get(i).getDatum()).toString());
             writer.append(";");
-            writer.append(String.valueOf(log.get(i).getStunden()));
+            writer.append(log.get(i).getStunden().toString());
             writer.append(";");
             writer.append(log.get(i).getTaetigkeit());
             writer.println();

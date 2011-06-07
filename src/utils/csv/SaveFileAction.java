@@ -50,7 +50,7 @@ public class SaveFileAction extends AbstractAction {
         logEintrag.setProjekt(p);
         logEintrag.setMitarbeiter(m);
         logEintrag.setDatum(now);
-        logEintrag.setStunden(6);
+        logEintrag.setStunden((Integer)6);
         logEintrag.setTaetigkeit("CSV Export implementieren");
         
         dummyList.add(logEintrag);

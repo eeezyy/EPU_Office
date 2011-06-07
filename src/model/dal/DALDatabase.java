@@ -278,7 +278,7 @@ public class DALDatabase implements IDAL {
             Connection db = DALDatabase.getConnection();
 
             // SQL STMT vorbereiten
-            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM KONTAKT_HAS_ANGEBOT WHERE KONTAKT_ID = ? AND ANGEBOT_ID = ? GROUP BY id");
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(KONTAKT_ID) FROM KONTAKT_HAS_ANGEBOT WHERE KONTAKT_ID = ? AND ANGEBOT_ID = ? GROUP BY KONTAKT_ID");
             // Parameter setzen
             cmdSelect.setInt(1, k.getId());
             cmdSelect.setInt(2, a.getId());
@@ -370,7 +370,6 @@ public class DALDatabase implements IDAL {
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
-
     }
 
     @Override
@@ -600,7 +599,7 @@ public class DALDatabase implements IDAL {
             cmdSelect.close();
             db.close();
             Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveProjekt"));
-            Binder.notify(Angebot.class);
+            Binder.notify(Projekt.class);
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
@@ -699,18 +698,89 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void addMitarbeiterToProjekt(Mitarbeiter m, Projekt p) throws DALException {
+    public void addMitarbeiterToProjekt(Integer projekt, Integer mitarbeiter) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void deleteMitarbeiter(Mitarbeiter m) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM MITARBEITER WHERE id = ?");
+            // Parameter setzen
+            cmd.setInt(1, m.getId());
+            // Ausf�hren
+            Integer result = cmd.executeUpdate();
+
+            // was deleted?
+            if (result != 0) {
+                // successful
+                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteMitarbeiter"));
+            }
+            cmd.close();
+            db.close();
+            Binder.notify(Mitarbeiter.class);
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
     }
 
     @Override
-    public void saveMitarbeiter(AbstractObject m) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void saveMitarbeiter(AbstractObject aO) throws DALException {
+        if (!(aO instanceof Mitarbeiter)) {
+            return;
+        }
+        Mitarbeiter m = (Mitarbeiter) aO;
+        java.sql.Date gebDat = new java.sql.Date(m.getGeburtsDatum().getTime());
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+            
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM Mitarbeiter WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, m.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE Mitarbeiter SET VORNAME = ?, NACHNAME = ?, STUNDENSATZ = ?, GEBURTSDATUM = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setString(1, m.getVorname());
+                cmd.setString(2, m.getNachname());
+                cmd.setDouble(3, m.getStundenSatz());
+                cmd.setDate(4, gebDat);
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO MITARBEITER (VORNAME, NACHNAME, STUNDENSATZ, GEBURTSDATUM) VALUES (?, ?, ?, ?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setString(1, m.getVorname());
+                cmd.setString(2, m.getNachname());
+                cmd.setDouble(3, m.getStundenSatz());
+                cmd.setDate(4, gebDat);
+            }
+            // execute insert/update
+            Integer result = cmd.executeUpdate();
+            // get generated id
+            ResultSet generatedKeys = cmd.getGeneratedKeys();
+            if (result != 0 && generatedKeys.next()) {
+                m.setId(generatedKeys.getInt(1));
+            }
+            cmd.close();
+            rd.close();
+            cmdSelect.close();
+            db.close();
+            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveMitarbeiter"));
+            Binder.notify(Projekt.class);
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
     }
 
     @Override
