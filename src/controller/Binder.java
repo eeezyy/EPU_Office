@@ -4,6 +4,8 @@ package controller;
 import com.toedter.calendar.JDateChooser;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -237,6 +239,12 @@ public class Binder {
                                         } else if (result instanceof Long) {
                                             if (result != null) {
                                                 text = Long.toString((Long) result);
+                                            } else {
+                                                text = "";
+                                            }
+                                        } else if (result instanceof Double) {
+                                            if (result != null) {
+                                                text = Double.toString((Double) result);
                                             } else {
                                                 text = "";
                                             }
@@ -572,6 +580,15 @@ public class Binder {
                         m.invoke(object, Long.parseLong(property.getValue()));
                     } else if (property.getClasstype().equals(Boolean.class)) {
                         m.invoke(object, Boolean.parseBoolean(property.getValue()));
+                    } else if (property.getClasstype().equals(Double.class)) {
+                        m.invoke(object, Double.parseDouble(property.getValue()));
+                    } else if (property.getClasstype().equals(Date.class)) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyy");
+                        try {
+                            m.invoke(object, sdf.parse(property.getValue()));
+                        } catch (ParseException ex) {
+                            Logger.log(Level.SEVERE, Binder.class, ex);
+                        }
                     }
                 } catch (IllegalAccessException ex) {
                     Logger.log(Level.SEVERE, Binder.class, ex);

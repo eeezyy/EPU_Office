@@ -13,6 +13,7 @@ package view;
 import controller.AngebotController;
 import controller.Binder;
 import controller.BinderProperty;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -329,12 +330,13 @@ public class AngeboteView extends AbstractViewPanel {
 
     private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
         ArrayList list = new ArrayList<BinderProperty>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
         list.add(new BinderProperty(angebotNameFeld.getName(), angebotNameFeld.getText(), String.class));
-        list.add(new BinderProperty("AenderungsDatum", new Date().toString(), Date.class));
+        list.add(new BinderProperty("AenderungsDatum", sdf.format(new Date()), Date.class));
         list.add(new BinderProperty(angebotBeschreibungFeld.getName(), angebotBeschreibungFeld.getText(), String.class));
-        list.add(new BinderProperty(angebotGueltigAbFeld.getName(), angebotGueltigAbFeld.getDate().toString(), Date.class));
-        list.add(new BinderProperty(angebotGueltigBisFeld.getName(), angebotGueltigBisFeld.getDate().toString(), Date.class));
+        list.add(new BinderProperty(angebotGueltigAbFeld.getName(), sdf.format(angebotGueltigAbFeld.getDate()), Date.class));
+        list.add(new BinderProperty(angebotGueltigBisFeld.getName(), sdf.format(angebotGueltigBisFeld.getDate()), Date.class));
         list.add(new BinderProperty(angebotChanceFeld.getName(), angebotChanceFeld.getText(), Integer.class));
         list.add(new BinderProperty(angebotDauerFeld.getName(), angebotDauerFeld.getText(), Integer.class));
         list.add(new BinderProperty(angebotPreisFeld.getName(), angebotPreisFeld.getText(), Double.class));
