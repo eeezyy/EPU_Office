@@ -198,7 +198,7 @@ public class DALDatabase implements IDAL {
 
         return kontakte;
     }
-    
+
     @Override
     public Kontakt getKontakt(int id) {
         Kontakt kontakt = null;
@@ -294,7 +294,7 @@ public class DALDatabase implements IDAL {
                     "UPDATE Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setBoolean(1, k.getIsKunde());
             Logger.log(Level.SEVERE, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
-            
+
             Binder.notify(Angebot.class);
             Binder.notify(Kontakt.class);
         } catch (SQLException ex) {
@@ -337,7 +337,7 @@ public class DALDatabase implements IDAL {
                 cmd.setInt(4, a.getChance());
                 cmd.setDate(5, now);
                 cmd.setString(6, a.getBeschreibung());
-                cmd.setLong(7, a.getPreis());
+                cmd.setDouble(7, a.getPreis());
                 cmd.setString(8, a.getName());
                 cmd.setInt(9, a.getId());
                 Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveAngebot"));
@@ -353,7 +353,7 @@ public class DALDatabase implements IDAL {
                 cmd.setInt(5, a.getChance());
                 cmd.setDate(6, now);
                 cmd.setString(7, a.getBeschreibung());
-                cmd.setLong(8, a.getPreis());
+                cmd.setDouble(8, a.getPreis());
 
 
             }
@@ -425,7 +425,7 @@ public class DALDatabase implements IDAL {
                 a.setChance(rd.getInt(5));
                 a.setAenderungsDatum((Date) rd.getDate(6));
                 a.setBeschreibung(rd.getString(7));
-                a.setPreis(rd.getLong(8));
+                a.setPreis(rd.getDouble(8));
                 a.setName(rd.getString(9));
                 angebote.add(a);
             }
@@ -461,7 +461,7 @@ public class DALDatabase implements IDAL {
                 a.setChance(rd.getInt(5));
                 a.setAenderungsDatum((Date) rd.getDate(6));
                 a.setBeschreibung(rd.getString(7));
-                a.setPreis(rd.getLong(8));
+                a.setPreis(rd.getDouble(8));
                 a.setName(rd.getString(9));
                 angebot = a;
                 break;
@@ -474,7 +474,7 @@ public class DALDatabase implements IDAL {
         }
         return angebot;
     }
-    
+
     @Override
     public ArrayList<Projekt> getProjektListe() throws DALException {
         ArrayList<Projekt> projekte = new ArrayList<Projekt>();
@@ -495,7 +495,7 @@ public class DALDatabase implements IDAL {
                 a.setAngebot(this.getAngebot(rd.getInt(2)));
                 a.setName(rd.getString(3));
                 a.setAbgeschlossen(rd.getBoolean(4));
-                a.setVon((Date)rd.getDate(5));
+                a.setVon((Date) rd.getDate(5));
                 a.setBis((Date) rd.getDate(6));
                 projekte.add(a);
             }
@@ -646,5 +646,35 @@ public class DALDatabase implements IDAL {
     @Override
     public Kategorie getKategorie(int id) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<Angebot> getAngebotFromKontakt(Kontakt k) throws DALException {
+        ArrayList<Angebot> angebote = new ArrayList<Angebot>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, name, beschreibung FROM kontakt k inner join kontakt_has_angebot kha on k.id = kha.kontakt_id "+ ""
+                    + "inner join angebot a on kha.angebot_id = a.id WHERE k.id = ?");
+            cmd.setInt(1, k.getId());
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Angebot a = new Angebot();
+                a.setId(rd.getInt(1));
+                a.setName(rd.getString(2));
+                a.setBeschreibung(rd.getString(3));
+                angebote.add(a);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+        }
+        return angebote;
     }
 }

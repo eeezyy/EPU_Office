@@ -46,17 +46,18 @@ public class ProjektView extends javax.swing.JPanel {
         projektImplementierungVonLabel = new javax.swing.JLabel();
         projektImplementierungBisLabel = new javax.swing.JLabel();
         projektStundenGesamt = new javax.swing.JTextField();
-        projektImplVon = new javax.swing.JTextField();
-        projektAuftragFeld = new javax.swing.JTextField();
         projektNameLabel = new javax.swing.JLabel();
         projektNameFeld = new javax.swing.JTextField();
         projektImplementierungVonLabel1 = new javax.swing.JLabel();
         projektArbeitsstundenGesamt = new javax.swing.JLabel();
         projektCheckBox = new javax.swing.JCheckBox();
-        projektImplBis = new javax.swing.JTextField();
         projektHinzufuegen = new javax.swing.JButton();
         projektLoeschen = new javax.swing.JButton();
         projektAendern = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -81,34 +82,26 @@ public class ProjektView extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
-        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektAuftragLabel.setText("Angebot");
+        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektAuftragLabel.setText("Angebot von");
         add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektImplementierungVonLabel.setText("Impl. (von)");
-        add(projektImplementierungVonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
+        projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektImplementierungVonLabel.setText("Von");
+        add(projektImplementierungVonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
-        projektImplementierungBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektImplementierungBisLabel.setText("Impl. (bis)");
-        add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
+        projektImplementierungBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektImplementierungBisLabel.setText("Bis");
+        add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         projektStundenGesamt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektStundenGesamtActionPerformed(evt);
             }
         });
-        add(projektStundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 40, 60, -1));
-        add(projektImplVon, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 150, -1));
+        add(projektStundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 150, -1));
 
-        projektAuftragFeld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projektAuftragFeldActionPerformed(evt);
-            }
-        });
-        add(projektAuftragFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
-
-        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         projektNameLabel.setText("Name");
         add(projektNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
@@ -119,21 +112,14 @@ public class ProjektView extends javax.swing.JPanel {
         });
         add(projektNameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 150, -1));
 
-        projektImplementierungVonLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
+        projektImplementierungVonLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         projektImplementierungVonLabel1.setText("Abgeschlossen");
-        add(projektImplementierungVonLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+        add(projektImplementierungVonLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
-        projektArbeitsstundenGesamt.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektArbeitsstundenGesamt.setText("Arbeitsstunden (gesamt)");
-        add(projektArbeitsstundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
-        add(projektCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
-
-        projektImplBis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projektImplBisActionPerformed(evt);
-            }
-        });
-        add(projektImplBis, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, 150, -1));
+        projektArbeitsstundenGesamt.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektArbeitsstundenGesamt.setText("Aufwand (h)");
+        add(projektArbeitsstundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        add(projektCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
 
         projektHinzufuegen.setText("Projekt hinzufügen");
         add(projektHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
@@ -148,40 +134,41 @@ public class ProjektView extends javax.swing.JPanel {
             }
         });
         add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 130, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 160, -1));
+        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
+        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void projektStundenGesamtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektStundenGesamtActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_projektStundenGesamtActionPerformed
 
-    private void projektAuftragFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAuftragFeldActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_projektAuftragFeldActionPerformed
-
     private void projektNameFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektNameFeldActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_projektNameFeldActionPerformed
-
-    private void projektImplBisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektImplBisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_projektImplBisActionPerformed
 
     private void projektAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAendernActionPerformed
         //KontaktAddForm af = new KontaktAddForm(null, true);
         //af.setVisible(true);
 }//GEN-LAST:event_projektAendernActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kundenInfoLabel;
     private javax.swing.JLabel kundenListeLabel;
     private javax.swing.JButton projektAendern;
     private javax.swing.JLabel projektArbeitsstundenGesamt;
-    private javax.swing.JTextField projektAuftragFeld;
     private javax.swing.JLabel projektAuftragLabel;
     private javax.swing.JCheckBox projektCheckBox;
     private javax.swing.JButton projektHinzufuegen;
-    private javax.swing.JTextField projektImplBis;
-    private javax.swing.JTextField projektImplVon;
     private javax.swing.JLabel projektImplementierungBisLabel;
     private javax.swing.JLabel projektImplementierungVonLabel;
     private javax.swing.JLabel projektImplementierungVonLabel1;

@@ -34,6 +34,8 @@ public interface IDAL {
 
     public ArrayList<Angebot> getAngebotListe() throws DALException;
 
+    public ArrayList<Angebot> getAngebotFromKontakt(Kontakt k) throws DALException;
+
     public ArrayList<Projekt> getProjektListe() throws DALException;
 
     public void saveProjekt(AbstractObject p) throws DALException;
@@ -67,11 +69,8 @@ public interface IDAL {
     public void saveAusgangsrechnung(AbstractObject eR) throws DALException;
 
     public void deleteAusgangsrechnung(AusgangsRechnung aR) throws DALException;
-    
+
     public ArrayList<Kategorie> getKategorieListe() throws DALException;
-    
+
     public Kategorie getKategorie(int id) throws DALException;
-    
-    
-    
 }

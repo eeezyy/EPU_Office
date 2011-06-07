@@ -62,6 +62,7 @@ public class StatistikView extends javax.swing.JPanel {
         statistikMonat = new javax.swing.JComboBox();
         kontaktListeLabel2 = new javax.swing.JLabel();
         statistikErloes = new javax.swing.JTextField();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -75,7 +76,7 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikEingang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien" };
             public int getSize() { return strings.length; }
@@ -97,7 +98,7 @@ public class StatistikView extends javax.swing.JPanel {
                 statistikAusgangHinzufuegenActionPerformed(evt);
             }
         });
-        add(statistikAusgangHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(statistikAusgangHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 230, -1));
 
         statistikEingangHinzufuegen.setText("Eingangsrechnung hinzufügen");
         add(statistikEingangHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
@@ -118,7 +119,7 @@ public class StatistikView extends javax.swing.JPanel {
         });
         add(statistikPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
-        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikAusgang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Wien Energie", "FH Technikum-Wien" };
             public int getSize() { return strings.length; }
@@ -139,15 +140,16 @@ public class StatistikView extends javax.swing.JPanel {
         add(kontaktListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         statistikMonat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jänner", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" }));
-        add(statistikMonat, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 120, 20));
+        add(statistikMonat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 120, 20));
 
-        kontaktListeLabel2.setFont(new java.awt.Font("Arial", 1, 14));
-        kontaktListeLabel2.setText("Betroffener Monat");
+        kontaktListeLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel2.setText("Statistik des Monats");
         add(kontaktListeLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         statistikErloes.setEditable(false);
         statistikErloes.setText("50000");
         add(statistikErloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 150, -1));
+        add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void statistikAusgangHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikAusgangHinzufuegenActionPerformed
@@ -202,6 +204,7 @@ public class StatistikView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JLabel kontaktInfoLabel;
     private javax.swing.JLabel kontaktListeLabel;
     private javax.swing.JLabel kontaktListeLabel1;
