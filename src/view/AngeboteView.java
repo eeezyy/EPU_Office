@@ -26,6 +26,7 @@ import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.log.Logger;
+import view.dialog.KundeToAngebotForm;
 
 /**
  *
@@ -264,7 +265,10 @@ public class AngeboteView extends AbstractViewPanel {
 
     private void kundeZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundeZuweisenActionPerformed
         // TODO add your handling code here:
-        Binder.notify(Angebot.class);
+        if (!(angebotListe.isSelectionEmpty())) {
+            KundeToAngebotForm kTA = new KundeToAngebotForm(null, true, (Angebot) angebotListe.getSelectedValue());
+            kTA.setVisible(true);
+        }
     }//GEN-LAST:event_kundeZuweisenActionPerformed
 
     private void angebotLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotLoeschenActionPerformed
@@ -328,10 +332,11 @@ public class AngeboteView extends AbstractViewPanel {
         list.add(new BinderProperty(angebotDauerFeld.getName(), angebotDauerFeld.getText(), Integer.class));
         list.add(new BinderProperty(angebotPreisFeld.getName(), angebotPreisFeld.getText(), Double.class));
         Angebot a = (Angebot) angebotListe.getSelectedValue();
-        if(a != null)
+        if (a != null) {
             list.add(new BinderProperty("Id", a.getId().toString(), Integer.class));
-        else
+        } else {
             list.add(new BinderProperty("Id", "0", Integer.class));
+        }
 
         return list;
     }
