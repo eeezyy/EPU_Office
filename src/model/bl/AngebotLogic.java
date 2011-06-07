@@ -25,6 +25,10 @@ public class AngebotLogic extends AbstractLogic {
         while (i.hasNext()) {
             property = (BinderProperty) i.next();
             if (property.getProperty().equals("Id")) {
+                if (!isValidIdNull(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
+            } else if (property.getProperty().equals("Angebot_Id")) {
                 if (!isValidId(property.getValue())) {
                     errorList.add(property.getProperty());
                 }

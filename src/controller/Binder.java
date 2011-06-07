@@ -31,7 +31,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import model.AbstractObject;
-import model.Angebot;
 import model.bl.AbstractLogic;
 import model.dal.DALFactory;
 import model.dal.IDAL;
@@ -344,14 +343,110 @@ public class Binder {
                 jlist.addListSelectionListener(lsl);
             }
 
+            if (jc2 instanceof JComboBox) {
+                final JComboBox jcb2 = (JComboBox) jc2;
+
+                ListSelectionListener lsl;
+                lsl = new ListSelectionListener() {
+
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
+
+                        Runnable r = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+                                Method method = null;
+                                AbstractObject object = null;
+                                if (am != null) {
+                                    if (jcb2.getName() == null || jcb2.getName().isEmpty()) {
+                                        System.out.println("Binding: Componente enthält keinen property:name");
+                                        return;
+                                    }
+                                    try {
+                                        method = am.getClass().getMethod("get" + jcb2.getName(), new Class[]{});
+                                    } catch (NoSuchMethodException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (SecurityException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                } else {
+                                    jcb2.setModel(null);
+                                    jcb2.setEnabled(false);
+                                }
+                                if (method != null) {
+                                    try {
+                                        Object result = method.invoke(am);
+                                        if (result instanceof AbstractObject) {
+                                            object = (AbstractObject) result;
+                                        }
+                                    } catch (IllegalAccessException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (IllegalArgumentException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (InvocationTargetException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                }
+                                if (object != null || am != null && am.getId().equals(0)) {
+                                    DefaultComboBoxModel model = new DefaultComboBoxModel();
+                                    try {
+                                        method = am.getClass().getMethod("get" + jcb2.getName() + "List", new Class[]{});
+                                    } catch (NoSuchMethodException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (SecurityException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                    ArrayList<AbstractObject> list = null;
+                                    if (method != null) {
+                                        try {
+                                            Object result = method.invoke(am);
+                                            if (result instanceof ArrayList) {
+                                                list = (ArrayList<AbstractObject>) result;
+                                            }
+                                        } catch (IllegalAccessException ex) {
+                                            Logger.log(Level.SEVERE, Binder.class, ex);
+                                        } catch (IllegalArgumentException ex) {
+                                            Logger.log(Level.SEVERE, Binder.class, ex);
+                                        } catch (InvocationTargetException ex) {
+                                            Logger.log(Level.SEVERE, Binder.class, ex);
+                                        }
+                                    }
+                                    Iterator i = list.iterator();
+                                    while (i.hasNext()) {
+                                        model.addElement(i.next());
+                                    }
+                                    model.setSelectedItem(object);
+                                    jcb2.setModel(model);
+                                    jcb2.setEnabled(true);
+                                }
+                                jcb2.setBorder(BorderFactory.createEtchedBorder());
+                            }
+                        };
+                        SwingUtilities.invokeLater(r);
+                    }
+                };
+                jlist.addListSelectionListener(lsl);
+            }
+
 
         }
-        
+
         if (jc1 instanceof JComboBox) {
             final JComboBox jcb1 = (JComboBox) jc1;
             if (jc2 instanceof JComboBox) {
                 final JComboBox jcb2 = (JComboBox) jc2;
-             
+
                 ItemListener lsl;
                 lsl = new ItemListener() {
 
@@ -359,12 +454,12 @@ public class Binder {
                     public void itemStateChanged(ItemEvent e) {
                         // verhindert das deselectieren eines neuen Kontaktes
                         /*if (jcb1.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jcb1.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
-                            jcb1.setSelectedIndex(e.getLastIndex());
-                            return;
+                        jcb1.setSelectedIndex(e.getLastIndex());
+                        return;
                         }
                         // bereits eingetragene textfelder gehen nicht verloren
                         if (e.getLastIndex() == jcb1.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jcb1.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
-                            return;
+                        return;
                         }*/
 
                         Runnable r = new Runnable() {
@@ -407,7 +502,7 @@ public class Binder {
                                 if (list != null || am != null && am.getId().equals(0)) {
                                     DefaultComboBoxModel model = new DefaultComboBoxModel();
                                     Iterator i = list.iterator();
-                                    while(i.hasNext()) {
+                                    while (i.hasNext()) {
                                         model.addElement(i.next());
                                     }
                                     jcb2.setModel(model);
@@ -422,12 +517,12 @@ public class Binder {
                 jcb1.addItemListener(lsl);
             }
         }
-        
+
         if (jc1 instanceof JComboBox) {
             final JComboBox jcb1 = (JComboBox) jc1;
             if (jc2 instanceof JList) {
                 final JList jl = (JList) jc2;
-             
+
                 ItemListener lsl;
                 lsl = new ItemListener() {
 
@@ -435,12 +530,12 @@ public class Binder {
                     public void itemStateChanged(ItemEvent e) {
                         // verhindert das deselectieren eines neuen Kontaktes
                         /*if (jcb1.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jcb1.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
-                            jcb1.setSelectedIndex(e.getLastIndex());
-                            return;
+                        jcb1.setSelectedIndex(e.getLastIndex());
+                        return;
                         }
                         // bereits eingetragene textfelder gehen nicht verloren
                         if (e.getLastIndex() == jcb1.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jcb1.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
-                            return;
+                        return;
                         }*/
 
                         Runnable r = new Runnable() {
@@ -457,10 +552,12 @@ public class Binder {
                                         return;
                                     }
                                     try {
-                                        if(am instanceof AbstractObject)
+                                        if (am instanceof AbstractObject) {
                                             method = db.getClass().getMethod("get" + jl.getName(), new Class[]{Integer.class});
-                                        if (am instanceof String && ((String)am).isEmpty())
+                                        }
+                                        if (am instanceof String && ((String) am).isEmpty()) {
                                             method = db.getClass().getMethod("get" + jl.getName(), new Class[]{});
+                                        }
                                     } catch (NoSuchMethodException ex) {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     } catch (SecurityException ex) {
@@ -473,10 +570,11 @@ public class Binder {
                                 if (method != null) {
                                     try {
                                         Object result = null;
-                                        if(am instanceof AbstractObject)
-                                            result = method.invoke(db, ((AbstractObject)am).getId());
-                                        else if (am instanceof String && ((String)am).isEmpty())
+                                        if (am instanceof AbstractObject) {
+                                            result = method.invoke(db, ((AbstractObject) am).getId());
+                                        } else if (am instanceof String && ((String) am).isEmpty()) {
                                             result = method.invoke(db);
+                                        }
                                         if (result instanceof ArrayList) {
                                             list = (ArrayList<AbstractObject>) result;
                                         }
@@ -488,10 +586,10 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                if (list != null || am != null && ((AbstractObject)am).getId().equals(0)) {
+                                if (list != null || am != null && ((AbstractObject) am).getId().equals(0)) {
                                     DefaultListModel model = new DefaultListModel();
                                     Iterator i = list.iterator();
-                                    while(i.hasNext()) {
+                                    while (i.hasNext()) {
                                         model.addElement(i.next());
                                     }
                                     jl.setModel(model);
@@ -506,7 +604,7 @@ public class Binder {
                 jcb1.addItemListener(lsl);
             }
         }
-        
+
     }
 
     public static void bind(Class c, JComponent jc) {

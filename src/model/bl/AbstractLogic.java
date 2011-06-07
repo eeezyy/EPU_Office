@@ -8,8 +8,6 @@ import controller.BinderProperty;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -139,6 +137,14 @@ public abstract class AbstractLogic {
     }
 
     protected boolean isValidId(String text) {
+        if (!isValidInteger(text)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected boolean isValidIdNull(String text) {
         if (text == null) {
             return true;
         }

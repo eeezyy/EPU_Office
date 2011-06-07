@@ -44,8 +44,7 @@ public class ProjektView extends AbstractViewPanel {
         Binder.bind(projektListe, projektVonFeld);
         Binder.bind(projektListe, projektBisFeld);
         Binder.bind(projektListe, projektAbgeschlossenCheckBox);
-        Binder.bind(projektListe, projektNameFeld);
-        Binder.bind(projektListe, projektNameFeld);
+        Binder.bind(projektListe, projektAngebotComboBox);
     }
 
     /** This method is called from within the constructor to
@@ -73,7 +72,6 @@ public class ProjektView extends AbstractViewPanel {
         projektHinzufuegen = new javax.swing.JButton();
         projektLoeschen = new javax.swing.JButton();
         projektAendern = new javax.swing.JButton();
-        projektKundeComboBox = new javax.swing.JComboBox();
         projektAngebotComboBox = new javax.swing.JComboBox();
         projektBisFeld = new com.toedter.calendar.JDateChooser();
         projektVonFeld = new com.toedter.calendar.JDateChooser();
@@ -90,7 +88,7 @@ public class ProjektView extends AbstractViewPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         projektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         projektListe.setName("ProjektListe"); // NOI18N
         jScrollPane1.setViewportView(projektListe);
@@ -98,7 +96,7 @@ public class ProjektView extends AbstractViewPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
         projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        projektAuftragLabel.setText("Angebot von");
+        projektAuftragLabel.setText("Angebot");
         add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
@@ -159,11 +157,8 @@ public class ProjektView extends AbstractViewPanel {
         });
         add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
-        projektKundeComboBox.setName("KundenListe"); // NOI18N
-        add(projektKundeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 130, -1));
-
-        projektAngebotComboBox.setName("AngebotFromKontakt"); // NOI18N
-        add(projektAngebotComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 160, -1));
+        projektAngebotComboBox.setName("Angebot"); // NOI18N
+        add(projektAngebotComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 160, -1));
 
         projektBisFeld.setName("Bis"); // NOI18N
         add(projektBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
@@ -213,6 +208,7 @@ public class ProjektView extends AbstractViewPanel {
         projektListe.setSelectedIndex(model.getSize() - 1);
         this.resetTextFields();
     }//GEN-LAST:event_projektHinzufuegenActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kundenInfoLabel;
@@ -227,7 +223,6 @@ public class ProjektView extends AbstractViewPanel {
     private javax.swing.JLabel projektImplementierungBisLabel;
     private javax.swing.JLabel projektImplementierungVonLabel;
     private javax.swing.JLabel projektImplementierungVonLabel1;
-    private javax.swing.JComboBox projektKundeComboBox;
     private javax.swing.JList projektListe;
     private javax.swing.JButton projektLoeschen;
     private javax.swing.JTextField projektNameFeld;

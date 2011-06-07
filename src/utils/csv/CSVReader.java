@@ -112,7 +112,7 @@ public class CSVReader {
                 }
             }
         } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.log(Level.SEVERE, CSVReader.class, ex);
         }
         return log;
     }

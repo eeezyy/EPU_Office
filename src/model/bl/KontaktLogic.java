@@ -23,7 +23,7 @@ public class KontaktLogic extends AbstractLogic {
         while (i.hasNext()) {
             property = (BinderProperty) i.next();
             if (property.getProperty().equals("Id")) {
-                if (!isValidId(property.getValue())) {
+                if (!isValidIdNull(property.getValue())) {
                     errorList.add(property.getProperty());
                 }
             } else if (property.getProperty().equals("Email")) {

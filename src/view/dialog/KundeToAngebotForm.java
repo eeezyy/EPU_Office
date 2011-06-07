@@ -12,11 +12,11 @@ package view.dialog;
 
 import controller.Binder;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Angebot;
 import model.Kontakt;
 import model.dal.DALException;
 import model.dal.DALFactory;
+import utils.log.Logger;
 import view.AbstractViewDialog;
 
 /**
@@ -118,7 +118,7 @@ public class KundeToAngebotForm extends AbstractViewDialog {
             try {
                 DALFactory.getDAL().addAngebotToKontakt((Kontakt) o, angebot);
             } catch (DALException ex) {
-                Logger.getLogger(KundeToAngebotForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.log(Level.SEVERE, KundeToAngebotForm.class, ex);
             }
             this.dispose();
         }
