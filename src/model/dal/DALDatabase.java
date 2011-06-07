@@ -575,7 +575,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (!rd.next() || rd.getInt(1) == 0) {
+            if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
                         "UPDATE PROJEKT SET ANGEBOT_ID = ?, NAME = ?, ABGESCHLOSSEN = ?, VON = ?, BIS = ? WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
@@ -838,28 +838,33 @@ public class DALDatabase implements IDAL {
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
-        String [] kategorien = {"Einnahme", "Ausgabe", "Steuer", "SVA"};
+        String[] kategorien = {"Ausgabe", "Einnahme", "Steuer", "SVA"};
         try {
             db = DALDatabase.getConnection();
             cmd = db.prepareStatement("SELECT id, bezeichnung FROM kategorie");
             rd = cmd.executeQuery();
             // Daten holen
             if (rd.wasNull()) {
-                
-                cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
-                cmd.setString(1, "Steuer");
-                Integer result = cmd.executeUpdate();
-                // get generated id
-                ResultSet generatedKeys = cmd.getGeneratedKeys();
-                if (result != null && result != 0 && generatedKeys.next()) {
-                    //.setId(generatedKeys.getInt(1));
+                for (int i = 0; i < kategorien.length; i++) {
+                    Kategorie k = new Kategorie();
+                    cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    cmd.setString(1, kategorien[i]);
+                    k.setBezeichnung(kategorien[i]);
+                    Integer result = cmd.executeUpdate();
+                    // get generated id
+                    ResultSet generatedKeys = cmd.getGeneratedKeys();
+                    if (result != null && result != 0 && generatedKeys.next()) {
+                        k.setId(generatedKeys.getInt(1));
+                        kategorieListe.add(k);
+                    }
                 }
-            }
-            while (rd.next()) {
-                Kategorie k = new Kategorie();
-                k.setId(rd.getInt(1));
-                k.setBezeichnung(rd.getString(2));
-                kategorieListe.add(k);
+            } else {
+                while (rd.next()) {
+                    Kategorie k = new Kategorie();
+                    k.setId(rd.getInt(1));
+                    k.setBezeichnung(rd.getString(2));
+                    kategorieListe.add(k);
+                }
             }
             rd.close();
             cmd.close();
@@ -971,5 +976,26 @@ public class DALDatabase implements IDAL {
 
     @Override
     public void saveZeitErfassung(ZeitErfassung log) throws DALException {
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            /*
+             * cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    cmd.setString(1, kategorien[i]);
+                    k.setBezeichnung(kategorien[i]);
+                    Integer result = cmd.executeUpdate();
+                    // get generated id
+                    ResultSet generatedKeys = cmd.getGeneratedKeys();
+                    if (result != null && result != 0 && generatedKeys.next()) {
+                        k.setId(generatedKeys.getInt(1));
+                        kategorieListe.add(k);
+                    }
+             */
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(DALDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
