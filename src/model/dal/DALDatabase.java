@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import utils.log.Logger;
 
@@ -155,7 +154,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<AbstractObject> getKontaktListe() {
+    public ArrayList<AbstractObject> getKontaktListe() throws DALException {
         ArrayList<AbstractObject> kontakte = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
@@ -193,14 +192,14 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
 
         return kontakte;
     }
 
     @Override
-    public Kontakt getKontakt(Integer id) {
+    public Kontakt getKontakt(Integer id) throws DALException {
         Kontakt kontakt = null;
         // Datenbankverbindung �ffnen
         Connection db;
@@ -240,7 +239,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
 
         return kontakt;
@@ -273,7 +272,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void addAngebotToKontakt(Kontakt k, Angebot a) {
+    public void addAngebotToKontakt(Kontakt k, Angebot a) throws DALException {
         try {
             Connection db = DALDatabase.getConnection();
 
@@ -304,11 +303,10 @@ public class DALDatabase implements IDAL {
                     Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
                 }
             }
-            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
             Binder.notify(Angebot.class);
             Binder.notify(Kontakt.class);
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
     }
 
@@ -411,8 +409,7 @@ public class DALDatabase implements IDAL {
 
     @Override
     public ArrayList<AbstractObject> getAngebotListe() throws DALException {
-        ArrayList<AbstractObject> angebote = new ArrayList<AbstractObject
-                >();
+        ArrayList<AbstractObject> angebote = new ArrayList<AbstractObject>();
 // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -440,7 +437,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return angebote;
     }
@@ -477,7 +474,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return angebot;
     }
@@ -510,7 +507,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return projekte;
     }
@@ -550,7 +547,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return kontakte;
     }
@@ -668,7 +665,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return projekt;
     }
@@ -703,7 +700,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return mitarbeiterListe;
     }
@@ -856,7 +853,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return kategorieListe;
     }
@@ -882,7 +879,7 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return kategorie;
     }
@@ -891,7 +888,7 @@ public class DALDatabase implements IDAL {
     public ArrayList<AbstractObject> getAngebotFromKontakt() throws DALException {
         return getAngebotListe();
     }
-    
+
     @Override
     public ArrayList<AbstractObject> getAngebotFromKontakt(Integer id) throws DALException {
         ArrayList<AbstractObject> angebote = new ArrayList<AbstractObject>();
@@ -904,11 +901,11 @@ public class DALDatabase implements IDAL {
             String prepare = "SELECT DISTINCT a.id, a.name, a.beschreibung, a.GueltigAb, a.GueltigBis, a.Preis, a.Dauer, a.Chance, a.AenderungsDatum FROM "
                     + "kontakt k inner join kontakt_has_angebot kha on k.id = kha.kontakt_id " + ""
                     + "inner join angebot a on kha.angebot_id = a.id";
-            if(id != 0) {
+            if (id != 0) {
                 prepare += " WHERE k.id = ?";
             }
             cmd = db.prepareStatement(prepare);
-            if(id != 0) {
+            if (id != 0) {
                 cmd.setInt(1, id);
             }
             rd = cmd.executeQuery();
@@ -930,8 +927,26 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
         } catch (SQLException ex) {
-            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+            throw new DALException(ex.getMessage());
         }
         return angebote;
+    }
+
+    @Override
+    public Integer getProjektStundenGesamt(Integer pId) throws DALException {
+        Integer summe = -1;
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT SUM(STUNDEN) FROM ARBEITSSTUNDEN WHERE PROJEKT_ID = ? GROUP BY PROJEKT_ID");
+            cmd.setInt(1, pId);
+            rd = cmd.executeQuery();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return summe;
     }
 }

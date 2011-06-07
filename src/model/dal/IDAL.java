@@ -24,7 +24,7 @@ public interface IDAL {
 
     public ArrayList<AbstractObject> getKundenListe() throws DALException;
 
-    public void addAngebotToKontakt(Kontakt k, Angebot a);
+    public void addAngebotToKontakt(Kontakt k, Angebot a) throws DALException;
 
     public void saveAngebot(AbstractObject aO) throws DALException;
 
@@ -75,4 +75,8 @@ public interface IDAL {
     public ArrayList<AbstractObject> getKategorieListe() throws DALException;
 
     public Kategorie getKategorie(Integer id) throws DALException;
+    
+    public Integer getProjektStundenGesamt(Integer pId) throws DALException;
+    
+    
 }
