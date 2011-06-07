@@ -259,25 +259,6 @@ public class AngeboteView extends AbstractViewPanel {
         ArrayList<String> errorList;
         errorList = Binder.save(Angebot.class, createBinderPropertiesFromFields());
         showErrors(errorList);
-        /*
-        Date d = new Date();
-        Angebot a = new Angebot();
-        a.setName(angebotNameFeld.getText());
-        a.setAenderungsDatum(d);
-        a.setBeschreibung(angebotBeschreibungFeld.getText());
-        a.setGueltigAb(angebotGueltigAbFeld.getDate());
-        a.setGueltigBis(angebotGueltigBisFeld.getDate());
-        a.setChance(Integer.parseInt(angebotChanceFeld.getText()));
-        a.setDauer(Integer.parseInt(angebotDauerFeld.getText()));
-        a.setPreis(Long.parseLong(angebotPreisFeld.getText()));
-        try {
-            // Test
-            DALFactory.getDAL().saveAngebot(a);
-            // --> controller add
-            //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
-        } catch (DALException ex) {
-            Logger.log(Level.SEVERE, AngebotAddForm.class, ex);
-        }*/
 }//GEN-LAST:event_angebotAendernActionPerformed
 
     private void kundeZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundeZuweisenActionPerformed
@@ -338,7 +319,7 @@ public class AngeboteView extends AbstractViewPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
         list.add(new BinderProperty(angebotNameFeld.getName(), angebotNameFeld.getText(), String.class));
-        list.add(new BinderProperty("AenderungsDatum", sdf.format(new Date()), Date.class));
+        //list.add(new BinderProperty("AenderungsDatum", sdf.format(new Date()), Date.class));
         list.add(new BinderProperty(angebotBeschreibungFeld.getName(), angebotBeschreibungFeld.getText(), String.class));
         list.add(new BinderProperty(angebotGueltigAbFeld.getName(), sdf.format(angebotGueltigAbFeld.getDate()), Date.class));
         list.add(new BinderProperty(angebotGueltigBisFeld.getName(), sdf.format(angebotGueltigBisFeld.getDate()), Date.class));

@@ -5,7 +5,11 @@
 package model.bl;
 
 import controller.BinderProperty;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +20,46 @@ import java.util.regex.Pattern;
 public abstract class AbstractLogic {
 
     public abstract ArrayList<String> check(ArrayList<BinderProperty> list);
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+    protected boolean isValidDate(String text) {
+        if (!isValidString(text)) {
+            return false;
+        }
+
+
+        try {
+            sdf.parse(text);
+        } catch (ParseException ex) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected boolean isValidDateAfter(String current, String before) {
+        try {
+            if (!sdf.parse(before).before(sdf.parse(current))) {
+                return false;
+            }
+        } catch (ParseException ex) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected boolean isValidDateBefore(String current, String after) {
+        try {
+            if (!sdf.parse(after).after(sdf.parse(current))) {
+                return false;
+            }
+        } catch (ParseException ex) {
+            return false;
+        }
+
+        return true;
+    }
 
     protected boolean isValidString(String text) {
         if (text == null) {
@@ -66,16 +110,43 @@ public abstract class AbstractLogic {
         }
         return true;
     }
-    
+
+    protected boolean isValidPercent(String text) {
+        int intValue;
+
+        if (!isValidInteger(text)) {
+            return false;
+        }
+
+        intValue = Integer.parseInt(text);
+
+        // gültig nur prozentbereich von 0 bis 100
+        if (intValue < 0 || intValue > 100) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected boolean isValidDouble(String text) {
+        try {
+            Double.parseDouble(text);
+        } catch (NumberFormatException nfex) {
+            return false;
+        }
+
+        return true;
+    }
+
     protected boolean isValidId(String text) {
         if (text == null) {
             return true;
         }
-        
+
         if (!isValidInteger(text)) {
             return false;
         }
-        
+
         return true;
     }
 
@@ -118,47 +189,47 @@ public abstract class AbstractLogic {
         if (longValue < 10000000000L || longValue > 99999999999L) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     protected boolean isValidHausnr(String text) {
         int intValue;
-        
-        if(!isValidString(text)) {
+
+        if (!isValidString(text)) {
             return false;
         }
-        
+
         if (!isValidInteger(text)) {
             return false;
         }
-        
+
         intValue = Integer.parseInt(text);
         // Hausnr soll nicht länger als 3 stellen haben.
-        if(intValue > 999) {
+        if (intValue > 999) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     protected boolean isValidPlz(String text) {
         int intValue;
-        
-        if(!isValidString(text)) {
+
+        if (!isValidString(text)) {
             return false;
         }
-        
+
         if (!isValidInteger(text)) {
             return false;
         }
-        
+
         intValue = Integer.parseInt(text);
         // PLZ ist vierstellig
-        if(intValue < 1000 || intValue > 9999) {
+        if (intValue < 1000 || intValue > 9999) {
             return false;
         }
-        
+
         return true;
     }
 }

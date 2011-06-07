@@ -34,7 +34,7 @@ public abstract class AbstractViewPanel extends JPanel {
         this.cleanErrors();
         for (Component c : this.getComponents()) {
             if (c instanceof JScrollPane) {
-                for (Component sc : ((JScrollPane)c).getViewport().getComponents()) {
+                for (Component sc : ((JScrollPane) c).getViewport().getComponents()) {
                     if (sc.getClass() == JTextArea.class) {
                         ((JTextArea) sc).setText("");
                     }
@@ -64,6 +64,9 @@ public abstract class AbstractViewPanel extends JPanel {
                         ((JTextField) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
                         break;
 
+                    } else if (c.getClass() == JDateChooser.class && c.getName() != null && c.getName().equals(error)) {
+                        ((JDateChooser) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
+                        break;
                     }
                 }
             }
@@ -74,8 +77,12 @@ public abstract class AbstractViewPanel extends JPanel {
 
     protected void cleanErrors() {
         for (Component c : this.getComponents()) {
-            if (c.getClass() == JTextField.class && c.getName() != null) {
-                ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());//BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+            if (c.getName() != null) {
+                if (c.getClass() == JTextField.class) {
+                    ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());
+                } else if (c.getClass() == JDateChooser.class) {
+                    ((JDateChooser) c).setBorder(BorderFactory.createEtchedBorder());
+                }
             }
         }
     }
