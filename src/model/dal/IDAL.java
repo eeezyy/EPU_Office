@@ -78,5 +78,7 @@ public interface IDAL {
     
     public Integer getProjektStundenGesamt(Integer pId) throws DALException;
     
+    public void saveZeitErfassung(ArrayList<ZeitErfassung> logListe) throws DALException;
     
+    public void saveZeitErfassung(ZeitErfassung log) throws DALException;
 }

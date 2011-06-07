@@ -61,7 +61,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (rd.next() && rd.getInt(1) == 1) {
+            if (!rd.next() || rd.getInt(1) == 0) {
                 cmd = db.prepareStatement(
                         "UPDATE Kontakt SET Vorname = ?, Nachname = ?, Email = ?, Telefon = ?, BLZ = ?, Bankinstitut = ?, Konto = ?, "
                         + "Firmenname = ?, Strasse = ?, Hausnr = ?, PLZ = ?, Ort = ?, isKunde = ? WHERE id = ?",
@@ -334,7 +334,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (rd.next() && rd.getInt(1) == 1) {
+            if (!rd.next() || rd.getInt(1) == 0) {
                 cmd = db.prepareStatement(
                         "UPDATE Angebot SET Dauer = ?, GueltigAb = ?, GueltigBis = ?, Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, Name = ?"
                         + "WHERE id = ?",
@@ -575,7 +575,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (rd.next() && rd.getInt(1) == 1) {
+            if (!rd.next() || rd.getInt(1) == 0) {
                 cmd = db.prepareStatement(
                         "UPDATE PROJEKT SET ANGEBOT_ID = ?, NAME = ?, ABGESCHLOSSEN = ?, VON = ?, BIS = ? WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
@@ -756,7 +756,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (rd.next() && rd.getInt(1) == 1) {
+            if (!rd.next() || rd.getInt(1) == 0) {
                 cmd = db.prepareStatement(
                         "UPDATE Mitarbeiter SET VORNAME = ?, NACHNAME = ?, STUNDENSATZ = ?, GEBURTSDATUM = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
@@ -838,11 +838,23 @@ public class DALDatabase implements IDAL {
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
+        String [] kategorien = {"Einnahme", "Ausgabe", "Steuer", "SVA"};
         try {
             db = DALDatabase.getConnection();
             cmd = db.prepareStatement("SELECT id, bezeichnung FROM kategorie");
             rd = cmd.executeQuery();
             // Daten holen
+            if (rd.wasNull()) {
+                
+                cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setString(1, "Steuer");
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    //.setId(generatedKeys.getInt(1));
+                }
+            }
             while (rd.next()) {
                 Kategorie k = new Kategorie();
                 k.setId(rd.getInt(1));
@@ -948,5 +960,16 @@ public class DALDatabase implements IDAL {
             throw new DALException(ex.getMessage());
         }
         return summe;
+    }
+
+    @Override
+    public void saveZeitErfassung(ArrayList<ZeitErfassung> logListe) throws DALException {
+        for (ZeitErfassung log : logListe) {
+            this.saveZeitErfassung(log);
+        }
+    }
+
+    @Override
+    public void saveZeitErfassung(ZeitErfassung log) throws DALException {
     }
 }
