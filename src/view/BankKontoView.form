@@ -84,7 +84,6 @@
                 <StringItem index="19" value="Item 5"/>
               </StringArray>
             </Property>
-            <Property name="selectionMode" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -390,7 +389,6 @@
                 <StringItem index="19" value="Item 5"/>
               </StringArray>
             </Property>
-            <Property name="selectionMode" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>

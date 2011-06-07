@@ -76,7 +76,7 @@ public class BankKontoView extends javax.swing.JPanel {
         BankOffeneRechnungenListeLabel.setText("Eingangsrechnungen");
         add(BankOffeneRechnungenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        BankkontoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        BankkontoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         BankkontoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BankkontoLabel.setText("Bankkontoübersicht");
         BankkontoLabel.setAlignmentX(0.5F);
@@ -88,24 +88,23 @@ public class BankKontoView extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        BankOffeneRechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(BankOffeneRechnungenListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 160));
 
-        BankBLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        BankBLZLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         BankBLZLabel.setText("BLZ");
         add(BankBLZLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
-        kontaktTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        kontaktTelLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktTelLabel.setText("Rechnungs-ID");
         add(kontaktTelLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        bankBetragBruttoLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        bankBetragBruttoLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         bankBetragBruttoLabel.setText("Betrag (br.)");
         add(bankBetragBruttoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
-        bankBetragUstLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        bankBetragUstLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         bankBetragUstLabel.setText("UST.-Satz");
         add(bankBetragUstLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
@@ -130,11 +129,11 @@ public class BankKontoView extends javax.swing.JPanel {
         });
         add(BankBLZFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 150, -1));
 
-        BankKategorieLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        BankKategorieLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         BankKategorieLabel.setText("Kategorie");
         add(BankKategorieLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
 
-        BankBankInstitutLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        BankBankInstitutLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         BankBankInstitutLabel.setText("Bankinst.");
         add(BankBankInstitutLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
@@ -151,11 +150,11 @@ public class BankKontoView extends javax.swing.JPanel {
         BankKategorieDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(BankKategorieDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 150, -1));
 
-        bankBetragNettoLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        bankBetragNettoLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         bankBetragNettoLabel.setText("Betrag (n.)");
         add(bankBetragNettoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
 
-        BankKontoStandLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        BankKontoStandLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         BankKontoStandLabel.setText("Kontostand");
         add(BankKontoStandLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, -1, -1));
 
@@ -173,7 +172,7 @@ public class BankKontoView extends javax.swing.JPanel {
         bankRechnungHistory.setText("Bezahlte Rechnungen einsehen");
         add(bankRechnungHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 230, -1));
 
-        bankBetragNettoLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        bankBetragNettoLabel1.setFont(new java.awt.Font("Tahoma", 0, 15));
         bankBetragNettoLabel1.setText("Off. Rechnungen");
         add(bankBetragNettoLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
@@ -183,17 +182,16 @@ public class BankKontoView extends javax.swing.JPanel {
         bankRechnungZahlen2.setText("Rechnung einzahlen");
         add(bankRechnungZahlen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
-        BankOffeneRechnungenListeLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        BankOffeneRechnungenListeLabel1.setFont(new java.awt.Font("Arial", 1, 14));
         BankOffeneRechnungenListeLabel1.setText("Ausgangsrechnungen");
         add(BankOffeneRechnungenListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, -1));
 
-        BankOffeneRechnungenListe1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        BankOffeneRechnungenListe1.setFont(new java.awt.Font("Tahoma", 2, 12));
         BankOffeneRechnungenListe1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        BankOffeneRechnungenListe1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(BankOffeneRechnungenListe1);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 200, 160));
@@ -201,7 +199,7 @@ public class BankKontoView extends javax.swing.JPanel {
         bankRechnungZahlen3.setText("Rechnung abbuchen");
         add(bankRechnungZahlen3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, 200, -1));
 
-        bankBetragNettoLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        bankBetragNettoLabel2.setFont(new java.awt.Font("Tahoma", 0, 15));
         bankBetragNettoLabel2.setText("Off. Rechnungen");
         add(bankBetragNettoLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 210, -1, -1));
 

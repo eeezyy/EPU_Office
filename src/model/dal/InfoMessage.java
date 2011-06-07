@@ -8,9 +8,9 @@ package model.dal;
  *
  * @author Goran-Goggy
  */
-public class DALModelModified extends Exception {
+public class InfoMessage extends Exception {
 
-    public DALModelModified(String message) {
+    public InfoMessage(String message) {
         super(message);
     }
 }

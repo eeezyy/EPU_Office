@@ -81,4 +81,6 @@ public interface IDAL {
     public void saveZeitErfassung(ArrayList<ZeitErfassung> logListe) throws DALException;
     
     public void saveZeitErfassung(ZeitErfassung log) throws DALException;
+    
+    public void deleteZeitErfassung(ZeitErfassung log) throws DALException;
 }

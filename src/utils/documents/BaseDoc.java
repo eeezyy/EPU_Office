@@ -46,37 +46,38 @@ public abstract class BaseDoc {
     protected SimpleDateFormat dateFormat;
     protected PdfWriter pdfWrite;
     protected StringBuilder printedDate;
+    protected String pfad = "docs\\";
     //Header 
     /* ----------------
      * | TL | TC | TR |
      * | BL | BC | BR |
      * ----------------
      */
-    private String hTopLeft = "HEAD: TOP LEFT";
-    private String hTopCenter = "HEAD: TOP CENTER";
-    private String hTopRight = "HEAD: TOP RIGHT";
-    private String hBottomLeft = "HEAD: BOTTOM LEFT";
-    private String hBottomCenter = "HEAD: BOTTOM CENTER";
-    private String hBottomRight = "HEAD: BOTTOM RIGHT";
+    private String hTopLeft;// = "HEAD: TOP LEFT";
+    private String hTopCenter;// = "HEAD: TOP CENTER";
+    private String hTopRight;// = "HEAD: TOP RIGHT";
+    private String hBottomLeft;// = "HEAD: BOTTOM LEFT";
+    private String hBottomCenter;// = "HEAD: BOTTOM CENTER";
+    private String hBottomRight;// = "HEAD: BOTTOM RIGHT";
     //Footer
     /* ----------------
      * | TL | TC | TR |
      * | BL | BC | BR |
      * ----------------
      */
-    private String fTopLeft = "FOOT: TOP LEFT";
-    private String fTopCenter = "FOOT: TOP CENTER";
-    private String fTopRight = "FOOT: TOP RIGHT";
-    private String fBottomLeft = "FOOT: BOTTOM LEFT";
-    private String fBottomCenter = "FOOT: BOTTOM CENTER";
-    private String fBottomRight = "FOOT: BOTTOM RIGHT";
+    private String fTopLeft;// = "FOOT: TOP LEFT";
+    private String fTopCenter;// = "FOOT: TOP CENTER";
+    private String fTopRight;// = "FOOT: TOP RIGHT";
+    private String fBottomLeft;// = "FOOT: BOTTOM LEFT";
+    private String fBottomCenter;// = "FOOT: BOTTOM CENTER";
+    private String fBottomRight;// = "FOOT: BOTTOM RIGHT";
     // Leseobjekt (PDF)
     private PdfReader reader;
     // Stempelobjekt (PDF)
     PdfStamper stamper;
 
     public void createPDF(String fileName) {
-        String newFileName = "docs\\" +fileName;
+        String newFileName = "docs\\" + fileName;
         dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Document doc = new Document(PageSize.A4, 36, 36, 54, 36);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -88,7 +89,7 @@ public abstract class BaseDoc {
         doc.open();
         writePDF(doc, pdfWrite);
         doc.close();
-        printHeaderFooter(baos, fileName);
+        printHeaderFooter(baos, newFileName);
     }
 
     private void printHeaderFooter(ByteArrayOutputStream baos, String fileName) {
@@ -361,6 +362,12 @@ public abstract class BaseDoc {
         } catch (DocumentException ex) {
             Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
+        
     }
+
+    public String getPfad() {
+        return pfad;
+    }
+    
     
 }

@@ -8,6 +8,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -52,7 +54,7 @@ public class FileAppender implements Appender {
         try {
             if (config.Config.getStackTrace()) {
                 //out.write(level.toString() + ": " + combine.toString() + " | " + c.getName() + " -> " + exception.getStackTrace().toString() + "\r\n");
-                exception.printStackTrace();
+                out.write(level.toString() + ": " + combine.toString() + " | " + c.getName() + " -> " + getStackTrace(exception));
             } else {
                 out.write(level.toString() + ": " + combine.toString() + " | " + c.getName() + " -> " + exception.getMessage() + "\r\n");
             }
@@ -69,5 +71,15 @@ public class FileAppender implements Appender {
             return;
         }
 
+    }
+    
+    private String getStackTrace(Throwable t)
+    {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw, true);
+        t.printStackTrace(pw);
+        pw.flush();
+        sw.flush();
+        return sw.toString();
     }
 }

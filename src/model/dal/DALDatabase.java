@@ -135,7 +135,7 @@ public class DALDatabase implements IDAL {
             }
             // execute insert/update
             Integer result = cmd.executeUpdate();
-            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveKontakt"));
+            Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveKontakt"));
             // get generated id
             ResultSet generatedKeys = cmd.getGeneratedKeys();
             if (result != null && result != 0 && generatedKeys.next()) {
@@ -261,7 +261,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != null && result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteKontakt"));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteKontakt"));
             }
             cmd.close();
             db.close();
@@ -293,14 +293,14 @@ public class DALDatabase implements IDAL {
                 cmd.setInt(2, a.getId());
                 result = cmd.executeUpdate();
                 if (result != null) {
-                    Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("addAngebotToKontakt"));
                 }
                 cmd = db.prepareStatement("UPDATE Kontakt SET isKunde = ? WHERE id = ?", PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setBoolean(1, true);
                 cmd.setInt(2, k.getId());
                 result = cmd.executeUpdate();
                 if (result != null) {
-                    Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("addAngebotToKontakt"));
                 }
             }
             Binder.notify(Angebot.class);
@@ -373,7 +373,7 @@ public class DALDatabase implements IDAL {
             rd.close();
             cmdSelect.close();
             db.close();
-            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveAngebot"));
+            Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveAngebot"));
             Binder.notify(Angebot.class);
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
@@ -396,7 +396,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != null && result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteAngebot"));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteAngebot"));
             }
             cmd.close();
             db.close();
@@ -606,7 +606,7 @@ public class DALDatabase implements IDAL {
             rd.close();
             cmdSelect.close();
             db.close();
-            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveProjekt"));
+            Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveProjekt"));
             Binder.notify(Projekt.class);
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
@@ -629,7 +629,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != null && result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteProjekt"));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteProjekt"));
             }
             cmd.close();
             db.close();
@@ -726,7 +726,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != null && result != 0) {
                 // successful
-                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteMitarbeiter"));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteMitarbeiter"));
             }
             cmd.close();
             db.close();
@@ -784,7 +784,7 @@ public class DALDatabase implements IDAL {
             rd.close();
             cmdSelect.close();
             db.close();
-            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveMitarbeiter"));
+            Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveMitarbeiter"));
             Binder.notify(Projekt.class);
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
@@ -1025,7 +1025,7 @@ public class DALDatabase implements IDAL {
             // execute insert/update
             Integer result = cmd.executeUpdate();
             if (result != null && result != 0) {
-                Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveProjekt"));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveProjekt"));
             }
             cmd.close();
             rd.close();
@@ -1035,6 +1035,36 @@ public class DALDatabase implements IDAL {
             Binder.notify(ZeitErfassung.class);
         } catch (SQLException ex) {
             throw new DALException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteZeitErfassung(ZeitErfassung log) throws DALException {
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM ZEITERFASSUNG WHERE PROJEKT_ID = ? AND MITARBEITER_ID = ?"+
+                    "AND TAETIGKEIT = ?");
+            // Parameter setzen
+            cmd.setInt(1, log.getProjekt().getId());
+            cmd.setInt(2, log.getMitarbeiter().getId());
+            cmd.setString(3, log.getTaetigkeit());
+            // Ausf�hren
+            Integer result = cmd.executeUpdate();
+
+            // was deleted?
+            if (result != null && result != 0) {
+                // successful
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteErfassung"));
+            }
+            cmd.close();
+            db.close();
+            Binder.notify(Angebot.class);
+
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
         }
     }
 }

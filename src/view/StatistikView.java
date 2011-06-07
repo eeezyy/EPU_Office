@@ -32,6 +32,7 @@ public class StatistikView extends javax.swing.JPanel {
 
     private StatistikController controller;
     private IDAL db = DALFactory.getDAL();
+    private final String  fileName = "Statistik.pdf";
 
     /** Creates new form StatistikView */
     public StatistikView(StatistikController controller) {
@@ -174,11 +175,11 @@ public class StatistikView extends javax.swing.JPanel {
         String monat = statistikMonat.getSelectedItem().toString();
         String erloes = statistikErloes.getText();
         StatistikPDF statistik = new StatistikPDF(monat, ausgang, eingang, erloes);
-        statistik.createPDF("StatistikPDF.pdf");
+        statistik.createPDF(fileName);
 
         Desktop d = Desktop.getDesktop();
         try {
-            d.open(new File("docs\\StatistikPDF.pdf"));
+            d.open(new File(statistik.getPfad()+fileName));
         } catch (IOException ex) {
             Logger.log(Level.SEVERE, StatistikView.class, ex);
         }
