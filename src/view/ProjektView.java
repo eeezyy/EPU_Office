@@ -54,8 +54,8 @@ public class ProjektView extends javax.swing.JPanel {
         projektHinzufuegen = new javax.swing.JButton();
         projektLoeschen = new javax.swing.JButton();
         projektAendern = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        projektKunde = new javax.swing.JComboBox();
+        projektAngebot = new javax.swing.JComboBox();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
@@ -135,11 +135,11 @@ public class ProjektView extends javax.swing.JPanel {
         });
         add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 130, -1));
+        projektKunde.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(projektKunde, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 130, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 160, -1));
+        projektAngebot.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(projektAngebot, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 160, -1));
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
         add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -157,14 +157,13 @@ public class ProjektView extends javax.swing.JPanel {
         //af.setVisible(true);
 }//GEN-LAST:event_projektAendernActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kundenInfoLabel;
     private javax.swing.JLabel kundenListeLabel;
     private javax.swing.JButton projektAendern;
+    private javax.swing.JComboBox projektAngebot;
     private javax.swing.JLabel projektArbeitsstundenGesamt;
     private javax.swing.JLabel projektAuftragLabel;
     private javax.swing.JCheckBox projektCheckBox;
@@ -172,6 +171,7 @@ public class ProjektView extends javax.swing.JPanel {
     private javax.swing.JLabel projektImplementierungBisLabel;
     private javax.swing.JLabel projektImplementierungVonLabel;
     private javax.swing.JLabel projektImplementierungVonLabel1;
+    private javax.swing.JComboBox projektKunde;
     private javax.swing.JList projektListe;
     private javax.swing.JButton projektLoeschen;
     private javax.swing.JTextField projektNameFeld;

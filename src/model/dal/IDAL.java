@@ -14,7 +14,7 @@ public interface IDAL {
 
     public void initialize() throws DALException;
 
-    public void saveKontakt(AbstractObject k) throws DALException;
+    public void saveKontakt(AbstractObject aO) throws DALException;
 
     public void deleteKontakt(Kontakt k) throws DALException;
 
@@ -26,7 +26,7 @@ public interface IDAL {
 
     public void addAngebotToKontakt(Kontakt k, Angebot a);
 
-    public void saveAngebot(AbstractObject a) throws DALException;
+    public void saveAngebot(AbstractObject aO) throws DALException;
 
     public void deleteAngebot(Angebot a) throws DALException;
 
@@ -34,11 +34,11 @@ public interface IDAL {
 
     public ArrayList<Angebot> getAngebotListe() throws DALException;
 
-    public ArrayList<Angebot> getAngebotFromKontakt(Kontakt k) throws DALException;
+    public ArrayList<Angebot> getAngebotFromKontakt(int id) throws DALException;
 
     public ArrayList<Projekt> getProjektListe() throws DALException;
 
-    public void saveProjekt(AbstractObject p) throws DALException;
+    public void saveProjekt(AbstractObject aO) throws DALException;
 
     public void deleteProjekt(Projekt p) throws DALException;
 
@@ -52,13 +52,13 @@ public interface IDAL {
 
     public void deleteMitarbeiter(Mitarbeiter m) throws DALException;
 
-    public void saveMitarbeiter(AbstractObject m) throws DALException;
+    public void saveMitarbeiter(AbstractObject aO) throws DALException;
 
     public ArrayList<EingangsRechnung> getEingangsrechnungListe() throws DALException;
 
     public EingangsRechnung getEingangsrechnung(int id) throws DALException;
 
-    public void saveEingangsrechnung(AbstractObject eR) throws DALException;
+    public void saveEingangsrechnung(AbstractObject aO) throws DALException;
 
     public void deleteEingangsrechnung(EingangsRechnung eR) throws DALException;
 
@@ -66,7 +66,7 @@ public interface IDAL {
 
     public AusgangsRechnung getAusgangsrechnung(int id) throws DALException;
 
-    public void saveAusgangsrechnung(AbstractObject eR) throws DALException;
+    public void saveAusgangsrechnung(AbstractObject aO) throws DALException;
 
     public void deleteAusgangsrechnung(AusgangsRechnung aR) throws DALException;
 

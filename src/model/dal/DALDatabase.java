@@ -547,20 +547,9 @@ public class DALDatabase implements IDAL {
         }
         return kontakte;
     }
-//    private static Date StringToSQLDate(String s) {
-//        Date sqlDate = null;
-//        try {
-//            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-//            sqlDate = new Date(sdf.parse(s).getTime());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return sqlDate;
-//    }
 
     @Override
-    public void saveProjekt(AbstractObject p) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void saveProjekt(AbstractObject aO) throws DALException {
     }
 
     @Override
@@ -640,16 +629,59 @@ public class DALDatabase implements IDAL {
 
     @Override
     public ArrayList<Kategorie> getKategorieListe() throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList<Kategorie> kategorieListe = new ArrayList<Kategorie>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, bezeichnung FROM kategorie");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Kategorie k = new Kategorie();
+                k.setId(rd.getInt(1));
+                k.setBezeichnung(rd.getString(2));
+                kategorieListe.add(k);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+        }
+        return kategorieListe;
     }
 
     @Override
     public Kategorie getKategorie(int id) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Kategorie kategorie = new Kategorie();
+// Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, bezeichnung FROM kategorie WHERE id = ?");
+            cmd.setInt(1, id);
+            rd = cmd.executeQuery();
+            // Daten holen
+            if (rd.next()) {
+                kategorie.setId(rd.getInt(1));
+                kategorie.setBezeichnung(rd.getString(2));
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            Logger.log(Level.SEVERE, DALDatabase.class, ex);
+        }
+        return kategorie;
     }
 
     @Override
-    public ArrayList<Angebot> getAngebotFromKontakt(Kontakt k) throws DALException {
+    public ArrayList<Angebot> getAngebotFromKontakt(int id) throws DALException {
         ArrayList<Angebot> angebote = new ArrayList<Angebot>();
         // Datenbankverbindung �ffnen
         Connection db;
@@ -657,9 +689,9 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT id, name, beschreibung FROM kontakt k inner join kontakt_has_angebot kha on k.id = kha.kontakt_id "+ ""
+            cmd = db.prepareStatement("SELECT id, name, beschreibung FROM kontakt k inner join kontakt_has_angebot kha on k.id = kha.kontakt_id " + ""
                     + "inner join angebot a on kha.angebot_id = a.id WHERE k.id = ?");
-            cmd.setInt(1, k.getId());
+            cmd.setInt(1, id);
             rd = cmd.executeQuery();
             // Daten holen
             while (rd.next()) {
