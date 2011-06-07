@@ -39,16 +39,16 @@ public class KundenView extends AbstractViewPanel {
         kundenIdFeld.setVisible(false);
         
         Binder.bind(Kontakt.class, kundenListe);
-        Binder.bind(kundenListe, kundenHausnrFeld, null);
-        Binder.bind(kundenListe, kundenEmailFeld, null);
-        Binder.bind(kundenListe, kundenFirmaFeld, null);
-        Binder.bind(kundenListe, kundenNachnameFeld, null);
-        Binder.bind(kundenListe, kundenOrtFeld, null);
-        Binder.bind(kundenListe, kundenPlzFeld, null);
-        Binder.bind(kundenListe, kundenStrasseFeld, null);
-        Binder.bind(kundenListe, kundenTelefonFeld, null);
-        Binder.bind(kundenListe, kundenVornameFeld, null);
-        Binder.bind(kundenListe, kundenIdFeld, null);
+        Binder.bind(kundenListe, kundenHausnrFeld);
+        Binder.bind(kundenListe, kundenEmailFeld);
+        Binder.bind(kundenListe, kundenFirmaFeld);
+        Binder.bind(kundenListe, kundenNachnameFeld);
+        Binder.bind(kundenListe, kundenOrtFeld);
+        Binder.bind(kundenListe, kundenPlzFeld);
+        Binder.bind(kundenListe, kundenStrasseFeld);
+        Binder.bind(kundenListe, kundenTelefonFeld);
+        Binder.bind(kundenListe, kundenVornameFeld);
+        Binder.bind(kundenListe, kundenIdFeld);
     }
 
     /** This method is called from within the constructor to
@@ -106,6 +106,11 @@ public class KundenView extends AbstractViewPanel {
         kundenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         kundenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         kundenListe.setName("KundenListe"); // NOI18N
+        kundenListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                kundenListeValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(kundenListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
@@ -237,6 +242,9 @@ public class KundenView extends AbstractViewPanel {
         errorList = Binder.save(Kontakt.class, createBinderPropertiesFromFields());
         showErrors(errorList);
     }//GEN-LAST:event_kundenAendernActionPerformed
+
+    private void kundenListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kundenListeValueChanged
+    }//GEN-LAST:event_kundenListeValueChanged
 
     private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
         ArrayList list = new ArrayList<BinderProperty>();

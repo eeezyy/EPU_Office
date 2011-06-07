@@ -44,20 +44,20 @@ public final class KontakteView extends AbstractViewPanel {
 
         kontaktIdFeld.setVisible(false);
 
-        Binder.bind(kontaktListe, kontaktFirmennameFeld, "Firmenname");
-        Binder.bind(kontaktListe, kontaktVornameFeld, "Vorname");
-        Binder.bind(kontaktListe, kontaktNachnameFeld, "Nachname");
-        Binder.bind(kontaktListe, kontaktTelefonFeld, "Telefon");
-        Binder.bind(kontaktListe, kontaktEmailFeld, "Email");
-        Binder.bind(kontaktListe, kontaktBankinstitutFeld, "Bankinstitut");
-        Binder.bind(kontaktListe, kontaktBlzFeld, "Blz");
-        Binder.bind(kontaktListe, kontaktKontoFeld, "Konto");
-        Binder.bind(kontaktListe, kontaktStrasseFeld, "Strasse");
-        Binder.bind(kontaktListe, kontaktHausnrFeld, "Hausnr");
-        Binder.bind(kontaktListe, kontaktPlzFeld, "Plz");
-        Binder.bind(kontaktListe, kontaktOrtFeld, "Ort");
-        Binder.bind(kontaktListe, kontaktIsKundeFeld, "IsKunde");
-        Binder.bind(kontaktListe, kontaktIdFeld, "Id");
+        Binder.bind(kontaktListe, kontaktFirmennameFeld);
+        Binder.bind(kontaktListe, kontaktVornameFeld);
+        Binder.bind(kontaktListe, kontaktNachnameFeld);
+        Binder.bind(kontaktListe, kontaktTelefonFeld);
+        Binder.bind(kontaktListe, kontaktEmailFeld);
+        Binder.bind(kontaktListe, kontaktBankinstitutFeld);
+        Binder.bind(kontaktListe, kontaktBlzFeld);
+        Binder.bind(kontaktListe, kontaktKontoFeld);
+        Binder.bind(kontaktListe, kontaktStrasseFeld);
+        Binder.bind(kontaktListe, kontaktHausnrFeld);
+        Binder.bind(kontaktListe, kontaktPlzFeld);
+        Binder.bind(kontaktListe, kontaktOrtFeld);
+        Binder.bind(kontaktListe, kontaktIsKundeFeld);
+        Binder.bind(kontaktListe, kontaktIdFeld);
 
         Binder.bind(Kontakt.class, kontaktListe);
     }
@@ -308,7 +308,6 @@ public final class KontakteView extends AbstractViewPanel {
         model.addElement(k);
         kontaktListe.setSelectedIndex(model.getSize()-1);
         this.resetTextFields();
-        this.cleanErrors();
     }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
 
     private void kontaktNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeld1ActionPerformed
@@ -358,12 +357,6 @@ public final class KontakteView extends AbstractViewPanel {
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 
     private void kontaktListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kontaktListeValueChanged
-        // verhindert das deselectieren eines neuen Kontaktes
-        // TODO Evtl. eingetragene Werte retten.
-        /*if(kontaktListe.getModel().getSize() > evt.getLastIndex() && ((Kontakt)kontaktListe.getModel().getElementAt(evt.getLastIndex())).getId() == 0) {
-            kontaktListe.setSelectedIndex(evt.getLastIndex());
-        }*/
-        cleanErrors();
     }//GEN-LAST:event_kontaktListeValueChanged
 
     private void kontaktIsKundeFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktIsKundeFeldActionPerformed

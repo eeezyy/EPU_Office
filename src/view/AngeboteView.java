@@ -43,13 +43,14 @@ public class AngeboteView extends AbstractViewPanel {
 
     private void initialize() {
 
-        Binder.bind(angebotListe, angebotBeschreibungFeld, "Beschreibung");
-        Binder.bind(angebotListe, angebotNameFeld, "Name");
-        Binder.bind(angebotListe, angebotGueltigAbFeld, "GueltigAb");
-        Binder.bind(angebotListe, angebotGueltigBisFeld, "GueltigBis");
-        Binder.bind(angebotListe, angebotPreisFeld, "Preis");
-        Binder.bind(angebotListe, angebotDauerFeld, "Dauer");
-        Binder.bind(angebotListe, angebotChanceFeld, "Chance");
+        Binder.bind(angebotListe, angebotBeschreibungFeld);
+        Binder.bind(angebotListe, angebotNameFeld);
+        Binder.bind(angebotListe, angebotGueltigAbFeld);
+        Binder.bind(angebotListe, angebotGueltigBisFeld);
+        Binder.bind(angebotListe, angebotPreisFeld);
+        Binder.bind(angebotListe, angebotDauerFeld);
+        Binder.bind(angebotListe, angebotChanceFeld);
+        Binder.bind(angebotKundenComboBox, angebotListe);
 
 
         Binder.bind(Angebot.class, angebotListe);
@@ -90,7 +91,7 @@ public class AngeboteView extends AbstractViewPanel {
         angebotBeschreibungFeld = new javax.swing.JTextArea();
         angebotGueltigAbFeld = new com.toedter.calendar.JDateChooser();
         angebotGueltigBisFeld = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox();
+        angebotKundenComboBox = new javax.swing.JComboBox();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,8 +227,8 @@ public class AngeboteView extends AbstractViewPanel {
         angebotGueltigBisFeld.setName("GueltigBis"); // NOI18N
         add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle Kunden", "Kunde1", "Kunde2", "Kunde3" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, -1));
+        angebotKundenComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle Kunden", "Kunde1", "Kunde2", "Kunde3" }));
+        add(angebotKundenComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void angebotPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotPreisFeldActionPerformed
@@ -245,10 +246,6 @@ public class AngeboteView extends AbstractViewPanel {
         model.addElement(a);
         angebotListe.setSelectedIndex(model.getSize() - 1);
         this.resetTextFields();
-        this.cleanErrors();
-        /*
-        AngebotAddForm af = new AngebotAddForm(null, true);
-        af.setVisible(true);*/
 }//GEN-LAST:event_angebotErstellenActionPerformed
 
     private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
@@ -288,11 +285,11 @@ public class AngeboteView extends AbstractViewPanel {
     private javax.swing.JLabel angebotGueltigAbLabel;
     private com.toedter.calendar.JDateChooser angebotGueltigBisFeld;
     private javax.swing.JLabel angebotGueltigBisLabel;
+    private javax.swing.JComboBox angebotKundenComboBox;
     private javax.swing.JList angebotListe;
     private javax.swing.JButton angebotLoeschen;
     private javax.swing.JTextField angebotNameFeld;
     private javax.swing.JTextField angebotPreisFeld;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -321,8 +318,8 @@ public class AngeboteView extends AbstractViewPanel {
         list.add(new BinderProperty(angebotNameFeld.getName(), angebotNameFeld.getText(), String.class));
         //list.add(new BinderProperty("AenderungsDatum", sdf.format(new Date()), Date.class));
         list.add(new BinderProperty(angebotBeschreibungFeld.getName(), angebotBeschreibungFeld.getText(), String.class));
-        list.add(new BinderProperty(angebotGueltigAbFeld.getName(), sdf.format(angebotGueltigAbFeld.getDate()), Date.class));
-        list.add(new BinderProperty(angebotGueltigBisFeld.getName(), sdf.format(angebotGueltigBisFeld.getDate()), Date.class));
+        list.add(new BinderProperty(angebotGueltigAbFeld.getName(), angebotGueltigAbFeld.getDate() != null ? sdf.format(angebotGueltigAbFeld.getDate()) : "", Date.class));
+        list.add(new BinderProperty(angebotGueltigBisFeld.getName(), angebotGueltigBisFeld.getDate() != null ? sdf.format(angebotGueltigBisFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(angebotChanceFeld.getName(), angebotChanceFeld.getText(), Integer.class));
         list.add(new BinderProperty(angebotDauerFeld.getName(), angebotDauerFeld.getText(), Integer.class));
         list.add(new BinderProperty(angebotPreisFeld.getName(), angebotPreisFeld.getText(), Double.class));

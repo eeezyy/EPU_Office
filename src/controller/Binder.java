@@ -2,6 +2,7 @@ package controller;
 
 // Binder.java
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import utils.log.Logger;
 import javax.swing.DefaultListModel;
@@ -37,7 +39,11 @@ public class Binder {
     private static Map observer = new HashMap<Class, ArrayList<JComponent>>();
     private static IDAL db = DALFactory.getDAL();
 
-    public static void bind(JComponent jc1, JComponent jc2, final String propertyName) {
+    /*public static void bind(JComponent jc1, JComponent jc2, final String propertyName) {
+        bind(jc1, jc2);
+    }*/
+    
+    public static void bind(JComponent jc1, JComponent jc2) {
         if (jc1 instanceof JList) {
             final JList jlist = (JList) jc1;
 
@@ -104,6 +110,7 @@ public class Binder {
                                     jdc.setDate(value);
                                     jdc.setEnabled(true);
                                 }
+                                jdc.setBorder(BorderFactory.createEtchedBorder());
                             }
                         };
                         SwingUtilities.invokeLater(r);
@@ -261,6 +268,7 @@ public class Binder {
                                     jtf.setText(text);
                                     jtf.setEnabled(true);
                                 }
+                                jtf.setBorder(BorderFactory.createEtchedBorder());
                             }
                         };
                         SwingUtilities.invokeLater(r);
@@ -269,75 +277,6 @@ public class Binder {
 
                 jlist.addListSelectionListener(lsl);
             }
-
-            /*
-            if (jc2 instanceof JTextArea) {
-            final JTextArea jta = (JTextArea) jc2;
-            
-            ListSelectionListener lsl;
-            lsl = new ListSelectionListener() {
-            
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-            // verhindert das deselectieren eines neuen Kontaktes
-            if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
-            jlist.setSelectedIndex(e.getLastIndex());
-            return;
-            }
-            // bereits eingetragene textfelder gehen nicht verloren
-            if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
-            return;
-            }
-            
-            Runnable r = new Runnable() {
-            
-            @Override
-            public void run() {
-            AbstractObject am = (AbstractObject) jlist.getSelectedValue();
-            Method method = null;
-            String text = null;
-            if (am != null) {
-            if (jta.getName() == null || jta.getName().isEmpty()) {
-            System.out.println("Binding: Componente enthält keinen property:name");
-            return;
-            }
-            try {
-            method = am.getClass().getMethod("get" + jta.getName(), new Class[]{});
-            } catch (NoSuchMethodException ex) {
-            Logger.log(Level.SEVERE, Binder.class, ex);
-            } catch (SecurityException ex) {
-            Logger.log(Level.SEVERE, Binder.class, ex);
-            }
-            } else {
-            jta.setText("");
-            jta.setEnabled(false);
-            }
-            if (method != null) {
-            try {
-            Object result = method.invoke(am);
-            if (result instanceof String) {
-            text = (String) result;
-            }
-            } catch (IllegalAccessException ex) {
-            Logger.log(Level.SEVERE, Binder.class, ex);
-            } catch (IllegalArgumentException ex) {
-            Logger.log(Level.SEVERE, Binder.class, ex);
-            } catch (InvocationTargetException ex) {
-            Logger.log(Level.SEVERE, Binder.class, ex);
-            }
-            }
-            if (text != null || am != null && am.getId().equals(0)) {
-            jta.setText(text);
-            jta.setEnabled(true);
-            }
-            }
-            };
-            SwingUtilities.invokeLater(r);
-            }
-            };
-            
-            jlist.addListSelectionListener(lsl);
-            }*/
 
             if (jc2 instanceof JTextArea) {
                 final JTextArea jta = (JTextArea) jc2;
@@ -397,6 +336,7 @@ public class Binder {
                                     jta.setText(text);
                                     jta.setEnabled(true);
                                 }
+                                jta.setBorder(BorderFactory.createEtchedBorder());
                             }
                         };
                         SwingUtilities.invokeLater(r);

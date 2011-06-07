@@ -31,11 +31,12 @@ import javax.swing.JTextField;
 public abstract class AbstractViewPanel extends JPanel {
 
     protected void resetTextFields() {
-        this.cleanErrors();
+        //this.cleanErrors();
         for (Component c : this.getComponents()) {
             if (c instanceof JScrollPane) {
                 for (Component sc : ((JScrollPane) c).getViewport().getComponents()) {
                     if (sc.getClass() == JTextArea.class) {
+                        ((JTextArea) sc).setBorder(BorderFactory.createEtchedBorder());
                         ((JTextArea) sc).setText("");
                     }
                 }
@@ -43,12 +44,15 @@ public abstract class AbstractViewPanel extends JPanel {
             if (c.getName() != null) {
                 //c.setEnabled(false);
                 if (c.getClass() == JTextField.class) {
+                    ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());
                     ((JTextField) c).setText("");
                 } else if (c.getClass() == JCheckBox.class) {
                     ((JCheckBox) c).setSelected(false);
                 } else if (c.getClass() == JDateChooser.class) {
+                    ((JDateChooser) c).setBorder(BorderFactory.createEtchedBorder());
                     ((JDateChooser) c).setDate(null);
                 } else if (c.getClass() == JTextArea.class) {
+                    ((JTextArea) c).setBorder(BorderFactory.createEtchedBorder());
                     ((JTextArea) c).setText("");
                 }
             }
@@ -56,7 +60,7 @@ public abstract class AbstractViewPanel extends JPanel {
     }
 
     protected void showErrors(ArrayList<String> errorList) {
-        cleanErrors();
+        //cleanErrors();
         if (errorList != null && !errorList.isEmpty()) {
             for (String error : errorList) {
                 for (Component c : this.getComponents()) {
@@ -72,18 +76,6 @@ public abstract class AbstractViewPanel extends JPanel {
             }
         } else {
             resetTextFields();
-        }
-    }
-
-    protected void cleanErrors() {
-        for (Component c : this.getComponents()) {
-            if (c.getName() != null) {
-                if (c.getClass() == JTextField.class) {
-                    ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());
-                } else if (c.getClass() == JDateChooser.class) {
-                    ((JDateChooser) c).setBorder(BorderFactory.createEtchedBorder());
-                }
-            }
         }
     }
 
