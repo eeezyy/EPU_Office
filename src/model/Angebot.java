@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -20,11 +21,12 @@ public class Angebot extends AbstractObject {
     private Integer chance;
     private String beschreibung;
     private Date aenderungsDatum;
+    private SimpleDateFormat sDF = new SimpleDateFormat("dd.MM.yyyy");
 
     @Override
     public String toString() {
         if (this.name != null || this.gueltigBis != null)
-            return this.name + ", " + this.gueltigBis;
+            return this.name + ", " + this.sDF.format(gueltigBis);
         else
             return "<Neues Angebot>";
     }
