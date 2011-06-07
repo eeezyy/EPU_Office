@@ -961,9 +961,14 @@ public class DALDatabase implements IDAL {
             cmd = db.prepareStatement("SELECT SUM(STUNDEN) FROM ARBEITSSTUNDEN WHERE PROJEKT_ID = ? GROUP BY PROJEKT_ID");
             cmd.setInt(1, pId);
             rd = cmd.executeQuery();
+            summe = (Integer) rd.getInt(1);
+            rd.close();
+            cmd.close();
+            db.close();
         } catch (SQLException ex) {
             throw new DALException(ex.getMessage());
         }
+
         return summe;
     }
 
@@ -979,23 +984,22 @@ public class DALDatabase implements IDAL {
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
+
+        java.sql.Date datum = new java.sql.Date(log.getDatum().getTime());
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            /*
-             * cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
-                    cmd.setString(1, kategorien[i]);
-                    k.setBezeichnung(kategorien[i]);
-                    Integer result = cmd.executeUpdate();
-                    // get generated id
-                    ResultSet generatedKeys = cmd.getGeneratedKeys();
-                    if (result != null && result != 0 && generatedKeys.next()) {
-                        k.setId(generatedKeys.getInt(1));
-                        kategorieListe.add(k);
-                    }
-             */
+            cmd = db.prepareStatement("INSERT INTO ARBEITSSTUNDEN (PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT) VALUES (?, ?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            cmd.setInt(1, log.getProjekt().getId());
+            cmd.setInt(2, log.getMitarbeiter().getId());
+            cmd.setDate(3, datum);
+            cmd.setInt(4, log.getStunden());
+            cmd.setString(5, log.getTaetigkeit());
+            rd = cmd.executeQuery();
+            rd.close();
+            cmd.close();
+            db.close();
         } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(DALDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage());
         }
     }
 }
