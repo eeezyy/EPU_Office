@@ -47,14 +47,26 @@ public class Binder {
 
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
+
                         Runnable r = new Runnable() {
 
                             @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
+                                Date value = null;
+
                                 if (am != null) {
-                                    if(jdc.getName() == null || jdc.getName().isEmpty()) {
+                                    if (jdc.getName() == null || jdc.getName().isEmpty()) {
                                         System.out.println("Binding: Componente enthält keinen property:name");
                                         return;
                                     }
@@ -69,7 +81,7 @@ public class Binder {
                                     jdc.setDate(null);
                                     jdc.setEnabled(false);
                                 }
-                                Date value = null;
+
                                 if (method != null) {
                                     try {
                                         Object result = method.invoke(am);
@@ -86,7 +98,7 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                if (value != null) {
+                                if (value != null || am != null && am.getId().equals(0)) {
                                     jdc.setDate(value);
                                     jdc.setEnabled(true);
                                 }
@@ -98,7 +110,7 @@ public class Binder {
                 jlist.addListSelectionListener(lsl);
             }
 
-            
+
             if (jc2 instanceof JCheckBox) {
                 final JCheckBox jcb = (JCheckBox) jc2;
 
@@ -107,14 +119,24 @@ public class Binder {
 
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
                         Runnable r = new Runnable() {
 
                             @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
+                                Boolean value = null;
                                 if (am != null) {
-                                    if(jcb.getName() == null || jcb.getName().isEmpty()) {
+                                    if (jcb.getName() == null || jcb.getName().isEmpty()) {
                                         System.out.println("Binding: Componente enthält keinen property:name");
                                         return;
                                     }
@@ -129,7 +151,6 @@ public class Binder {
                                     jcb.setEnabled(false);
                                     jcb.setSelected(false);
                                 }
-                                Boolean value = null;
                                 if (method != null) {
                                     try {
                                         Object result = method.invoke(am);
@@ -146,8 +167,12 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                if (value != null) {
-                                    jcb.setSelected(value);
+                                if (value != null || am != null && am.getId().equals(0)) {
+                                    if (value != null) {
+                                        jcb.setSelected(value.booleanValue());
+                                    } else {
+                                        jcb.setSelected(false);
+                                    }
                                     jcb.setEnabled(true);
                                 }
                             }
@@ -166,14 +191,24 @@ public class Binder {
 
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
                         Runnable r = new Runnable() {
 
                             @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
+                                String text = null;
                                 if (am != null) {
-                                    if(jtf.getName() == null || jtf.getName().isEmpty()) {
+                                    if (jtf.getName() == null || jtf.getName().isEmpty()) {
                                         System.out.println("Binding: Componente enthält keinen property:name");
                                         return;
                                     }
@@ -188,7 +223,6 @@ public class Binder {
                                     jtf.setText("");
                                     jtf.setEnabled(false);
                                 }
-                                String text = null;
                                 if (method != null) {
                                     try {
                                         Object result = method.invoke(am);
@@ -215,7 +249,7 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                if (text != null) {
+                                if (text != null || am != null && am.getId().equals(0)) {
                                     jtf.setText(text);
                                     jtf.setEnabled(true);
                                 }
@@ -227,7 +261,76 @@ public class Binder {
 
                 jlist.addListSelectionListener(lsl);
             }
+
+            /*
+            if (jc2 instanceof JTextArea) {
+            final JTextArea jta = (JTextArea) jc2;
             
+            ListSelectionListener lsl;
+            lsl = new ListSelectionListener() {
+            
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+            // verhindert das deselectieren eines neuen Kontaktes
+            if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+            jlist.setSelectedIndex(e.getLastIndex());
+            return;
+            }
+            // bereits eingetragene textfelder gehen nicht verloren
+            if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+            return;
+            }
+            
+            Runnable r = new Runnable() {
+            
+            @Override
+            public void run() {
+            AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+            Method method = null;
+            String text = null;
+            if (am != null) {
+            if (jta.getName() == null || jta.getName().isEmpty()) {
+            System.out.println("Binding: Componente enthält keinen property:name");
+            return;
+            }
+            try {
+            method = am.getClass().getMethod("get" + jta.getName(), new Class[]{});
+            } catch (NoSuchMethodException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+            } catch (SecurityException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+            }
+            } else {
+            jta.setText("");
+            jta.setEnabled(false);
+            }
+            if (method != null) {
+            try {
+            Object result = method.invoke(am);
+            if (result instanceof String) {
+            text = (String) result;
+            }
+            } catch (IllegalAccessException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+            } catch (IllegalArgumentException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+            } catch (InvocationTargetException ex) {
+            Logger.log(Level.SEVERE, Binder.class, ex);
+            }
+            }
+            if (text != null || am != null && am.getId().equals(0)) {
+            jta.setText(text);
+            jta.setEnabled(true);
+            }
+            }
+            };
+            SwingUtilities.invokeLater(r);
+            }
+            };
+            
+            jlist.addListSelectionListener(lsl);
+            }*/
+
             if (jc2 instanceof JTextArea) {
                 final JTextArea jta = (JTextArea) jc2;
 
@@ -236,14 +339,24 @@ public class Binder {
 
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
                         Runnable r = new Runnable() {
 
                             @Override
                             public void run() {
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
+                                String text = null;
                                 if (am != null) {
-                                    if(jta.getName() == null || jta.getName().isEmpty()) {
+                                    if (jta.getName() == null || jta.getName().isEmpty()) {
                                         System.out.println("Binding: Componente enthält keinen property:name");
                                         return;
                                     }
@@ -258,7 +371,6 @@ public class Binder {
                                     jta.setText("");
                                     jta.setEnabled(false);
                                 }
-                                String text = null;
                                 if (method != null) {
                                     try {
                                         Object result = method.invoke(am);
@@ -273,7 +385,7 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 }
-                                if (text != null) {
+                                if (text != null || am != null && am.getId().equals(0)) {
                                     jta.setText(text);
                                     jta.setEnabled(true);
                                 }
@@ -285,6 +397,8 @@ public class Binder {
 
                 jlist.addListSelectionListener(lsl);
             }
+
+
         }
     }
 
@@ -314,7 +428,7 @@ public class Binder {
             }
         }
     }
-    
+
     private static void pushList(Class c, JComboBox jcb) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         ArrayList<AbstractObject> resultList = null;
@@ -409,9 +523,9 @@ public class Binder {
                     try {
                         object = createObject(classtype, propertyList);
                     } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.log(Level.SEVERE, Binder.class, ex);
                     } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(Binder.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.log(Level.SEVERE, Binder.class, ex);
                     }
                     try {
                         m.invoke(db, object);
@@ -429,10 +543,10 @@ public class Binder {
                 Logger.log(Level.SEVERE, Binder.class, ex);
             }
         }
-        /*
-        if(errorList == null || errorList.isEmpty()) {
-        notify(classtype);
-        }*/
+
+        if (errorList == null || errorList.isEmpty()) {
+            notify(classtype);
+        }
 
         return errorList;
     }
@@ -449,7 +563,7 @@ public class Binder {
                     if (property.getClasstype().equals(String.class)) {
                         m.invoke(object, property.getValue());
                     } else if (property.getClasstype().equals(Integer.class)) {
-                        if(property.getValue() != null) {
+                        if (property.getValue() != null) {
                             m.invoke(object, Integer.parseInt(property.getValue()));
                         } else {
                             m.invoke(object, property.getValue());

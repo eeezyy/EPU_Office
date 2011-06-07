@@ -299,8 +299,16 @@ public final class KontakteView extends AbstractViewPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kontaktHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktHinzufuegenActionPerformed
-        KontaktAddForm af = new KontaktAddForm(null, true);
-        af.setVisible(true);
+        DefaultListModel model = (DefaultListModel) kontaktListe.getModel();
+        // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
+        if(((Kontakt)model.getElementAt(model.getSize()-1)).getId() == 0)
+            return;
+        Kontakt k = new Kontakt();
+        k.setId(0);
+        model.addElement(k);
+        kontaktListe.setSelectedIndex(model.getSize()-1);
+        this.resetTextFields();
+        this.cleanErrors();
     }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
 
     private void kontaktNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeld1ActionPerformed
@@ -350,6 +358,11 @@ public final class KontakteView extends AbstractViewPanel {
     }//GEN-LAST:event_kontaktLoeschenActionPerformed
 
     private void kontaktListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kontaktListeValueChanged
+        // verhindert das deselectieren eines neuen Kontaktes
+        // TODO Evtl. eingetragene Werte retten.
+        /*if(kontaktListe.getModel().getSize() > evt.getLastIndex() && ((Kontakt)kontaktListe.getModel().getElementAt(evt.getLastIndex())).getId() == 0) {
+            kontaktListe.setSelectedIndex(evt.getLastIndex());
+        }*/
         cleanErrors();
     }//GEN-LAST:event_kontaktListeValueChanged
 

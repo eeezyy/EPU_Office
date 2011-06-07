@@ -13,17 +13,21 @@ package view;
 import controller.AngebotController;
 import controller.Binder;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
 import javax.swing.DefaultListModel;
 import model.Angebot;
+import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
+import utils.log.Logger;
 import view.dialog.AngebotAddForm;
 
 /**
  *
  * @author Goran-Goggy
  */
-public class AngeboteView extends javax.swing.JPanel {
+public class AngeboteView extends AbstractViewPanel {
 
     private AngebotController controller;
     private IDAL db = DALFactory.getDAL();
@@ -168,6 +172,11 @@ public class AngeboteView extends javax.swing.JPanel {
         add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         angebotLoeschen.setText("Angebot löschen");
+        angebotLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                angebotLoeschenActionPerformed(evt);
+            }
+        });
         add(angebotLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
         kundeZuweisen.setText("Kunden zuweisen");
@@ -220,19 +229,58 @@ public class AngeboteView extends javax.swing.JPanel {
 }//GEN-LAST:event_angebotPreisFeldActionPerformed
 
     private void angebotErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotErstellenActionPerformed
+        DefaultListModel model = (DefaultListModel) angebotListe.getModel();
+        // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
+        if (((Angebot) model.getElementAt(model.getSize() - 1)).getId() == 0) {
+            return;
+        }
+        Angebot a = new Angebot();
+        a.setId(0);
+        model.addElement(a);
+        angebotListe.setSelectedIndex(model.getSize() - 1);
+        this.resetTextFields();
+        this.cleanErrors();
+        /*
         AngebotAddForm af = new AngebotAddForm(null, true);
-        af.setVisible(true);
+        af.setVisible(true);*/
 }//GEN-LAST:event_angebotErstellenActionPerformed
 
     private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
-        // TODO add your handling code here:
-        //modelPropertyChange(null);
+        Date d = new Date();
+        Angebot a = new Angebot();
+        a.setName(angebotNameFeld.getText());
+        a.setAenderungsDatum(d);
+        a.setBeschreibung(angebotBeschreibungFeld.getText());
+        a.setGueltigAb(angebotGueltigAbFeld.getDate());
+        a.setGueltigBis(angebotGueltigBisFeld.getDate());
+        a.setChance(Integer.parseInt(angebotChanceFeld.getText()));
+        a.setDauer(Integer.parseInt(angebotDauerFeld.getText()));
+        a.setPreis(Long.parseLong(angebotPreisFeld.getText()));
+        try {
+            // Test
+            DALFactory.getDAL().saveAngebot(a);
+            // --> controller add
+            //this.getObservable().notifyObservers(new NotifyObject(k, State.ADDED));
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, AngebotAddForm.class, ex);
+        }
 }//GEN-LAST:event_angebotAendernActionPerformed
 
     private void kundeZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundeZuweisenActionPerformed
         // TODO add your handling code here:
         angebotBeschreibungFeld.setText("klsdajf");
     }//GEN-LAST:event_kundeZuweisenActionPerformed
+
+    private void angebotLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotLoeschenActionPerformed
+        Angebot a = (Angebot) this.angebotListe.getSelectedValue();
+        try {
+            if (!(angebotListe.isSelectionEmpty())) {
+                db.deleteAngebot(a);
+            }
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
+        }
+    }//GEN-LAST:event_angebotLoeschenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angebotAendern;
     private javax.swing.JTextArea angebotBeschreibungFeld;

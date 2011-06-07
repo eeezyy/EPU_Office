@@ -295,6 +295,9 @@ public class DALDatabase implements IDAL {
                     "UPDAT Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
             cmd.setBoolean(1, k.getIsKunde());
             Logger.log(Level.SEVERE, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
+            
+            Binder.notify(Angebot.class);
+            Binder.notify(Kontakt.class);
         } catch (SQLException ex) {
             Logger.log(Level.SEVERE, DALDatabase.class, ex);
         }
@@ -394,7 +397,7 @@ public class DALDatabase implements IDAL {
             }
             cmd.close();
             db.close();
-            Binder.notify(Kontakt.class);
+            Binder.notify(Angebot.class);
 
         } catch (SQLException e) {
             throw new DALException(e.getMessage());

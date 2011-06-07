@@ -22,7 +22,10 @@ public class Angebot extends AbstractObject {
 
     @Override
     public String toString(){
-        return this.name + ", " + this.gueltigBis;
+        if (this.name != null || this.gueltigBis != null)
+            return this.name + ", " + this.gueltigBis;
+        else
+            return "<Neues Angebot>";
     }
         
     public Date getGueltigAb() {

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -32,6 +33,13 @@ public abstract class AbstractViewPanel extends JPanel {
     protected void resetTextFields() {
         this.cleanErrors();
         for (Component c : this.getComponents()) {
+            if (c instanceof JScrollPane) {
+                for (Component sc : ((JScrollPane)c).getViewport().getComponents()) {
+                    if (sc.getClass() == JTextArea.class) {
+                        ((JTextArea) sc).setText("");
+                    }
+                }
+            }
             if (c.getName() != null) {
                 //c.setEnabled(false);
                 if (c.getClass() == JTextField.class) {

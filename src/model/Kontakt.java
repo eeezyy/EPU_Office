@@ -26,7 +26,10 @@ public class Kontakt extends AbstractObject {
     
     @Override
     public String toString(){
-        return this.nachname + ", " + this.vorname;
+        if (this.nachname != null || this.vorname != null)
+            return this.nachname + ", " + this.vorname;
+        else
+            return "<Neuer Kontakt>";
     }
 
     public Boolean getIsKunde() {
