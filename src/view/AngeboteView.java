@@ -90,6 +90,7 @@ public class AngeboteView extends AbstractViewPanel {
         angebotBeschreibungFeld = new javax.swing.JTextArea();
         angebotGueltigAbFeld = new com.toedter.calendar.JDateChooser();
         angebotGueltigBisFeld = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,12 +121,12 @@ public class AngeboteView extends AbstractViewPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         angebotListe.setName("AngebotListe"); // NOI18N
         jScrollPane1.setViewportView(angebotListe);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 160));
 
         angebotGueltigBisLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         angebotGueltigBisLabel.setText("Gültig bis");
@@ -224,6 +225,9 @@ public class AngeboteView extends AbstractViewPanel {
         angebotGueltigBisFeld.setEnabled(false);
         angebotGueltigBisFeld.setName("GueltigBis"); // NOI18N
         add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle Kunden", "Kunde1", "Kunde2", "Kunde3" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void angebotPreisFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotPreisFeldActionPerformed
@@ -307,6 +311,7 @@ public class AngeboteView extends AbstractViewPanel {
     private javax.swing.JButton angebotLoeschen;
     private javax.swing.JTextField angebotNameFeld;
     private javax.swing.JTextField angebotPreisFeld;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
