@@ -20,7 +20,7 @@ public interface IDAL {
 
     public ArrayList<Kontakt> getKontaktListe() throws DALException;
 
-    public Kontakt getKontakt(int id) throws DALException;
+    public Kontakt getKontakt(Integer id) throws DALException;
 
     public ArrayList<Kontakt> getKundenListe() throws DALException;
 
@@ -30,11 +30,11 @@ public interface IDAL {
 
     public void deleteAngebot(Angebot a) throws DALException;
 
-    public Angebot getAngebot(int id) throws DALException;
+    public Angebot getAngebot(Integer id) throws DALException;
 
     public ArrayList<Angebot> getAngebotListe() throws DALException;
 
-    public ArrayList<Angebot> getAngebotFromKontakt(int id) throws DALException;
+    public ArrayList<Angebot> getAngebotFromKontakt(Integer id) throws DALException;
 
     public ArrayList<Projekt> getProjektListe() throws DALException;
 
@@ -42,9 +42,9 @@ public interface IDAL {
 
     public void deleteProjekt(Projekt p) throws DALException;
 
-    public Projekt getProjekt(int id) throws DALException;
+    public Projekt getProjekt(Integer id) throws DALException;
 
-    public Mitarbeiter getMitarbeiter(int id) throws DALException;
+    public Mitarbeiter getMitarbeiter(Integer id) throws DALException;
 
     public ArrayList<Mitarbeiter> getMitarbeiterListe() throws DALException;
 
@@ -56,7 +56,7 @@ public interface IDAL {
 
     public ArrayList<EingangsRechnung> getEingangsrechnungListe() throws DALException;
 
-    public EingangsRechnung getEingangsrechnung(int id) throws DALException;
+    public EingangsRechnung getEingangsrechnung(Integer id) throws DALException;
 
     public void saveEingangsrechnung(AbstractObject aO) throws DALException;
 
@@ -64,7 +64,7 @@ public interface IDAL {
 
     public ArrayList<AusgangsRechnung> getAusgangsrechnungListe() throws DALException;
 
-    public AusgangsRechnung getAusgangsrechnung(int id) throws DALException;
+    public AusgangsRechnung getAusgangsrechnung(Integer id) throws DALException;
 
     public void saveAusgangsrechnung(AbstractObject aO) throws DALException;
 
@@ -72,5 +72,5 @@ public interface IDAL {
 
     public ArrayList<Kategorie> getKategorieListe() throws DALException;
 
-    public Kategorie getKategorie(int id) throws DALException;
+    public Kategorie getKategorie(Integer id) throws DALException;
 }

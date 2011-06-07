@@ -15,7 +15,7 @@ public class ZeitErfassung extends AbstractObject {
     private Projekt projekt;
     private Mitarbeiter mitarbeiter;
     private Date datum;
-    private int stunden;
+    private Integer stunden;
     private String taetigkeit;
 
     public Date getDatum() {
@@ -42,11 +42,11 @@ public class ZeitErfassung extends AbstractObject {
         this.projekt = projekt;
     }
 
-    public int getStunden() {
+    public Integer getStunden() {
         return stunden;
     }
 
-    public void setStunden(int stunden) {
+    public void setStunden(Integer stunden) {
         this.stunden = stunden;
     }
 

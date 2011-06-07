@@ -14,7 +14,7 @@ public class Mitarbeiter extends AbstractObject {
 
     private String vorname;
     private String nachname;
-    private int stundenSatz;
+    private Double stundenSatz;
     private Date geburtsDatum;
 
     public Date getGeburtsDatum() {
@@ -33,11 +33,11 @@ public class Mitarbeiter extends AbstractObject {
         this.nachname = nachname;
     }
 
-    public int getStundenSatz() {
+    public Double  getStundenSatz() {
         return stundenSatz;
     }
 
-    public void setStundenSatz(int stundenSatz) {
+    public void setStundenSatz(Double stundenSatz) {
         this.stundenSatz = stundenSatz;
     }
 

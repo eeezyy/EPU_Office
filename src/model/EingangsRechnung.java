@@ -15,7 +15,7 @@ public class EingangsRechnung extends AbstractObject {
     private Kontakt kontakt;
     private String scanPfad;
     private Date datum;
-    private int preis;
+    private Integer preis;
 
     public Date getDatum() {
         return datum;
