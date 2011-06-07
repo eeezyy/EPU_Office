@@ -96,7 +96,7 @@
               <Font name="Tahoma" size="12" style="2"/>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>
-            <Property name="name" type="java.lang.String" value="AngebotListe" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="AngebotFromKontakt" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -346,6 +346,7 @@
             <StringItem index="3" value="Kunde3"/>
           </StringArray>
         </Property>
+        <Property name="name" type="java.lang.String" value="KundenListe" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

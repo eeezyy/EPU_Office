@@ -18,11 +18,11 @@ public interface IDAL {
 
     public void deleteKontakt(Kontakt k) throws DALException;
 
-    public ArrayList<Kontakt> getKontaktListe() throws DALException;
+    public ArrayList<AbstractObject> getKontaktListe() throws DALException;
 
     public Kontakt getKontakt(Integer id) throws DALException;
 
-    public ArrayList<Kontakt> getKundenListe() throws DALException;
+    public ArrayList<AbstractObject> getKundenListe() throws DALException;
 
     public void addAngebotToKontakt(Kontakt k, Angebot a);
 
@@ -32,11 +32,13 @@ public interface IDAL {
 
     public Angebot getAngebot(Integer id) throws DALException;
 
-    public ArrayList<Angebot> getAngebotListe() throws DALException;
+    public ArrayList<AbstractObject> getAngebotListe() throws DALException;
 
-    public ArrayList<Angebot> getAngebotFromKontakt(Integer id) throws DALException;
+    public ArrayList<AbstractObject> getAngebotFromKontakt() throws DALException;
+    
+    public ArrayList<AbstractObject> getAngebotFromKontakt(Integer id) throws DALException;
 
-    public ArrayList<Projekt> getProjektListe() throws DALException;
+    public ArrayList<AbstractObject> getProjektListe() throws DALException;
 
     public void saveProjekt(AbstractObject aO) throws DALException;
 
@@ -46,7 +48,7 @@ public interface IDAL {
 
     public Mitarbeiter getMitarbeiter(Integer id) throws DALException;
 
-    public ArrayList<Mitarbeiter> getMitarbeiterListe() throws DALException;
+    public ArrayList<AbstractObject> getMitarbeiterListe() throws DALException;
 
     public void addMitarbeiterToProjekt(Integer p, Integer m) throws DALException;
 
@@ -54,7 +56,7 @@ public interface IDAL {
 
     public void saveMitarbeiter(AbstractObject aO) throws DALException;
 
-    public ArrayList<EingangsRechnung> getEingangsrechnungListe() throws DALException;
+    public ArrayList<AbstractObject> getEingangsrechnungListe() throws DALException;
 
     public EingangsRechnung getEingangsrechnung(Integer id) throws DALException;
 
@@ -62,7 +64,7 @@ public interface IDAL {
 
     public void deleteEingangsrechnung(EingangsRechnung eR) throws DALException;
 
-    public ArrayList<AusgangsRechnung> getAusgangsrechnungListe() throws DALException;
+    public ArrayList<AbstractObject> getAusgangsrechnungListe() throws DALException;
 
     public AusgangsRechnung getAusgangsrechnung(Integer id) throws DALException;
 
@@ -70,7 +72,7 @@ public interface IDAL {
 
     public void deleteAusgangsrechnung(AusgangsRechnung aR) throws DALException;
 
-    public ArrayList<Kategorie> getKategorieListe() throws DALException;
+    public ArrayList<AbstractObject> getKategorieListe() throws DALException;
 
     public Kategorie getKategorie(Integer id) throws DALException;
 }

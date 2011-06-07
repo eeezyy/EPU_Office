@@ -139,7 +139,7 @@ public class DALDatabase implements IDAL {
             Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("saveKontakt"));
             // get generated id
             ResultSet generatedKeys = cmd.getGeneratedKeys();
-            if (result != 0 && generatedKeys.next()) {
+            if (result != null && result != 0 && generatedKeys.next()) {
                 k.setId(generatedKeys.getInt(1));
             }
             cmd.close();
@@ -155,8 +155,8 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Kontakt> getKontaktListe() {
-        ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
+    public ArrayList<AbstractObject> getKontaktListe() {
+        ArrayList<AbstractObject> kontakte = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -260,7 +260,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
 
             // was deleted?
-            if (result != 0) {
+            if (result != null && result != 0) {
                 // successful
                 Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteKontakt"));
             }
@@ -278,7 +278,7 @@ public class DALDatabase implements IDAL {
             Connection db = DALDatabase.getConnection();
 
             // SQL STMT vorbereiten
-            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(KONTAKT_ID) FROM KONTAKT_HAS_ANGEBOT WHERE KONTAKT_ID = ? AND ANGEBOT_ID = ? GROUP BY KONTAKT_ID");
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(KONTAKT_ID) FROM KONTAKT_HAS_ANGEBOT WHERE (KONTAKT_ID = ? AND ANGEBOT_ID = ?) GROUP BY KONTAKT_ID");
             // Parameter setzen
             cmdSelect.setInt(1, k.getId());
             cmdSelect.setInt(2, a.getId());
@@ -286,15 +286,25 @@ public class DALDatabase implements IDAL {
             ResultSet rd = cmdSelect.executeQuery();
             // Update/Insert cmd
             PreparedStatement cmd;
-            if (rd.next() && rd.getInt(1) == 0) {
+            Integer result;
+            if (!rd.next() || rd.getInt(1) == 0) {
                 cmd = db.prepareStatement(
                         "INSERT INTO Kontakt_has_Angebot (Kontakt_ID, Angebot_ID) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, k.getId());
                 cmd.setInt(2, a.getId());
-                cmd = db.prepareStatement("UPDATE Kontakt SET isKunde = ?", PreparedStatement.RETURN_GENERATED_KEYS);
-                cmd.setBoolean(1, k.getIsKunde());
+                result = cmd.executeUpdate();
+                if (result != null) {
+                    Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
+                }
+                cmd = db.prepareStatement("UPDATE Kontakt SET isKunde = ? WHERE id = ?", PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setBoolean(1, true);
+                cmd.setInt(2, k.getId());
+                result = cmd.executeUpdate();
+                if (result != null) {
+                    Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
+                }
             }
-            Logger.log(Level.SEVERE, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
+            Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("addAngebotToKontakt"));
             Binder.notify(Angebot.class);
             Binder.notify(Kontakt.class);
         } catch (SQLException ex) {
@@ -358,7 +368,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
             // get generated id
             ResultSet generatedKeys = cmd.getGeneratedKeys();
-            if (result != 0 && generatedKeys.next()) {
+            if (result != null && result != 0 && generatedKeys.next()) {
                 a.setId(generatedKeys.getInt(1));
             }
             cmd.close();
@@ -386,7 +396,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
 
             // was deleted?
-            if (result != 0) {
+            if (result != null && result != 0) {
                 // successful
                 Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteAngebot"));
             }
@@ -400,8 +410,9 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Angebot> getAngebotListe() throws DALException {
-        ArrayList<Angebot> angebote = new ArrayList<Angebot>();
+    public ArrayList<AbstractObject> getAngebotListe() throws DALException {
+        ArrayList<AbstractObject> angebote = new ArrayList<AbstractObject
+                >();
 // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -472,8 +483,8 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Projekt> getProjektListe() throws DALException {
-        ArrayList<Projekt> projekte = new ArrayList<Projekt>();
+    public ArrayList<AbstractObject> getProjektListe() throws DALException {
+        ArrayList<AbstractObject> projekte = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -505,8 +516,8 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Kontakt> getKundenListe() throws DALException {
-        ArrayList<Kontakt> kontakte = new ArrayList<Kontakt>();
+    public ArrayList<AbstractObject> getKundenListe() throws DALException {
+        ArrayList<AbstractObject> kontakte = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -591,7 +602,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
             // get generated id
             ResultSet generatedKeys = cmd.getGeneratedKeys();
-            if (result != 0 && generatedKeys.next()) {
+            if (result != null && result != 0 && generatedKeys.next()) {
                 p.setId(generatedKeys.getInt(1));
             }
             cmd.close();
@@ -619,7 +630,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
 
             // was deleted?
-            if (result != 0) {
+            if (result != null && result != 0) {
                 // successful
                 Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteProjekt"));
             }
@@ -668,8 +679,8 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Mitarbeiter> getMitarbeiterListe() throws DALException {
-        ArrayList<Mitarbeiter> mitarbeiterListe = new ArrayList<Mitarbeiter>();
+    public ArrayList<AbstractObject> getMitarbeiterListe() throws DALException {
+        ArrayList<AbstractObject> mitarbeiterListe = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -716,7 +727,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
 
             // was deleted?
-            if (result != 0) {
+            if (result != null && result != 0) {
                 // successful
                 Logger.log(Level.INFO, DALDatabase.class, new DALModelModified("deleteMitarbeiter"));
             }
@@ -738,7 +749,7 @@ public class DALDatabase implements IDAL {
         try {
             // Datenbankverbindung öffnen
             Connection db = DALDatabase.getConnection();
-            
+
             // SQL STMT vorbereiten
             PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM Mitarbeiter WHERE id = ? GROUP BY id");
             // Parameter setzen
@@ -769,7 +780,7 @@ public class DALDatabase implements IDAL {
             Integer result = cmd.executeUpdate();
             // get generated id
             ResultSet generatedKeys = cmd.getGeneratedKeys();
-            if (result != 0 && generatedKeys.next()) {
+            if (result != null && result != 0 && generatedKeys.next()) {
                 m.setId(generatedKeys.getInt(1));
             }
             cmd.close();
@@ -784,7 +795,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<EingangsRechnung> getEingangsrechnungListe() throws DALException {
+    public ArrayList<AbstractObject> getEingangsrechnungListe() throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -804,7 +815,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<AusgangsRechnung> getAusgangsrechnungListe() throws DALException {
+    public ArrayList<AbstractObject> getAusgangsrechnungListe() throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -824,8 +835,8 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Kategorie> getKategorieListe() throws DALException {
-        ArrayList<Kategorie> kategorieListe = new ArrayList<Kategorie>();
+    public ArrayList<AbstractObject> getKategorieListe() throws DALException {
+        ArrayList<AbstractObject> kategorieListe = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
@@ -877,17 +888,29 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public ArrayList<Angebot> getAngebotFromKontakt(Integer id) throws DALException {
-        ArrayList<Angebot> angebote = new ArrayList<Angebot>();
+    public ArrayList<AbstractObject> getAngebotFromKontakt() throws DALException {
+        return getAngebotListe();
+    }
+    
+    @Override
+    public ArrayList<AbstractObject> getAngebotFromKontakt(Integer id) throws DALException {
+        ArrayList<AbstractObject> angebote = new ArrayList<AbstractObject>();
         // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT id, name, beschreibung FROM kontakt k inner join kontakt_has_angebot kha on k.id = kha.kontakt_id " + ""
-                    + "inner join angebot a on kha.angebot_id = a.id WHERE k.id = ?");
-            cmd.setInt(1, id);
+            String prepare = "SELECT DISTINCT a.id, a.name, a.beschreibung, a.GueltigAb, a.GueltigBis, a.Preis, a.Dauer, a.Chance, a.AenderungsDatum FROM "
+                    + "kontakt k inner join kontakt_has_angebot kha on k.id = kha.kontakt_id " + ""
+                    + "inner join angebot a on kha.angebot_id = a.id";
+            if(id != 0) {
+                prepare += " WHERE k.id = ?";
+            }
+            cmd = db.prepareStatement(prepare);
+            if(id != 0) {
+                cmd.setInt(1, id);
+            }
             rd = cmd.executeQuery();
             // Daten holen
             while (rd.next()) {
@@ -895,6 +918,12 @@ public class DALDatabase implements IDAL {
                 a.setId(rd.getInt(1));
                 a.setName(rd.getString(2));
                 a.setBeschreibung(rd.getString(3));
+                a.setGueltigAb(new java.util.Date(rd.getDate(4).getTime()));
+                a.setGueltigBis(new java.util.Date(rd.getDate(5).getTime()));
+                a.setPreis(rd.getDouble(6));
+                a.setDauer(rd.getInt(7));
+                a.setChance(rd.getInt(8));
+                a.setAenderungsDatum(new java.util.Date(rd.getDate(9).getTime()));
                 angebote.add(a);
             }
             rd.close();

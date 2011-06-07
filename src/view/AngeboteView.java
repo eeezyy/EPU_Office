@@ -13,17 +13,19 @@ package view;
 import controller.AngebotController;
 import controller.Binder;
 import controller.BinderProperty;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import javax.swing.DefaultListModel;
 import model.Angebot;
+import model.Kontakt;
 import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.log.Logger;
-import view.dialog.AngebotAddForm;
 
 /**
  *
@@ -54,7 +56,8 @@ public class AngeboteView extends AbstractViewPanel {
 
 
         Binder.bind(Angebot.class, angebotListe);
-
+        Binder.bind(Kontakt.class, angebotKundenComboBox);
+        Binder.bind(Angebot.class, angebotKundenComboBox);
     }
 
     /** This method is called from within the constructor to
@@ -124,7 +127,7 @@ public class AngeboteView extends AbstractViewPanel {
 
         angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        angebotListe.setName("AngebotListe"); // NOI18N
+        angebotListe.setName("AngebotFromKontakt"); // NOI18N
         jScrollPane1.setViewportView(angebotListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 160));
@@ -228,6 +231,7 @@ public class AngeboteView extends AbstractViewPanel {
         add(angebotGueltigBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 140, -1));
 
         angebotKundenComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle Kunden", "Kunde1", "Kunde2", "Kunde3" }));
+        angebotKundenComboBox.setName("KundenListe"); // NOI18N
         add(angebotKundenComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,7 +264,7 @@ public class AngeboteView extends AbstractViewPanel {
 
     private void kundeZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundeZuweisenActionPerformed
         // TODO add your handling code here:
-        angebotBeschreibungFeld.setText("klsdajf");
+        Binder.notify(Angebot.class);
     }//GEN-LAST:event_kundeZuweisenActionPerformed
 
     private void angebotLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotLoeschenActionPerformed

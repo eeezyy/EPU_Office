@@ -11,8 +11,10 @@
 package view.dialog;
 
 import controller.Binder;
+import model.AbstractObject;
 import model.Angebot;
 import model.Kontakt;
+import model.dal.DALFactory;
 import view.AbstractViewDialog;
 
 /**
@@ -108,7 +110,12 @@ public class AngebotToKundeForm extends AbstractViewDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dialogAngebotToKundeUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotToKundeUebernehmenActionPerformed
+        Object o = dialogAngebotToKundeAngebotComboBox.getSelectedItem();
         
+        if(o != null && o instanceof Angebot) {
+            DALFactory.getDAL().addAngebotToKontakt(kunde, (Angebot)o);
+            this.dispose();
+        }
 }//GEN-LAST:event_dialogAngebotToKundeUebernehmenActionPerformed
 
     private void dialogAngebotToKundeAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogAngebotToKundeAbbrechenActionPerformed
