@@ -4,7 +4,7 @@
  */
 
 /*
- * AusgangsrechnungForm.java
+ * AusgangsrechnungDialog.java
  *
  * Created on 09.05.2011, 18:47:22
  */
@@ -14,10 +14,10 @@ package view.dialog;
  *
  * @author Goran-Goggy
  */
-public class AusgangsrechnungForm extends javax.swing.JDialog {
+public class AusgangsrechnungDialog extends javax.swing.JDialog {
 
-    /** Creates new form AusgangsrechnungForm */
-    public AusgangsrechnungForm(java.awt.Frame parent, boolean modal) {
+    /** Creates new form AusgangsrechnungDialog */
+    public AusgangsrechnungDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -87,7 +87,7 @@ public class AusgangsrechnungForm extends javax.swing.JDialog {
 
         dialogAusgangDatumFeld.setBorder(null);
         dialogAusgangDatumFeld.setEditable(false);
-        dialogAusgangDatumFeld.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        dialogAusgangDatumFeld.setFont(new java.awt.Font("Tahoma", 0, 15));
         dialogAusgangDatumFeld.setText("9.5.2011");
         dialogAusgangDatumFeld.setName("result"); // NOI18N
         jScrollPane8.setViewportView(dialogAusgangDatumFeld);
@@ -137,7 +137,7 @@ public class AusgangsrechnungForm extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                AusgangsrechnungForm dialog = new AusgangsrechnungForm(new javax.swing.JFrame(), true);
+                AusgangsrechnungDialog dialog = new AusgangsrechnungDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     public void windowClosing(java.awt.event.WindowEvent e) {
