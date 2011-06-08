@@ -56,4 +56,5 @@ public class ERechnung extends AbstractObject {
     public void setScanPfad(String scanPfad) {
         this.scanPfad = scanPfad;
     }
+    
 }

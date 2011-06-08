@@ -441,7 +441,7 @@ public class DALDatabase implements IDAL {
         }
         return angebote;
     }
-    
+
     @Override
     public ArrayList<AbstractObject> getAngebot() throws DALException {
         return getAngebotListe();
@@ -483,7 +483,7 @@ public class DALDatabase implements IDAL {
         }
         return angebot;
     }
-    
+
     @Override
     public ArrayList<AbstractObject> getProjekt() throws DALException {
         return getProjektListe();
@@ -599,10 +599,11 @@ public class DALDatabase implements IDAL {
                 cmd = db.prepareStatement(
                         "INSERT INTO PROJEKT (ANGEBOT_ID, NAME, ABGESCHLOSSEN, VON, BIS) VALUES (?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
-                if(p.getAngebot() != null)
+                if (p.getAngebot() != null) {
                     cmd.setInt(1, p.getAngebot().getId());
-                else
+                } else {
                     throw new DALException("Angebot muss angegeben werden");
+                }
                 cmd.setString(2, p.getName());
                 cmd.setBoolean(3, p.getIsAbgeschlossen());
                 cmd.setDate(4, von);
@@ -711,7 +712,7 @@ public class DALDatabase implements IDAL {
         }
         return mitarbeiter;
     }
-    
+
     @Override
     public ArrayList<AbstractObject> getMitarbeiter() throws DALException {
         return getMitarbeiterListe();
@@ -785,7 +786,7 @@ public class DALDatabase implements IDAL {
         }
         return projekte;
     }
-    
+
     @Override
     public ArrayList<AbstractObject> getMitarbeiterFromProjekt(Integer id) throws DALException {
         ArrayList<AbstractObject> mitarbeiter = new ArrayList<AbstractObject>();
@@ -824,10 +825,10 @@ public class DALDatabase implements IDAL {
         }
         return mitarbeiter;
     }
-    
+
     @Override
     public void addProjektToMitarbeiter(Projekt projekt, Mitarbeiter mitarbeiter) throws DALException {
-            try {
+        try {
             Connection db = DALDatabase.getConnection();
 
             // SQL STMT vorbereiten
@@ -854,7 +855,7 @@ public class DALDatabase implements IDAL {
                 cmd.setInt(2, k.getId());
                 result = cmd.executeUpdate();
                 if (result != null) {
-                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("addAngebotToKontakt"));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("addAngebotToKontakt"));
                 }*/
             }
             Binder.notify(Mitarbeiter.class);
@@ -948,42 +949,365 @@ public class DALDatabase implements IDAL {
 
     @Override
     public ArrayList<AbstractObject> getEingangsrechnungListe() throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList<AbstractObject> eRListe = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            String prepare = "SELECT DISTINCT E.ID, E.KONTAKT_ID, E.SCANPFAD, E.DATUM, E.PREIS "
+                    + "FROM EINGANGSRECHNUNG E INNER JOIN RECHNUNG R ON E.ID = R.EINGANGSRECHNUNG_ID "
+                    + "WHERE R.AUSGANGSRECHNUNGEN_ID = ?";
+
+            cmd = db.prepareStatement(prepare);
+
+            cmd.setNull(1, java.sql.Types.NULL);
+
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                ERechnung eR = new ERechnung();
+                eR.setId(rd.getInt(1));
+                eR.setKontakt(this.getKontakt(rd.getInt(2)));
+                eR.setScanPfad(rd.getString(3));
+                eR.setDatum(new java.util.Date(rd.getDate(4).getTime()));
+                eR.setPreis(rd.getDouble(5));
+                eRListe.add(eR);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return eRListe;
     }
 
     @Override
     public ERechnung getEingangsrechnung(Integer id) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ERechnung eR = null;
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT ID, KONTAKT_ID, SCANPFAD, DATUM, PREIS FROM AUSGANGSRECHNUNGEN WHERE id = ? ");
+            cmd.setInt(1, id);
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Integer intResult = null;
+                eR.setId(rd.getInt(1));
+                eR.setKontakt(this.getKontakt(rd.getInt(2)));
+                eR.setScanPfad(rd.getString(3));
+                eR.setDatum(new java.util.Date(rd.getDate(4).getTime()));
+                eR.setPreis(rd.getDouble(5));
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+
+        return eR;
     }
 
     @Override
     public void saveEingangsrechnung(AbstractObject eR) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (!(eR instanceof ERechnung)) {
+            return;
+        }
+        ERechnung e = (ERechnung) eR;
+        java.sql.Date datum = new java.sql.Date(e.getDatum().getTime());
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM EINGANGSRECHNUNG WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, e.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE EINGANGSRECHNUNG SET KONTAKT_ID = ?, SCANPFAD = ?, DATUM = ?, PREIS = ? WHERE id = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, e.getKontakt().getId());
+                cmd.setString(2, e.getScanPfad());
+                cmd.setDate(3, datum);
+                cmd.setDouble(4, e.getPreis());
+                cmd.setInt(5, e.getId());
+
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    e.setId(generatedKeys.getInt(1));
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveEingangsrechnung"));
+                }
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO EINGANGSRECHNUNG (KONTAKT_ID, SCANPFAD, DATUM, PREIS) VALUES (?, ?, ?, ?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, e.getKontakt().getId());
+                cmd.setString(2, e.getScanPfad());
+                cmd.setDate(3, datum);
+                cmd.setDouble(4, e.getPreis());
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    e.setId(generatedKeys.getInt(1));
+
+                    cmd = db.prepareStatement(
+                            "INSERT INTO RECHNUNG (AUSGANGSRECHNUNGEN_ID, EINGANGSRECHNUNG_ID, DATUM) VALUES (?, ?, ?)",
+                            PreparedStatement.RETURN_GENERATED_KEYS);
+
+                    cmd.setNull(1, java.sql.Types.NULL);
+                    cmd.setInt(2, e.getId());
+                    cmd.setDate(3, datum);
+
+                    result = cmd.executeUpdate();
+                    // get generated id
+                    if (result != null && result != 0) {
+                        Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveEingangsrechnung"));
+                    }
+                }
+            }
+
+            cmd.close();
+            rd.close();
+            cmdSelect.close();
+            db.close();
+
+            Binder.notify(Projekt.class);
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
     }
 
     @Override
     public void deleteEingangsrechnung(ERechnung eR) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM RECHNUNG WHERE EINGANGSRECHNUNG_ID = ? "
+                    + " AND AUSGANGSRECHNUNGEN_ID = ?");
+            // Parameter setzen
+            cmd.setInt(1, eR.getId());
+            cmd.setInt(2, java.sql.Types.NULL);
+            // Ausf�hren
+            Integer result = cmd.executeUpdate();
+
+            // was deleted?
+            if (result != null && result != 0) {
+                // successful
+                cmd = db.prepareStatement("DELETE FROM EINGANGSRECHNUNG WHERE ID = ?");
+                cmd.setInt(1, eR.getId());
+                result = cmd.executeUpdate();
+                if (result != null && result != 0) {
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteEingangsrechnung"));
+                }
+            }
+            cmd.close();
+            db.close();
+            Binder.notify(Mitarbeiter.class);
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
     }
 
     @Override
     public ArrayList<AbstractObject> getAusgangsrechnungListe() throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList<AbstractObject> aRListe = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            String prepare = "SELECT DISTINCT A.ID, A.KONTAKT_ID, A.DATUM, A.PREIS "
+                    + "FROM AUSGANGSRECHNUNGEN A INNER JOIN RECHNUNG R ON A.ID = R.AUSGANGSRECHNUNGEN_ID "
+                    + "WHERE R.EINGANGSRECHNUNG_ID = ?";
+
+            cmd = db.prepareStatement(prepare);
+
+            cmd.setNull(1, java.sql.Types.NULL);
+
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                ARechnung aR = new ARechnung();
+                aR.setId(rd.getInt(1));
+                aR.setKontakt(this.getKontakt(rd.getInt(2)));
+                aR.setDatum(new java.util.Date(rd.getDate(3).getTime()));
+                aR.setPreis(rd.getDouble(4));
+                aRListe.add(aR);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return aRListe;
     }
 
     @Override
     public ARechnung getAusgangsrechnung(Integer id) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ARechnung aR = null;
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT ID, KONTAKT_ID, DATUM, PREIS FROM AUSGANGSRECHNUNGEN WHERE id = ? ");
+            cmd.setInt(1, id);
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Integer intResult = null;
+                aR.setId(rd.getInt(1));
+                aR.setKontakt(this.getKontakt(rd.getInt(2)));
+                aR.setDatum(new java.util.Date(rd.getDate(3).getTime()));
+                aR.setPreis(rd.getDouble(4));
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+
+        return aR;
     }
 
     @Override
     public void saveAusgangsrechnung(AbstractObject eR) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (!(eR instanceof ARechnung)) {
+            return;
+        }
+        ARechnung a = (ARechnung) eR;
+        java.sql.Date datum = new java.sql.Date(a.getDatum().getTime());
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM AUSGANGSRECHNUNGEN WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, a.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE AUSGANGSRECHNUNGEN SET KONTAKT_ID = ?, DATUM = ?, PREIS = ? WHERE id = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, a.getKontakt().getId());
+                cmd.setDate(2, datum);
+                cmd.setDouble(3, a.getPreis());
+                cmd.setInt(4, a.getId());
+
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    a.setId(generatedKeys.getInt(1));
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveAusgangsrechnung"));
+                }
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO AUSGANGSRECHNUNGEN (KONTAKT_ID, DATUM, PREIS) VALUES (?, ?, ?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, a.getKontakt().getId());
+                cmd.setDate(2, datum);
+                cmd.setDouble(3, a.getPreis());
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    a.setId(generatedKeys.getInt(1));
+
+                    cmd = db.prepareStatement(
+                            "INSERT INTO RECHNUNG (AUSGANGSRECHNUNGEN_ID, EINGANGSRECHNUNG_ID, DATUM) VALUES (?, ?, ?)",
+                            PreparedStatement.RETURN_GENERATED_KEYS);
+
+                    
+                    cmd.setInt(1, a.getId());
+                    cmd.setNull(2, java.sql.Types.NULL);
+                    cmd.setDate(3, datum);
+
+                    result = cmd.executeUpdate();
+                    // get generated id
+                    if (result != null && result != 0) {
+                        Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveAusgangsrechnung"));
+                    }
+                }
+            }
+
+            cmd.close();
+            rd.close();
+            cmdSelect.close();
+            db.close();
+
+            Binder.notify(Projekt.class);
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
     }
 
     @Override
     public void deleteAusgangsrechnung(ARechnung aR) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM RECHNUNG WHERE AUSGANGSRECHNUNGEN_ID = ? "
+                    + " AND EINGANGSRECHNUNG_ID = ?");
+            // Parameter setzen
+            cmd.setInt(1, aR.getId());
+            cmd.setInt(2, java.sql.Types.NULL);
+            // Ausf�hren
+            Integer result = cmd.executeUpdate();
+
+            // was deleted?
+            if (result != null && result != 0) {
+                // successful
+                cmd = db.prepareStatement("DELETE FROM AUSGANGSRECHNUNGEN WHERE ID = ?");
+                cmd.setInt(1, aR.getId());
+                result = cmd.executeUpdate();
+                if (result != null && result != 0) {
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("deleteAusgangsrechnung"));
+                }
+            }
+            cmd.close();
+            db.close();
+            Binder.notify(Mitarbeiter.class);
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
     }
 
     @Override
@@ -1116,8 +1440,9 @@ public class DALDatabase implements IDAL {
             cmd = db.prepareStatement("SELECT SUM(STUNDEN) FROM ARBEITSSTUNDEN WHERE PROJEKT_ID = ? GROUP BY PROJEKT_ID");
             cmd.setInt(1, pId);
             rd = cmd.executeQuery();
-            if(rd.next())
+            if (rd.next()) {
                 summe = (Integer) rd.getInt(1);
+            }
             rd.close();
             cmd.close();
             db.close();
@@ -1138,11 +1463,12 @@ public class DALDatabase implements IDAL {
     @Override
     public void saveArbeitsstunden(AbstractObject oa) throws DALException {
         Arbeitsstunden log;
-        if(!(oa instanceof Arbeitsstunden))
+        if (!(oa instanceof Arbeitsstunden)) {
             throw new DALException("Übergabeobjekt nicht vom Typ 'Arbeitsstunden'");
-        else
+        } else {
             log = (Arbeitsstunden) oa;
-        
+        }
+
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
@@ -1188,10 +1514,10 @@ public class DALDatabase implements IDAL {
             // execute insert/update
             Integer result = cmd.executeUpdate();
             ResultSet generatedKeys = cmd.getGeneratedKeys();
-                    if (result != null && result != 0 && generatedKeys.next()) {
-                        log.setId(generatedKeys.getInt(1));
-                        Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveProjekt"));
-                    }
+            if (result != null && result != 0 && generatedKeys.next()) {
+                log.setId(generatedKeys.getInt(1));
+                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveProjekt"));
+            }
             cmd.close();
             rd.close();
             cmdSelect.close();
