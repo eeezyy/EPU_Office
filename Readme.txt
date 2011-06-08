@@ -42,3 +42,23 @@ geordneten Elementen.
 											
 ...::..:: Report ::..::...
 <Text missing>
+
+Code Coverage von getesteten Klassen:
+
+Full<-qualified Class Name     | Lines
+---------------------------------------------
+model.bl.AngebotLogic          | 80% (40 / 50)	
+model.bl.AbstractLogic         | 72% (81 / 112)	
+model.bl.KontaktLogic          | 62% (25 / 40)	
+model.Angebot                  | 62% (18 / 29)	
+model.Mitarbeiter              | 56% (9 / 16)	
+model.dal.DALFactory           | 50% (1 / 2)	
+controller.Binder              | 5% (29 / 555)	
+model.ERechnung                | 44% (7 / 16)	
+model.Kategorie                | 43% (3 / 7)	
+model.Arbeitsstunden           | 40% (8 / 20)	
+model.Projekt                  | 38% (9 / 24)	
+model.ARechnung                | 38% (5 / 13)	
+model.AbstractObject           | 17% (1 / 6)	
+controller.BinderProperty      | 100% (8 / 8)	
+

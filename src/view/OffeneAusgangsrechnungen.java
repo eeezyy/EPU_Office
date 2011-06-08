@@ -10,7 +10,9 @@
  */
 package view;
 
+import controller.Binder;
 import controller.OffeneAusgangsrechnungenController;
+import model.ERechnung;
 
 /**
  *
@@ -22,7 +24,14 @@ public class OffeneAusgangsrechnungen extends javax.swing.JPanel {
     public OffeneAusgangsrechnungen(OffeneAusgangsrechnungenController controller) {
         this.controller = controller;
         initComponents();
+        initialize();
     }
+    
+    private void initialize() {
+        Binder.bind(ERechnung.class, offeneAusgangsrechnungenListe);
+    }
+    
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -45,13 +54,13 @@ public class OffeneAusgangsrechnungen extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         eingangsrechnungenListe = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        offeneEingangsrechnungenListe = new javax.swing.JList();
+        offeneAusgangsrechnungenListe = new javax.swing.JList();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektAuftragLabel.setText("Kategorie");
         jPanel1.add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
 
@@ -63,13 +72,13 @@ public class OffeneAusgangsrechnungen extends javax.swing.JPanel {
         kundenListeLabel.setText("Offene Ausgangsrechnungen");
         jPanel1.add(kundenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kundenInfoLabel.setText("Vorgemerkte Ausgangsrechnungen");
         kundenInfoLabel.setAlignmentX(0.5F);
         jPanel1.add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
 
-        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektNameLabel.setText("Betrag");
         jPanel1.add(projektNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
 
@@ -92,17 +101,17 @@ public class OffeneAusgangsrechnungen extends javax.swing.JPanel {
         projektLoeschen.setText("Rechnungen abbuchen");
         jPanel1.add(projektLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 250, -1));
 
-        eingangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        eingangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         eingangsrechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         eingangsrechnungenListe.setName("ProjektListe"); // NOI18N
         jScrollPane1.setViewportView(eingangsrechnungenListe);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 250, 160));
 
-        offeneEingangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        offeneEingangsrechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        offeneEingangsrechnungenListe.setName("ProjektListe"); // NOI18N
-        jScrollPane2.setViewportView(offeneEingangsrechnungenListe);
+        offeneAusgangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        offeneAusgangsrechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        offeneAusgangsrechnungenListe.setName("OffeneAusgangsrechnungListe"); // NOI18N
+        jScrollPane2.setViewportView(offeneAusgangsrechnungenListe);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 280, 190));
 
@@ -125,7 +134,7 @@ public class OffeneAusgangsrechnungen extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel kundenInfoLabel;
     private javax.swing.JLabel kundenListeLabel;
-    private javax.swing.JList offeneEingangsrechnungenListe;
+    private javax.swing.JList offeneAusgangsrechnungenListe;
     private javax.swing.JComboBox projektAngebotComboBox;
     private javax.swing.JLabel projektAuftragLabel;
     private javax.swing.JButton projektHinzufuegen1;
