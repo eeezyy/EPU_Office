@@ -5,6 +5,10 @@
 package model;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.dal.DALException;
+import model.dal.DALFactory;
 
 /**
  *
@@ -24,6 +28,18 @@ public class Projekt extends AbstractObject {
             return this.name;
         else
             return "<Neues Projekt>";
+    }
+    
+    public Integer getProjektStundenGesamt() {
+        if(this.getId() != null)
+        try {
+            return DALFactory.getDAL().getProjektStundenGesamt(this.getId());
+        } catch (DALException ex) {
+            Logger.getLogger(Projekt.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        else
+            return null;
     }
 
     public Boolean getIsAbgeschlossen() {

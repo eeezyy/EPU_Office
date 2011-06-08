@@ -47,6 +47,7 @@ public class ProjektView extends AbstractViewPanel {
         Binder.bind(projektListe, projektBisFeld);
         Binder.bind(projektListe, projektAbgeschlossenCheckBox);
         Binder.bind(projektListe, projektAngebotComboBox);
+        Binder.bind(projektListe, projektStundenGesamtFeld);
         
         Binder.bind(Angebot.class, projektAngebotComboBox);
     }

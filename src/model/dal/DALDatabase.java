@@ -956,7 +956,7 @@ public class DALDatabase implements IDAL {
 
     @Override
     public Integer getProjektStundenGesamt(Integer pId) throws DALException {
-        Integer summe = -1;
+        Integer summe = null;
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
@@ -966,7 +966,8 @@ public class DALDatabase implements IDAL {
             cmd = db.prepareStatement("SELECT SUM(STUNDEN) FROM ARBEITSSTUNDEN WHERE PROJEKT_ID = ? GROUP BY PROJEKT_ID");
             cmd.setInt(1, pId);
             rd = cmd.executeQuery();
-            summe = (Integer) rd.getInt(1);
+            if(rd.next())
+                summe = (Integer) rd.getInt(1);
             rd.close();
             cmd.close();
             db.close();
