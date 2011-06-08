@@ -60,19 +60,19 @@ public interface IDAL {
 
     public ArrayList<AbstractObject> getEingangsrechnungListe() throws DALException;
 
-    public EingangsRechnung getEingangsrechnung(Integer id) throws DALException;
+    public Eingangsrechnung getEingangsrechnung(Integer id) throws DALException;
 
     public void saveEingangsrechnung(AbstractObject aO) throws DALException;
 
-    public void deleteEingangsrechnung(EingangsRechnung eR) throws DALException;
+    public void deleteEingangsrechnung(Eingangsrechnung eR) throws DALException;
 
     public ArrayList<AbstractObject> getAusgangsrechnungListe() throws DALException;
 
-    public AusgangsRechnung getAusgangsrechnung(Integer id) throws DALException;
+    public Ausgangsrechnung getAusgangsrechnung(Integer id) throws DALException;
 
     public void saveAusgangsrechnung(AbstractObject aO) throws DALException;
 
-    public void deleteAusgangsrechnung(AusgangsRechnung aR) throws DALException;
+    public void deleteAusgangsrechnung(Ausgangsrechnung aR) throws DALException;
 
     public ArrayList<AbstractObject> getKategorieListe() throws DALException;
 
@@ -80,9 +80,11 @@ public interface IDAL {
     
     public Integer getProjektStundenGesamt(Integer pId) throws DALException;
     
-    public void saveZeitErfassung(ArrayList<ZeitErfassung> logListe) throws DALException;
+    public void saveArbeitsstunden(ArrayList<Arbeitsstunden> logListe) throws DALException;
     
-    public void saveZeitErfassung(ZeitErfassung log) throws DALException;
+    public void saveArbeitsstunden(Arbeitsstunden log) throws DALException;
     
-    public void deleteZeitErfassung(ZeitErfassung log) throws DALException;
+    public void deleteArbeitsstunden(Arbeitsstunden log) throws DALException;
+    
+    public ArrayList<AbstractObject>getArbeitsstundenListe() throws DALException;
 }

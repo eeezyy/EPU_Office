@@ -14,7 +14,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import model.Mitarbeiter;
-import model.ZeitErfassung;
+import model.Arbeitsstunden;
 import model.Projekt;
 
 /**
@@ -40,8 +40,8 @@ public class SaveFileAction extends AbstractAction {
         File file = chooser.getSelectedFile();
         //System.out.println("File " + file + " gefunden");
         
-        ArrayList<ZeitErfassung> dummyList = new ArrayList<ZeitErfassung>();
-        ZeitErfassung logEintrag = new ZeitErfassung();
+        ArrayList<Arbeitsstunden> dummyList = new ArrayList<Arbeitsstunden>();
+        Arbeitsstunden logEintrag = new Arbeitsstunden();
         Date now = new Date();
         Projekt p = new Projekt();
         p.setId(1);

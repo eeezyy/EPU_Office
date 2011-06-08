@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Goran-Goggy
  */
-public class ZeitErfassung extends AbstractObject {
+public class Arbeitsstunden extends AbstractObject {
 
     private Projekt projekt;
     private Mitarbeiter mitarbeiter;

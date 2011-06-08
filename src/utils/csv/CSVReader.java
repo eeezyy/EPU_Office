@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import model.Angebot;
 import model.Mitarbeiter;
 import model.Projekt;
-import model.ZeitErfassung;
+import model.Arbeitsstunden;
 import utils.log.Logger;
 
 /**
@@ -46,8 +46,8 @@ public class CSVReader {
         }
     }
 
-    public ArrayList<ZeitErfassung> parse() {
-        ArrayList<ZeitErfassung> log = new ArrayList<ZeitErfassung>();
+    public ArrayList<Arbeitsstunden> parse() {
+        ArrayList<Arbeitsstunden> log = new ArrayList<Arbeitsstunden>();
         try {
             if ((line = bufReader.readLine()) != null) {
                 st = new StringTokenizer(line, ";");
@@ -70,7 +70,7 @@ public class CSVReader {
                 while ((line = bufReader.readLine()) != null) {
                     st = new StringTokenizer(line, ";");
 
-                    ZeitErfassung logEintrag = new ZeitErfassung();
+                    Arbeitsstunden logEintrag = new Arbeitsstunden();
                     st = new StringTokenizer(line, ";");
                     if (counter == 0) {
                         Projekt projekt = new Projekt();

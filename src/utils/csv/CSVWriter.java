@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import utils.log.Logger;
 import model.Projekt;
-import model.ZeitErfassung;
+import model.Arbeitsstunden;
 
 /**
  *
@@ -22,11 +22,11 @@ import model.ZeitErfassung;
  */
 public class CSVWriter {
 
-    private ArrayList<ZeitErfassung> log = new ArrayList<ZeitErfassung>();
+    private ArrayList<Arbeitsstunden> log = new ArrayList<Arbeitsstunden>();
     private PrintWriter writer;
     private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-    public CSVWriter(File selectedFile, ArrayList<ZeitErfassung> log) {
+    public CSVWriter(File selectedFile, ArrayList<Arbeitsstunden> log) {
         this.log = log;
         try {
             // int dotPos = filenameExtension.lastIndexOf(".");

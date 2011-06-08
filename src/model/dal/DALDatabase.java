@@ -805,7 +805,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public EingangsRechnung getEingangsrechnung(Integer id) throws DALException {
+    public Eingangsrechnung getEingangsrechnung(Integer id) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -815,7 +815,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void deleteEingangsrechnung(EingangsRechnung eR) throws DALException {
+    public void deleteEingangsrechnung(Eingangsrechnung eR) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -825,7 +825,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public AusgangsRechnung getAusgangsrechnung(Integer id) throws DALException {
+    public Ausgangsrechnung getAusgangsrechnung(Integer id) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -835,7 +835,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void deleteAusgangsrechnung(AusgangsRechnung aR) throws DALException {
+    public void deleteAusgangsrechnung(Ausgangsrechnung aR) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -982,14 +982,14 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void saveZeitErfassung(ArrayList<ZeitErfassung> logListe) throws DALException {
-        for (ZeitErfassung log : logListe) {
-            this.saveZeitErfassung(log);
+    public void saveArbeitsstunden(ArrayList<Arbeitsstunden> logListe) throws DALException {
+        for (Arbeitsstunden log : logListe) {
+            this.saveArbeitsstunden(log);
         }
     }
 
     @Override
-    public void saveZeitErfassung(ZeitErfassung log) throws DALException {
+    public void saveArbeitsstunden(Arbeitsstunden log) throws DALException {
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
@@ -1041,14 +1041,14 @@ public class DALDatabase implements IDAL {
             cmdSelect.close();
             db.close();
 
-            Binder.notify(ZeitErfassung.class);
+            Binder.notify(Arbeitsstunden.class);
         } catch (SQLException ex) {
             throw new DALException(ex.getMessage());
         }
     }
 
     @Override
-    public void deleteZeitErfassung(ZeitErfassung log) throws DALException {
+    public void deleteArbeitsstunden(Arbeitsstunden log) throws DALException {
         try {
             // Datenbankverbindung öffnen
             Connection db = DALDatabase.getConnection();
@@ -1075,5 +1075,36 @@ public class DALDatabase implements IDAL {
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
+    }
+
+    @Override
+    public ArrayList<AbstractObject> getArbeitsstundenListe() throws DALException {
+        ArrayList<AbstractObject> logListe = new ArrayList<AbstractObject>();
+// Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT"
+                    + "FROM ARBEITSSTUNDEN");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Arbeitsstunden log = new Arbeitsstunden();
+                log.setProjekt(this.getProjekt(rd.getInt(1)));
+                log.setMitarbeiter(this.getMitarbeiter(rd.getInt(2)));
+                log.setDatum(new java.util.Date(rd.getDate(3).getTime()));
+                log.setStunden(rd.getInt(4));
+                log.setTaetigkeit(rd.getString(5));
+                logListe.add(log);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return logListe;
     }
 }
