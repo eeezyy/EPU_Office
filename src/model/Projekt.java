@@ -36,10 +36,9 @@ public class Projekt extends AbstractObject {
             return DALFactory.getDAL().getProjektStundenGesamt(this.getId());
         } catch (DALException ex) {
             Logger.getLogger(Projekt.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         }
-        else
-            return null;
+        
+        return null;
     }
 
     public Boolean getIsAbgeschlossen() {

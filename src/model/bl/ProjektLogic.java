@@ -28,6 +28,10 @@ public class ProjektLogic extends AbstractLogic {
                 if (!isValidIdNull(property.getValue())) {
                     errorList.add(property.getProperty());
                 }
+            } else if (property.getProperty().equals("Angebot")) {
+                if (!isValidId(property.getValue())) {
+                    errorList.add(property.getProperty());
+                }
             } else if (property.getProperty().equals("Von")) {
                 if (after != null) {
                     if (!isValidDateBefore(property.getValue(), after)) {

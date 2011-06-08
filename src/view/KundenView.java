@@ -14,9 +14,12 @@ import controller.Binder;
 import controller.BinderProperty;
 import controller.KundenController;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import model.Kontakt;
+import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
+import utils.log.Logger;
 import view.dialog.AngebotToKundeForm;
 
 /**
@@ -134,6 +137,11 @@ public class KundenView extends AbstractViewPanel {
         add(kundenTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kundenLoeschen.setText("Kunden löschen");
+        kundenLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kundenLoeschenActionPerformed(evt);
+            }
+        });
         add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         kundenVornameFeld.setName("Vorname"); // NOI18N
@@ -245,6 +253,17 @@ public class KundenView extends AbstractViewPanel {
 
     private void kundenListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_kundenListeValueChanged
     }//GEN-LAST:event_kundenListeValueChanged
+
+    private void kundenLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundenLoeschenActionPerformed
+                Kontakt k = (Kontakt) this.kundenListe.getSelectedValue();
+        try {
+            if(!(kundenListe.isSelectionEmpty())){
+            db.deleteKontakt(k);
+            }
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
+        }
+    }//GEN-LAST:event_kundenLoeschenActionPerformed
 
     private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
         ArrayList list = new ArrayList<BinderProperty>();

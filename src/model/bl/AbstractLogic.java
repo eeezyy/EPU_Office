@@ -145,7 +145,7 @@ public abstract class AbstractLogic {
     }
 
     protected boolean isValidIdNull(String text) {
-        if (text == null) {
+        if (text == null || text.isEmpty()) {
             return true;
         }
 

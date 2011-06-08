@@ -61,7 +61,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (!rd.next() || rd.getInt(1) == 0) {
+            if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
                         "UPDATE Kontakt SET Vorname = ?, Nachname = ?, Email = ?, Telefon = ?, BLZ = ?, Bankinstitut = ?, Konto = ?, "
                         + "Firmenname = ?, Strasse = ?, Hausnr = ?, PLZ = ?, Ort = ?, isKunde = ? WHERE id = ?",
@@ -594,7 +594,10 @@ public class DALDatabase implements IDAL {
                 cmd = db.prepareStatement(
                         "INSERT INTO PROJEKT (ANGEBOT_ID, NAME, ABGESCHLOSSEN, VON, BIS) VALUES (?, ?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
-                cmd.setInt(1, p.getAngebot().getId());
+                if(p.getAngebot() != null)
+                    cmd.setInt(1, p.getAngebot().getId());
+                else
+                    throw new DALException("Angebot muss angegeben werden");
                 cmd.setString(2, p.getName());
                 cmd.setBoolean(3, p.getIsAbgeschlossen());
                 cmd.setDate(4, von);

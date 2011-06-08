@@ -14,6 +14,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -54,6 +55,10 @@ public abstract class AbstractViewPanel extends JPanel {
                 } else if (c.getClass() == JTextArea.class) {
                     ((JTextArea) c).setBorder(BorderFactory.createEtchedBorder());
                     ((JTextArea) c).setText("");
+                } else if (c.getClass() == JComboBox.class) {
+                    ((JComboBox) c).setBorder(BorderFactory.createEtchedBorder());
+                    if (((JComboBox) c).getModel().getSize() > 0)
+                        ((JComboBox) c).setSelectedIndex(0);
                 }
             }
         }
@@ -70,6 +75,9 @@ public abstract class AbstractViewPanel extends JPanel {
 
                     } else if (c.getClass() == JDateChooser.class && c.getName() != null && c.getName().equals(error)) {
                         ((JDateChooser) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
+                        break;
+                    } else if (c.getClass() == JComboBox.class && c.getName() != null && c.getName().equals(error)) {
+                        ((JComboBox) c).setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
                         break;
                     }
                 }

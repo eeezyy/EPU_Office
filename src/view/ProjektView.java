@@ -112,6 +112,7 @@ public class ProjektView extends AbstractViewPanel {
         projektImplementierungBisLabel.setText("Bis");
         add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
+        projektStundenGesamtFeld.setEditable(false);
         projektStundenGesamtFeld.setEnabled(false);
         projektStundenGesamtFeld.setName("ProjektStundenGesamt"); // NOI18N
         projektStundenGesamtFeld.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +205,10 @@ public class ProjektView extends AbstractViewPanel {
         list.add(new BinderProperty(projektVonFeld.getName(), projektVonFeld.getDate() != null ? sdf.format(projektVonFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(projektBisFeld.getName(), projektBisFeld.getDate() != null ? sdf.format(projektBisFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(projektAbgeschlossenCheckBox.getName(), ((Boolean) projektAbgeschlossenCheckBox.isSelected()).toString(), Boolean.class));
-        list.add(new BinderProperty("Angebot", ((Angebot)projektAngebotComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
+        if(projektAngebotComboBox.getSelectedItem() instanceof Angebot)
+            list.add(new BinderProperty("Angebot", ((Angebot)projektAngebotComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
+        else
+            list.add(new BinderProperty("Angebot", "", AbstractObject.class));
         return list;
     }
 
