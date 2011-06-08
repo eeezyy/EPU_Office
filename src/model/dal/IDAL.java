@@ -56,7 +56,9 @@ public interface IDAL {
 
     public ArrayList<AbstractObject> getMitarbeiterListe() throws DALException;
 
-    public void addProjektToMitarbeiter(Integer p, Integer m) throws DALException;
+    public ArrayList<AbstractObject> getProjektFromMitarbeiter(Integer id) throws DALException;
+    
+    public ArrayList<AbstractObject> getMitarbeiterFromProjekt(Integer id) throws DALException;
     
     public void addProjektToMitarbeiter(Projekt projekt, Mitarbeiter mitarbeiter) throws DALException;
 

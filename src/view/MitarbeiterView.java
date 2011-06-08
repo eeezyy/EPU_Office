@@ -47,6 +47,7 @@ public class MitarbeiterView extends AbstractViewPanel {
         Binder.bind(mitarbeiterListe, mitarbeiterNachnameFeld);
         Binder.bind(mitarbeiterListe, mitarbeiterGeburtsdatumFeld);
         Binder.bind(mitarbeiterListe, mitarbeiterStundensatzFeld);
+        Binder.bind(mitarbeiterListe, mitarbeiterProjektListe);
     }
 
     /** This method is called from within the constructor to
@@ -58,47 +59,82 @@ public class MitarbeiterView extends AbstractViewPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         mitarbeiterListeLabel = new javax.swing.JLabel();
+        mitarbeiterVornameLabel = new javax.swing.JLabel();
+        mitarbeiterAendern = new javax.swing.JButton();
+        mitarbeiterGeburtsdatumFeld = new com.toedter.calendar.JDateChooser();
+        mitarbeiterLoeschen = new javax.swing.JButton();
+        mitarbeiterNachnameFeld = new javax.swing.JTextField();
+        mitarbeiterStundensatzFeld = new javax.swing.JTextField();
+        mitarbeiterGeburtsDatumLabel = new javax.swing.JLabel();
+        mitarbeiterProjektZuweisen = new javax.swing.JButton();
         mitarbeiterInfoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         mitarbeiterListe = new javax.swing.JList();
-        mitarbeiterKontoNrLabel = new javax.swing.JLabel();
-        mitarbeiterVornameLabel = new javax.swing.JLabel();
-        mitarbeiterGeburtsDatumLabel = new javax.swing.JLabel();
         mitarbeiterStundenSatzLabel = new javax.swing.JLabel();
-        mitarbeiterStundensatzFeld = new javax.swing.JTextField();
-        mitarbeiterHinzufuegen = new javax.swing.JButton();
-        mitarbeiterLoeschen = new javax.swing.JButton();
-        mitarbeiterVornameFeld = new javax.swing.JTextField();
-        mitarbeiterProjektZuweisen = new javax.swing.JButton();
         mitarbeiterNachnameLabel = new javax.swing.JLabel();
-        mitarbeiterNachnameFeld = new javax.swing.JTextField();
-        mitarbeiterStrasseLabel = new javax.swing.JLabel();
-        mitarbeiterStrasseFeld = new javax.swing.JTextField();
-        mitarbeiterHausNrLabel = new javax.swing.JLabel();
-        mitarbeiterPlzLabel = new javax.swing.JLabel();
-        mitarbeiterOrtLabel = new javax.swing.JLabel();
-        mitarbeiterOrtFeld = new javax.swing.JTextField();
-        mitarbeiterAendern = new javax.swing.JButton();
-        mitarbeiterPlzFeld = new javax.swing.JTextField();
-        mitarbeiterHausNrFeld = new javax.swing.JTextField();
-        mitarbeiterKontoNrFeld = new javax.swing.JTextField();
-        mitarbeiterGeburtsdatumFeld = new com.toedter.calendar.JDateChooser();
+        mitarbeiterVornameFeld = new javax.swing.JTextField();
+        mitarbeiterHinzufuegen = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        mitarbeiterProjektListe = new javax.swing.JList();
+        mitarbeiterListeLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mitarbeiterListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterListeLabel.setText("Mitarbeiterliste");
-        jPanel1.add(mitarbeiterListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(mitarbeiterListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        mitarbeiterVornameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        mitarbeiterVornameLabel.setText("Vorname");
+        add(mitarbeiterVornameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
+
+        mitarbeiterAendern.setText("Mitarbeiterdaten ändern");
+        mitarbeiterAendern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitarbeiterAendernActionPerformed(evt);
+            }
+        });
+        add(mitarbeiterAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+
+        mitarbeiterGeburtsdatumFeld.setName("Geburtsdatum"); // NOI18N
+        add(mitarbeiterGeburtsdatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 130, -1));
+
+        mitarbeiterLoeschen.setText("Mitarbeiter löschen");
+        mitarbeiterLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitarbeiterLoeschenActionPerformed(evt);
+            }
+        });
+        add(mitarbeiterLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+
+        mitarbeiterNachnameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mitarbeiterNachnameFeld.setName("Nachname"); // NOI18N
+        add(mitarbeiterNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 150, -1));
+
+        mitarbeiterStundensatzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mitarbeiterStundensatzFeld.setName("Stundensatz"); // NOI18N
+        add(mitarbeiterStundensatzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 110, -1));
+
+        mitarbeiterGeburtsDatumLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        mitarbeiterGeburtsDatumLabel.setText("Geburtsdatum");
+        add(mitarbeiterGeburtsDatumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+
+        mitarbeiterProjektZuweisen.setText("Projekt zuweisen");
+        mitarbeiterProjektZuweisen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitarbeiterProjektZuweisenActionPerformed(evt);
+            }
+        });
+        add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         mitarbeiterInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mitarbeiterInfoLabel.setText("Mitarbeiterinformation");
         mitarbeiterInfoLabel.setAlignmentX(0.5F);
-        jPanel1.add(mitarbeiterInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        add(mitarbeiterInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        mitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        mitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         mitarbeiterListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         mitarbeiterListe.setName("MitarbeiterListe"); // NOI18N
         mitarbeiterListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -108,27 +144,19 @@ public class MitarbeiterView extends AbstractViewPanel {
         });
         jScrollPane1.setViewportView(mitarbeiterListe);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
-
-        mitarbeiterKontoNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterKontoNrLabel.setText("Konto-Nr.");
-        jPanel1.add(mitarbeiterKontoNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
-
-        mitarbeiterVornameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterVornameLabel.setText("Vorname");
-        jPanel1.add(mitarbeiterVornameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
-
-        mitarbeiterGeburtsDatumLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterGeburtsDatumLabel.setText("Geburtsdatum");
-        jPanel1.add(mitarbeiterGeburtsDatumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
         mitarbeiterStundenSatzLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterStundenSatzLabel.setText("Stundensatz (€)");
-        jPanel1.add(mitarbeiterStundenSatzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        add(mitarbeiterStundenSatzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
 
-        mitarbeiterStundensatzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterStundensatzFeld.setName("Stundensatz"); // NOI18N
-        jPanel1.add(mitarbeiterStundensatzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 110, -1));
+        mitarbeiterNachnameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
+        mitarbeiterNachnameLabel.setText("Nachname");
+        add(mitarbeiterNachnameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+
+        mitarbeiterVornameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mitarbeiterVornameFeld.setName("Vorname"); // NOI18N
+        add(mitarbeiterVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, -1));
 
         mitarbeiterHinzufuegen.setText("Mitarbeiter hinzufügen");
         mitarbeiterHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
@@ -136,93 +164,23 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterHinzufuegenActionPerformed(evt);
             }
         });
-        jPanel1.add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
-        mitarbeiterLoeschen.setText("Mitarbeiter löschen");
-        mitarbeiterLoeschen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitarbeiterLoeschenActionPerformed(evt);
+        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        mitarbeiterProjektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        mitarbeiterProjektListe.setName("ProjektFromMitarbeiter"); // NOI18N
+        mitarbeiterProjektListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                mitarbeiterProjektListeValueChanged(evt);
             }
         });
-        jPanel1.add(mitarbeiterLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        jScrollPane2.setViewportView(mitarbeiterProjektListe);
 
-        mitarbeiterVornameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterVornameFeld.setName("Vorname"); // NOI18N
-        jPanel1.add(mitarbeiterVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 200, 190));
 
-        mitarbeiterProjektZuweisen.setText("Projekt zuweisen");
-        mitarbeiterProjektZuweisen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitarbeiterProjektZuweisenActionPerformed(evt);
-            }
-        });
-        jPanel1.add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
-
-        mitarbeiterNachnameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterNachnameLabel.setText("Nachname");
-        jPanel1.add(mitarbeiterNachnameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
-
-        mitarbeiterNachnameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterNachnameFeld.setName("Nachname"); // NOI18N
-        jPanel1.add(mitarbeiterNachnameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
-
-        mitarbeiterStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterStrasseLabel.setText("Straße");
-        jPanel1.add(mitarbeiterStrasseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
-
-        mitarbeiterStrasseFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterStrasseFeld.setName("Strasse"); // NOI18N
-        jPanel1.add(mitarbeiterStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
-
-        mitarbeiterHausNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterHausNrLabel.setText("Haus-Nr.");
-        jPanel1.add(mitarbeiterHausNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
-
-        mitarbeiterPlzLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterPlzLabel.setText("PLZ");
-        jPanel1.add(mitarbeiterPlzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
-
-        mitarbeiterOrtLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
-        mitarbeiterOrtLabel.setText("Ort");
-        jPanel1.add(mitarbeiterOrtLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
-
-        mitarbeiterOrtFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterOrtFeld.setName("Ort"); // NOI18N
-        jPanel1.add(mitarbeiterOrtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 150, -1));
-
-        mitarbeiterAendern.setText("Mitarbeiterdaten ändern");
-        mitarbeiterAendern.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitarbeiterAendernActionPerformed(evt);
-            }
-        });
-        jPanel1.add(mitarbeiterAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
-
-        mitarbeiterPlzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterPlzFeld.setName("Plz"); // NOI18N
-        jPanel1.add(mitarbeiterPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 150, -1));
-
-        mitarbeiterHausNrFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterHausNrFeld.setName("Hausnr"); // NOI18N
-        jPanel1.add(mitarbeiterHausNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 150, -1));
-
-        mitarbeiterKontoNrFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterKontoNrFeld.setName("Konto"); // NOI18N
-        jPanel1.add(mitarbeiterKontoNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, -1));
-
-        mitarbeiterGeburtsdatumFeld.setName("Geburtsdatum"); // NOI18N
-        jPanel1.add(mitarbeiterGeburtsdatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 130, -1));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        mitarbeiterListeLabel1.setText("Projekte vom Mitarbeiter");
+        add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void mitarbeiterListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mitarbeiterListeValueChanged
@@ -280,30 +238,27 @@ public class MitarbeiterView extends AbstractViewPanel {
 
     private void mitarbeiterProjektZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitarbeiterProjektZuweisenActionPerformed
 }//GEN-LAST:event_mitarbeiterProjektZuweisenActionPerformed
+
+    private void mitarbeiterProjektListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mitarbeiterProjektListeValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mitarbeiterProjektListeValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton mitarbeiterAendern;
     private javax.swing.JLabel mitarbeiterGeburtsDatumLabel;
     private com.toedter.calendar.JDateChooser mitarbeiterGeburtsdatumFeld;
-    private javax.swing.JTextField mitarbeiterHausNrFeld;
-    private javax.swing.JLabel mitarbeiterHausNrLabel;
     private javax.swing.JButton mitarbeiterHinzufuegen;
     private javax.swing.JLabel mitarbeiterInfoLabel;
-    private javax.swing.JTextField mitarbeiterKontoNrFeld;
-    private javax.swing.JLabel mitarbeiterKontoNrLabel;
     private javax.swing.JList mitarbeiterListe;
     private javax.swing.JLabel mitarbeiterListeLabel;
+    private javax.swing.JLabel mitarbeiterListeLabel1;
     private javax.swing.JButton mitarbeiterLoeschen;
     private javax.swing.JTextField mitarbeiterNachnameFeld;
     private javax.swing.JLabel mitarbeiterNachnameLabel;
-    private javax.swing.JTextField mitarbeiterOrtFeld;
-    private javax.swing.JLabel mitarbeiterOrtLabel;
-    private javax.swing.JTextField mitarbeiterPlzFeld;
-    private javax.swing.JLabel mitarbeiterPlzLabel;
+    private javax.swing.JList mitarbeiterProjektListe;
     private javax.swing.JButton mitarbeiterProjektZuweisen;
-    private javax.swing.JTextField mitarbeiterStrasseFeld;
-    private javax.swing.JLabel mitarbeiterStrasseLabel;
     private javax.swing.JLabel mitarbeiterStundenSatzLabel;
     private javax.swing.JTextField mitarbeiterStundensatzFeld;
     private javax.swing.JTextField mitarbeiterVornameFeld;

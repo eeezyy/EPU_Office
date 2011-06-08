@@ -31,7 +31,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import model.AbstractObject;
-import model.AbstractObject;
 import model.bl.AbstractLogic;
 import model.dal.DALFactory;
 import model.dal.IDAL;
@@ -414,6 +413,78 @@ public class Binder {
                                     jcb2.setSelectedItem(object);
                                 }
                                 jcb2.setBorder(BorderFactory.createEtchedBorder());
+                            }
+                        };
+                        SwingUtilities.invokeLater(r);
+                    }
+                };
+                jlist.addListSelectionListener(lsl);
+            }
+            
+            if (jc2 instanceof JList) {
+                final JList jl2 = (JList) jc2;
+
+                ListSelectionListener lsl;
+                lsl = new ListSelectionListener() {
+
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
+
+                        Runnable r = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+                                Method method = null;
+                                ArrayList<AbstractObject> objects = null;
+                                if (am != null) {
+                                    if (jl2.getName() == null || jl2.getName().isEmpty()) {
+                                        System.out.println("Binding: Componente enthält keinen property:name");
+                                        return;
+                                    }
+                                    try {
+                                        method = db.getClass().getMethod("get" + jl2.getName(), new Class[]{Integer.class});
+                                    } catch (NoSuchMethodException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (SecurityException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                } else {
+                                    jl2.setModel(new DefaultListModel());
+                                    jl2.setEnabled(false);
+                                }
+                                if (method != null) {
+                                    try {
+                                        Object result = method.invoke(db, am.getId());
+                                        if (result instanceof ArrayList) {
+                                            objects = (ArrayList<AbstractObject>) result;
+                                        }
+                                    } catch (IllegalAccessException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (IllegalArgumentException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (InvocationTargetException ex) {
+                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                }
+                                if (objects != null || am != null && am.getId().equals(0)) {
+                                    jl2.setEnabled(true);
+                                    DefaultListModel model = new DefaultListModel();
+                                    Iterator i = objects.iterator();
+                                    while(i.hasNext()) {
+                                        model.addElement(i.next());
+                                    }
+                                    jl2.setModel(model);
+                                }
                             }
                         };
                         SwingUtilities.invokeLater(r);

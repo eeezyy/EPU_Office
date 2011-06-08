@@ -79,7 +79,6 @@ public class ZeitErfassungView extends AbstractViewPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         logListeLabel = new javax.swing.JLabel();
         logInfoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -102,35 +101,35 @@ public class ZeitErfassungView extends AbstractViewPanel {
         logProjektComboBox = new javax.swing.JComboBox();
         logMitarbeiterComboBox = new javax.swing.JComboBox();
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         logListeLabel.setText("Logeinträge");
-        jPanel1.add(logListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(logListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         logInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         logInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logInfoLabel.setText("Logeintrag");
         logInfoLabel.setAlignmentX(0.5F);
-        jPanel1.add(logInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        add(logInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        logListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        logListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         logListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         logListe.setName("ArbeitsstundenListe"); // NOI18N
         jScrollPane1.setViewportView(logListe);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
         logMitarbeiterIDLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         logMitarbeiterIDLabel.setText("Mitarbeiter");
-        jPanel1.add(logMitarbeiterIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        add(logMitarbeiterIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         projektImplementierungVonLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektImplementierungVonLabel.setText("Gearbeitet am");
-        jPanel1.add(projektImplementierungVonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
+        add(projektImplementierungVonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
         projektExport.setText("Datensätze exportieren");
-        jPanel1.add(projektExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 230, -1));
+        add(projektExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 230, -1));
 
         projektImport.setText("Datensätze Importieren");
         projektImport.addActionListener(new java.awt.event.ActionListener() {
@@ -138,11 +137,11 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 projektImportActionPerformed(evt);
             }
         });
-        jPanel1.add(projektImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 230, -1));
+        add(projektImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 230, -1));
 
         logProjektIdLabell.setFont(new java.awt.Font("Tahoma", 0, 15));
         logProjektIdLabell.setText("Projekt");
-        jPanel1.add(logProjektIdLabell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        add(logProjektIdLabell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         logHinzufuegen.setText("Logeintrag erstellen");
         logHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +149,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logHinzufuegenActionPerformed(evt);
             }
         });
-        jPanel1.add(logHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(logHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         logLoeschen.setText("Logeintrag löschen");
         logLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +157,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logLoeschenActionPerformed(evt);
             }
         });
-        jPanel1.add(logLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(logLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         logPdfErstellen.setText("PDF erstellen");
         logPdfErstellen.addActionListener(new java.awt.event.ActionListener() {
@@ -166,15 +165,15 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logPdfErstellenActionPerformed(evt);
             }
         });
-        jPanel1.add(logPdfErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(logPdfErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
         logDatumDateChooser.setEnabled(false);
         logDatumDateChooser.setName("Datum"); // NOI18N
-        jPanel1.add(logDatumDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
+        add(logDatumDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
 
         logMitarbeiterStundenLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         logMitarbeiterStundenLabel.setText("Stunden");
-        jPanel1.add(logMitarbeiterStundenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
+        add(logMitarbeiterStundenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
         logStundenFeld.setEnabled(false);
         logStundenFeld.setName("Stunden"); // NOI18N
@@ -183,11 +182,11 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logStundenFeldActionPerformed(evt);
             }
         });
-        jPanel1.add(logStundenFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
+        add(logStundenFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
 
         logTaetigkeitLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         logTaetigkeitLabel.setText("Tätigkeiten");
-        jPanel1.add(logTaetigkeitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        add(logTaetigkeitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
         logTaetigkeitFeld.setColumns(20);
         logTaetigkeitFeld.setRows(5);
@@ -195,7 +194,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
         logTaetigkeitFeld.setName("Taetigkeit"); // NOI18N
         jScrollPane3.setViewportView(logTaetigkeitFeld);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
 
         projektAendern1.setText("Logeintrag ändern");
         projektAendern1.addActionListener(new java.awt.event.ActionListener() {
@@ -203,53 +202,65 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 projektAendern1ActionPerformed(evt);
             }
         });
-        jPanel1.add(projektAendern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(projektAendern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         logProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         logProjektComboBox.setEnabled(false);
         logProjektComboBox.setName("Projekt"); // NOI18N
-        jPanel1.add(logProjektComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
+        add(logProjektComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
 
         logMitarbeiterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         logMitarbeiterComboBox.setEnabled(false);
         logMitarbeiterComboBox.setName("Mitarbeiter"); // NOI18N
-        jPanel1.add(logMitarbeiterComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 150, -1));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-        );
+        add(logMitarbeiterComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void projektImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektImportActionPerformed
-}//GEN-LAST:event_projektImportActionPerformed
+    private void projektAendern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAendern1ActionPerformed
+        if (this.logListe.isSelectionEmpty()) {
+            return;
+        }
+        
+        ArrayList<String> errorList;
+        errorList = Binder.save(Arbeitsstunden.class, createBinderPropertiesFromFields());
+        showErrors(errorList);
+}//GEN-LAST:event_projektAendern1ActionPerformed
+
+    private void logStundenFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logStundenFeldActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_logStundenFeldActionPerformed
 
     private void logPdfErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logPdfErstellenActionPerformed
         //KontaktAddForm af = new KontaktAddForm(null, true);
         //af.setVisible(true);
 }//GEN-LAST:event_logPdfErstellenActionPerformed
 
-    private void logStundenFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logStundenFeldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logStundenFeldActionPerformed
+    private void logLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logLoeschenActionPerformed
+        Arbeitsstunden a = (Arbeitsstunden) this.logListe.getSelectedValue();
+        try {
+            if(!(logListe.isSelectionEmpty())){
+                db.deleteArbeitsstunden(a);
+            }
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
+        }
+}//GEN-LAST:event_logLoeschenActionPerformed
 
-    private void projektAendern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAendern1ActionPerformed
-        if (this.logListe.isSelectionEmpty()) {
+    private void logHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logHinzufuegenActionPerformed
+        DefaultListModel model = (DefaultListModel) logListe.getModel();
+        // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
+        if (model.getSize() > 0 && ((Arbeitsstunden) model.getElementAt(model.getSize() - 1)).getId() == 0) {
             return;
         }
+        Arbeitsstunden a = new Arbeitsstunden();
+        a.setId(0);
+        model.addElement(a);
+        logListe.setSelectedIndex(model.getSize() - 1);
+        this.resetFields();
+}//GEN-LAST:event_logHinzufuegenActionPerformed
 
-        ArrayList<String> errorList;
-        errorList = Binder.save(Arbeitsstunden.class, createBinderPropertiesFromFields());
-        showErrors(errorList);
-    }//GEN-LAST:event_projektAendern1ActionPerformed
+    private void projektImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektImportActionPerformed
+        
+}//GEN-LAST:event_projektImportActionPerformed
 
     private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
         ArrayList list = new ArrayList<BinderProperty>();
@@ -277,32 +288,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
         return list;
     }
 
-    private void logHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logHinzufuegenActionPerformed
-        DefaultListModel model = (DefaultListModel) logListe.getModel();
-        // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
-        if (model.getSize() > 0 && ((Arbeitsstunden) model.getElementAt(model.getSize() - 1)).getId() == 0) {
-            return;
-        }
-        Arbeitsstunden a = new Arbeitsstunden();
-        a.setId(0);
-        model.addElement(a);
-        logListe.setSelectedIndex(model.getSize() - 1);
-        this.resetFields();
-    }//GEN-LAST:event_logHinzufuegenActionPerformed
-
-    private void logLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logLoeschenActionPerformed
-        Arbeitsstunden a = (Arbeitsstunden) this.logListe.getSelectedValue();
-        try {
-            if(!(logListe.isSelectionEmpty())){
-            db.deleteArbeitsstunden(a);
-            }
-        } catch (DALException ex) {
-            Logger.log(Level.SEVERE, KontakteView.class, ex);
-        }
-    }//GEN-LAST:event_logLoeschenActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private com.toedter.calendar.JDateChooser logDatumDateChooser;

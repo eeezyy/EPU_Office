@@ -748,13 +748,120 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void addProjektToMitarbeiter(Integer projekt, Integer mitarbeiter) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public ArrayList<AbstractObject> getProjektFromMitarbeiter(Integer id) throws DALException {
+        ArrayList<AbstractObject> projekte = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            String prepare = "SELECT DISTINCT p.id, p.name, p.abgeschlossen, p.von, p.bis FROM "
+                    + "mitarbeiter m inner join projekt_has_mitarbeiter phm on m.id = phm.mitarbeiter_id "
+                    + "inner join projekt p on phm.projekt_id = p.id";
+            if (id != 0) {
+                prepare += " WHERE m.id = ?";
+            }
+            cmd = db.prepareStatement(prepare);
+            if (id != 0) {
+                cmd.setInt(1, id);
+            }
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Projekt p = new Projekt();
+                p.setId(rd.getInt(1));
+                p.setName(rd.getString(2));
+                p.setIsAbgeschlossen(rd.getBoolean(3));
+                p.setVon(new java.util.Date(rd.getDate(4).getTime()));
+                p.setBis(new java.util.Date(rd.getDate(5).getTime()));
+                projekte.add(p);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return projekte;
+    }
+    
+    @Override
+    public ArrayList<AbstractObject> getMitarbeiterFromProjekt(Integer id) throws DALException {
+        ArrayList<AbstractObject> mitarbeiter = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            String prepare = "SELECT DISTINCT m.id, m.vorname, m.nachname, m.geburtsdatum, m.stundensatz FROM "
+                    + "projekt p inner join projekt_has_mitarbeiter phm on p.id = phm.projekt_id "
+                    + "inner join mitarbeiter m on phm.mitarbeiter_id = m.id";
+            if (id != 0) {
+                prepare += " WHERE p.id = ?";
+            }
+            cmd = db.prepareStatement(prepare);
+            if (id != 0) {
+                cmd.setInt(1, id);
+            }
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Mitarbeiter m = new Mitarbeiter();
+                m.setId(rd.getInt(1));
+                m.setVorname(rd.getString(2));
+                m.setNachname(rd.getString(3));
+                m.setGeburtsdatum(new java.util.Date(rd.getDate(4).getTime()));
+                m.setStundensatz(rd.getDouble(5));
+                mitarbeiter.add(m);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return mitarbeiter;
     }
     
     @Override
     public void addProjektToMitarbeiter(Projekt projekt, Mitarbeiter mitarbeiter) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+            try {
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(Mitarbeiter_ID) FROM Projekt_HAS_Mitarbeiter WHERE (Mitarbeiter_ID = ? AND Projekt_ID = ?) GROUP BY Mitarbeiter_ID");
+            // Parameter setzen
+            cmdSelect.setInt(1, mitarbeiter.getId());
+            cmdSelect.setInt(2, projekt.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            Integer result;
+            if (!rd.next() || rd.getInt(1) == 0) {
+                cmd = db.prepareStatement(
+                        "INSERT INTO Projekt_has_Mitarbeiter (Mitarbeiter_ID, Projekt_ID) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, mitarbeiter.getId());
+                cmd.setInt(2, projekt.getId());
+                result = cmd.executeUpdate();
+                if (result != null) {
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("addProjektToMitarbeiter"));
+                }
+                /*cmd = db.prepareStatement("UPDATE Kontakt SET isKunde = ? WHERE id = ?", PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setBoolean(1, true);
+                cmd.setInt(2, k.getId());
+                result = cmd.executeUpdate();
+                if (result != null) {
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("addAngebotToKontakt"));
+                }*/
+            }
+            Binder.notify(Mitarbeiter.class);
+            Binder.notify(Projekt.class);
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
     }
 
     @Override
@@ -1090,7 +1197,9 @@ public class DALDatabase implements IDAL {
             cmdSelect.close();
             db.close();
 
+            Binder.notify(Projekt.class);
             Binder.notify(Arbeitsstunden.class);
+            Binder.notify(Mitarbeiter.class);
         } catch (SQLException ex) {
             throw new DALException(ex.getMessage());
         }
@@ -1117,6 +1226,8 @@ public class DALDatabase implements IDAL {
             cmd.close();
             db.close();
             Binder.notify(Arbeitsstunden.class);
+            Binder.notify(Mitarbeiter.class);
+            Binder.notify(Projekt.class);
 
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
