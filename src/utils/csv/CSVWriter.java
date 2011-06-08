@@ -5,15 +5,15 @@
 package utils.csv;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
+import model.AbstractObject;
 import utils.log.Logger;
-import model.Projekt;
 import model.Arbeitsstunden;
 
 /**
@@ -22,12 +22,13 @@ import model.Arbeitsstunden;
  */
 public class CSVWriter {
 
-    private ArrayList<Arbeitsstunden> log = new ArrayList<Arbeitsstunden>();
+    private ArrayList<AbstractObject> log;
     private PrintWriter writer;
     private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-    public CSVWriter(File selectedFile, ArrayList<Arbeitsstunden> log) {
+    public CSVWriter(File selectedFile, ArrayList<AbstractObject> log) {
         this.log = log;
+        
         try {
             // int dotPos = filenameExtension.lastIndexOf(".");
             //extension = filenameExtension.substring(dotPos);
@@ -58,16 +59,23 @@ public class CSVWriter {
         writer.append("Taetigkeit");
         writer.println();
 
-        for (int i = 0; i < log.size(); i++) {
-            writer.append(log.get(i).getProjekt().getId().toString());
+        Iterator i = log.iterator();
+        while(i.hasNext()) {
+            Object logA = i.next();
+            Arbeitsstunden a;
+            if(!(logA instanceof Arbeitsstunden))
+                continue;
+            else
+                a = (Arbeitsstunden)logA;
+            writer.append(a.getProjekt().getId().toString());
             writer.append(";");
-            writer.append(log.get(i).getMitarbeiter().getId().toString());
+            writer.append(a.getMitarbeiter().getId().toString());
             writer.append(";");
-            writer.append(df.format(log.get(i).getDatum()).toString());
+            writer.append(df.format(a.getDatum()).toString());
             writer.append(";");
-            writer.append(log.get(i).getStunden().toString());
+            writer.append(a.getStunden().toString());
             writer.append(";");
-            writer.append(log.get(i).getTaetigkeit());
+            writer.append(a.getTaetigkeit());
             writer.println();
         }
         writer.flush();

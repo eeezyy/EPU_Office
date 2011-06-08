@@ -10,12 +10,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import model.AbstractObject;
 import model.Mitarbeiter;
 import model.Arbeitsstunden;
 import model.Projekt;
+import model.dal.DALException;
+import model.dal.DALFactory;
 
 /**
  *
@@ -40,8 +45,13 @@ public class SaveFileAction extends AbstractAction {
         File file = chooser.getSelectedFile();
         //System.out.println("File " + file + " gefunden");
         
-        ArrayList<Arbeitsstunden> dummyList = new ArrayList<Arbeitsstunden>();
-        Arbeitsstunden logEintrag = new Arbeitsstunden();
+        ArrayList<AbstractObject>  exportList = null;
+        try {
+            exportList = DALFactory.getDAL().getArbeitsstundenListe();
+        } catch (DALException ex) {
+            Logger.getLogger(SaveFileAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*Arbeitsstunden logEintrag = new Arbeitsstunden();
         Date now = new Date();
         Projekt p = new Projekt();
         p.setId(1);
@@ -53,7 +63,8 @@ public class SaveFileAction extends AbstractAction {
         logEintrag.setStunden((Integer)6);
         logEintrag.setTaetigkeit("CSV Export implementieren");
         
-        dummyList.add(logEintrag);
-        CSVWriter writer = new CSVWriter(file, dummyList);
+        dummyList.add(logEintrag);*/
+        if(exportList != null);
+        CSVWriter writer = new CSVWriter(file, exportList);
     }
 }
