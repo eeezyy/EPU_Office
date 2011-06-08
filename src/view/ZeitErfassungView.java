@@ -10,6 +10,7 @@
  */
 package view;
 
+import controller.Binder;
 import controller.ZeitErfassungController;
 import java.io.File;
 import javax.swing.Action;
@@ -25,7 +26,7 @@ import utils.csv.CSVFilter;
  *
  * @author Goran-Goggy
  */
-public class ZeitErfassungView extends javax.swing.JPanel {
+public class ZeitErfassungView extends AbstractViewPanel {
 
     private ZeitErfassungController controller;
     private IDAL db = DALFactory.getDAL();
@@ -40,7 +41,19 @@ public class ZeitErfassungView extends javax.swing.JPanel {
     public ZeitErfassungView(ZeitErfassungController controller) {
         this.controller = controller;
         initComponents();
+        initialize();
+    }
+    
+    private void initialize() {
         fc.addChoosableFileFilter(new CSVFilter());
+        
+        Binder.bind(ZeitErfassungView.class, logListe);
+        
+        Binder.bind(logListe, logProjektComboBox);
+        Binder.bind(logListe, logMitarbeiterComboBox);
+        Binder.bind(logListe, logDatumDateChooser);
+        Binder.bind(logListe, logStundenFeld);
+        Binder.bind(logListe, logTaetigkeitFeld);
     }
 
     /** This method is called from within the constructor to
@@ -65,15 +78,15 @@ public class ZeitErfassungView extends javax.swing.JPanel {
         logHinzufuegen = new javax.swing.JButton();
         logLoeschen = new javax.swing.JButton();
         logPdfErstellen = new javax.swing.JButton();
-        logDatum = new com.toedter.calendar.JDateChooser();
+        logDatumDateChooser = new com.toedter.calendar.JDateChooser();
         logMitarbeiterStundenLabel = new javax.swing.JLabel();
         logStundenFeld = new javax.swing.JTextField();
         logTaetigkeitLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         logTaetigkeitFeld = new javax.swing.JTextArea();
         projektAendern1 = new javax.swing.JButton();
-        logProjektCombobox = new javax.swing.JComboBox();
-        logMitarbeiterCombobox = new javax.swing.JComboBox();
+        logProjektComboBox = new javax.swing.JComboBox();
+        logMitarbeiterComboBox = new javax.swing.JComboBox();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -81,24 +94,20 @@ public class ZeitErfassungView extends javax.swing.JPanel {
         logListeLabel.setText("Logeinträge");
         jPanel1.add(logListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        logInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         logInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logInfoLabel.setText("Logeintrag");
         logInfoLabel.setAlignmentX(0.5F);
         jPanel1.add(logInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        logListe.setFont(new java.awt.Font("Tahoma", 2, 12));
-        logListe.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Projekt 1  |  Auftrag 1", "Projekt 2", "Projekt 3", "Projekt 4", "Projekt 5", "Projekt 6", "Projekt 7" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        logListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         logListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        logListe.setName("Arbeitsstunden"); // NOI18N
         jScrollPane1.setViewportView(logListe);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
-        logMitarbeiterIDLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        logMitarbeiterIDLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         logMitarbeiterIDLabel.setText("Mitarbeiter");
         jPanel1.add(logMitarbeiterIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
@@ -117,7 +126,7 @@ public class ZeitErfassungView extends javax.swing.JPanel {
         });
         jPanel1.add(projektImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 230, -1));
 
-        logProjektIdLabell.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        logProjektIdLabell.setFont(new java.awt.Font("Tahoma", 0, 15));
         logProjektIdLabell.setText("Projekt");
         jPanel1.add(logProjektIdLabell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
@@ -134,12 +143,17 @@ public class ZeitErfassungView extends javax.swing.JPanel {
             }
         });
         jPanel1.add(logPdfErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
-        jPanel1.add(logDatum, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
+
+        logDatumDateChooser.setEnabled(false);
+        logDatumDateChooser.setName("Datum"); // NOI18N
+        jPanel1.add(logDatumDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 150, -1));
 
         logMitarbeiterStundenLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         logMitarbeiterStundenLabel.setText("Stunden");
         jPanel1.add(logMitarbeiterStundenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
+        logStundenFeld.setEnabled(false);
+        logStundenFeld.setName("Stunden"); // NOI18N
         logStundenFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logStundenFeldActionPerformed(evt);
@@ -153,6 +167,8 @@ public class ZeitErfassungView extends javax.swing.JPanel {
 
         logTaetigkeitFeld.setColumns(20);
         logTaetigkeitFeld.setRows(5);
+        logTaetigkeitFeld.setEnabled(false);
+        logTaetigkeitFeld.setName("Taetigkeit"); // NOI18N
         jScrollPane3.setViewportView(logTaetigkeitFeld);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
@@ -165,11 +181,15 @@ public class ZeitErfassungView extends javax.swing.JPanel {
         });
         jPanel1.add(projektAendern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
-        logProjektCombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(logProjektCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
+        logProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        logProjektComboBox.setEnabled(false);
+        logProjektComboBox.setName("ProjektListe"); // NOI18N
+        jPanel1.add(logProjektComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
 
-        logMitarbeiterCombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(logMitarbeiterCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 150, -1));
+        logMitarbeiterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        logMitarbeiterComboBox.setEnabled(false);
+        logMitarbeiterComboBox.setName("MitarbeiterListe"); // NOI18N
+        jPanel1.add(logMitarbeiterComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -210,17 +230,17 @@ public class ZeitErfassungView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private com.toedter.calendar.JDateChooser logDatum;
+    private com.toedter.calendar.JDateChooser logDatumDateChooser;
     private javax.swing.JButton logHinzufuegen;
     private javax.swing.JLabel logInfoLabel;
     private javax.swing.JList logListe;
     private javax.swing.JLabel logListeLabel;
     private javax.swing.JButton logLoeschen;
-    private javax.swing.JComboBox logMitarbeiterCombobox;
+    private javax.swing.JComboBox logMitarbeiterComboBox;
     private javax.swing.JLabel logMitarbeiterIDLabel;
     private javax.swing.JLabel logMitarbeiterStundenLabel;
     private javax.swing.JButton logPdfErstellen;
-    private javax.swing.JComboBox logProjektCombobox;
+    private javax.swing.JComboBox logProjektComboBox;
     private javax.swing.JLabel logProjektIdLabell;
     private javax.swing.JTextField logStundenFeld;
     private javax.swing.JTextArea logTaetigkeitFeld;

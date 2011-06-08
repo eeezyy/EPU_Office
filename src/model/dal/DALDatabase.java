@@ -805,7 +805,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public Eingangsrechnung getEingangsrechnung(Integer id) throws DALException {
+    public Eingangsrechnun getEingangsrechnung(Integer id) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -815,7 +815,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void deleteEingangsrechnung(Eingangsrechnung eR) throws DALException {
+    public void deleteEingangsrechnung(Eingangsrechnun eR) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -825,7 +825,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public Ausgangsrechnung getAusgangsrechnung(Integer id) throws DALException {
+    public Ausgangsrechnun getAusgangsrechnung(Integer id) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -835,7 +835,7 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void deleteAusgangsrechnung(Ausgangsrechnung aR) throws DALException {
+    public void deleteAusgangsrechnung(Ausgangsrechnun aR) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

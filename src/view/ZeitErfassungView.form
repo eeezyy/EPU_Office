@@ -78,17 +78,10 @@
                   <Font name="Tahoma" size="12" style="2"/>
                 </Property>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="7">
-                    <StringItem index="0" value="Projekt 1  |  Auftrag 1"/>
-                    <StringItem index="1" value="Projekt 2"/>
-                    <StringItem index="2" value="Projekt 3"/>
-                    <StringItem index="3" value="Projekt 4"/>
-                    <StringItem index="4" value="Projekt 5"/>
-                    <StringItem index="5" value="Projekt 6"/>
-                    <StringItem index="6" value="Projekt 7"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
+                <Property name="name" type="java.lang.String" value="Arbeitsstunden" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -194,7 +187,11 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="logDatum">
+        <Component class="com.toedter.calendar.JDateChooser" name="logDatumDateChooser">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="Datum" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="330" y="80" width="150" height="-1"/>
@@ -215,6 +212,10 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="logStundenFeld">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="Stunden" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logStundenFeldActionPerformed"/>
           </Events>
@@ -253,6 +254,8 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="Taetigkeit" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -270,7 +273,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="logProjektCombobox">
+        <Component class="javax.swing.JComboBox" name="logProjektComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -280,6 +283,8 @@
                 <StringItem index="3" value="Item 4"/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="ProjektListe" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -287,7 +292,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="logMitarbeiterCombobox">
+        <Component class="javax.swing.JComboBox" name="logMitarbeiterComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -297,6 +302,8 @@
                 <StringItem index="3" value="Item 4"/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="MitarbeiterListe" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
