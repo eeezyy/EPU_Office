@@ -441,6 +441,11 @@ public class DALDatabase implements IDAL {
         }
         return angebote;
     }
+    
+    @Override
+    public ArrayList<AbstractObject> getAngebot() throws DALException {
+        return getAngebotListe();
+    }
 
     @Override
     public Angebot getAngebot(Integer id) throws DALException {
@@ -555,7 +560,7 @@ public class DALDatabase implements IDAL {
     @Override
     public void saveProjekt(AbstractObject aO) throws DALException {
         java.util.Date today = new java.util.Date();
-        if (!(aO instanceof Angebot)) {
+        if (!(aO instanceof Projekt)) {
             return;
         }
         Projekt p = (Projekt) aO;

@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import model.AbstractObject;
+import model.Angebot;
 import model.Projekt;
 
 /**
@@ -45,6 +47,8 @@ public class ProjektView extends AbstractViewPanel {
         Binder.bind(projektListe, projektBisFeld);
         Binder.bind(projektListe, projektAbgeschlossenCheckBox);
         Binder.bind(projektListe, projektAngebotComboBox);
+        
+        Binder.bind(Angebot.class, projektAngebotComboBox);
     }
 
     /** This method is called from within the constructor to
@@ -193,6 +197,7 @@ public class ProjektView extends AbstractViewPanel {
         list.add(new BinderProperty(projektVonFeld.getName(), projektVonFeld.getDate() != null ? sdf.format(projektVonFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(projektBisFeld.getName(), projektBisFeld.getDate() != null ? sdf.format(projektBisFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(projektAbgeschlossenCheckBox.getName(), ((Boolean) projektAbgeschlossenCheckBox.isSelected()).toString(), Boolean.class));
+        list.add(new BinderProperty("Angebot", ((Angebot)projektAngebotComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
         return list;
     }
 

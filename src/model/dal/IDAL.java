@@ -31,6 +31,8 @@ public interface IDAL {
     public void deleteAngebot(Angebot a) throws DALException;
 
     public Angebot getAngebot(Integer id) throws DALException;
+    
+    public ArrayList<AbstractObject> getAngebot() throws DALException;
 
     public ArrayList<AbstractObject> getAngebotListe() throws DALException;
 

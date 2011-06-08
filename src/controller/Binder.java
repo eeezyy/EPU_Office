@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import model.AbstractObject;
+import model.AbstractObject;
 import model.bl.AbstractLogic;
 import model.dal.DALFactory;
 import model.dal.IDAL;
@@ -381,7 +382,7 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 } else {
-                                    jcb2.setModel(null);
+                                    jcb2.setModel(new DefaultComboBoxModel());
                                     jcb2.setEnabled(false);
                                 }
                                 if (method != null) {
@@ -399,35 +400,37 @@ public class Binder {
                                     }
                                 }
                                 if (object != null || am != null && am.getId().equals(0)) {
-                                    DefaultComboBoxModel model = new DefaultComboBoxModel();
+                                    /*DefaultComboBoxModel model = new DefaultComboBoxModel();
                                     try {
-                                        method = am.getClass().getMethod("get" + jcb2.getName() + "List", new Class[]{});
+                                    method = am.getClass().getMethod("get" + jcb2.getName() + "List", new Class[]{});
                                     } catch (NoSuchMethodException ex) {
-                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    Logger.log(Level.SEVERE, Binder.class, ex);
                                     } catch (SecurityException ex) {
-                                        Logger.log(Level.SEVERE, Binder.class, ex);
+                                    Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                     ArrayList<AbstractObject> list = null;
                                     if (method != null) {
-                                        try {
-                                            Object result = method.invoke(am);
-                                            if (result instanceof ArrayList) {
-                                                list = (ArrayList<AbstractObject>) result;
-                                            }
-                                        } catch (IllegalAccessException ex) {
-                                            Logger.log(Level.SEVERE, Binder.class, ex);
-                                        } catch (IllegalArgumentException ex) {
-                                            Logger.log(Level.SEVERE, Binder.class, ex);
-                                        } catch (InvocationTargetException ex) {
-                                            Logger.log(Level.SEVERE, Binder.class, ex);
-                                        }
+                                    try {
+                                    Object result = method.invoke(am);
+                                    if (result instanceof ArrayList) {
+                                    list = (ArrayList<AbstractObject>) result;
                                     }
+                                    } catch (IllegalAccessException ex) {
+                                    Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (IllegalArgumentException ex) {
+                                    Logger.log(Level.SEVERE, Binder.class, ex);
+                                    } catch (InvocationTargetException ex) {
+                                    Logger.log(Level.SEVERE, Binder.class, ex);
+                                    }
+                                    }
+                                    if (list != null) {
                                     Iterator i = list.iterator();
                                     while (i.hasNext()) {
-                                        model.addElement(i.next());
+                                    model.addElement(i.next());
                                     }
-                                    model.setSelectedItem(object);
-                                    jcb2.setModel(model);
+                                    }
+                                    jcb2.setModel(model);*/
+                                    jcb2.setSelectedItem(object);
                                     jcb2.setEnabled(true);
                                 }
                                 jcb2.setBorder(BorderFactory.createEtchedBorder());
@@ -764,7 +767,17 @@ public class Binder {
         while (i.hasNext()) {
             property = (BinderProperty) i.next();
             try {
-                Method m = classtype.getMethod("set" + property.getProperty(), property.getClasstype());
+                Method m = null;
+                if (!property.getClasstype().equals(AbstractObject.class)) {
+                    m = classtype.getMethod("set" + property.getProperty(), property.getClasstype());
+                } else {
+                    try {
+                        m = classtype.getMethod("set" + property.getProperty(), Class.forName("model." + property.getProperty()));
+                    } catch (ClassNotFoundException ex) {
+                        Logger.log(Level.SEVERE, Binder.class, ex);
+                        return null;
+                    }
+                }
                 try {
                     if (property.getClasstype().equals(String.class)) {
                         m.invoke(object, property.getValue());
@@ -785,6 +798,14 @@ public class Binder {
                         try {
                             m.invoke(object, sdf.parse(property.getValue()));
                         } catch (ParseException ex) {
+                            Logger.log(Level.SEVERE, Binder.class, ex);
+                        }
+                    } else if (property.getClasstype().equals(AbstractObject.class)) {
+                        Method dbm = db.getClass().getMethod("get" + property.getProperty(), Integer.class);
+                        AbstractObject attachedObject = (AbstractObject) dbm.invoke(db, (Integer)Integer.parseInt(property.getValue()));
+                        try {
+                            m.invoke(object, Class.forName("model." + property.getProperty()).cast(attachedObject));
+                        } catch (ClassNotFoundException ex) {
                             Logger.log(Level.SEVERE, Binder.class, ex);
                         }
                     }

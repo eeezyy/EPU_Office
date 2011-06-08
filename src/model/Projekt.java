@@ -18,6 +18,14 @@ public class Projekt extends AbstractObject {
     private Date von;
     private Date bis;
 
+    @Override
+    public String toString() {
+        if(name != null) 
+            return this.name;
+        else
+            return "<Neues Projekt>";
+    }
+
     public Boolean getIsAbgeschlossen() {
         return abgeschlossen;
     }
