@@ -618,6 +618,8 @@ public class Binder {
     }
 
     private static void pushList(Class c, JComboBox jcb) {
+        if(jcb == null)
+            return;
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         ArrayList<AbstractObject> resultList = null;
         String function = null;
@@ -654,6 +656,8 @@ public class Binder {
     }
 
     private static void pushList(Class c, JList jl) {
+        if(jl == null)
+            return;
         DefaultListModel list = new DefaultListModel();
         ArrayList<AbstractObject> resultList = null;
         String function = null;
