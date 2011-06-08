@@ -334,7 +334,7 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (!rd.next() || rd.getInt(1) == 0) {
+            if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
                         "UPDATE Angebot SET Dauer = ?, GueltigAb = ?, GueltigBis = ?, Chance = ?, Aenderungsdatum = ?, Beschreibung = ?, Preis = ?, Name = ?"
                         + "WHERE id = ?",
