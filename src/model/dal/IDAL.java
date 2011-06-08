@@ -60,19 +60,19 @@ public interface IDAL {
 
     public ArrayList<AbstractObject> getEingangsrechnungListe() throws DALException;
 
-    public Eingangsrechnung getEingangsrechnung(Integer id) throws DALException;
+    public ERechnung getEingangsrechnung(Integer id) throws DALException;
 
     public void saveEingangsrechnung(AbstractObject aO) throws DALException;
 
-    public void deleteEingangsrechnung(Eingangsrechnung eR) throws DALException;
+    public void deleteEingangsrechnung(ERechnung eR) throws DALException;
 
     public ArrayList<AbstractObject> getAusgangsrechnungListe() throws DALException;
 
-    public Ausgangsrechnung getAusgangsrechnung(Integer id) throws DALException;
+    public ARechnung getAusgangsrechnung(Integer id) throws DALException;
 
     public void saveAusgangsrechnung(AbstractObject aO) throws DALException;
 
-    public void deleteAusgangsrechnung(Ausgangsrechnung aR) throws DALException;
+    public void deleteAusgangsrechnung(ARechnung aR) throws DALException;
 
     public ArrayList<AbstractObject> getKategorieListe() throws DALException;
 
