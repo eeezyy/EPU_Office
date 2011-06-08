@@ -18,10 +18,13 @@ import controller.ProjektController;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
 import javax.swing.DefaultListModel;
 import model.AbstractObject;
 import model.Angebot;
 import model.Projekt;
+import model.dal.DALException;
+import utils.log.Logger;
 
 /**
  *
@@ -48,7 +51,7 @@ public class ProjektView extends AbstractViewPanel {
         Binder.bind(projektListe, projektAbgeschlossenCheckBox);
         Binder.bind(projektListe, projektAngebotComboBox);
         Binder.bind(projektListe, projektStundenGesamtFeld);
-        
+
         Binder.bind(Angebot.class, projektAngebotComboBox);
     }
 
@@ -156,6 +159,11 @@ public class ProjektView extends AbstractViewPanel {
         add(projektHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         projektLoeschen.setText("Projekt löschen");
+        projektLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projektLoeschenActionPerformed(evt);
+            }
+        });
         add(projektLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         projektAendern.setText("Projektdaten ändern");
@@ -205,10 +213,17 @@ public class ProjektView extends AbstractViewPanel {
         list.add(new BinderProperty(projektVonFeld.getName(), projektVonFeld.getDate() != null ? sdf.format(projektVonFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(projektBisFeld.getName(), projektBisFeld.getDate() != null ? sdf.format(projektBisFeld.getDate()) : "", Date.class));
         list.add(new BinderProperty(projektAbgeschlossenCheckBox.getName(), ((Boolean) projektAbgeschlossenCheckBox.isSelected()).toString(), Boolean.class));
-        if(projektAngebotComboBox.getSelectedItem() instanceof Angebot)
-            list.add(new BinderProperty("Angebot", ((Angebot)projektAngebotComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
-        else
+        if (projektAngebotComboBox.getSelectedItem() instanceof Angebot) {
+            list.add(new BinderProperty("Angebot", ((Angebot) projektAngebotComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
+        } else {
             list.add(new BinderProperty("Angebot", "", AbstractObject.class));
+        }
+        Projekt p = (Projekt) projektListe.getSelectedValue();
+        if (p != null) {
+            list.add(new BinderProperty("Id", p.getId().toString(), Integer.class));
+        } else {
+            list.add(new BinderProperty("Id", "0", Integer.class));
+        }
         return list;
     }
 
@@ -222,9 +237,19 @@ public class ProjektView extends AbstractViewPanel {
         p.setId(0);
         model.addElement(p);
         projektListe.setSelectedIndex(model.getSize() - 1);
-        this.resetTextFields();
+        this.resetFields();
     }//GEN-LAST:event_projektHinzufuegenActionPerformed
 
+    private void projektLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektLoeschenActionPerformed
+        Projekt p = (Projekt) this.projektListe.getSelectedValue();
+        try {
+            if (!(projektListe.isSelectionEmpty())) {
+                db.deleteProjekt(p);
+            }
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
+        }
+    }//GEN-LAST:event_projektLoeschenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kundenInfoLabel;

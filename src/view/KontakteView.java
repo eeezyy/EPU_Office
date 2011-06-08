@@ -307,7 +307,7 @@ public final class KontakteView extends AbstractViewPanel {
         k.setId(0);
         model.addElement(k);
         kontaktListe.setSelectedIndex(model.getSize()-1);
-        this.resetTextFields();
+        this.resetFields();
     }//GEN-LAST:event_kontaktHinzufuegenActionPerformed
 
     private void kontaktNameFeld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kontaktNameFeld1ActionPerformed

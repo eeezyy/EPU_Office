@@ -10,23 +10,43 @@
  */
 package view;
 
-import controller.KundenController;
+import controller.Binder;
+import controller.BinderProperty;
 import controller.MitarbeiterController;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import javax.swing.DefaultListModel;
+import model.Mitarbeiter;
+import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
+import utils.log.Logger;
 
 /**
  *
  * @author Goran-Goggy
  */
-public class MitarbeiterView extends javax.swing.JPanel {
+public class MitarbeiterView extends AbstractViewPanel {
 
     private MitarbeiterController controller;
     private IDAL db = DALFactory.getDAL();
+
     /** Creates new form MitarbeiterView */
     public MitarbeiterView(MitarbeiterController controller) {
         initComponents();
         this.controller = controller;
+        initialize();
+    }
+
+    private void initialize() {
+        Binder.bind(Mitarbeiter.class, mitarbeiterListe);
+
+        Binder.bind(mitarbeiterListe, mitarbeiterVornameFeld);
+        Binder.bind(mitarbeiterListe, mitarbeiterNachnameFeld);
+        Binder.bind(mitarbeiterListe, mitarbeiterGeburtsdatumFeld);
+        Binder.bind(mitarbeiterListe, mitarbeiterStundensatzFeld);
     }
 
     /** This method is called from within the constructor to
@@ -47,7 +67,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterVornameLabel = new javax.swing.JLabel();
         mitarbeiterGeburtsDatumLabel = new javax.swing.JLabel();
         mitarbeiterStundenSatzLabel = new javax.swing.JLabel();
-        mitarbeiterStundenSatzFeld = new javax.swing.JTextField();
+        mitarbeiterStundensatzFeld = new javax.swing.JTextField();
         mitarbeiterHinzufuegen = new javax.swing.JButton();
         mitarbeiterLoeschen = new javax.swing.JButton();
         mitarbeiterVornameFeld = new javax.swing.JTextField();
@@ -64,7 +84,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterPlzFeld = new javax.swing.JTextField();
         mitarbeiterHausNrFeld = new javax.swing.JTextField();
         mitarbeiterKontoNrFeld = new javax.swing.JTextField();
-        mitarbeiterGeburtsDatumFeld = new com.toedter.calendar.JDateChooser();
+        mitarbeiterGeburtsdatumFeld = new com.toedter.calendar.JDateChooser();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,9 +98,9 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterInfoLabel.setAlignmentX(0.5F);
         jPanel1.add(mitarbeiterInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        mitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        mitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         mitarbeiterListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        mitarbeiterListe.setName("KontaktListe"); // NOI18N
+        mitarbeiterListe.setName("MitarbeiterListe"); // NOI18N
         mitarbeiterListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 mitarbeiterListeValueChanged(evt);
@@ -106,9 +126,9 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterStundenSatzLabel.setText("Stundensatz (€)");
         jPanel1.add(mitarbeiterStundenSatzLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
 
-        mitarbeiterStundenSatzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mitarbeiterStundenSatzFeld.setName("Bankinstitut"); // NOI18N
-        jPanel1.add(mitarbeiterStundenSatzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 110, -1));
+        mitarbeiterStundensatzFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mitarbeiterStundensatzFeld.setName("Stundensatz"); // NOI18N
+        jPanel1.add(mitarbeiterStundensatzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 110, -1));
 
         mitarbeiterHinzufuegen.setText("Mitarbeiter hinzufügen");
         mitarbeiterHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +174,7 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterStrasseFeld.setName("Strasse"); // NOI18N
         jPanel1.add(mitarbeiterStrasseFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 150, -1));
 
-        mitarbeiterHausNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        mitarbeiterHausNrLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         mitarbeiterHausNrLabel.setText("Haus-Nr.");
         jPanel1.add(mitarbeiterHausNrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
@@ -189,7 +209,9 @@ public class MitarbeiterView extends javax.swing.JPanel {
         mitarbeiterKontoNrFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mitarbeiterKontoNrFeld.setName("Konto"); // NOI18N
         jPanel1.add(mitarbeiterKontoNrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, -1));
-        jPanel1.add(mitarbeiterGeburtsDatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 130, -1));
+
+        mitarbeiterGeburtsdatumFeld.setName("Geburtsdatum"); // NOI18N
+        jPanel1.add(mitarbeiterGeburtsdatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -204,31 +226,66 @@ public class MitarbeiterView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mitarbeiterListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mitarbeiterListeValueChanged
-
 }//GEN-LAST:event_mitarbeiterListeValueChanged
 
     private void mitarbeiterHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitarbeiterHinzufuegenActionPerformed
-
+        DefaultListModel model = (DefaultListModel) mitarbeiterListe.getModel();
+        // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
+        if(model.getSize() > 0 && ((Mitarbeiter)model.getElementAt(model.getSize()-1)).getId() == 0)
+            return;
+        Mitarbeiter m = new Mitarbeiter();
+        m.setId(0);
+        model.addElement(m);
+        mitarbeiterListe.setSelectedIndex(model.getSize()-1);
+        this.resetFields();
 }//GEN-LAST:event_mitarbeiterHinzufuegenActionPerformed
 
     private void mitarbeiterLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitarbeiterLoeschenActionPerformed
-
+        Mitarbeiter m = (Mitarbeiter) this.mitarbeiterListe.getSelectedValue();
+        try {
+            if (!(mitarbeiterListe.isSelectionEmpty())) {
+                db.deleteMitarbeiter(m);
+            }
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
+        }
 }//GEN-LAST:event_mitarbeiterLoeschenActionPerformed
 
     private void mitarbeiterAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitarbeiterAendernActionPerformed
-      
+        if (this.mitarbeiterListe.isSelectionEmpty()) {
+            return;
+        }
+
+        ArrayList<String> errorList;
+        errorList = Binder.save(Mitarbeiter.class, createBinderPropertiesFromFields());
+        showErrors(errorList);
     }//GEN-LAST:event_mitarbeiterAendernActionPerformed
 
+    private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
+        ArrayList list = new ArrayList<BinderProperty>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+        list.add(new BinderProperty(mitarbeiterVornameFeld.getName(), mitarbeiterVornameFeld.getText(), String.class));
+        list.add(new BinderProperty(mitarbeiterNachnameFeld.getName(), mitarbeiterNachnameFeld.getText(), String.class));
+        list.add(new BinderProperty(mitarbeiterStundensatzFeld.getName(), mitarbeiterStundensatzFeld.getText(), Double.class));
+        list.add(new BinderProperty(mitarbeiterGeburtsdatumFeld.getName(), mitarbeiterGeburtsdatumFeld.getDate() != null ? sdf.format(mitarbeiterGeburtsdatumFeld.getDate()) : "", Date.class));
+        Mitarbeiter m = (Mitarbeiter) mitarbeiterListe.getSelectedValue();
+        if (m != null) {
+            list.add(new BinderProperty("Id", m.getId().toString(), Integer.class));
+        } else {
+            list.add(new BinderProperty("Id", "0", Integer.class));
+        }
+        return list;
+    }
+
     private void mitarbeiterProjektZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitarbeiterProjektZuweisenActionPerformed
-
 }//GEN-LAST:event_mitarbeiterProjektZuweisenActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mitarbeiterAendern;
-    private com.toedter.calendar.JDateChooser mitarbeiterGeburtsDatumFeld;
     private javax.swing.JLabel mitarbeiterGeburtsDatumLabel;
+    private com.toedter.calendar.JDateChooser mitarbeiterGeburtsdatumFeld;
     private javax.swing.JTextField mitarbeiterHausNrFeld;
     private javax.swing.JLabel mitarbeiterHausNrLabel;
     private javax.swing.JButton mitarbeiterHinzufuegen;
@@ -247,8 +304,8 @@ public class MitarbeiterView extends javax.swing.JPanel {
     private javax.swing.JButton mitarbeiterProjektZuweisen;
     private javax.swing.JTextField mitarbeiterStrasseFeld;
     private javax.swing.JLabel mitarbeiterStrasseLabel;
-    private javax.swing.JTextField mitarbeiterStundenSatzFeld;
     private javax.swing.JLabel mitarbeiterStundenSatzLabel;
+    private javax.swing.JTextField mitarbeiterStundensatzFeld;
     private javax.swing.JTextField mitarbeiterVornameFeld;
     private javax.swing.JLabel mitarbeiterVornameLabel;
     // End of variables declaration//GEN-END:variables

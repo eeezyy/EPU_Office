@@ -40,6 +40,8 @@ public interface IDAL {
     
     public ArrayList<AbstractObject> getAngebotFromKontakt(Integer id) throws DALException;
 
+    public ArrayList<AbstractObject> getProjekt() throws DALException;
+    
     public ArrayList<AbstractObject> getProjektListe() throws DALException;
 
     public void saveProjekt(AbstractObject aO) throws DALException;
@@ -49,10 +51,14 @@ public interface IDAL {
     public Projekt getProjekt(Integer id) throws DALException;
 
     public Mitarbeiter getMitarbeiter(Integer id) throws DALException;
+    
+    public ArrayList<AbstractObject> getMitarbeiter() throws DALException;
 
     public ArrayList<AbstractObject> getMitarbeiterListe() throws DALException;
 
-    public void addMitarbeiterToProjekt(Integer p, Integer m) throws DALException;
+    public void addProjektToMitarbeiter(Integer p, Integer m) throws DALException;
+    
+    public void addProjektToMitarbeiter(Projekt projekt, Mitarbeiter mitarbeiter) throws DALException;
 
     public void deleteMitarbeiter(Mitarbeiter m) throws DALException;
 
@@ -82,7 +88,7 @@ public interface IDAL {
     
     public void saveArbeitsstunden(ArrayList<Arbeitsstunden> logListe) throws DALException;
     
-    public void saveArbeitsstunden(Arbeitsstunden log) throws DALException;
+    public void saveArbeitsstunden(AbstractObject oa) throws DALException;
     
     public void deleteArbeitsstunden(Arbeitsstunden log) throws DALException;
     

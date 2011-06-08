@@ -483,6 +483,11 @@ public class DALDatabase implements IDAL {
         }
         return angebot;
     }
+    
+    @Override
+    public ArrayList<AbstractObject> getProjekt() throws DALException {
+        return getProjektListe();
+    }
 
     @Override
     public ArrayList<AbstractObject> getProjektListe() throws DALException {
@@ -680,7 +685,36 @@ public class DALDatabase implements IDAL {
 
     @Override
     public Mitarbeiter getMitarbeiter(Integer id) throws DALException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Mitarbeiter mitarbeiter = new Mitarbeiter();
+// Datenbankverbindung öffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT ID, Vorname, Nachname, GeburtsDatum, StundenSatz FROM Mitarbeiter WHERE id = ?");
+            cmd.setInt(1, id);
+            rd = cmd.executeQuery();
+            // Daten holen
+            if (rd.next()) {
+                mitarbeiter.setId(rd.getInt(1));
+                mitarbeiter.setVorname(rd.getString(2));
+                mitarbeiter.setNachname(rd.getString(3));
+                mitarbeiter.setGeburtsdatum(new java.util.Date(rd.getDate(4).getTime()));
+                mitarbeiter.setStundensatz(rd.getDouble(5));
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return mitarbeiter;
+    }
+    
+    @Override
+    public ArrayList<AbstractObject> getMitarbeiter() throws DALException {
+        return getMitarbeiterListe();
     }
 
     @Override
@@ -700,8 +734,8 @@ public class DALDatabase implements IDAL {
                 m.setId(rd.getInt(1));
                 m.setVorname(rd.getString(2));
                 m.setNachname(rd.getString(3));
-                m.setStundenSatz(rd.getDouble(4));
-                m.setGeburtsDatum(new java.util.Date(rd.getDate(5).getTime()));
+                m.setStundensatz(rd.getDouble(4));
+                m.setGeburtsdatum(new java.util.Date(rd.getDate(5).getTime()));
                 mitarbeiterListe.add(m);
             }
             rd.close();
@@ -714,7 +748,12 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void addMitarbeiterToProjekt(Integer projekt, Integer mitarbeiter) throws DALException {
+    public void addProjektToMitarbeiter(Integer projekt, Integer mitarbeiter) throws DALException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public void addProjektToMitarbeiter(Projekt projekt, Mitarbeiter mitarbeiter) throws DALException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -750,7 +789,7 @@ public class DALDatabase implements IDAL {
             return;
         }
         Mitarbeiter m = (Mitarbeiter) aO;
-        java.sql.Date gebDat = new java.sql.Date(m.getGeburtsDatum().getTime());
+        java.sql.Date gebDat = new java.sql.Date(m.getGeburtsdatum().getTime());
         try {
             // Datenbankverbindung öffnen
             Connection db = DALDatabase.getConnection();
@@ -764,21 +803,22 @@ public class DALDatabase implements IDAL {
             // Update/Insert cmd
             PreparedStatement cmd;
             // Daten holen
-            if (!rd.next() || rd.getInt(1) == 0) {
+            if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
-                        "UPDATE Mitarbeiter SET VORNAME = ?, NACHNAME = ?, STUNDENSATZ = ?, GEBURTSDATUM = ?",
+                        "UPDATE Mitarbeiter SET VORNAME = ?, NACHNAME = ?, STUNDENSATZ = ?, GEBURTSDATUM = ? WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, m.getVorname());
                 cmd.setString(2, m.getNachname());
-                cmd.setDouble(3, m.getStundenSatz());
+                cmd.setDouble(3, m.getStundensatz());
                 cmd.setDate(4, gebDat);
+                cmd.setInt(5, m.getId());
             } else {
                 cmd = db.prepareStatement(
                         "INSERT INTO MITARBEITER (VORNAME, NACHNAME, STUNDENSATZ, GEBURTSDATUM) VALUES (?, ?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setString(1, m.getVorname());
                 cmd.setString(2, m.getNachname());
-                cmd.setDouble(3, m.getStundenSatz());
+                cmd.setDouble(3, m.getStundensatz());
                 cmd.setDate(4, gebDat);
             }
             // execute insert/update
@@ -989,7 +1029,13 @@ public class DALDatabase implements IDAL {
     }
 
     @Override
-    public void saveArbeitsstunden(Arbeitsstunden log) throws DALException {
+    public void saveArbeitsstunden(AbstractObject oa) throws DALException {
+        Arbeitsstunden log;
+        if(!(oa instanceof Arbeitsstunden))
+            throw new DALException("Übergabeobjekt nicht vom Typ 'Arbeitsstunden'");
+        else
+            log = (Arbeitsstunden) oa;
+        
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
@@ -998,15 +1044,15 @@ public class DALDatabase implements IDAL {
         try {
             db = DALDatabase.getConnection();
 
-            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(Projekt_id) FROM ARBEITSSTUNDEN WHERE PROJEKT_ID = ? "
-                    + "AND MITARBEITER_ID = ? AND DATUM = ? AND STUNDEN = ? AND TAETIGKEIT = ? GROUP BY PROJEKT_ID WHERE ID = ? ");
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(Projekt_id) FROM ARBEITSSTUNDEN WHERE ID = ? GROUP BY PROJEKT_ID");
             // Parameter setzen
+            cmdSelect.setInt(1, log.getId());/*
             cmdSelect.setInt(1, log.getProjekt().getId());
             cmdSelect.setInt(2, log.getMitarbeiter().getId());
             cmdSelect.setDate(3, datum);
             cmdSelect.setInt(4, log.getStunden());
             cmdSelect.setString(5, log.getTaetigkeit());
-            cmdSelect.setInt(6, log.getId());
+            cmdSelect.setInt(6, log.getId());*/
             // Ausführen
             rd = cmdSelect.executeQuery();
             // Update/Insert cmd
@@ -1021,7 +1067,7 @@ public class DALDatabase implements IDAL {
                 cmd.setDate(3, datum);
                 cmd.setInt(4, log.getStunden());
                 cmd.setString(5, log.getTaetigkeit());
-                cmdSelect.setInt(6, log.getId());
+                cmd.setInt(6, log.getId());
             } else {
 
                 cmd = db.prepareStatement("INSERT INTO ARBEITSSTUNDEN (PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT) VALUES (?, ?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -1044,7 +1090,7 @@ public class DALDatabase implements IDAL {
             cmdSelect.close();
             db.close();
 
-            //Binder.notify(Arbeitsstunden.class);
+            Binder.notify(Arbeitsstunden.class);
         } catch (SQLException ex) {
             throw new DALException(ex.getMessage());
         }
@@ -1057,12 +1103,9 @@ public class DALDatabase implements IDAL {
             Connection db = DALDatabase.getConnection();
 
             // SQL STMT vorbereiten
-            PreparedStatement cmd = db.prepareStatement("DELETE FROM ZEITERFASSUNG WHERE PROJEKT_ID = ? AND MITARBEITER_ID = ?"+
-                    "AND TAETIGKEIT = ?");
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM Arbeitsstunden WHERE id = ?");
             // Parameter setzen
-            cmd.setInt(1, log.getProjekt().getId());
-            cmd.setInt(2, log.getMitarbeiter().getId());
-            cmd.setString(3, log.getTaetigkeit());
+            cmd.setInt(1, log.getId());
             // Ausf�hren
             Integer result = cmd.executeUpdate();
 
@@ -1073,7 +1116,7 @@ public class DALDatabase implements IDAL {
             }
             cmd.close();
             db.close();
-            Binder.notify(Angebot.class);
+            Binder.notify(Arbeitsstunden.class);
 
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
@@ -1083,23 +1126,24 @@ public class DALDatabase implements IDAL {
     @Override
     public ArrayList<AbstractObject> getArbeitsstundenListe() throws DALException {
         ArrayList<AbstractObject> logListe = new ArrayList<AbstractObject>();
-// Datenbankverbindung �ffnen
+        // Datenbankverbindung �ffnen
         Connection db;
         PreparedStatement cmd;
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT "
+            cmd = db.prepareStatement("SELECT id, PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT "
                     + "FROM ARBEITSSTUNDEN");
             rd = cmd.executeQuery();
             // Daten holen
             while (rd.next()) {
                 Arbeitsstunden log = new Arbeitsstunden();
-                log.setProjekt(this.getProjekt(rd.getInt(1)));
-                log.setMitarbeiter(this.getMitarbeiter(rd.getInt(2)));
-                log.setDatum(new java.util.Date(rd.getDate(3).getTime()));
-                log.setStunden(rd.getInt(4));
-                log.setTaetigkeit(rd.getString(5));
+                log.setId(rd.getInt(1));
+                log.setProjekt(this.getProjekt(rd.getInt(2)));
+                log.setMitarbeiter(this.getMitarbeiter(rd.getInt(3)));
+                log.setDatum(new java.util.Date(rd.getDate(4).getTime()));
+                log.setStunden(rd.getInt(5));
+                log.setTaetigkeit(rd.getString(6));
                 logListe.add(log);
             }
             rd.close();

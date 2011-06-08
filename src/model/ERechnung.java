@@ -17,6 +17,14 @@ public class ERechnung extends AbstractObject {
     private Date datum;
     private Integer preis;
 
+    @Override
+    public String toString() {
+        if(datum != null && preis != null) 
+            return this.datum + ": " + this.preis;
+        else
+            return "<Neue Eingangsrechnung>";
+    }
+
     public Date getDatum() {
         return datum;
     }

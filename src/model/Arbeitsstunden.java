@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -17,6 +18,16 @@ public class Arbeitsstunden extends AbstractObject {
     private Date datum;
     private Integer stunden;
     private String taetigkeit;
+    private SimpleDateFormat sDF = new SimpleDateFormat("dd.MM.yyyy");
+
+    @Override
+    public String toString() {
+        if (datum != null && mitarbeiter != null) {
+            return this.sDF.format(this.datum) + ": " + this.mitarbeiter;
+        } else {
+            return "<Neue Arbeitsstunden>";
+        }
+    }
 
     public Date getDatum() {
         return datum;

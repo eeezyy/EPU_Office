@@ -11,16 +11,28 @@
 package view;
 
 import controller.Binder;
+import controller.BinderProperty;
 import controller.ZeitErfassungController;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
 import javax.swing.Action;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
+import model.AbstractObject;
+import model.Arbeitsstunden;
+import model.Mitarbeiter;
+import model.Projekt;
+import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.csv.SaveFileAction;
 import utils.csv.OpenFileAction;
 import utils.csv.CSVFilter;
+import utils.log.Logger;
 
 /**
  *
@@ -43,12 +55,14 @@ public class ZeitErfassungView extends AbstractViewPanel {
         initComponents();
         initialize();
     }
-    
+
     private void initialize() {
         fc.addChoosableFileFilter(new CSVFilter());
-        
-        Binder.bind(ZeitErfassungView.class, logListe);
-        
+
+        Binder.bind(Arbeitsstunden.class, logListe);
+        Binder.bind(Projekt.class, logProjektComboBox);
+        Binder.bind(Mitarbeiter.class, logMitarbeiterComboBox);
+
         Binder.bind(logListe, logProjektComboBox);
         Binder.bind(logListe, logMitarbeiterComboBox);
         Binder.bind(logListe, logDatumDateChooser);
@@ -131,9 +145,19 @@ public class ZeitErfassungView extends AbstractViewPanel {
         jPanel1.add(logProjektIdLabell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         logHinzufuegen.setText("Logeintrag erstellen");
+        logHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logHinzufuegenActionPerformed(evt);
+            }
+        });
         jPanel1.add(logHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         logLoeschen.setText("Logeintrag löschen");
+        logLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logLoeschenActionPerformed(evt);
+            }
+        });
         jPanel1.add(logLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         logPdfErstellen.setText("PDF erstellen");
@@ -183,12 +207,12 @@ public class ZeitErfassungView extends AbstractViewPanel {
 
         logProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         logProjektComboBox.setEnabled(false);
-        logProjektComboBox.setName("ProjektListe"); // NOI18N
+        logProjektComboBox.setName("Projekt"); // NOI18N
         jPanel1.add(logProjektComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 150, -1));
 
         logMitarbeiterComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         logMitarbeiterComboBox.setEnabled(false);
-        logMitarbeiterComboBox.setName("MitarbeiterListe"); // NOI18N
+        logMitarbeiterComboBox.setName("Mitarbeiter"); // NOI18N
         jPanel1.add(logMitarbeiterComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -206,11 +230,6 @@ public class ZeitErfassungView extends AbstractViewPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void projektImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektImportActionPerformed
-        // TODO add your handling code here:
-        //fc.showOpenDialog(this);
-        //System.out.println("OPEN");
-        //geparst wird im CSVReader
-        //openAction(fc.getSelectedFile());
 }//GEN-LAST:event_projektImportActionPerformed
 
     private void logPdfErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logPdfErstellenActionPerformed
@@ -223,8 +242,64 @@ public class ZeitErfassungView extends AbstractViewPanel {
     }//GEN-LAST:event_logStundenFeldActionPerformed
 
     private void projektAendern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektAendern1ActionPerformed
-        // TODO add your handling code here:
+        if (this.logListe.isSelectionEmpty()) {
+            return;
+        }
+
+        ArrayList<String> errorList;
+        errorList = Binder.save(Arbeitsstunden.class, createBinderPropertiesFromFields());
+        showErrors(errorList);
     }//GEN-LAST:event_projektAendern1ActionPerformed
+
+    private ArrayList<BinderProperty> createBinderPropertiesFromFields() {
+        ArrayList list = new ArrayList<BinderProperty>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+        list.add(new BinderProperty(logStundenFeld.getName(), logStundenFeld.getText(), Integer.class));
+        list.add(new BinderProperty(logDatumDateChooser.getName(), logDatumDateChooser.getDate() != null ? sdf.format(logDatumDateChooser.getDate()) : "", Date.class));
+        list.add(new BinderProperty(logTaetigkeitFeld.getName(), logTaetigkeitFeld.getText(), String.class));
+        if (logProjektComboBox.getSelectedItem() instanceof Projekt) {
+            list.add(new BinderProperty("Projekt", ((Projekt) logProjektComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
+        } else {
+            list.add(new BinderProperty("Projekt", "", AbstractObject.class));
+        }
+        if (logMitarbeiterComboBox.getSelectedItem() instanceof Mitarbeiter) {
+            list.add(new BinderProperty("Mitarbeiter", ((Mitarbeiter) logMitarbeiterComboBox.getSelectedItem()).getId().toString(), AbstractObject.class));
+        } else {
+            list.add(new BinderProperty("Mitarbeiter", "", AbstractObject.class));
+        }
+        Arbeitsstunden a = (Arbeitsstunden) logListe.getSelectedValue();
+        if (a != null) {
+            list.add(new BinderProperty("Id", a.getId().toString(), Integer.class));
+        } else {
+            list.add(new BinderProperty("Id", "0", Integer.class));
+        }
+        return list;
+    }
+
+    private void logHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logHinzufuegenActionPerformed
+        DefaultListModel model = (DefaultListModel) logListe.getModel();
+        // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
+        if (model.getSize() > 0 && ((Arbeitsstunden) model.getElementAt(model.getSize() - 1)).getId() == 0) {
+            return;
+        }
+        Arbeitsstunden a = new Arbeitsstunden();
+        a.setId(0);
+        model.addElement(a);
+        logListe.setSelectedIndex(model.getSize() - 1);
+        this.resetFields();
+    }//GEN-LAST:event_logHinzufuegenActionPerformed
+
+    private void logLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logLoeschenActionPerformed
+        Arbeitsstunden a = (Arbeitsstunden) this.logListe.getSelectedValue();
+        try {
+            if(!(logListe.isSelectionEmpty())){
+            db.deleteArbeitsstunden(a);
+            }
+        } catch (DALException ex) {
+            Logger.log(Level.SEVERE, KontakteView.class, ex);
+        }
+    }//GEN-LAST:event_logLoeschenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

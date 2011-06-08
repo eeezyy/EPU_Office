@@ -78,7 +78,7 @@
                   <StringArray count="0"/>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
-                <Property name="name" type="java.lang.String" value="KontaktListe" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="MitarbeiterListe" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="mitarbeiterListeValueChanged"/>
@@ -138,14 +138,14 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="mitarbeiterStundenSatzFeld">
+        <Component class="javax.swing.JTextField" name="mitarbeiterStundensatzFeld">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                 <EtchetBorder/>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="Bankinstitut" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="Stundensatz" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -375,7 +375,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="mitarbeiterGeburtsDatumFeld">
+        <Component class="com.toedter.calendar.JDateChooser" name="mitarbeiterGeburtsdatumFeld">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="Geburtsdatum" noResource="true"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="870" y="40" width="130" height="-1"/>

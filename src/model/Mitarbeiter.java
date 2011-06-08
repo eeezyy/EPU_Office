@@ -14,15 +14,24 @@ public class Mitarbeiter extends AbstractObject {
 
     private String vorname;
     private String nachname;
-    private Double stundenSatz;
-    private Date geburtsDatum;
+    private Double stundensatz;
+    private Date geburtsdatum;
 
-    public Date getGeburtsDatum() {
-        return geburtsDatum;
+    @Override
+    public String toString() {
+        if (nachname != null && vorname != null) {
+            return this.nachname + ", " + this.vorname;
+        } else {
+            return "<Neuer Mitarbeiter>";
+        }
     }
 
-    public void setGeburtsDatum(Date geburtsDatum) {
-        this.geburtsDatum = geburtsDatum;
+    public Date getGeburtsdatum() {
+        return geburtsdatum;
+    }
+
+    public void setGeburtsdatum(Date geburtsdatum) {
+        this.geburtsdatum = geburtsdatum;
     }
 
     public String getNachname() {
@@ -33,12 +42,12 @@ public class Mitarbeiter extends AbstractObject {
         this.nachname = nachname;
     }
 
-    public Double  getStundenSatz() {
-        return stundenSatz;
+    public Double getStundensatz() {
+        return stundensatz;
     }
 
-    public void setStundenSatz(Double stundenSatz) {
-        this.stundenSatz = stundenSatz;
+    public void setStundensatz(Double stundensatz) {
+        this.stundensatz = stundensatz;
     }
 
     public String getVorname() {

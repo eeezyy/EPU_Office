@@ -404,7 +404,7 @@ public class Binder {
                                     jcb2.setEnabled(true);
                                     for (int i = 0; i < jcb2.getModel().getSize(); i++) {
                                         Object o = jcb2.getModel().getElementAt(i);
-                                        if (o instanceof AbstractObject) {
+                                        if (o instanceof AbstractObject && object != null) {
                                             if (((AbstractObject) o).getId() == object.getId()) {
                                                 jcb2.setSelectedIndex(i);
                                             }

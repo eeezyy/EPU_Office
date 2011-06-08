@@ -1,11 +1,4 @@
-/*
- * AbstractViewPanel.java
- *
- * Created on January 22, 2007, 9:06 AM
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
+
 package view;
 
 import com.toedter.calendar.JDateChooser;
@@ -20,18 +13,38 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- * This class provides the base level abstraction for views in this example. All
- * views that extend this class also extend JPanel (which is useful for performing
- * GUI manipulations on the view in NetBeans Matisse), as well as providing the 
- * modelPropertyChange() method that controllers can use to propogate model 
- * property changes.
- *
- * @author Robert Eckstein
- */
 public abstract class AbstractViewPanel extends JPanel {
 
-    protected void resetTextFields() {
+    protected void resetFieldsNotComboBox() {
+        //this.cleanErrors();
+        for (Component c : this.getComponents()) {
+            if (c instanceof JScrollPane) {
+                for (Component sc : ((JScrollPane) c).getViewport().getComponents()) {
+                    if (sc.getClass() == JTextArea.class) {
+                        ((JTextArea) sc).setBorder(BorderFactory.createEtchedBorder());
+                        ((JTextArea) sc).setText("");
+                    }
+                }
+            }
+            if (c.getName() != null) {
+                //c.setEnabled(false);
+                if (c.getClass() == JTextField.class) {
+                    ((JTextField) c).setBorder(BorderFactory.createEtchedBorder());
+                    ((JTextField) c).setText("");
+                } else if (c.getClass() == JCheckBox.class) {
+                    ((JCheckBox) c).setSelected(false);
+                } else if (c.getClass() == JDateChooser.class) {
+                    ((JDateChooser) c).setBorder(BorderFactory.createEtchedBorder());
+                    ((JDateChooser) c).setDate(null);
+                } else if (c.getClass() == JTextArea.class) {
+                    ((JTextArea) c).setBorder(BorderFactory.createEtchedBorder());
+                    ((JTextArea) c).setText("");
+                }
+            }
+        }
+    }
+    
+    protected void resetFields() {
         //this.cleanErrors();
         for (Component c : this.getComponents()) {
             if (c instanceof JScrollPane) {
@@ -83,7 +96,7 @@ public abstract class AbstractViewPanel extends JPanel {
                 }
             }
         } else {
-            resetTextFields();
+            resetFields();
         }
     }
 

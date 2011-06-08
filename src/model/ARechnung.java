@@ -14,4 +14,13 @@ public class ARechnung {
 
     private Kontakt kontakt;
     private Date datum;
+    private Double preis;
+    
+    @Override
+    public String toString() {
+        if(datum != null && preis != null) 
+            return this.datum + ": " + this.preis;
+        else
+            return "<Neue Ausgangsrechnung>";
+    }
 }

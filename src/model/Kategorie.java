@@ -11,6 +11,14 @@ package model;
 public class Kategorie extends AbstractObject {
 
     private String bezeichnung;
+    
+    @Override
+    public String toString() {
+        if(bezeichnung != null) 
+            return this.bezeichnung;
+        else
+            return "<Neue Kategorie>";
+    }
 
     public String getBezeichnung() {
         return bezeichnung;

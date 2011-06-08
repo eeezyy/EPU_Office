@@ -13,8 +13,6 @@ package view;
 import controller.AngebotController;
 import controller.Binder;
 import controller.BinderProperty;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -241,6 +239,9 @@ public class AngeboteView extends AbstractViewPanel {
 }//GEN-LAST:event_angebotPreisFeldActionPerformed
 
     private void angebotErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotErstellenActionPerformed
+        // wenn mitarbeiter ausgewählt, kein neues angebot erstellen
+        if(angebotKundenComboBox.getSelectedIndex() != 0)
+            return;
         DefaultListModel model = (DefaultListModel) angebotListe.getModel();
         // solange ein nicht gespeicherter Kontakt, kein neuer Kontakt
         if (model.getSize() > 0 && ((Angebot) model.getElementAt(model.getSize() - 1)).getId() == 0) {
@@ -248,9 +249,12 @@ public class AngeboteView extends AbstractViewPanel {
         }
         Angebot a = new Angebot();
         a.setId(0);
+
         model.addElement(a);
-        angebotListe.setSelectedIndex(model.getSize() - 1);
-        this.resetTextFields();
+        if (model.getSize() > 0) {
+            angebotListe.setSelectedIndex(model.getSize() - 1);
+        }
+        this.resetFieldsNotComboBox();
 }//GEN-LAST:event_angebotErstellenActionPerformed
 
     private void angebotAendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_angebotAendernActionPerformed
