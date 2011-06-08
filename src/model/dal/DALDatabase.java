@@ -996,31 +996,32 @@ public class DALDatabase implements IDAL {
 
         java.sql.Date datum = new java.sql.Date(log.getDatum().getTime());
         try {
-
             db = DALDatabase.getConnection();
 
             PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(Projekt_id) FROM ARBEITSSTUNDEN WHERE PROJEKT_ID = ? "
-                    + "AND MITARBEITER_ID = ? AND DATUM = ? AND STUNDEN = ? AND TAETIGKEIT = ? GROUP BY PROJEKT_ID");
+                    + "AND MITARBEITER_ID = ? AND DATUM = ? AND STUNDEN = ? AND TAETIGKEIT = ? GROUP BY PROJEKT_ID WHERE ID = ? ");
             // Parameter setzen
             cmdSelect.setInt(1, log.getProjekt().getId());
             cmdSelect.setInt(2, log.getMitarbeiter().getId());
             cmdSelect.setDate(3, datum);
             cmdSelect.setInt(4, log.getStunden());
             cmdSelect.setString(5, log.getTaetigkeit());
+            cmdSelect.setInt(6, log.getId());
             // Ausführen
             rd = cmdSelect.executeQuery();
             // Update/Insert cmd
 
             // Daten holen
-            if (!rd.next() || rd.getInt(1) == 0) {
+            if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
                         "UPDATE ARBEITSSTUNDEN SET PROJEKT_ID = ?, MITARBEITER_ID = ?, DATUM = ?,"
-                        + "STUNDEN = ?, TAETIGKEIT = ?", PreparedStatement.RETURN_GENERATED_KEYS);
+                        + "STUNDEN = ?, TAETIGKEIT = ? WHERE ID = ?", PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, log.getProjekt().getId());
                 cmd.setInt(2, log.getMitarbeiter().getId());
                 cmd.setDate(3, datum);
                 cmd.setInt(4, log.getStunden());
                 cmd.setString(5, log.getTaetigkeit());
+                cmdSelect.setInt(6, log.getId());
             } else {
 
                 cmd = db.prepareStatement("INSERT INTO ARBEITSSTUNDEN (PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT) VALUES (?, ?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -1033,15 +1034,17 @@ public class DALDatabase implements IDAL {
 
             // execute insert/update
             Integer result = cmd.executeUpdate();
-            if (result != null && result != 0) {
-                Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveProjekt"));
-            }
+            ResultSet generatedKeys = cmd.getGeneratedKeys();
+                    if (result != null && result != 0 && generatedKeys.next()) {
+                        log.setId(generatedKeys.getInt(1));
+                        Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveProjekt"));
+                    }
             cmd.close();
             rd.close();
             cmdSelect.close();
             db.close();
 
-            Binder.notify(Arbeitsstunden.class);
+            //Binder.notify(Arbeitsstunden.class);
         } catch (SQLException ex) {
             throw new DALException(ex.getMessage());
         }

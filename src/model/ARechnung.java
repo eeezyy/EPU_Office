@@ -14,5 +14,4 @@ public class ARechnung {
 
     private Kontakt kontakt;
     private Date datum;
-    private String dummy;
 }

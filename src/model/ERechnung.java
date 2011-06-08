@@ -16,7 +16,6 @@ public class ERechnung extends AbstractObject {
     private String scanPfad;
     private Date datum;
     private Integer preis;
-    private String dummy;
 
     public Date getDatum() {
         return datum;

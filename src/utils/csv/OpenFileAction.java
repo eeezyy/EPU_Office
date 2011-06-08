@@ -6,10 +6,14 @@ package utils.csv;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.util.logging.Level;
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import model.dal.DALException;
+import model.dal.DALFactory;
+import utils.log.Logger;
 
 /**
  *
@@ -36,7 +40,13 @@ public class OpenFileAction extends AbstractAction {
             System.out.println(file.toString() + "geparst");
             //CSVReader reader = new CSVReader();
             CSVReader reader = new CSVReader(file);
-            reader.parse();
+            try {
+                DALFactory.getDAL().saveArbeitsstunden(reader.parse());
+                
+                System.out.println("Fertig! Datensätze gespeichert.");
+            } catch (DALException ex) {
+                Logger.log(Level.SEVERE, OpenFileAction.class, ex);
+            }
         }
     }
 }
