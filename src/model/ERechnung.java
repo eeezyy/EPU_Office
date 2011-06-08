@@ -15,7 +15,7 @@ public class ERechnung extends AbstractObject {
     private Kontakt kontakt;
     private String scanPfad;
     private Date datum;
-    private Integer preis;
+    private Double preis;
 
     @Override
     public String toString() {
@@ -41,11 +41,11 @@ public class ERechnung extends AbstractObject {
         this.kontakt = kontakt;
     }
 
-    public int getPreis() {
+    public Double getPreis() {
         return preis;
     }
 
-    public void setPreis(int preis) {
+    public void setPreis(Double preis) {
         this.preis = preis;
     }
 

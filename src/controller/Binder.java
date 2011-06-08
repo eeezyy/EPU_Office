@@ -815,7 +815,7 @@ public class Binder {
         return errorList;
     }
 
-    private static AbstractObject createObject(Class classtype, ArrayList<BinderProperty> propertyList) throws InstantiationException, IllegalAccessException {
+    protected static AbstractObject createObject(Class classtype, ArrayList<BinderProperty> propertyList) throws InstantiationException, IllegalAccessException {
         AbstractObject object = (AbstractObject) classtype.newInstance();
         BinderProperty property = null;
         Iterator i = propertyList.iterator();

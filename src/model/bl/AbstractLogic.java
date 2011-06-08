@@ -72,7 +72,7 @@ public abstract class AbstractLogic {
             return false;
         }
 
-        if (text.length() == 0) {
+        if (text.isEmpty() || text.length() == 0) {
             return false;
         }
 
@@ -108,6 +108,16 @@ public abstract class AbstractLogic {
         }
         return true;
     }
+    
+    protected boolean isValidIntegerNotNeg(String text) {
+        try {
+            if(Integer.parseInt(text) < 0)
+                return false;
+        } catch (NumberFormatException nfex) {
+            return false;
+        }
+        return true;
+    }
 
     protected boolean isValidPercent(String text) {
         int intValue;
@@ -135,9 +145,25 @@ public abstract class AbstractLogic {
 
         return true;
     }
+    
+    protected boolean isValidDoubleNotNeg(String text) {
+        try {
+            if(Double.parseDouble(text) < 0 )
+                return false;
+        } catch (NumberFormatException nfex) {
+            return false;
+        }
+
+        return true;
+    }
 
     protected boolean isValidId(String text) {
         if (!isValidInteger(text)) {
+            return false;
+        }
+        int intValue = Integer.parseInt(text);
+        
+        if(intValue == 0) {
             return false;
         }
 
@@ -166,6 +192,8 @@ public abstract class AbstractLogic {
     }
 
     protected boolean isValidEmail(String text) {
+        if (text == null)
+            return false;
         Pattern p = Pattern.compile("[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?");
         //Pattern p = Pattern.compile("^([\\w\\-\\.]+)@((\\[([0-9]{1,3}\\.){3}[0-9]{1,3}\\])|(([\\w\\-]+\\.)+)([a-zA-Z]{2,4}))$");
         //Pattern p = Pattern.compile("^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
@@ -211,8 +239,9 @@ public abstract class AbstractLogic {
         }
 
         intValue = Integer.parseInt(text);
-        // Hausnr soll nicht länger als 3 stellen haben.
-        if (intValue > 999) {
+        // Hausnr soll nicht länger als 3 stellen haben. 
+        // Und nicht kleiner als sein
+        if (intValue > 999 || intValue < 1) {
             return false;
         }
 

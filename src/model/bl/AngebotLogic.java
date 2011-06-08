@@ -63,11 +63,11 @@ public class AngebotLogic extends AbstractLogic {
                     errorList.add(property.getProperty());
                 }
             } else if (property.getProperty().equals("Dauer")) {
-                if (!isValidInteger(property.getValue())) {
+                if (!isValidIntegerNotNeg(property.getValue())) {
                     errorList.add(property.getProperty());
                 }
             } else if (property.getProperty().equals("Preis")) {
-                if (!isValidDouble(property.getValue())) {
+                if (!isValidDoubleNotNeg(property.getValue())) {
                     errorList.add(property.getProperty());
                 }
             } else if (property.getClasstype() == String.class) {
