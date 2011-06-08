@@ -111,6 +111,7 @@ public class ProjektView extends AbstractViewPanel {
         projektImplementierungBisLabel.setText("Bis");
         add(projektImplementierungBisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
+        projektStundenGesamtFeld.setEnabled(false);
         projektStundenGesamtFeld.setName("ProjektStundenGesamt"); // NOI18N
         projektStundenGesamtFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +124,7 @@ public class ProjektView extends AbstractViewPanel {
         projektNameLabel.setText("Name");
         add(projektNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
+        projektNameFeld.setEnabled(false);
         projektNameFeld.setName("Name"); // NOI18N
         projektNameFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +141,7 @@ public class ProjektView extends AbstractViewPanel {
         projektArbeitsstundenGesamt.setText("Aufwand (h)");
         add(projektArbeitsstundenGesamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
+        projektAbgeschlossenCheckBox.setEnabled(false);
         projektAbgeschlossenCheckBox.setName("IsAbgeschlossen"); // NOI18N
         add(projektAbgeschlossenCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
 
@@ -161,12 +164,15 @@ public class ProjektView extends AbstractViewPanel {
         });
         add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
+        projektAngebotComboBox.setEnabled(false);
         projektAngebotComboBox.setName("Angebot"); // NOI18N
         add(projektAngebotComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 160, -1));
 
+        projektBisFeld.setEnabled(false);
         projektBisFeld.setName("Bis"); // NOI18N
         add(projektBisFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, -1));
 
+        projektVonFeld.setEnabled(false);
         projektVonFeld.setName("Von"); // NOI18N
         add(projektVonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 150, -1));
     }// </editor-fold>//GEN-END:initComponents

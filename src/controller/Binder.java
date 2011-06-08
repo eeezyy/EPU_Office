@@ -382,7 +382,8 @@ public class Binder {
                                         Logger.log(Level.SEVERE, Binder.class, ex);
                                     }
                                 } else {
-                                    jcb2.setModel(new DefaultComboBoxModel());
+                                    if(jcb2.getModel().getSize() > 0)
+                                        jcb2.setSelectedIndex(0);
                                     jcb2.setEnabled(false);
                                 }
                                 if (method != null) {
@@ -400,38 +401,17 @@ public class Binder {
                                     }
                                 }
                                 if (object != null || am != null && am.getId().equals(0)) {
-                                    /*DefaultComboBoxModel model = new DefaultComboBoxModel();
-                                    try {
-                                    method = am.getClass().getMethod("get" + jcb2.getName() + "List", new Class[]{});
-                                    } catch (NoSuchMethodException ex) {
-                                    Logger.log(Level.SEVERE, Binder.class, ex);
-                                    } catch (SecurityException ex) {
-                                    Logger.log(Level.SEVERE, Binder.class, ex);
-                                    }
-                                    ArrayList<AbstractObject> list = null;
-                                    if (method != null) {
-                                    try {
-                                    Object result = method.invoke(am);
-                                    if (result instanceof ArrayList) {
-                                    list = (ArrayList<AbstractObject>) result;
-                                    }
-                                    } catch (IllegalAccessException ex) {
-                                    Logger.log(Level.SEVERE, Binder.class, ex);
-                                    } catch (IllegalArgumentException ex) {
-                                    Logger.log(Level.SEVERE, Binder.class, ex);
-                                    } catch (InvocationTargetException ex) {
-                                    Logger.log(Level.SEVERE, Binder.class, ex);
-                                    }
-                                    }
-                                    if (list != null) {
-                                    Iterator i = list.iterator();
-                                    while (i.hasNext()) {
-                                    model.addElement(i.next());
-                                    }
-                                    }
-                                    jcb2.setModel(model);*/
-                                    jcb2.setSelectedItem(object);
                                     jcb2.setEnabled(true);
+                                    for (int i = 0; i < jcb2.getModel().getSize(); i++) {
+                                        Object o = jcb2.getModel().getElementAt(i);
+                                        if (o instanceof AbstractObject) {
+                                            if (((AbstractObject) o).getId() == object.getId()) {
+                                                jcb2.setSelectedIndex(i);
+                                            }
+                                        }
+                                        jcb2.setSelectedItem(object);
+                                    }
+                                    jcb2.setSelectedItem(object);
                                 }
                                 jcb2.setBorder(BorderFactory.createEtchedBorder());
                             }
