@@ -102,7 +102,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
 
         logListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         logListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        logListe.setName("Arbeitsstunden"); // NOI18N
+        logListe.setName("ArbeitsstundenListe"); // NOI18N
         jScrollPane1.setViewportView(logListe);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));

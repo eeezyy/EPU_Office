@@ -1086,7 +1086,7 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT"
+            cmd = db.prepareStatement("SELECT PROJEKT_ID, MITARBEITER_ID, DATUM, STUNDEN, TAETIGKEIT "
                     + "FROM ARBEITSSTUNDEN");
             rd = cmd.executeQuery();
             // Daten holen
