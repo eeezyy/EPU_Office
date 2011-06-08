@@ -28,7 +28,7 @@ public class Main {
         config = new Config();
         //Logger.log(Level.INFO, Main.class, new InfoMessage("Main gestartet"));
         //Logger.log(Level.FINEST, Main.class, new InfoMessage("bla"));
-        //Logger.log(Level.SEVERE, Main.class, new InfoMessage("test"));
+        //Logger.log(Level.SEVERE, Main.class, new InfoMessage("SEVERE-LOG-Message!"));
         //new Formular().createPDF("test.pdf");
         //formular.createPDF("TestPDFDOKUMENT____2011.pdf");
         controller = new MainController();

@@ -27,16 +27,16 @@ public class AppenderManager {
         appenderList = new HashSet<Appender>();
         this.loadAppender = Config.getAppenderList();
         /*if (!(addAppender(new ConsoleAppender()))) {
-            System.out.println("ConsoleAppender konnte nicht hinzugefügt werden.");
-
+        System.out.println("ConsoleAppender konnte nicht hinzugefügt werden.");
+        
         }
         if (!(addAppender(new FileAppender()))) {
-            System.out.println("FileAppender konnte nicht hinzugefügt werden.");
+        System.out.println("FileAppender konnte nicht hinzugefügt werden.");
         }*/
-        for(int i = 0; i < loadAppender.size(); i++){
+        for (int i = 0; i < loadAppender.size(); i++) {
             try {
                 try {
-                    if(!(addAppender((Appender) Class.forName("utils.log." + loadAppender.get(i) +"Appender").newInstance()))){
+                    if (!(addAppender((Appender) Class.forName("utils.log." + loadAppender.get(i) + "Appender").newInstance()))) {
                         System.out.println("Folgender Appender konnte nicht hinzugefügt werden: " + loadAppender.get(i));
                     }
                 } catch (InstantiationException ex) {
@@ -79,13 +79,28 @@ public class AppenderManager {
         if (TracingLevel.valueOf(level.toString()).ordinal() <= allowedLevel.ordinal()) {
             if (!(aktivesLevel.equals(level.toString()))) {
                 aktivesLevel = level.toString();
-                Iterator<Appender> it = appenderList.iterator();
-                while (it.hasNext()) {
-                    it.next().log(level, c, ex);
+                if (aktivesLevel.equalsIgnoreCase("SEVERE")) {
+                    Config.setStackTrace(true);
+                    Iterator<Appender> it = appenderList.iterator();
+                    while (it.hasNext()) {
+                        it.next().log(level, c, ex);
+                    }
+                } else if (aktivesLevel.equalsIgnoreCase("INFO")) {
+                    Iterator<Appender> it = appenderList.iterator();
+                    Config.setStackTrace(false);
+                    while (it.hasNext()) {
+                        it.next().log(level, c, ex);
+                    }
+
+                } else {
+                    Iterator<Appender> it = appenderList.iterator();
+                    Config.setStackTrace(stackTrace);
+                    while (it.hasNext()) {
+                        it.next().log(level, c, ex);
+                    }
                 }
             }
         }
-
     }
 //        while (i < (TracingLevel.valueOf(level.toString())).ordinal()) {
 //            if (!(aktivesLevel.equals(level.toString()))) {

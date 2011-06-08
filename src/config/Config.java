@@ -25,35 +25,50 @@ public class Config {
     // block-anfang: aus config auslesen!
     private static TracingLevel traceLevel;// = TracingLevel.SEVERE;
     private static boolean stackTrace;// = true;
-    private static ArrayList<String> appenderList;
-    private static String defaultDbName = "swe_epu_office";
     private String dbPfad;
-    private String defaultAppender = "Console";
-    private String defaultTraceLevel = "SEVERE";
-    private Integer defaultPort = 3306;
-    private String defaultDriver = "com.mysql.jdbc.Driver";
-    private String defaultUser = " ";
+    private static ArrayList<String> appenderList = new ArrayList<String>();
     private String defaultDb = "mySQL";
+    private static String defaultDbName = "swe_epu_office";
+    private static String defaultTraceLevel = "SEVERE";
+    private String defaultDriver = "com.mysql.jdbc.Driver";
     private String defaultIp = "localhost";
+    private Integer defaultPort = 3306;
+    private String defaultUser = " ";
     private String defaultPwd = " ";
+    private static String defaultAppender = "Console";
 
     // block-ende
     public Config() {
         config = new Properties();
         try {
             config.load(new FileInputStream("config.properties"));
-            if (config == null) {
-                ArrayList<String> defaultSetting = new ArrayList<String>();
-                defaultSetting.add(defaultDbName);
-                defaultSetting.add(defaultAppender);
-                defaultSetting.add(defaultTraceLevel);
-                defaultSetting.add(defaultPort.toString());
-                defaultSetting.add(defaultDriver);
-                defaultSetting.add(defaultUser);
-                defaultSetting.add(defaultDb);
-                defaultSetting.add(defaultIp);
-                defaultSetting.add(defaultPwd);
-            }
+        } catch (IOException ex) {
+            ArrayList<String> defaultSetting = new ArrayList<String>();
+            defaultSetting.add(defaultDb);
+            defaultSetting.add(defaultUser);
+            defaultSetting.add(defaultPwd);
+            defaultSetting.add(defaultIp);
+            defaultSetting.add(defaultPort.toString());
+
+            appenderList.add(defaultAppender);
+            traceLevel = TracingLevel.valueOf((defaultTraceLevel).toUpperCase());
+            stackTrace = false; //nur ex.getMessage();
+            save(defaultSetting);
+        }
+       /*if (config == null) {
+            ArrayList<String> defaultSetting = new ArrayList<String>();
+            defaultSetting.add(defaultDb);
+            defaultSetting.add(defaultUser);
+            defaultSetting.add(defaultPwd);
+            defaultSetting.add(defaultIp);
+            defaultSetting.add(defaultPort.toString());
+
+            appenderList.add(defaultAppender);
+            traceLevel = TracingLevel.valueOf((defaultTraceLevel).toUpperCase());
+            stackTrace = false; //nur ex.getMessage();
+        } else {
+         * 
+         */
             if (config.getProperty("db").equals("mySQL")) {
                 dbPfad = "jdbc:mysql://";
                 dbPfad += ((config.getProperty("db_ip")) + ":");
@@ -71,23 +86,14 @@ public class Config {
             //System.out.println("WERT VON TRACELEVEL: " + traceLevel.toString());
             stackTrace = Boolean.parseBoolean(config.getProperty("stackTrace"));
             appenderList = loadAppender(config.getProperty("appender"));
-
-
-        } catch (IOException ex) {
-            Logger.log(Level.SEVERE, Config.class, ex);
-        }
+        //}
     }
 
     public void save(ArrayList<String> newValue) {
         try {
             int counter = 0;
-            config.setProperty("db", newValue.get(0));
-            config.setProperty("db_user", newValue.get(1));
-            config.setProperty("db_pwd", newValue.get(2));
-            config.setProperty("db_ip", newValue.get(3));
-            config.setProperty("db_port", newValue.get(4));
-
             String appender = "";
+
             for (String a : appenderList) {
                 if (counter == 0) {
                     appender += a;
@@ -96,19 +102,16 @@ public class Config {
                     appender += ";" + a;
                 }
             }
+            config.setProperty("db", newValue.get(0));
+            config.setProperty("db_user", newValue.get(1));
+            config.setProperty("db_pwd", newValue.get(2));
+            config.setProperty("db_ip", newValue.get(3));
+            config.setProperty("db_port", newValue.get(4));
+
+            config.setProperty("db_driver", defaultDriver);
             config.setProperty("appender", appender);
-            
-            /*
-             *                 defaultSetting.add(defaultDbName);
-                defaultSetting.add(defaultAppender);
-                defaultSetting.add(defaultTraceLevel);
-                defaultSetting.add(defaultPort.toString());
-                defaultSetting.add(defaultDriver);
-                defaultSetting.add(defaultUser);
-                defaultSetting.add(defaultDb);
-                defaultSetting.add(defaultIp);
-                defaultSetting.add(defaultPwd);
-             */
+            config.setProperty("traceLevel", defaultTraceLevel);
+            config.setProperty("db_name", defaultDbName);
             config.store(new FileOutputStream("config.properties"), null);
 
 
@@ -129,6 +132,10 @@ public class Config {
         return stackTrace;
     }
 
+    public static void setStackTrace(boolean flag) {
+        stackTrace = flag;
+    }
+
     public String getDbPath() {
         return dbPfad;
     }
@@ -144,5 +151,13 @@ public class Config {
 
     public static ArrayList<String> getAppenderList() {
         return appenderList;
+    }
+
+    public static String getDefaultTraceLevel() {
+        return defaultTraceLevel;
+    }
+
+    public static String getDefaultAppender() {
+        return defaultAppender;
     }
 }
