@@ -9,6 +9,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="enabled" type="boolean" value="false"/>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 380]"/>
     </Property>
@@ -232,6 +233,7 @@
     <Component class="javax.swing.JButton" name="kontaktLoeschen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Kontakt l&#xf6;schen"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kontaktLoeschenActionPerformed"/>
@@ -416,6 +418,7 @@
     <Component class="javax.swing.JButton" name="kontaktAendern">
       <Properties>
         <Property name="text" type="java.lang.String" value="Kontakt sichern"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kontaktAendernActionPerformed"/>

@@ -10,20 +10,40 @@
  */
 package view;
 
+import controller.Binder;
 import controller.OffeneEingangsrechnungenController;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import model.Buchungszeile;
+import model.BuchungszeilenEintrag;
+import model.ERechnung;
+import model.Kategorie;
+import model.dal.DALException;
+import model.dal.DALFactory;
+import model.dal.IDAL;
 
 /**
  *
  * @author Goran-Goggy
  */
 public class OffeneEingangsrechnungen extends javax.swing.JPanel {
+    
+    private IDAL db = DALFactory.getDAL();
     private OffeneEingangsrechnungenController controller;
     /** Creates new form OffeneEingangsrechnungen */
     public OffeneEingangsrechnungen(OffeneEingangsrechnungenController controller) {
         this.controller = controller;
         initComponents();
+        initialize();
     }
-
+    
+    private void initialize() {
+        Binder.bind(ERechnung.class, offeneEingangsrechnungenListe);
+        Binder.bind(Kategorie.class, rechnungKategorieComboBox);
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -35,49 +55,48 @@ public class OffeneEingangsrechnungen extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         projektAuftragLabel = new javax.swing.JLabel();
-        projektAngebotComboBox = new javax.swing.JComboBox();
+        rechnungKategorieComboBox = new javax.swing.JComboBox();
         kundenListeLabel = new javax.swing.JLabel();
         kundenInfoLabel = new javax.swing.JLabel();
         projektNameLabel = new javax.swing.JLabel();
-        EingangsrechnungenBetragFeld = new javax.swing.JTextField();
+        rechnungenBetragFeld = new javax.swing.JTextField();
         projektHinzufuegen1 = new javax.swing.JButton();
-        projektLoeschen = new javax.swing.JButton();
+        rechnungBezahlenButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        offeneEingangsrechnungenListe = new javax.swing.JList();
+        rechnungenListe = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        eingangsrechnungenListe = new javax.swing.JList();
+        offeneEingangsrechnungenListe = new javax.swing.JList();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektAuftragLabel.setText("Kategorie");
         jPanel1.add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
 
-        projektAngebotComboBox.setEnabled(false);
-        projektAngebotComboBox.setName("Angebot"); // NOI18N
-        jPanel1.add(projektAngebotComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 160, -1));
+        rechnungKategorieComboBox.setName("KategorieListe"); // NOI18N
+        jPanel1.add(rechnungKategorieComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 160, -1));
 
         kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenListeLabel.setText("Offene Eingangsrechnungen");
         jPanel1.add(kundenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kundenInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kundenInfoLabel.setText("Vorgemerkte Eingangsrechnungen");
         kundenInfoLabel.setAlignmentX(0.5F);
         jPanel1.add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
 
-        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektNameLabel.setText("Betrag");
         jPanel1.add(projektNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
 
-        EingangsrechnungenBetragFeld.setName("Name"); // NOI18N
-        EingangsrechnungenBetragFeld.addActionListener(new java.awt.event.ActionListener() {
+        rechnungenBetragFeld.setName("Name"); // NOI18N
+        rechnungenBetragFeld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EingangsrechnungenBetragFeldActionPerformed(evt);
+                rechnungenBetragFeldActionPerformed(evt);
             }
         });
-        jPanel1.add(EingangsrechnungenBetragFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 160, -1));
+        jPanel1.add(rechnungenBetragFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 160, -1));
 
         projektHinzufuegen1.setText("Vormerken");
         projektHinzufuegen1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,20 +106,25 @@ public class OffeneEingangsrechnungen extends javax.swing.JPanel {
         });
         jPanel1.add(projektHinzufuegen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 170, 30));
 
-        projektLoeschen.setText("Rechnungen bezahlen");
-        jPanel1.add(projektLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 250, -1));
+        rechnungBezahlenButton.setText("Rechnungen bezahlen");
+        rechnungBezahlenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechnungBezahlenButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rechnungBezahlenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 250, -1));
 
-        offeneEingangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        offeneEingangsrechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        offeneEingangsrechnungenListe.setName("ProjektListe"); // NOI18N
-        jScrollPane1.setViewportView(offeneEingangsrechnungenListe);
+        rechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        rechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        rechnungenListe.setName("ProjektListe"); // NOI18N
+        jScrollPane1.setViewportView(rechnungenListe);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 250, 160));
 
-        eingangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        eingangsrechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        eingangsrechnungenListe.setName("ProjektListe"); // NOI18N
-        jScrollPane2.setViewportView(eingangsrechnungenListe);
+        offeneEingangsrechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        offeneEingangsrechnungenListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        offeneEingangsrechnungenListe.setName("EingangsrechnungListe"); // NOI18N
+        jScrollPane2.setViewportView(offeneEingangsrechnungenListe);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 280, 190));
 
@@ -120,27 +144,80 @@ public class OffeneEingangsrechnungen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EingangsrechnungenBetragFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EingangsrechnungenBetragFeldActionPerformed
+    private void rechnungenBetragFeldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechnungenBetragFeldActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_EingangsrechnungenBetragFeldActionPerformed
+}//GEN-LAST:event_rechnungenBetragFeldActionPerformed
 
     private void projektHinzufuegen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektHinzufuegen1ActionPerformed
-        // TODO add your handling code here:
+        if(offeneEingangsrechnungenListe.isSelectionEmpty() || (!(offeneEingangsrechnungenListe.getSelectedValue() instanceof ERechnung))) {
+            return;
+        }
+        
+        ERechnung ar = (ERechnung)offeneEingangsrechnungenListe.getSelectedValue();
+        
+        BuchungszeilenEintrag eintrag = new BuchungszeilenEintrag();
+        eintrag.setRechnung_id(ar.getId());
+        Double betrag = Double.parseDouble(rechnungenBetragFeld.getText());
+        if(betrag != null && betrag > 0) {
+            if(betrag > ar.getPreis())
+                return;
+            
+            ar.setPreis(ar.getPreis()-betrag);
+            eintrag.setBetrag(betrag);
+        } else {
+            return;
+        }
+        Object kategorie = rechnungKategorieComboBox.getSelectedItem();
+        if(kategorie instanceof Kategorie && kategorie != null) {
+            eintrag.setKategorie((Kategorie)kategorie);
+        }
+        DefaultListModel model;
+        if(rechnungenListe.getModel() instanceof DefaultListModel && rechnungenListe.getModel() != null) {
+            model = (DefaultListModel)rechnungenListe.getModel();
+        } else {
+            model = new DefaultListModel();
+            rechnungenListe.setModel(model);
+        }
+        
+        model.addElement(eintrag);
+        offeneEingangsrechnungenListe.clearSelection();
     }//GEN-LAST:event_projektHinzufuegen1ActionPerformed
 
+    private void rechnungBezahlenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechnungBezahlenButtonActionPerformed
+        Buchungszeile b = new Buchungszeile();
+        b.setDatum(new Date());
+        try {
+            b = db.saveBuchungszeile(b);
+        } catch (DALException ex) {
+            Logger.getLogger(OffeneEingangsrechnungen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for(int i = 0; i <rechnungenListe.getModel().getSize(); i++) {
+            if (!(rechnungenListe.getModel().getElementAt(i) instanceof BuchungszeilenEintrag)) 
+                return;
+            
+            BuchungszeilenEintrag bz = (BuchungszeilenEintrag)rechnungenListe.getModel().getElementAt(i);
+            try {
+                db.addRechnungToBuchungszeile(bz.getRechnung_id(), bz.getKategorie().getId(), bz.getBetrag(), b.getId());
+            } catch (DALException ex) {
+                Logger.getLogger(OffeneEingangsrechnungen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_rechnungBezahlenButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField EingangsrechnungenBetragFeld;
-    private javax.swing.JList eingangsrechnungenListe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel kundenInfoLabel;
     private javax.swing.JLabel kundenListeLabel;
     private javax.swing.JList offeneEingangsrechnungenListe;
-    private javax.swing.JComboBox projektAngebotComboBox;
     private javax.swing.JLabel projektAuftragLabel;
     private javax.swing.JButton projektHinzufuegen1;
-    private javax.swing.JButton projektLoeschen;
     private javax.swing.JLabel projektNameLabel;
+    private javax.swing.JButton rechnungBezahlenButton;
+    private javax.swing.JComboBox rechnungKategorieComboBox;
+    private javax.swing.JTextField rechnungenBetragFeld;
+    private javax.swing.JList rechnungenListe;
     // End of variables declaration//GEN-END:variables
 }

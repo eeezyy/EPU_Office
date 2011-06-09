@@ -19,10 +19,12 @@ import java.util.Date;
 import java.util.logging.Level;
 import javax.swing.DefaultListModel;
 import model.Mitarbeiter;
+import model.Projekt;
 import model.dal.DALException;
 import model.dal.DALFactory;
 import model.dal.IDAL;
 import utils.log.Logger;
+import view.dialog.ProjektToMitarbeiterForm;
 
 /**
  *
@@ -48,6 +50,10 @@ public class MitarbeiterView extends AbstractViewPanel {
         Binder.bind(mitarbeiterListe, mitarbeiterGeburtsdatumFeld);
         Binder.bind(mitarbeiterListe, mitarbeiterStundensatzFeld);
         Binder.bind(mitarbeiterListe, mitarbeiterProjektListe);
+        Binder.bind(mitarbeiterListe, mitarbeiterAendern);
+        Binder.bind(mitarbeiterListe, mitarbeiterLoeschen);
+        Binder.bind(mitarbeiterListe, mitarbeiterProjektListe);
+        
     }
 
     /** This method is called from within the constructor to
@@ -79,6 +85,7 @@ public class MitarbeiterView extends AbstractViewPanel {
         mitarbeiterProjektListe = new javax.swing.JList();
         mitarbeiterListeLabel1 = new javax.swing.JLabel();
 
+        setEnabled(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mitarbeiterListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
@@ -90,6 +97,7 @@ public class MitarbeiterView extends AbstractViewPanel {
         add(mitarbeiterVornameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
         mitarbeiterAendern.setText("Mitarbeiterdaten sichern");
+        mitarbeiterAendern.setEnabled(false);
         mitarbeiterAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mitarbeiterAendernActionPerformed(evt);
@@ -101,6 +109,7 @@ public class MitarbeiterView extends AbstractViewPanel {
         add(mitarbeiterGeburtsdatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 130, -1));
 
         mitarbeiterLoeschen.setText("Mitarbeiter löschen");
+        mitarbeiterLoeschen.setEnabled(false);
         mitarbeiterLoeschen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mitarbeiterLoeschenActionPerformed(evt);
@@ -126,7 +135,7 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterProjektZuweisenActionPerformed(evt);
             }
         });
-        add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         mitarbeiterInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,9 +173,9 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterHinzufuegenActionPerformed(evt);
             }
         });
-        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 240, -1));
 
-        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         mitarbeiterProjektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         mitarbeiterProjektListe.setName("ProjektFromMitarbeiter"); // NOI18N
         mitarbeiterProjektListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -178,7 +187,7 @@ public class MitarbeiterView extends AbstractViewPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 230, 190));
 
-        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterListeLabel1.setText("Projekte vom Mitarbeiter");
         add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -237,6 +246,10 @@ public class MitarbeiterView extends AbstractViewPanel {
     }
 
     private void mitarbeiterProjektZuweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitarbeiterProjektZuweisenActionPerformed
+        if (mitarbeiterListe.isSelectionEmpty())
+            return;
+        ProjektToMitarbeiterForm addProjektTo = new ProjektToMitarbeiterForm(null, true, (Mitarbeiter) mitarbeiterListe.getSelectedValue());
+        addProjektTo.setVisible(true);
 }//GEN-LAST:event_mitarbeiterProjektZuweisenActionPerformed
 
     private void mitarbeiterProjektListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mitarbeiterProjektListeValueChanged

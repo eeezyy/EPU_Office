@@ -42,13 +42,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="projektAngebotComboBox">
+        <Component class="javax.swing.JComboBox" name="rechnungKategorieComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="name" type="java.lang.String" value="Angebot" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="KategorieListe" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -97,12 +96,12 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="EingangsrechnungenBetragFeld">
+        <Component class="javax.swing.JTextField" name="rechnungenBetragFeld">
           <Properties>
             <Property name="name" type="java.lang.String" value="Name" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EingangsrechnungenBetragFeldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rechnungenBetragFeldActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -113,6 +112,7 @@
         <Component class="javax.swing.JButton" name="projektHinzufuegen1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Vormerken"/>
+            <Property name="name" type="java.lang.String" value="KategorieListe" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projektHinzufuegen1ActionPerformed"/>
@@ -127,6 +127,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Rechnungen abbuchen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projektLoeschenActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="640" y="210" width="250" height="-1"/>
@@ -142,7 +145,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="eingangsrechnungenListe">
+            <Component class="javax.swing.JList" name="rechnungenListe">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="2"/>
@@ -174,7 +177,7 @@
                   <StringArray count="0"/>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
-                <Property name="name" type="java.lang.String" value="OffeneAusgangsrechnungListe" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="AusgangsrechnungListe" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

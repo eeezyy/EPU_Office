@@ -67,6 +67,8 @@ public interface IDAL {
     public void saveMitarbeiter(AbstractObject aO) throws DALException;
 
     public ArrayList<AbstractObject> getEingangsrechnungListe() throws DALException;
+    
+    public ArrayList<AbstractObject> getOffeneEingangsrechnungListe() throws DALException;
 
     public ERechnung getEingangsrechnung(Integer id) throws DALException;
 
@@ -75,6 +77,8 @@ public interface IDAL {
     public void deleteEingangsrechnung(ERechnung eR) throws DALException;
 
     public ArrayList<AbstractObject> getAusgangsrechnungListe() throws DALException;
+    
+    public ArrayList<AbstractObject> getOffeneAusgangsrechnungListe() throws DALException;
 
     public ARechnung getAusgangsrechnung(Integer id) throws DALException;
 
@@ -95,4 +99,16 @@ public interface IDAL {
     public void deleteArbeitsstunden(Arbeitsstunden log) throws DALException;
     
     public ArrayList<AbstractObject>getArbeitsstundenListe() throws DALException;
+
+    public void addRechnungToBuchungszeile(Integer rechnung_id, Integer kategorien_id, Double betrag, Integer buchungszeile_id) throws DALException;
+    
+    public Buchungszeile saveBuchungszeile(Buchungszeile b) throws DALException;
+    
+    public ArrayList<AbstractObject> getBuchungszeilenList() throws DALException;
+    
+    public ArrayList<AbstractObject> getBuchungszeilenEingangList() throws DALException;
+    
+    public Rechnung saveRechnung(AbstractObject aO) throws DALException;
+    
+    public ArrayList<AbstractObject> getBuchungszeilenAusgangList() throws DALException;
 }

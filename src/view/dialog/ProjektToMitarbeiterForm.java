@@ -12,7 +12,6 @@ package view.dialog;
 
 import controller.Binder;
 import java.util.logging.Level;
-import model.Kontakt;
 import model.Mitarbeiter;
 import model.Projekt;
 import model.dal.DALException;

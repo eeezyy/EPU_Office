@@ -14,6 +14,7 @@ public class Rechnung extends AbstractObject{
     private ARechnung ausgangsrechnung;
     private ERechnung eingangsrechnung;
     private Date datum;
+    private Boolean isBezahlt;
 
     public ARechnung getAusgangsrechnung() {
         return ausgangsrechnung;
@@ -37,6 +38,14 @@ public class Rechnung extends AbstractObject{
 
     public void setEingangsrechnung(ERechnung eingangsrechnung) {
         this.eingangsrechnung = eingangsrechnung;
+    }
+
+    public Boolean getIsBezahlt() {
+        return this.isBezahlt;
+    }
+    
+    public void setIsBezahlt(Boolean isBezahlt) {
+        this.isBezahlt = isBezahlt;
     }
     
     

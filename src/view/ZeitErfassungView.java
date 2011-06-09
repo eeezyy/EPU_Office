@@ -68,6 +68,8 @@ public class ZeitErfassungView extends AbstractViewPanel {
         Binder.bind(logListe, logDatumDateChooser);
         Binder.bind(logListe, logStundenFeld);
         Binder.bind(logListe, logTaetigkeitFeld);
+        Binder.bind(logListe, logLoeschen);
+        Binder.bind(logListe, projektAendern1);
     }
 
     /** This method is called from within the constructor to
@@ -101,6 +103,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
         logProjektComboBox = new javax.swing.JComboBox();
         logMitarbeiterComboBox = new javax.swing.JComboBox();
 
+        setEnabled(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
@@ -152,6 +155,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
         add(logHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         logLoeschen.setText("Logeintrag löschen");
+        logLoeschen.setEnabled(false);
         logLoeschen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logLoeschenActionPerformed(evt);
@@ -197,6 +201,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
 
         projektAendern1.setText("Logeintrag sichern");
+        projektAendern1.setEnabled(false);
         projektAendern1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektAendern1ActionPerformed(evt);

@@ -18,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import utils.log.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
@@ -108,6 +109,45 @@ public class Binder {
                                     jdc.setEnabled(true);
                                 }
                                 jdc.setBorder(BorderFactory.createEtchedBorder());
+                            }
+                        };
+                        SwingUtilities.invokeLater(r);
+                    }
+                };
+                jlist.addListSelectionListener(lsl);
+            }
+            
+            
+            if (jc2 instanceof JButton) {
+                final JButton jb = (JButton) jc2;
+
+                ListSelectionListener lsl;
+                lsl = new ListSelectionListener() {
+
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                        // verhindert das deselectieren eines neuen Kontaktes
+                        if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            jlist.setSelectedIndex(e.getLastIndex());
+                            return;
+                        }
+                        // bereits eingetragene textfelder gehen nicht verloren
+                        if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
+                            return;
+                        }
+
+                        Runnable r = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AbstractObject am = (AbstractObject) jlist.getSelectedValue();
+
+                                if (am != null) {
+                                    jb.setEnabled(true);
+                                } else {
+                                    jb.setEnabled(false);
+                                }
+
                             }
                         };
                         SwingUtilities.invokeLater(r);
@@ -430,6 +470,7 @@ public class Binder {
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
                         // verhindert das deselectieren eines neuen Kontaktes
+                        /*
                         if (jlist.getModel().getSize() > e.getLastIndex() && e.getValueIsAdjusting() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
                             jlist.setSelectedIndex(e.getLastIndex());
                             return;
@@ -437,16 +478,18 @@ public class Binder {
                         // bereits eingetragene textfelder gehen nicht verloren
                         if (e.getLastIndex() == jlist.getSelectedIndex() && e.getFirstIndex() != e.getLastIndex() && ((AbstractObject) jlist.getModel().getElementAt(e.getLastIndex())).getId() == 0) {
                             return;
-                        }
+                        }*/
 
                         Runnable r = new Runnable() {
 
                             @Override
                             public void run() {
+                                System.out.println(jl2.getName());
                                 AbstractObject am = (AbstractObject) jlist.getSelectedValue();
                                 Method method = null;
                                 ArrayList<AbstractObject> objects = null;
-                                if (am != null) {
+                                System.out.println(am);
+                                if (am != null && am.getId() != 0) {
                                     if (jl2.getName() == null || jl2.getName().isEmpty()) {
                                         System.out.println("Binding: Componente enthält keinen property:name");
                                         return;
@@ -677,6 +720,8 @@ public class Binder {
     }
 
     public static void notify(Class c) {
+        if(observer.isEmpty() || observer.get(c) == null)
+            return;
         Iterator it = ((ArrayList<JComponent>) observer.get(c)).iterator();
         while (it.hasNext()) {
             JComponent jc = (JComponent) it.next();

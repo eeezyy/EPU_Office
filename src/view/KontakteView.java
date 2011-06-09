@@ -58,6 +58,9 @@ public final class KontakteView extends AbstractViewPanel {
         Binder.bind(kontaktListe, kontaktOrtFeld);
         Binder.bind(kontaktListe, kontaktIsKundeFeld);
         Binder.bind(kontaktListe, kontaktIdFeld);
+        
+        Binder.bind(kontaktListe, kontaktAendern);
+        Binder.bind(kontaktListe, kontaktLoeschen);
 
         Binder.bind(Kontakt.class, kontaktListe);
     }
@@ -113,6 +116,7 @@ public final class KontakteView extends AbstractViewPanel {
             }
         });
 
+        setEnabled(false);
         setMaximumSize(new java.awt.Dimension(800, 380));
         setMinimumSize(new java.awt.Dimension(800, 380));
         setPreferredSize(new java.awt.Dimension(800, 380));
@@ -188,6 +192,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kontaktLoeschen.setText("Kontakt löschen");
+        kontaktLoeschen.setEnabled(false);
         kontaktLoeschen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kontaktLoeschenActionPerformed(evt);
@@ -253,6 +258,7 @@ public final class KontakteView extends AbstractViewPanel {
         add(kontaktFirmennameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
 
         kontaktAendern.setText("Kontakt sichern");
+        kontaktAendern.setEnabled(false);
         kontaktAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kontaktAendernActionPerformed(evt);

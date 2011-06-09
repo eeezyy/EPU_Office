@@ -219,6 +219,7 @@
     <Component class="javax.swing.JButton" name="angebotLoeschen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Angebot l&#xf6;schen"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="angebotLoeschenActionPerformed"/>
@@ -271,6 +272,7 @@
     <Component class="javax.swing.JButton" name="angebotAendern">
       <Properties>
         <Property name="text" type="java.lang.String" value="Angebot sichern"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="angebotAendernActionPerformed"/>

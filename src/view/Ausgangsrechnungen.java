@@ -11,6 +11,8 @@
 package view;
 
 import controller.AusgangsrechnungenController;
+import controller.Binder;
+import model.Buchungszeile;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Ausgangsrechnungen extends javax.swing.JPanel {
     public Ausgangsrechnungen(AusgangsrechnungenController controller) {
         this.controller = controller;
         initComponents();
+        Binder.bind(Buchungszeile.class, eingangsrechnungenBuchungszeilenListe);
     }
 
     /** This method is called from within the constructor to
@@ -45,7 +48,7 @@ public class Ausgangsrechnungen extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenListeLabel.setText("Buchungszeilen (Ausgangsrechnungen)");
         jPanel1.add(kundenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -69,6 +72,7 @@ public class Ausgangsrechnungen extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        eingangsrechnungenBuchungszeilenListe.setName("BuchungszeilenAusgangList"); // NOI18N
         jScrollPane2.setViewportView(eingangsrechnungenBuchungszeilenListe);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 420, 160));

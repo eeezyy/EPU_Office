@@ -20,6 +20,7 @@ public class AusgangsrechnungenController {
     public AusgangsrechnungenController () {
         this.dal = DALFactory.getDAL();
         this.view = new Ausgangsrechnungen(this);
-        RechnungsUeberblickController.view.addTabPanel(view, "Ausgangsrechnungen");
+        //RechnungsUeberblickController.view.addTabPanel(view, "Ausgangsrechnungen");
+        MainController.mainGUI.addTabPanel(view, "Offene Ausgangsrechnungen");
     }
 }

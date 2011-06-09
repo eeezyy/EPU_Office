@@ -41,6 +41,103 @@ public class DALDatabase implements IDAL {
         }
 
     }
+    
+@Override
+    public ArrayList<AbstractObject> getBuchungszeilenEingangList() throws DALException {
+        ArrayList<AbstractObject> buchungszeilen = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT bz.id, bz.datum from buchungszeile bz "
+                    + "inner join rechnung_has_buchungszeile rhb on bz.id = rhb.buchungszeile_id "
+                    + "inner join rechnung r on rhb.rechnung_id = r.id "
+                    + "inner join eingangsrechnung e on r.eingangsrechnung_id = e.id");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Integer intResult = null;
+
+                Buchungszeile b = new Buchungszeile();
+                b.setId(rd.getInt(1));
+                b.setDatum(rd.getDate(2));
+                buchungszeilen.add(b);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+
+        return buchungszeilen;
+    }
+
+    @Override
+    public ArrayList<AbstractObject> getBuchungszeilenAusgangList() throws DALException {
+        ArrayList<AbstractObject> buchungszeilen = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT bz.id, bz.datum from buchungszeile bz "
+                    + "inner join rechnung_has_buchungszeile rhb on bz.id = rhb.buchungszeile_id "
+                    + "inner join rechnung r on rhb.rechnung_id = r.id "
+                    + "inner join ausgangsrechnung e on r.ausgangsrechnung_id = e.id");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Integer intResult = null;
+
+                Buchungszeile b = new Buchungszeile();
+                b.setId(rd.getInt(1));
+                b.setDatum(rd.getDate(2));
+                buchungszeilen.add(b);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+
+        return buchungszeilen;
+    }
+
+
+    @Override
+    public ArrayList<AbstractObject> getBuchungszeilenList() throws DALException {
+        ArrayList<AbstractObject> buchungszeilen = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            cmd = db.prepareStatement("SELECT id, datum from buchungszeile");
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                Integer intResult = null;
+
+                Buchungszeile b = new Buchungszeile();
+                b.setId(rd.getInt(1));
+                b.setDatum(rd.getDate(2));
+                buchungszeilen.add(b);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+
+        return buchungszeilen;
+    }
 
     @Override
     public void saveKontakt(AbstractObject ao) throws DALException {
@@ -957,12 +1054,9 @@ public class DALDatabase implements IDAL {
         try {
             db = DALDatabase.getConnection();
             String prepare = "SELECT DISTINCT E.ID, E.KONTAKT_ID, E.SCANPFAD, E.DATUM, E.PREIS "
-                    + "FROM EINGANGSRECHNUNG E INNER JOIN RECHNUNG R ON E.ID = R.EINGANGSRECHNUNG_ID "
-                    + "WHERE R.AUSGANGSRECHNUNGEN_ID = ?";
+                    + "FROM EINGANGSRECHNUNG E INNER JOIN RECHNUNG R ON E.ID = R.EINGANGSRECHNUNG_ID ";
 
             cmd = db.prepareStatement(prepare);
-
-            cmd.setNull(1, java.sql.Types.NULL);
 
             rd = cmd.executeQuery();
             // Daten holen
@@ -983,6 +1077,70 @@ public class DALDatabase implements IDAL {
         }
         return eRListe;
     }
+    
+    @Override
+    public Rechnung saveRechnung(AbstractObject aO) throws DALException {
+        if (!(aO instanceof Rechnung)) {
+            return null;
+        }
+        Rechnung r = (Rechnung) aO;
+        java.sql.Date datum = new java.sql.Date(r.getDatum().getTime());
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM Rechnung WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, r.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE Rechnung SET Ausgangsrechnung_id = ?, Eingangsrechnung_id = ?, Datum = ?, Betrag = ? WHERE id = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                if (r.getAusgangsrechnung()== null)
+                    cmd.setNull(1, java.sql.Types.NULL);
+                cmd.setInt(1, r.getAusgangsrechnung().getId());
+                if (r.getEingangsrechnung()== null)
+                    cmd.setNull(2, java.sql.Types.NULL);
+                cmd.setInt(2, r.getEingangsrechnung().getId());
+                cmd.setDate(3, datum);
+                cmd.setBoolean(4, r.getIsBezahlt());
+                cmd.setInt(5, r.getId());
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO Rechnung (Ausgangsrechnung_id, Eingangsrechnung_id, Datum, IsBezahlt) VALUES (?, ?, ?, ?)",
+                PreparedStatement.RETURN_GENERATED_KEYS);
+                if (r.getAusgangsrechnung()== null)
+                    cmd.setNull(1, java.sql.Types.NULL);
+                cmd.setInt(1, r.getAusgangsrechnung().getId());
+                if (r.getEingangsrechnung()== null)
+                    cmd.setNull(2, java.sql.Types.NULL);
+                cmd.setDate(3, datum);
+                cmd.setBoolean(4, r.getIsBezahlt());
+            }
+            // execute insert/update
+            Integer result = cmd.executeUpdate();
+            // get generated id
+            ResultSet generatedKeys = cmd.getGeneratedKeys();
+            if (result != null && result != 0 && generatedKeys.next()) {
+                r.setId(generatedKeys.getInt(1));
+            }
+            cmd.close();
+            rd.close();
+            cmdSelect.close();
+            db.close();
+            Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveMitarbeiter"));
+            Binder.notify(Projekt.class);
+            return r;
+        } catch (SQLException e) {
+            throw new DALException(e.getMessage());
+        }
+    }
 
     @Override
     public ERechnung getEingangsrechnung(Integer id) throws DALException {
@@ -993,7 +1151,7 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT ID, KONTAKT_ID, SCANPFAD, DATUM, PREIS FROM AUSGANGSRECHNUNGEN WHERE id = ? ");
+            cmd = db.prepareStatement("SELECT ID, KONTAKT_ID, SCANPFAD, DATUM, PREIS FROM AUSGANGSRECHNUNG WHERE id = ? ");
             cmd.setInt(1, id);
             rd = cmd.executeQuery();
             // Daten holen
@@ -1071,7 +1229,7 @@ public class DALDatabase implements IDAL {
                     e.setId(generatedKeys.getInt(1));
 
                     cmd = db.prepareStatement(
-                            "INSERT INTO RECHNUNG (AUSGANGSRECHNUNGEN_ID, EINGANGSRECHNUNG_ID, DATUM) VALUES (?, ?, ?)",
+                            "INSERT INTO RECHNUNG (AUSGANGSRECHNUNG_ID, EINGANGSRECHNUNG_ID, DATUM) VALUES (?, ?, ?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
 
                     cmd.setNull(1, java.sql.Types.NULL);
@@ -1105,7 +1263,7 @@ public class DALDatabase implements IDAL {
 
             // SQL STMT vorbereiten
             PreparedStatement cmd = db.prepareStatement("DELETE FROM RECHNUNG WHERE EINGANGSRECHNUNG_ID = ? "
-                    + " AND AUSGANGSRECHNUNGEN_ID = ?");
+                    + " AND AUSGANGSRECHNUNG_ID = ?");
             // Parameter setzen
             cmd.setInt(1, eR.getId());
             cmd.setInt(2, java.sql.Types.NULL);
@@ -1140,12 +1298,9 @@ public class DALDatabase implements IDAL {
         try {
             db = DALDatabase.getConnection();
             String prepare = "SELECT DISTINCT A.ID, A.KONTAKT_ID, A.DATUM, A.PREIS "
-                    + "FROM AUSGANGSRECHNUNGEN A INNER JOIN RECHNUNG R ON A.ID = R.AUSGANGSRECHNUNGEN_ID "
-                    + "WHERE R.EINGANGSRECHNUNG_ID = ?";
+                    + "FROM AUSGANGSRECHNUNG A INNER JOIN RECHNUNG R ON A.ID = R.AUSGANGSRECHNUNG_ID ";
 
             cmd = db.prepareStatement(prepare);
-
-            cmd.setNull(1, java.sql.Types.NULL);
 
             rd = cmd.executeQuery();
             // Daten holen
@@ -1175,7 +1330,7 @@ public class DALDatabase implements IDAL {
         ResultSet rd;
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT ID, KONTAKT_ID, DATUM, PREIS FROM AUSGANGSRECHNUNGEN WHERE id = ? ");
+            cmd = db.prepareStatement("SELECT ID, KONTAKT_ID, DATUM, PREIS FROM AUSGANGSRECHNUNG WHERE id = ? ");
             cmd.setInt(1, id);
             rd = cmd.executeQuery();
             // Daten holen
@@ -1208,7 +1363,7 @@ public class DALDatabase implements IDAL {
             Connection db = DALDatabase.getConnection();
 
             // SQL STMT vorbereiten
-            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM AUSGANGSRECHNUNGEN WHERE id = ? GROUP BY id");
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM AUSGANGSRECHNUNG WHERE id = ? GROUP BY id");
             // Parameter setzen
             cmdSelect.setInt(1, a.getId());
             // Ausführen
@@ -1218,7 +1373,7 @@ public class DALDatabase implements IDAL {
             // Daten holen
             if (rd.next() && rd.getInt(1) == 1) {
                 cmd = db.prepareStatement(
-                        "UPDATE AUSGANGSRECHNUNGEN SET KONTAKT_ID = ?, DATUM = ?, PREIS = ? WHERE id = ?",
+                        "UPDATE AUSGANGSRECHNUNG SET KONTAKT_ID = ?, DATUM = ?, PREIS = ? WHERE id = ?",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, a.getKontakt().getId());
                 cmd.setDate(2, datum);
@@ -1236,7 +1391,7 @@ public class DALDatabase implements IDAL {
                 }
             } else {
                 cmd = db.prepareStatement(
-                        "INSERT INTO AUSGANGSRECHNUNGEN (KONTAKT_ID, DATUM, PREIS) VALUES (?, ?, ?)",
+                        "INSERT INTO AUSGANGSRECHNUNG (KONTAKT_ID, DATUM, PREIS) VALUES (?, ?, ?)",
                         PreparedStatement.RETURN_GENERATED_KEYS);
                 cmd.setInt(1, a.getKontakt().getId());
                 cmd.setDate(2, datum);
@@ -1250,7 +1405,7 @@ public class DALDatabase implements IDAL {
                     a.setId(generatedKeys.getInt(1));
 
                     cmd = db.prepareStatement(
-                            "INSERT INTO RECHNUNG (AUSGANGSRECHNUNGEN_ID, EINGANGSRECHNUNG_ID, DATUM) VALUES (?, ?, ?)",
+                            "INSERT INTO RECHNUNG (AUSGANGSRECHNUNG_ID, EINGANGSRECHNUNG_ID, DATUM) VALUES (?, ?, ?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
 
                     
@@ -1284,7 +1439,7 @@ public class DALDatabase implements IDAL {
             Connection db = DALDatabase.getConnection();
 
             // SQL STMT vorbereiten
-            PreparedStatement cmd = db.prepareStatement("DELETE FROM RECHNUNG WHERE AUSGANGSRECHNUNGEN_ID = ? "
+            PreparedStatement cmd = db.prepareStatement("DELETE FROM RECHNUNG WHERE AUSGANGSRECHNUNG_ID = ? "
                     + " AND EINGANGSRECHNUNG_ID = ?");
             // Parameter setzen
             cmd.setInt(1, aR.getId());
@@ -1295,7 +1450,7 @@ public class DALDatabase implements IDAL {
             // was deleted?
             if (result != null && result != 0) {
                 // successful
-                cmd = db.prepareStatement("DELETE FROM AUSGANGSRECHNUNGEN WHERE ID = ?");
+                cmd = db.prepareStatement("DELETE FROM AUSGANGSRECHNUNG WHERE ID = ?");
                 cmd.setInt(1, aR.getId());
                 result = cmd.executeUpdate();
                 if (result != null && result != 0) {
@@ -1320,13 +1475,13 @@ public class DALDatabase implements IDAL {
         String[] kategorien = {"Ausgabe", "Einnahme", "Steuer", "SVA"};
         try {
             db = DALDatabase.getConnection();
-            cmd = db.prepareStatement("SELECT id, bezeichnung FROM kategorie");
+            cmd = db.prepareStatement("SELECT id, bezeichnung FROM kategorien");
             rd = cmd.executeQuery();
             // Daten holen
             if (rd.wasNull()) {
                 for (int i = 0; i < kategorien.length; i++) {
                     Kategorie k = new Kategorie();
-                    cmd = db.prepareStatement("INSERT INTO KATEGORIE (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    cmd = db.prepareStatement("INSERT INTO KATEGORIEN (BEZEICHNUNG) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
                     cmd.setString(1, kategorien[i]);
                     k.setBezeichnung(kategorien[i]);
                     Integer result = cmd.executeUpdate();
@@ -1530,6 +1685,69 @@ public class DALDatabase implements IDAL {
             throw new DALException(ex.getMessage());
         }
     }
+    
+    @Override
+    public void addRechnungToBuchungszeile(Integer rechnung_id, Integer kategorien_id, Double betrag, Integer buchungszeile_id) throws DALException {
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM Buchungszeile b inner join rechnung_has_buchungszeile rhb on b.id = rhb.buchungszeile_id "
+                    + " WHERE b.id = ? GROUP BY b.id");
+            // Parameter setzen
+            cmdSelect.setInt(1, buchungszeile_id);
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE rechnung_has_buchungszeile SET Kategorien_id = ?, betrag = ? WHERE Rechnung_ID = ? and Buchungszeile_id = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, kategorien_id);
+                cmd.setDouble(2, betrag);
+                cmd.setDouble(3, rechnung_id);
+                cmd.setInt(4, buchungszeile_id);
+
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveAusgangsrechnung"));
+                }
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO rechnung_has_buchungszeile (rechnung_id, buchungszeile_id, kategorien_id, Betrag) VALUES (?, ?, ?, ?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, rechnung_id);
+                cmd.setInt(2, buchungszeile_id);
+                cmd.setInt(3, kategorien_id);
+                cmd.setDouble(4, betrag);
+                
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                if (result != null && result != 0) {
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveAusgangsrechnung"));
+                }
+            }
+
+            cmd.close();
+            rd.close();
+            cmdSelect.close();
+            db.close();
+
+            Binder.notify(Rechnung.class);
+            Binder.notify(Buchungszeile.class);
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+    }
 
     @Override
     public void deleteArbeitsstunden(Arbeitsstunden log) throws DALException {
@@ -1591,4 +1809,147 @@ public class DALDatabase implements IDAL {
         }
         return logListe;
     }
+
+    @Override
+    public ArrayList<AbstractObject> getOffeneEingangsrechnungListe() throws DALException {
+        ArrayList<AbstractObject> eRListe = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            String prepare = "select distinct e.id, e.kontakt_id, e.scanpfad, e.datum, e.preis from rechnung r "
+                    + "outer join eingangsrechnung e on r.eingangsrechnung_id = e.id "
+                    + "outer join rechnung_has_buchungszeile rhb on r.id = rhb.rechnung_id "
+                    + "group by e.id "
+                    + "having sum(e.preis) < sum(rhb.betrag)";
+
+            cmd = db.prepareStatement(prepare);
+
+            cmd.setNull(1, java.sql.Types.NULL);
+
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                ERechnung eR = new ERechnung();
+                eR.setId(rd.getInt(1));
+                eR.setKontakt(this.getKontakt(rd.getInt(2)));
+                eR.setScanPfad(rd.getString(3));
+                eR.setDatum(new java.util.Date(rd.getDate(4).getTime()));
+                eR.setPreis(rd.getDouble(5));
+                eRListe.add(eR);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return eRListe;
+    }
+    
+    @Override
+    public ArrayList<AbstractObject> getOffeneAusgangsrechnungListe() throws DALException {
+        ArrayList<AbstractObject> eRListe = new ArrayList<AbstractObject>();
+        // Datenbankverbindung �ffnen
+        Connection db;
+        PreparedStatement cmd;
+        ResultSet rd;
+        try {
+            db = DALDatabase.getConnection();
+            String prepare = "select distinct a.id, a.kontakt_id, a.datum, a.preis from rechnung r "
+                    + "inner join ausgangsrechnung a on r.ausgangsrechnung_id = a.id "
+                    + "inner join rechnung_has_buchungszeile rhb on r.id = rhb.rechnung_id "
+                    + "group by a.id "
+                    + "having sum(a.preis) < sum(rhb.betrag)";
+
+            cmd = db.prepareStatement(prepare);
+
+            //cmd.setNull(1, java.sql.Types.NULL);
+
+            rd = cmd.executeQuery();
+            // Daten holen
+            while (rd.next()) {
+                ERechnung eR = new ERechnung();
+                eR.setId(rd.getInt(1));
+                eR.setKontakt(this.getKontakt(rd.getInt(2)));
+                eR.setScanPfad(rd.getString(3));
+                eR.setDatum(new java.util.Date(rd.getDate(4).getTime()));
+                eR.setPreis(rd.getDouble(5));
+                eRListe.add(eR);
+            }
+            rd.close();
+            cmd.close();
+            db.close();
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+        return eRListe;
+    }
+    
+    @Override
+    public Buchungszeile saveBuchungszeile(Buchungszeile b) throws DALException {
+        try {
+            // Datenbankverbindung öffnen
+            Connection db = DALDatabase.getConnection();
+
+            // SQL STMT vorbereiten
+            PreparedStatement cmdSelect = db.prepareStatement("SELECT COUNT(id) FROM Buchungszeile WHERE id = ? GROUP BY id");
+            // Parameter setzen
+            cmdSelect.setInt(1, b.getId());
+            // Ausführen
+            ResultSet rd = cmdSelect.executeQuery();
+            // Update/Insert cmd
+            PreparedStatement cmd;
+            // Daten holen
+            java.sql.Date datum = new java.sql.Date(b.getDatum().getTime());
+            if (rd.next() && rd.getInt(1) == 1) {
+                cmd = db.prepareStatement(
+                        "UPDATE Buchungszeile SET datum = ? WHERE id = ?",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setInt(1, b.getId());
+
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    //b.setId(generatedKeys.getInt(1));
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveBuchungszeile"));
+                } else {
+                    throw new DALException("Buchungszeile nicht erstellt");
+                }
+            } else {
+                cmd = db.prepareStatement(
+                        "INSERT INTO Buchungszeile (DATUM) VALUES (?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS);
+                cmd.setDate(1, datum);
+
+                // execute insert/update
+                Integer result = cmd.executeUpdate();
+                // get generated id
+                ResultSet generatedKeys = cmd.getGeneratedKeys();
+                if (result != null && result != 0 && generatedKeys.next()) {
+                    b.setId(generatedKeys.getInt(1));
+                    Logger.log(Level.INFO, DALDatabase.class, new InfoMessage("saveBuchungszeile"));
+                } else {
+                    throw new DALException("Buchungszeile nicht erstellt");
+                }
+            }
+
+            cmd.close();
+            rd.close();
+            cmdSelect.close();
+            db.close();
+            
+            Binder.notify(Buchungszeile.class);
+            
+            return b;
+        } catch (SQLException ex) {
+            throw new DALException(ex.getMessage());
+        }
+    }
+
 }

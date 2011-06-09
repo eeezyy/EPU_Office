@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,11 +17,13 @@ public class ERechnung extends AbstractObject {
     private String scanPfad;
     private Date datum;
     private Double preis;
-
+    
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    
     @Override
     public String toString() {
         if(datum != null && preis != null) 
-            return this.datum + ": " + this.preis;
+            return sdf.format(datum) + ": " + this.preis + " €";
         else
             return "<Neue Eingangsrechnung>";
     }

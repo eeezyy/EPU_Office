@@ -52,6 +52,9 @@ public class AngeboteView extends AbstractViewPanel {
         Binder.bind(angebotListe, angebotDauerFeld);
         Binder.bind(angebotListe, angebotChanceFeld);
         Binder.bind(angebotKundenComboBox, angebotListe);
+        
+        Binder.bind(angebotListe, angebotAendern);
+        Binder.bind(angebotListe, angebotLoeschen);
 
 
         Binder.bind(Angebot.class, angebotListe);
@@ -114,7 +117,7 @@ public class AngeboteView extends AbstractViewPanel {
         setPreferredSize(new java.awt.Dimension(572, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kontaktListeLabel.setText("Angebotliste");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -178,6 +181,7 @@ public class AngeboteView extends AbstractViewPanel {
         add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         angebotLoeschen.setText("Angebot löschen");
+        angebotLoeschen.setEnabled(false);
         angebotLoeschen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 angebotLoeschenActionPerformed(evt);
@@ -202,6 +206,7 @@ public class AngeboteView extends AbstractViewPanel {
         add(angebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         angebotAendern.setText("Angebot sichern");
+        angebotAendern.setEnabled(false);
         angebotAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 angebotAendernActionPerformed(evt);

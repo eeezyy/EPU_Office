@@ -53,6 +53,8 @@ public class ProjektView extends AbstractViewPanel {
         Binder.bind(projektListe, projektAngebotComboBox);
         Binder.bind(projektListe, projektStundenGesamtFeld);
         Binder.bind(projektListe, projektMitarbeiterListe);
+        Binder.bind(projektListe, projektAendern);
+        Binder.bind(projektListe, projektLoeschen);
 
         Binder.bind(Angebot.class, projektAngebotComboBox);
     }
@@ -91,7 +93,7 @@ public class ProjektView extends AbstractViewPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        kundenListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
         kundenListeLabel.setText("Projektliste");
         add(kundenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -101,14 +103,14 @@ public class ProjektView extends AbstractViewPanel {
         kundenInfoLabel.setAlignmentX(0.5F);
         add(kundenInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        projektListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         projektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         projektListe.setName("ProjektListe"); // NOI18N
         jScrollPane1.setViewportView(projektListe);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 200, 190));
 
-        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektAuftragLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektAuftragLabel.setText("Angebot");
         add(projektAuftragLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
@@ -130,7 +132,7 @@ public class ProjektView extends AbstractViewPanel {
         });
         add(projektStundenGesamtFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 80, -1));
 
-        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        projektNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         projektNameLabel.setText("Name");
         add(projektNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
 
@@ -161,23 +163,25 @@ public class ProjektView extends AbstractViewPanel {
                 projektHinzufuegenActionPerformed(evt);
             }
         });
-        add(projektHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(projektHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 240, -1));
 
         projektLoeschen.setText("Projekt löschen");
+        projektLoeschen.setEnabled(false);
         projektLoeschen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektLoeschenActionPerformed(evt);
             }
         });
-        add(projektLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(projektLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
         projektAendern.setText("Projektdaten sichern");
+        projektAendern.setEnabled(false);
         projektAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektAendernActionPerformed(evt);
             }
         });
-        add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(projektAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 230, -1));
 
         projektAngebotComboBox.setEnabled(false);
         projektAngebotComboBox.setName("Angebot"); // NOI18N
@@ -198,7 +202,7 @@ public class ProjektView extends AbstractViewPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 200, 190));
 
-        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterListeLabel1.setText("Mitarbeiter im Projekt");
         add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents

@@ -10,15 +10,25 @@
  */
 package view.dialog;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import utils.charts.LineChart;
+import utils.documents.Formular;
 
 /**
  *
  * @author Goran-Goggy
  */
 public class JahresUeberblickForm extends javax.swing.JDialog {
+
+    ArrayList<String> xList = new ArrayList<String>();
+    ArrayList<Double> yList = new ArrayList<Double>();
+    String fileName = "chart.pdf";
 
     /** Creates new form JahresUeberblickForm */
     public JahresUeberblickForm(java.awt.Frame parent, boolean modal) {
@@ -27,10 +37,8 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         //Werte aus der Datenbank holen...
-        ArrayList<String> xList = new ArrayList<String>();
-        ArrayList<Double> yList = new ArrayList<Double>();
-        
-        xList.add("Null");
+
+        xList.add("Jänner");
         xList.add("Eins");
         xList.add("Zwei");
         xList.add("Drei");
@@ -49,6 +57,7 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
         JPanel panel = chart.getContent();
         chartView.add(panel);
 
+        chartView.add(panel);
     }
 
     /** This method is called from within the constructor to
@@ -120,8 +129,14 @@ public class JahresUeberblickForm extends javax.swing.JDialog {
 }//GEN-LAST:event_dialogUeberblickBeendenActionPerformed
 
     private void dialogUeberblickPdfErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogUeberblickPdfErstellenActionPerformed
-        // TODO add your handling code here:
-        //modelPropertyChange(null);
+        Formular pdf = new Formular(xList);
+        pdf.createPDF(fileName);
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.open(new File(pdf.getPfad() + fileName));
+        } catch (IOException ex) {
+            Logger.getLogger(JahresUeberblickForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_dialogUeberblickPdfErstellenActionPerformed
 
     /**

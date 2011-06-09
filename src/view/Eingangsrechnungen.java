@@ -10,7 +10,9 @@
  */
 package view;
 
+import controller.Binder;
 import controller.EingangsrechnungenController;
+import model.Buchungszeile;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Eingangsrechnungen extends javax.swing.JPanel {
     public Eingangsrechnungen(EingangsrechnungenController controller) {
         this.controller = controller;
         initComponents();
+        Binder.bind(Buchungszeile.class, eingangsrechnungenBuchungszeilenListe);
     }
 
     /** This method is called from within the constructor to
@@ -69,6 +72,7 @@ public class Eingangsrechnungen extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        eingangsrechnungenBuchungszeilenListe.setName("BuchungszeilenEingangList"); // NOI18N
         jScrollPane2.setViewportView(eingangsrechnungenBuchungszeilenListe);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 420, 160));

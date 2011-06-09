@@ -52,6 +52,8 @@ public class KundenView extends AbstractViewPanel {
         Binder.bind(kundenListe, kundenTelefonFeld);
         Binder.bind(kundenListe, kundenVornameFeld);
         Binder.bind(kundenListe, kundenIdFeld);
+        Binder.bind(kundenListe, kundenAendern);
+        Binder.bind(kundenListe, kundenLoeschen);
     }
 
     /** This method is called from within the constructor to
@@ -137,12 +139,13 @@ public class KundenView extends AbstractViewPanel {
         add(kundenTelefonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 150, -1));
 
         kundenLoeschen.setText("Kunden löschen");
+        kundenLoeschen.setEnabled(false);
         kundenLoeschen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kundenLoeschenActionPerformed(evt);
             }
         });
-        add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 150, -1));
+        add(kundenLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 240, -1));
 
         kundenVornameFeld.setName("Vorname"); // NOI18N
         add(kundenVornameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 150, -1));
@@ -153,7 +156,7 @@ public class KundenView extends AbstractViewPanel {
                 kundenangebotZuweisenActionPerformed(evt);
             }
         });
-        add(kundenangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 150, -1));
+        add(kundenangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kundenNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kundenNachNameLabel.setText("Nachname");
@@ -197,7 +200,7 @@ public class KundenView extends AbstractViewPanel {
                 kundenAngebotListeActionPerformed(evt);
             }
         });
-        add(kundenAngebotListe, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(kundenAngebotListe, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         kundenPlzFeld.setName("Plz"); // NOI18N
         add(kundenPlzFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 150, -1));
@@ -211,12 +214,13 @@ public class KundenView extends AbstractViewPanel {
         add(kundenHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
         kundenAendern.setText("Kunden sichern");
+        kundenAendern.setEnabled(false);
         kundenAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kundenAendernActionPerformed(evt);
             }
         });
-        add(kundenAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 150, -1));
+        add(kundenAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         kundenIdFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kundenIdFeld.setEnabled(false);

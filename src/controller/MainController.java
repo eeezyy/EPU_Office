@@ -30,7 +30,12 @@ public class MainController extends AbstractController {
         new ZeitErfassungController();
         new BankKontoController();
         new MitarbeiterController();
-        new RechnungsUeberblickController();
+        //new RechnungsUeberblickController();
+        
+        new OffeneAusgangsrechnungenController();
+        //new OffeneEingangsrechnungenController();
+        new AusgangsrechnungenController();
+        //new EingangsrechnungenController();
         mainGUI.setVisible(true);
     }
     

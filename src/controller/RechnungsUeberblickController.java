@@ -18,9 +18,9 @@ public class RechnungsUeberblickController {
 
     public RechnungsUeberblickController() {
         new OffeneAusgangsrechnungenController();
-        new OffeneEingangsrechnungenController();
+        //new OffeneEingangsrechnungenController();
         new AusgangsrechnungenController();
-        new EingangsrechnungenController();
+        //new EingangsrechnungenController();
         MainController.mainGUI.addTabPanel(view, "Rechnungsüberblick");
         view.setVisible(true);
     }
