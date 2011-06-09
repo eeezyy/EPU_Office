@@ -114,7 +114,7 @@ public class AngeboteView extends AbstractViewPanel {
         setPreferredSize(new java.awt.Dimension(572, 380));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
+        kontaktListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         kontaktListeLabel.setText("Angebotliste");
         add(kontaktListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -175,7 +175,7 @@ public class AngeboteView extends AbstractViewPanel {
                 angebotErstellenActionPerformed(evt);
             }
         });
-        add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         angebotLoeschen.setText("Angebot löschen");
         angebotLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +191,7 @@ public class AngeboteView extends AbstractViewPanel {
                 kundeZuweisenActionPerformed(evt);
             }
         });
-        add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(kundeZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
         kontaktStrasseLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktStrasseLabel.setText("Beschreibung");

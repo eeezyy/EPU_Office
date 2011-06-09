@@ -185,7 +185,7 @@ public final class KontakteView extends AbstractViewPanel {
                 kontaktHinzufuegenActionPerformed(evt);
             }
         });
-        add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(kontaktHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         kontaktLoeschen.setText("Kontakt löschen");
         kontaktLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +206,7 @@ public final class KontakteView extends AbstractViewPanel {
                 KontaktangebotZuweisenActionPerformed(evt);
             }
         });
-        add(KontaktangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(KontaktangebotZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         kontaktNachNameLabel.setFont(new java.awt.Font("Tahoma", 0, 15));
         kontaktNachNameLabel.setText("Nachname");

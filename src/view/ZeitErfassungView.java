@@ -149,7 +149,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logHinzufuegenActionPerformed(evt);
             }
         });
-        add(logHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(logHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         logLoeschen.setText("Logeintrag löschen");
         logLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +157,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logLoeschenActionPerformed(evt);
             }
         });
-        add(logLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(logLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 230, -1));
 
         logPdfErstellen.setText("PDF erstellen");
         logPdfErstellen.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +165,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 logPdfErstellenActionPerformed(evt);
             }
         });
-        add(logPdfErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(logPdfErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
         logDatumDateChooser.setEnabled(false);
         logDatumDateChooser.setName("Datum"); // NOI18N
@@ -202,7 +202,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
                 projektAendern1ActionPerformed(evt);
             }
         });
-        add(projektAendern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(projektAendern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         logProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         logProjektComboBox.setEnabled(false);

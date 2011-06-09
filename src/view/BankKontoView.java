@@ -72,7 +72,7 @@ public class BankKontoView extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BankOffeneRechnungenListeLabel.setFont(new java.awt.Font("Arial", 1, 14));
+        BankOffeneRechnungenListeLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BankOffeneRechnungenListeLabel.setText("Eingangsrechnungen");
         add(BankOffeneRechnungenListeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -82,7 +82,7 @@ public class BankKontoView extends javax.swing.JPanel {
         BankkontoLabel.setAlignmentX(0.5F);
         add(BankkontoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        BankOffeneRechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        BankOffeneRechnungenListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         BankOffeneRechnungenListe.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }

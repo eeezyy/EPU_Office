@@ -95,7 +95,7 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterAendernActionPerformed(evt);
             }
         });
-        add(mitarbeiterAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(mitarbeiterAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 230, -1));
 
         mitarbeiterGeburtsdatumFeld.setName("Geburtsdatum"); // NOI18N
         add(mitarbeiterGeburtsdatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 130, -1));
@@ -126,7 +126,7 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterProjektZuweisenActionPerformed(evt);
             }
         });
-        add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
+        add(mitarbeiterProjektZuweisen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
 
         mitarbeiterInfoLabel.setFont(new java.awt.Font("Arial", 1, 14));
         mitarbeiterInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,9 +164,9 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterHinzufuegenActionPerformed(evt);
             }
         });
-        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, -1));
 
-        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12));
+        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         mitarbeiterProjektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         mitarbeiterProjektListe.setName("ProjektFromMitarbeiter"); // NOI18N
         mitarbeiterProjektListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -176,11 +176,11 @@ public class MitarbeiterView extends AbstractViewPanel {
         });
         jScrollPane2.setViewportView(mitarbeiterProjektListe);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 200, 190));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 230, 190));
 
-        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 0, 14));
+        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         mitarbeiterListeLabel1.setText("Projekte vom Mitarbeiter");
-        add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void mitarbeiterListeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mitarbeiterListeValueChanged
