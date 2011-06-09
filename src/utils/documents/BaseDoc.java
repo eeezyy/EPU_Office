@@ -316,7 +316,7 @@ public abstract class BaseDoc {
 
     }
 
-    public void drawTable(Document doc,String month, ArrayList<String> out, ArrayList<String> in, String outcome) {
+    public void drawTable(Document doc, String month, ArrayList<String> out, ArrayList<String> in, String outcome) {
         //http://www.java-examples.com/java-stringtokenizer---specify-delimiter-example
         //http://www.geek-tutorials.com/java/itext/itext_table.php
         PdfPTable table = new PdfPTable(2);
@@ -332,20 +332,20 @@ public abstract class BaseDoc {
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_BASELINE);
         table.getDefaultCell().setBackgroundColor(null);
         //System.out.println("Size beraegt jetzt noch: " + out.size() + " und " + in.size());
-        if(!(out.size() == in.size())){
-            if(out.size() > in.size()){
-                while(!(out.size() == in.size())){
+        if (!(out.size() == in.size())) {
+            if (out.size() > in.size()) {
+                while (!(out.size() == in.size())) {
                     in.add(" ");
                 }
             } else {
-                while(!(out.size() == in.size())){
+                while (!(out.size() == in.size())) {
                     out.add(" ");
                 }
             }
         }
         //System.out.println("Size beraegt: " + out.size() + " und " + in.size());
 
-        for(int i = 0; i < out.size(); i++){
+        for (int i = 0; i < out.size(); i++) {
             table.addCell(out.get(i));
             table.addCell(in.get(i));
         }
@@ -362,12 +362,84 @@ public abstract class BaseDoc {
         } catch (DocumentException ex) {
             Logger.log(Level.SEVERE, BaseDoc.class, ex);
         }
-        
+
     }
 
     public String getPfad() {
         return pfad;
     }
-    
-    
+
+    public void drawTable(Document doc, ArrayList<String> CellHeader, ArrayList<String> spalte1, ArrayList<String> spalte2, ArrayList<String> spalte3) {
+        //http://www.java-examples.com/java-stringtokenizer---specify-delimiter-example
+        //http://www.geek-tutorials.com/java/itext/itext_table.php
+        PdfPTable table = new PdfPTable(3);
+        PdfPCell cell = new PdfPCell();
+        cell.setBorder(0);
+        table.setSpacingBefore(20);
+        table.setSpacingAfter(20);
+        table.setWidthPercentage(100);
+        table.getDefaultCell().setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(CellHeader.get(0));
+        table.addCell(CellHeader.get(1));
+        table.addCell(CellHeader.get(2));
+
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_BASELINE);
+        table.getDefaultCell().setBackgroundColor(null);
+        //System.out.println("Size beraegt jetzt noch: " + out.size() + " und " + in.size());
+        if (spalte1.size() > spalte2.size()) {
+            if (spalte1.size() > spalte3.size()) {
+                while (!(spalte2.size() == spalte1.size())) {
+                    spalte2.add(" ");
+                }
+                while (!(spalte3.size() == spalte1.size())) {
+                    spalte3.add(" ");
+                }
+            } else {
+                while (!(spalte2.size() == spalte3.size())) {
+                    spalte2.add(" ");
+                }
+                while (!(spalte1.size() == spalte3.size())) {
+                    spalte1.add(" ");
+                }
+            }
+        } else {
+            if (spalte2.size() > spalte3.size()) {
+                while (!(spalte3.size() == spalte2.size())) {
+                    spalte2.add(" ");
+                }
+                while (!(spalte1.size() == spalte2.size())) {
+                    spalte1.add(" ");
+                }
+            } else {
+                while (!(spalte2.size() == spalte3.size())) {
+                    spalte2.add(" ");
+                }
+                while (!(spalte1.size() == spalte3.size())) {
+                    spalte1.add(" ");
+                }
+            }
+            //System.out.println("Size beraegt: " + out.size() + " und " + in.size());
+
+            for (int i = 0; i < spalte1.size(); i++) {
+                table.addCell(spalte1.get(i));
+                table.addCell(spalte2.get(i));
+                table.addCell(spalte2.get(i));
+            }
+//        for (String s : row) {
+//            st = new StringTokenizer(s, ";");
+//            while (st.hasMoreTokens()) {
+//                table.addCell(st.nextToken());
+//                //System.out.println(st.nextToken());
+//            }
+//        }
+            try {
+                doc.add(table);
+                System.out.println("Done");
+            } catch (DocumentException ex) {
+                Logger.log(Level.SEVERE, BaseDoc.class, ex);
+            }
+
+        }
+    }
 }

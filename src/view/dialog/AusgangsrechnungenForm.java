@@ -10,6 +10,15 @@
  */
 package view.dialog;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import utils.log.Logger;
+import utils.documents.PdfAusgangsrechnung;
+import view.StatistikView;
+
 /**
  *
  * @author Goran-Goggy
@@ -117,7 +126,33 @@ public class AusgangsrechnungenForm extends javax.swing.JDialog {
 
     private void dialogPdfErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogPdfErstellenActionPerformed
         // TODO add your handling code here:
-        dispose();
+        ArrayList<String> cellHeader = new ArrayList<String>();
+        cellHeader.add("Bestellungsdatum");
+        cellHeader.add("Angebot");
+        cellHeader.add("Implementierungsdauer");
+        
+        ArrayList<String> spalte1 = new ArrayList<String>();
+        spalte1.add("2006-05-31");
+        
+        ArrayList<String> spalte2 = new ArrayList<String>();
+        spalte2.add("Angebot XXL");
+        
+        ArrayList<String> spalte3 = new ArrayList<String>();
+        spalte3.add("400 Tage");
+        
+        String kunde = "Max Mustermann";
+        String preisAngabe = "3000 €";
+        
+        String fileName = "Ausgangsrechnung.pdf";
+        PdfAusgangsrechnung pdfAusgangsrechnung = new PdfAusgangsrechnung(cellHeader, spalte1, spalte2, spalte3, kunde, preisAngabe);
+        pdfAusgangsrechnung.createPDF(fileName);
+        
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.open(new File(pdfAusgangsrechnung.getPfad()+fileName));
+        } catch (IOException ex) {
+            Logger.log(Level.SEVERE, AusgangsrechnungenForm.class, ex);
+        }
 }//GEN-LAST:event_dialogPdfErstellenActionPerformed
 
     private void dialogEingangHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogEingangHinzufuegenActionPerformed
