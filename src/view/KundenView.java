@@ -210,7 +210,7 @@ public class KundenView extends AbstractViewPanel {
         });
         add(kundenHausnrFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 150, -1));
 
-        kundenAendern.setText("Kunden ändern");
+        kundenAendern.setText("Kunden sichern");
         kundenAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kundenAendernActionPerformed(evt);

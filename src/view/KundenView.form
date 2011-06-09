@@ -334,7 +334,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="kundenAendern">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kunden &#xe4;ndern"/>
+        <Property name="text" type="java.lang.String" value="Kunden sichern"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kundenAendernActionPerformed"/>

@@ -201,7 +201,7 @@ public class AngeboteView extends AbstractViewPanel {
         angebotGueltigAbLabel.setText("Gültig ab");
         add(angebotGueltigAbLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        angebotAendern.setText("Angebot ändern");
+        angebotAendern.setText("Angebot sichern");
         angebotAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 angebotAendernActionPerformed(evt);

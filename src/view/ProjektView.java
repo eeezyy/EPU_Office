@@ -171,7 +171,7 @@ public class ProjektView extends AbstractViewPanel {
         });
         add(projektLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
-        projektAendern.setText("Projektdaten ändern");
+        projektAendern.setText("Projektdaten sichern");
         projektAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektAendernActionPerformed(evt);
@@ -191,14 +191,14 @@ public class ProjektView extends AbstractViewPanel {
         projektVonFeld.setName("Von"); // NOI18N
         add(projektVonFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 100, -1));
 
-        projektMitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        projektMitarbeiterListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         projektMitarbeiterListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         projektMitarbeiterListe.setName("MitarbeiterFromProjekt"); // NOI18N
         jScrollPane2.setViewportView(projektMitarbeiterListe);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 200, 190));
 
-        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 0, 14));
         mitarbeiterListeLabel1.setText("Mitarbeiter im Projekt");
         add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents

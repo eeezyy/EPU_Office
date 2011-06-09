@@ -196,7 +196,7 @@ public class ZeitErfassungView extends AbstractViewPanel {
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 770, 90));
 
-        projektAendern1.setText("Logeintrag ändern");
+        projektAendern1.setText("Logeintrag sichern");
         projektAendern1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektAendern1ActionPerformed(evt);

@@ -46,7 +46,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="mitarbeiterAendern">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mitarbeiterdaten &#xe4;ndern"/>
+        <Property name="text" type="java.lang.String" value="Mitarbeiterdaten sichern"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mitarbeiterAendernActionPerformed"/>

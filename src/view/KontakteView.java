@@ -252,7 +252,7 @@ public final class KontakteView extends AbstractViewPanel {
         kontaktFirmennameFeld.setName("Firmenname"); // NOI18N
         add(kontaktFirmennameFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 150, -1));
 
-        kontaktAendern.setText("Kontakt ändern");
+        kontaktAendern.setText("Kontakt sichern");
         kontaktAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kontaktAendernActionPerformed(evt);

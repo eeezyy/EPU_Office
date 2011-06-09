@@ -89,7 +89,7 @@ public class MitarbeiterView extends AbstractViewPanel {
         mitarbeiterVornameLabel.setText("Vorname");
         add(mitarbeiterVornameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
-        mitarbeiterAendern.setText("Mitarbeiterdaten ändern");
+        mitarbeiterAendern.setText("Mitarbeiterdaten sichern");
         mitarbeiterAendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mitarbeiterAendernActionPerformed(evt);
