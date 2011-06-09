@@ -95,7 +95,7 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterAendernActionPerformed(evt);
             }
         });
-        add(mitarbeiterAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
+        add(mitarbeiterAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         mitarbeiterGeburtsdatumFeld.setName("Geburtsdatum"); // NOI18N
         add(mitarbeiterGeburtsdatumFeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 130, -1));
@@ -106,7 +106,7 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterLoeschenActionPerformed(evt);
             }
         });
-        add(mitarbeiterLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 230, -1));
+        add(mitarbeiterLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
         mitarbeiterNachnameFeld.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mitarbeiterNachnameFeld.setName("Nachname"); // NOI18N
@@ -164,9 +164,9 @@ public class MitarbeiterView extends AbstractViewPanel {
                 mitarbeiterHinzufuegenActionPerformed(evt);
             }
         });
-        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(mitarbeiterHinzufuegen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
-        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        mitarbeiterProjektListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         mitarbeiterProjektListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         mitarbeiterProjektListe.setName("ProjektFromMitarbeiter"); // NOI18N
         mitarbeiterProjektListe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -178,7 +178,7 @@ public class MitarbeiterView extends AbstractViewPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 200, 190));
 
-        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        mitarbeiterListeLabel1.setFont(new java.awt.Font("Arial", 0, 14));
         mitarbeiterListeLabel1.setText("Projekte vom Mitarbeiter");
         add(mitarbeiterListeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents

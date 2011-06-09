@@ -124,7 +124,7 @@ public class AngeboteView extends AbstractViewPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        angebotListe.setFont(new java.awt.Font("Tahoma", 2, 12));
         angebotListe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         angebotListe.setName("AngebotFromKontakt"); // NOI18N
         jScrollPane1.setViewportView(angebotListe);
@@ -175,7 +175,7 @@ public class AngeboteView extends AbstractViewPanel {
                 angebotErstellenActionPerformed(evt);
             }
         });
-        add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
+        add(angebotErstellen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
 
         angebotLoeschen.setText("Angebot löschen");
         angebotLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +183,7 @@ public class AngeboteView extends AbstractViewPanel {
                 angebotLoeschenActionPerformed(evt);
             }
         });
-        add(angebotLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 230, -1));
+        add(angebotLoeschen, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
         kundeZuweisen.setText("Kunden zuweisen");
         kundeZuweisen.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +207,7 @@ public class AngeboteView extends AbstractViewPanel {
                 angebotAendernActionPerformed(evt);
             }
         });
-        add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 230, -1));
+        add(angebotAendern, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 230, -1));
 
         angebotChanceFeld.setEnabled(false);
         angebotChanceFeld.setName("Chance"); // NOI18N

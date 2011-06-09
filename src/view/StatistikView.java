@@ -77,7 +77,7 @@ public class StatistikView extends javax.swing.JPanel {
         kontaktInfoLabel.setAlignmentX(0.5F);
         add(kontaktInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
-        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikEingang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikEingang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien" };
             public int getSize() { return strings.length; }
@@ -125,7 +125,7 @@ public class StatistikView extends javax.swing.JPanel {
         });
         add(statistikPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 230, -1));
 
-        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        statistikAusgang.setFont(new java.awt.Font("Tahoma", 2, 12));
         statistikAusgang.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Wien Energie", "FH Technikum-Wien", "Wien Energie", "FH Technikum-Wien" };
             public int getSize() { return strings.length; }
